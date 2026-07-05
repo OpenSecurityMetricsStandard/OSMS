@@ -1,0 +1,31 @@
+Open Security Metrics Standard (OSMS)
+(c) 2026 Nico Wiegand — https://opensecuritymetrics.org
+
+LICENSING
+---------
+The OSMS specification, the metric card catalog (YAML), taxonomy, principles
+and framework crosswalks are licensed under Creative Commons Attribution 4.0
+International (CC BY 4.0). See LICENSE.
+
+Code in tools/ and the JSON schema files in schema/ are licensed under the
+MIT License. See LICENSE-CODE.
+
+The book (the official guide to OSMS 1.0) is NOT covered by either license.
+All rights reserved.
+
+ATTRIBUTION (TASL)
+------------------
+When you share or adapt licensed material, attribute it as follows and
+indicate if changes were made:
+
+  "Open Security Metrics Standard (OSMS), Nico Wiegand,
+   https://opensecuritymetrics.org, licensed under CC BY 4.0
+   (https://creativecommons.org/licenses/by/4.0/)."
+
+TRADEMARK
+---------
+"OSMS" is the subject of EU trade mark application No. 019380729
+(filed 15 June 2026; Nice classes 9, 41, 42; status: application published).
+Neither CC BY 4.0 nor MIT grants any right to use the OSMS name,
+marks or logos. Use of "OSMS Certified" or similar designations requires
+prior written permission.

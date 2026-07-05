@@ -1,0 +1,117 @@
+- name: AI, GenAI & Metric Governance
+  slug: ai-genai-and-metric-governance
+  card_count: 14
+- name: AI/ML for Security Operations
+  slug: ai-ml-for-security-operations
+  card_count: 12
+- name: Application, API & Software Supply Chain
+  slug: application-api-and-software-supply-chain
+  card_count: 15
+- name: Asset, Software & Ownership
+  slug: asset-software-and-ownership
+  card_count: 10
+- name: Attack Surface Management
+  slug: attack-surface-management
+  card_count: 10
+- name: Cloud Security
+  slug: cloud-security
+  card_count: 10
+- name: Cyber Risk Financing & Resilience
+  slug: cyber-risk-financing-and-resilience
+  card_count: 1
+- name: Data Security & Cryptography
+  slug: data-security-and-cryptography
+  card_count: 2
+- name: Data Security & Privacy
+  slug: data-security-and-privacy
+  card_count: 10
+- name: Detection Engineering & Response Quality
+  slug: detection-engineering-and-response-quality
+  card_count: 14
+- name: Detection Engineering & SOC
+  slug: detection-engineering-and-soc
+  card_count: 1
+- name: Executive & Enterprise Risk
+  slug: executive-and-enterprise-risk
+  card_count: 17
+- name: Exposure Management / CTEM
+  slug: exposure-management-ctem
+  card_count: 1
+- name: Governance & Compliance
+  slug: governance-and-compliance
+  card_count: 11
+- name: Human Risk & Security Behavior
+  slug: human-risk-and-security-behavior
+  card_count: 10
+- name: Identity & Access Management
+  slug: identity-and-access-management
+  card_count: 11
+- name: Incident Response, Legal & Regulatory Reporting
+  slug: incident-response-legal-and-regulatory-reporting
+  card_count: 1
+- name: Measure & Impact Tracking
+  slug: measure-and-impact-tracking
+  card_count: 10
+- name: Network, Email & Web Defense
+  slug: network-email-and-web-defense
+  card_count: 10
+- name: OT/ICS/IoT Security
+  slug: ot-ics-iot-security
+  card_count: 1
+- name: Operational Resilience & Service Dependency Management
+  slug: operational-resilience-and-service-dependency-management
+  card_count: 1
+- name: Privacy / Data Protection Operations
+  slug: privacy-data-protection-operations
+  card_count: 1
+- name: Resilience & Recovery
+  slug: resilience-and-recovery
+  card_count: 10
+- name: Resilience, Crisis & Recovery
+  slug: resilience-crisis-and-recovery
+  card_count: 10
+- name: SOC - Collaboration & Communication
+  slug: soc-collaboration-and-communication
+  card_count: 10
+- name: SOC - Detection & Response
+  slug: soc-detection-and-response
+  card_count: 19
+- name: SOC - Efficiency & Cost
+  slug: soc-efficiency-and-cost
+  card_count: 16
+- name: SOC - Innovation & Improvement
+  slug: soc-innovation-and-improvement
+  card_count: 6
+- name: SOC - Operational
+  slug: soc-operational
+  card_count: 9
+- name: SOC - Quality & Compliance
+  slug: soc-quality-and-compliance
+  card_count: 10
+- name: SOC Operations
+  slug: soc-operations
+  card_count: 1
+- name: Secure Configuration & Endpoint
+  slug: secure-configuration-and-endpoint
+  card_count: 10
+- name: Security Telemetry & Log Management
+  slug: security-telemetry-and-log-management
+  card_count: 16
+- name: Security Validation & Assurance
+  slug: security-validation-and-assurance
+  card_count: 1
+- name: Security Validation & Assurance / DORA
+  slug: security-validation-and-assurance-dora
+  card_count: 1
+- name: Third-Party & ICT Supply Chain
+  slug: third-party-and-ict-supply-chain
+  card_count: 12
+- name: Threat Intelligence & Detection Engineering
+  slug: threat-intelligence-and-detection-engineering
+  card_count: 1
+- name: Threat Intelligence & Risk Management
+  slug: threat-intelligence-and-risk-management
+  card_count: 10
+- name: Vulnerability Management
+  slug: vulnerability-management
+  card_count: 12

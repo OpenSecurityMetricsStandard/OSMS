@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opensecuritymetrics.org/schema/0.9/osms-card.schema.json",
+  "title": "OSMS Metric Card Contract (production structure)",
+  "description": "Open Security Metrics Standard (OSMS) v0.9 — calibrated 2026-07-04 against osms-catalog.yaml (flat card structure, 46 contract fields). Enums mirror catalog/taxonomy.yaml plus the calculation types declared in the catalog header. Licensed CC BY 4.0; schema file itself MIT.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "osms_version",
+    "card_version",
+    "release_status",
+    "domain",
+    "type_label",
+    "type",
+    "lag_type",
+    "priority",
+    "mvp",
+    "status",
+    "scope",
+    "unit",
+    "purpose",
+    "story",
+    "management_question",
+    "definition",
+    "formula",
+    "calculation_type",
+    "calculation_type_check",
+    "calculation_plain",
+    "variables_inputs",
+    "rebuild_steps",
+    "special_cases_gates",
+    "calculation_example",
+    "target_thresholds",
+    "numerator_denominator",
+    "frequency",
+    "threshold_mode",
+    "direction",
+    "accountable_owner",
+    "escalation_owner",
+    "data_sources",
+    "minimum_data_fields",
+    "framework_mapping",
+    "audit_test",
+    "reproducibility",
+    "drilldown_lineage",
+    "data_confidence",
+    "confidence_production_rule",
+    "decision_chain",
+    "version_break_rule",
+    "interpretation",
+    "example_tasks",
+    "guardrails",
+    "next_chain"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,4}-[0-9]{3}[a-z]?$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3
+    },
+    "osms_version": {
+      "type": "string"
+    },
+    "card_version": {
+      "type": "string"
+    },
+    "release_status": {
+      "type": "string",
+      "examples": [
+        "review_candidate"
+      ]
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 2,
+      "description": "Must match an entry in catalog/domains.yaml (checked semantically by the validator)."
+    },
+    "type_label": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "metric",
+        "kpi",
+        "kri",
+        "kci",
+        "outcome",
+        "confidence",
+        "maturity",
+        "helper"
+      ]
+    },
+    "lag_type": {
+      "type": "string",
+      "enum": [
+        "leading",
+        "lagging",
+        "not_specified"
+      ]
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "P0",
+        "P1",
+        "P2",
+        "P3"
+      ]
+    },
+    "mvp": {
+      "type": "string",
+      "pattern": "^MVP-[0-9]$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "normative_candidate",
+        "helper"
+      ],
+      "description": "Helper cards are not independently reportable."
+    },
+    "scope": {
+      "type": "string"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 20
+    },
+    "story": {
+      "type": "string"
+    },
+    "management_question": {
+      "type": "string",
+      "minLength": 10
+    },
+    "definition": {
+      "type": "string",
+      "minLength": 10
+    },
+    "formula": {
+      "type": "string",
+      "minLength": 3
+    },
+    "calculation_type": {
+      "type": "string",
+      "enum": [
+        "Ratio",
+        "Duration",
+        "Count",
+        "Weighted Sum",
+        "Weighted Average",
+        "Composite",
+        "Penalty",
+        "Index",
+        "Ranking",
+        "Monetary Risk",
+        "Delta",
+        "Score",
+        "Unit Cost"
+      ],
+      "$comment": "Delta, Score and Unit Cost are declared in the catalog header but not yet in taxonomy.yaml — review-board item."
+    },
+    "calculation_type_check": {
+      "type": "string"
+    },
+    "calculation_plain": {
+      "type": "string"
+    },
+    "variables_inputs": {
+      "type": "string"
+    },
+    "rebuild_steps": {
+      "type": "string"
+    },
+    "special_cases_gates": {
+      "type": "string"
+    },
+    "calculation_example": {
+      "type": "string"
+    },
+    "target_thresholds": {
+      "type": "string"
+    },
+    "numerator_denominator": {
+      "type": "string"
+    },
+    "frequency": {
+      "type": "string"
+    },
+    "threshold_mode": {
+      "type": "string"
+    },
+    "direction": {
+      "type": "string",
+      "pattern": "^(higher_is_better|lower_is_better|zero_is_target|band_is_better|context_dependent)\\b",
+      "description": "Machine-readable prefix followed by ' - ' and prose context."
+    },
+    "accountable_owner": {
+      "type": "string"
+    },
+    "escalation_owner": {
+      "type": "string"
+    },
+    "data_sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "minimum_data_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 3,
+      "allOf": [
+        {
+          "contains": {
+            "const": "evidence_ref"
+          }
+        },
+        {
+          "contains": {
+            "const": "record_id"
+          }
+        },
+        {
+          "contains": {
+            "const": "source_system"
+          }
+        }
+      ],
+      "description": "Evidence trio (evidence_ref, record_id, source_system) is mandatory for auditability."
+    },
+    "framework_mapping": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "audit_test": {
+      "type": "string"
+    },
+    "reproducibility": {
+      "type": "string"
+    },
+    "drilldown_lineage": {
+      "type": "string",
+      "description": "Contains the 'Pfad:' segment with at most 4 steps (value -> dimension -> record -> raw/evidence)."
+    },
+    "data_confidence": {
+      "type": "string",
+      "description": "Must reference the 70 (operational) and 85 (management) gates."
+    },
+    "confidence_production_rule": {
+      "type": "string"
+    },
+    "decision_chain": {
+      "type": "string",
+      "minLength": 30
+    },
+    "version_break_rule": {
+      "type": "string",
+      "minLength": 15
+    },
+    "interpretation": {
+      "type": "string"
+    },
+    "example_tasks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "guardrails": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "next_chain": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "description": "Provenance of the card (kind + source_card_version); internal file names are stripped for the public release."
+    }
+  }
+}

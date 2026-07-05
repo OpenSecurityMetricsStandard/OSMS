@@ -1,0 +1,54 @@
+version: 0.9.1
+principles:
+- id: OSMS-01
+  name: No Metric Without a Decision
+  requirement: Each metric must identify the decision it prepares or triggers.
+  name_de: Keine Kennzahl ohne Entscheidung
+  requirement_de: Jede Kennzahl muss die Entscheidung benennen, die sie vorbereitet oder auslöst.
+- id: OSMS-02
+  name: Outcomes over Activity
+  requirement: OSMS prefers outcome, risk and control effectiveness indicators over activity counts.
+  name_de: Wirkung vor Aktivität
+  requirement_de: OSMS bevorzugt Ergebnis-, Risiko- und Kontrollwirksamkeitskennzahlen gegenüber Aktivitätszählungen.
+- id: OSMS-03
+  name: Data Confidence Is Mandatory
+  requirement: Each metric must show data completeness, timeliness, source authority, consistency, and matching
+    quality.
+  name_de: Datenvertrauen ist Pflicht
+  requirement_de: Jede Kennzahl muss Datenvollständigkeit, Aktualität, Quellenautorität, Konsistenz und Abstimmqualität
+    ausweisen.
+- id: OSMS-04
+  name: One Owner, One Question
+  requirement: Each card has exactly one management question and one accountable role.
+  name_de: Eine Frage, eine verantwortliche Rolle
+  requirement_de: Jede Card hat genau eine Managementfrage und eine accountable Rolle.
+- id: OSMS-05
+  name: Medians and Tails over Means
+  requirement: Streuende Zeit- und Risiko-Kennzahlen müssen P50/P90 bzw. Verteilungen verwenden.
+  name_de: Median und Tail statt nur Mittelwert
+  requirement_de: Streuende Zeit- und Risiko-Kennzahlen müssen P50/P90 bzw. Verteilungen verwenden.
+- id: OSMS-06
+  name: Thresholds Are Risk-Appetite Decisions
+  requirement: Status and Gates are released risk appetite decisions.
+  name_de: Schwellen sind Risikoappetit
+  requirement_de: Ampeln und Gates sind freigegebene Risikoappetit-Entscheidungen.
+- id: OSMS-07
+  name: Guardrails Are Part of the Metric
+  requirement: Manipulation and misinterpretation risks must be documented.
+  name_de: Leitplanken gehören zur Kennzahl
+  requirement_de: Manipulations- und Fehlinterpretationsrisiken müssen dokumentiert sein.
+- id: OSMS-08
+  name: Definitions Are Controlled Documents
+  requirement: Definition, formula, scope and thresholds are versioned and changed in a controlled manner.
+  name_de: Definitionen sind kontrollierte Dokumente
+  requirement_de: Definition, Formel, Scope und Schwellen werden versioniert und kontrolliert geändert.
+- id: OSMS-09
+  name: Stable Identity, Traceable Lineage
+  requirement: Card IDs, data origin and drilldown to the raw data set must be stable and traceable.
+  name_de: Stabile Identität, nachvollziehbare Herkunft
+  requirement_de: Card-IDs, Datenherkunft und Drilldown bis zum Rohdatensatz müssen stabil und nachvollziehbar sein.
+- id: OSMS-10
+  name: Start Small, Mature Deliberately
+  requirement: OSMS is introduced over MVP-Profile and maturity levels, not as a big bang dashboard.
+  name_de: Klein starten, bewusst reifen
+  requirement_de: OSMS wird über MVP-Profile und Reifegrade eingeführt, nicht als Big-Bang-Dashboard.

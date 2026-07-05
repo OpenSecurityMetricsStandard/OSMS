@@ -1,0 +1,245 @@
+cards:
+- id: AI-001
+  name: AI Asset Inventory & Approval Coverage
+  osms_version: 0.9.0
+  card_version: 0.9.0
+  release_status: review_candidate
+  domain: AI, GenAI & Metric Governance
+  type_label: Control Indicator (KCI)
+  type: kci
+  lag_type: leading
+  priority: P0
+  mvp: MVP-1
+  status: normative_candidate
+  scope: Objects within the scope of the AI, GenAI & Metric Governance domain; scope, exceptions, and local applicability
+    must be documented and versioned.
+  unit: Percent (%)
+  purpose: Zeigt, welcher Anteil aller AI-/GenAI-Use-Cases, Modelle, Agents und Tools mit genehmigtem Inventareintrag,
+    Owner, Datenklasse, Risiko und Betriebsstatus geführt wird — und macht damit Shadow-AI als ungesteuertes Risiko
+    sichtbar. Bereitet die Entscheidung vor, ungenehmigte AI-Assets nachzuerfassen, zu genehmigen oder stillzulegen.
+  story: 'AI-Risiko beginnt mit unbekannten AI-Systemen: Was nicht im Inventar steht, hat keinen Owner, keine Datenklasse
+    und keine Risikobewertung. Diese Kennzahl stellt Discovery (CASB/SaaS, Endpoint-/Browser-Telemetrie, Procurement)
+    gegen die genehmigte Registry und macht die Lücke dazwischen zur Zahl. Sie belohnt Teams, die neue AI-Nutzung
+    früh deklarieren, und bestraft Scope-Schnitte, bei denen Shadow-AI aus dem Nenner fällt. Unter dem Gate von
+    95% — bei high-risk und Crown-Jewel unter 100% — wird nach Owner und Kritikalität gedrillt und nacherfasst.'
+  management_question: Is AI Asset Inventory & Approval Coverage within the defined target range - and what decision
+    is required in case of deviation?
+  definition: Anteil AI-/GenAI-Use-Cases, Modelle, Agents und Tools mit genehmigtem Inventory, Owner, Datenklasse,
+    Risiko und Betriebsstatus.
+  formula: (anzahl_ai_assets_mit_genehmigtem_inventareintrag / anzahl_ai_assets_gesamt_im_scope) * 100
+  calculation_type: Ratio
+  calculation_type_check: Quotient of numerator and denominator times 100; the numerator is a subset of the denominator.
+    An empty denominator yields n/a, never 0; the absolute base must be reported alongside.
+  calculation_plain: Für AI Asset Inventory & Approval Coverage wird gezählt, wie viele AI-Assets im Scope einen
+    genehmigten Inventory-Eintrag mit Owner, Datenklasse, Risiko und Betriebsstatus haben, und durch die Gesamtzahl
+    aller entdeckten und deklarierten AI-Assets im Scope geteilt. Das Ergebnis wird mit 100 multipliziert und in
+    Prozent berichtet. Leerer Nenner ergibt n/a, niemals 0.
+  variables_inputs: anzahl_ai_assets_mit_genehmigtem_inventareintrag (Zähler), anzahl_ai_assets_gesamt_im_scope
+    (Nenner), Asset-ID, Geltungsbereich-ID, Berichtszeitraum, Evidence-Ref. Jedes Asset ist eindeutig identifiziert
+    und dedupliziert; der Zähler ist Teilmenge des Nenners.
+  rebuild_steps: 'Nachbau: 1) Geltungsbereich, Berichtszeitraum und Stichtag festlegen; Stichtag ist das Periodenende
+    (letzter Kalendertag des Berichtsmonats, 23:59 in der im Scope dokumentierten Referenzzeitzone). 2) Autoritative
+    Datenquellen ziehen: AI registry, CASB/SaaS discovery, procurement, cloud AI services, endpoint/browser telemetry,
+    GRC. 3) Nenner bilden: alle entdeckten und deklarierten AI-Assets im Scope deduplizieren; maßgeblich ist der
+    Bestand zum Stichtag, zum Stichtag nachweislich stillgelegte Assets sind ausgenommen. 4) Zähler bilden: davon
+    die Assets, deren Inventory-Eintrag inkl. Owner, Datenklasse, Risiko und Betriebsstatus zum Stichtag genehmigt
+    ist. 5) Quotient mal 100 berechnen; leerer Nenner => n/a. 6) Datenvertrauen, Gate und Ausnahmen prüfen; Ergebnis
+    mit Evidence-Refs und Entscheidungskette speichern.'
+  special_cases_gates: 'Bei fehlendem Nenner, fehlender Evidence oder Datenvertrauen <70 ist der Wert n/a oder provisional.
+    Kein Management-/Vorstands-Grün bei Datenvertrauen <85. Gate/Ziel: >=95%; high-risk/regulated/Crown-Jewel =100%.
+    Scope- oder Formeländerung erzeugt Version Break.'
+  calculation_example: 'Beispiel: 200 AI-Assets im Scope, davon 190 mit genehmigtem Inventory-Eintrag: (190 / 200)
+    * 100 = 95%. Gate >=95% gerade erreicht; die 10 offenen Assets werden nach Owner und Kritikalität gedrillt.'
+  target_thresholds: '>=95%; high-risk/regulated/Crown-Jewel =100%'
+  numerator_denominator: 'Zähler = Anzahl der AI-/GenAI-Use-Cases, Modelle, Agents und Tools im Scope, die zum Stichtag
+    einen genehmigten Inventory-Eintrag inkl. Owner, Datenklasse, Risikobewertung und Betriebsstatus haben. Nenner
+    = Anzahl aller entdeckten und deklarierten AI-/GenAI-Use-Cases, Modelle, Agents und Tools im Scope zum Stichtag
+    (inkl. Shadow-AI aus Discovery; ausgenommen Assets, die zum Stichtag nachweislich stillgelegt sind). Stichtag
+    ist das Periodenende: der letzte Kalendertag des Berichtsmonats, 23:59 in der im Scope dokumentierten Referenzzeitzone.
+    Maßgeblich ist ausschließlich der Status zum Stichtag — ein Asset, das im Laufe des Monats genehmigt wird, zählt
+    im Zähler; ein Asset, das bis zum Stichtag nachweislich stillgelegt wird, fällt aus dem Nenner. Der Zähler ist
+    Teilmenge des Nenners; jedes Asset zählt genau einmal. Leerer Nenner => Ergebnis n/a, niemals 0.'
+  frequency: Monthly
+  threshold_mode: risk_appetite_bound for P0/P0-scope cards; otherwise guidance in the guide with locally documented
+    approval.
+  direction: higher_is_better - higher values are generally better; trend, scope, and data confidence remain mandatory
+    context.
+  accountable_owner: AI Governance Owner
+  escalation_owner: CISO
+  data_sources:
+  - AI registry
+  - CASB/SaaS discovery
+  - procurement
+  - cloud AI services
+  - endpoint/browser telemetry
+  - GRC
+  minimum_data_fields:
+  - metric_id
+  - scope_id
+  - period_start
+  - period_end
+  - source_system
+  - record_id
+  - evidence_ref
+  - owner_id
+  - asset_id
+  - business_service_id
+  - operating_status
+  - approval_status
+  - approval_date
+  - data_class
+  - risk_rating
+  - timestamp
+  framework_mapping:
+  - NIST CSF 2.0 GV.RM/ID.AM
+  - CISA ZTMM 2.0
+  - ENISA NIS2 Guidance
+  audit_test: AI-Discovery gegen Registry abgleichen; Shadow-AI mit Datenklasse und Owner erfassen.
+  reproducibility: 'Production rule: AI Asset Inventory & Approval Coverage is calculated from the defined data
+    sources, numerator/denominator conditions or input parameters according to the formula. Audit test and evidence
+    refs must enable a second calculation by an independent person.'
+  drilldown_lineage: 'Archetyp: Ratio · Drill-Achsen: Zeitraum, Geschäftsbereich, Service/Asset, Owner, Kritikalität,
+    Kontrollfamilie, Quelle · Pfad: Wert → Dimension → Einzelsatz → Rohdatensatz/Evidence. Parent-Familie: AI-FAM
+    AI Governance & AI Security.'
+  data_confidence: 'Minimum confidence: >=70 for operational reporting, >=85 for management/board decisions. With
+    data confidence <70, the status must not be Green; with a missing denominator, the value must be reported as
+    n/a with its absolute base.'
+  confidence_production_rule: Completeness = numerator/denominator/subscores complete; Freshness = data within SLA;
+    Source Authority = system of record; Consistency = stable scope and stable classification; Reconciliation Quality
+    = raw record and evidence ref traceable.
+  decision_chain: 'Auslöser: Schwelle/Gate verletzt oder negativer Trend. Entscheidungstyp: Reduktion, Akzeptanz,
+    Finanzierung, Eskalation oder Ausnahme. Gremium: abhängig von Priorität, mindestens Verantwortlich/CISO. Maßnahme:
+    Ungenehmigte AI-Assets nacherfassen, genehmigen oder stilllegen; offene Assets nach Owner und Kritikalität priorisieren.'
+  version_break_rule: Major version on changes to definition, formula, scope, direction, threshold mode, minimum
+    data fields, owner, or weighting; minor version for editorial clarifications without computational or scope
+    impact; trend breaks must be visibly marked.
+  interpretation: 'Nur mit Scope, Trend, Datenvertrauen und Ausnahmen interpretieren. Ziel/Gate: >=95%; high-risk/regulated/Crown-Jewel
+    =100%. Decision Trigger: AI-Risiko beginnt mit unbekannten AI-Systemen.'
+  example_tasks:
+  - • Verify scope, denominator, and evidence against the system of record. • Drill deviations by service, asset,
+    owner, and criticality. • Create an action with owner, due date, and evidence ref. • Re-validate the effect
+    in the next cycle using the audit test.
+  guardrails:
+  - 'Manipulationsrisiko: Scope-Schnitt, fehlende Evidence, stale Daten, Selbstauskunft ohne Prüfung oder grüne
+    Ampel trotz Gate-Bruch. Gegenmaßnahme: AI-Discovery gegen Registry abgleichen; Shadow-AI mit Datenklasse und
+    Owner erfassen.'
+  next_chain: AI-Risiko beginnt mit unbekannten AI-Systemen.
+  source:
+    kind: docx_extraction
+    source_card_version: 1.0.0
+- id: XX-9Z9
+  name: AI Data & Model Herkunftsnachweis Coverage
+  osms_version: 0.9.0
+  card_version: 0.9.0
+  release_status: review_candidate
+  domain: Nicht existente Domain
+  type_label: Control Indicator (KCI)
+  type: superkpi
+  lag_type: leading
+  priority: P9
+  mvp: MVP-2
+  status: normative_candidate
+  scope: Objects within the scope of the AI, GenAI & Metric Governance domain; scope, exceptions, and local applicability
+    must be documented and versioned.
+  unit: Percent (%)
+  purpose: Misst, für welchen Anteil der high-risk AI-Systeme Datenherkunft, Modellversion, Prompt/Toolchain, Evaluation
+    und Deployment-Lineage vollständig dokumentiert sind. Bereitet die Entscheidung vor, ob ein AI-System reproduzierbar
+    und auditierbar genug ist, um in regulierten oder kundenwirksamen Kontexten betrieben zu werden.
+  story: 'Ohne Herkunftsnachweis kann man AI-Risiken weder reproduzieren noch auditieren: Wenn niemand sagen kann,
+    mit welchen Daten, welcher Modellversion und welcher Toolchain ein Ergebnis entstand, ist jede Fehleranalyse
+    Spekulation. Die Kennzahl macht sichtbar, welche high-risk Systeme diese Lineage lückenlos belegen — teilweise
+    dokumentierte Systeme zählen bewusst nicht. Sie belohnt Teams, die Registry, Data Catalog und CI/CD sauber verketten,
+    statt Dokumentation nachzureichen, wenn der Vorfall schon da ist.'
+  management_question: Is AI Data & Model Herkunftsnachweis Coverage within the defined target range - and what
+    decision is required in case of deviation?
+  definition: Anteil high-risk AI-Systeme mit dokumentierter Datenherkunft, Modellversion, Prompt/Toolchain, Evaluation
+    und Deployment-Lineage.
+  formula: a mal b
+  calculation_type: Ratio
+  calculation_type_check: Quotient of numerator and denominator times 100; the numerator is a subset of the denominator.
+    An empty denominator yields n/a, never 0; the absolute base must be reported alongside.
+  calculation_plain: Für AI Data & Model Herkunftsnachweis Coverage wird gezählt, wie viele high-risk AI-Systeme
+    im Scope einen vollständig dokumentierten Herkunftsnachweis (Datenherkunft, Modellversion, Prompt/Toolchain,
+    Evaluation, Deployment-Lineage) haben, und durch die Gesamtzahl aller high-risk AI-Systeme in der Registry geteilt.
+    Das Ergebnis wird mit 100 multipliziert und in Prozent berichtet. Leerer Nenner ergibt n/a, niemals 0.
+  variables_inputs: anzahl_highrisk_ai_systeme_mit_vollstaendigem_herkunftsnachweis (Zähler), anzahl_highrisk_ai_systeme_gesamt_im_scope
+    (Nenner), System-ID, Modellversion, Geltungsbereich-ID, Berichtszeitraum, Evidence-Ref. Jedes System ist eindeutig
+    identifiziert; der Zähler ist Teilmenge des Nenners.
+  rebuild_steps: 'Nachbau: 1) Geltungsbereich, Berichtszeitraum und Stichtag festlegen; Stichtag ist das Periodenende
+    (letzter Kalendertag des Berichtsmonats, 23:59 in der im Scope dokumentierten Referenzzeitzone), bei Per-release-Messung
+    der Release-Zeitpunkt. 2) Autoritative Datenquellen ziehen: AI registry, model registry, data catalog, CI/CD,
+    evaluation logs, prompt/version control. 3) Nenner bilden: alle zum Stichtag in der AI Registry geführten high-risk
+    AI-Systeme im Scope deduplizieren; zum Stichtag nachweislich stillgelegte Systeme sind ausgenommen. 4) Zähler
+    bilden: davon die Systeme, deren Datenherkunft, Modellversion, Prompt/Toolchain, Evaluation und Deployment-Lineage
+    zum Stichtag vollständig dokumentiert und per Evidence-Ref belegt sind. 5) Quotient mal 100 berechnen; leerer
+    Nenner => n/a. 6) Datenvertrauen, Gate und Ausnahmen prüfen; Ergebnis mit Evidence-Refs und Entscheidungskette
+    speichern.'
+  special_cases_gates: 'Bei fehlendem Nenner, fehlender Evidence oder Datenvertrauen <70 ist der Wert n/a oder provisional.
+    Kein Management-/Vorstands-Grün bei Datenvertrauen <85. Gate/Ziel: >=90%; regulated/customer-impacting =100%.
+    Scope- oder Formeländerung erzeugt Version Break.'
+  calculation_example: 'Beispiel: 50 high-risk AI-Systeme in der Registry, davon 45 mit vollständigem Herkunftsnachweis:
+    (45 / 50) * 100 = 90%. Gate >=90% gerade erreicht; die 5 offenen Systeme werden nach Owner und Kritikalität
+    gedrillt.'
+  target_thresholds: '>=90%; regulated/customer-impacting =100%'
+  numerator_denominator: eine Zahl
+  frequency: Monthly (reporting cadence); additionally per-release measurement upon the productive release of a
+    high-risk AI system — the release time then takes the place of the period end.
+  threshold_mode: risk_appetite_bound for P0/P0-scope cards; otherwise guidance in the guide with locally documented
+    approval.
+  direction: upwards - always
+  accountable_owner: AI Governance Owner
+  escalation_owner: CISO
+  data_sources:
+  - AI registry
+  - model registry
+  - data catalog
+  - CI/CD
+  - evaluation logs
+  - prompt/version control
+  minimum_data_fields:
+  - metric_id
+  - scope_id
+  - period_start
+  - period_end
+  - source_system
+  - owner_id
+  - status
+  - asset_id
+  - business_service_id
+  - risk_class
+  - model_version
+  - data_provenance_status
+  - prompt_toolchain_status
+  - evaluation_results_status
+  - deployment_lineage_status
+  - timestamp
+  framework_mapping:
+  - NIST CSF 2.0 GV.OV/ID.AM
+  - OWASP SAMM where software-controlled
+  - CISA ZTMM
+  audit_test: 'AI-System-Stichprobe: Datenherkunft, Modellversion, Evaluationsergebnisse, Deployment und Owner nachvollziehen.'
+  reproducibility: 'Production rule: AI Data & Model Herkunftsnachweis Coverage is calculated from the defined data
+    sources, numerator/denominator conditions or input parameters according to the formula. Audit test and evidence
+    refs must enable a second calculation by an independent person.'
+  drilldown_lineage: 'Archetyp: Ratio · Drill-Achsen: Zeitraum, Geschäftsbereich, Service/Asset, Owner, Kritikalität,
+    Kontrollfamilie, Quelle · Pfad: Wert → Dimension → Einzelsatz → Rohdatensatz/Evidence. Parent-Familie: AI-FAM
+    AI Governance & AI Security.'
+  data_confidence: 'Minimum confidence: >=70 for operational reporting, >=85 for management/board decisions. With
+    data confidence <70, the status must not be Green; with a missing denominator, the value must be reported as
+    n/a with its absolute base.'
+  confidence_production_rule: Completeness = numerator/denominator/subscores complete; Freshness = data within SLA;
+    Source Authority = system of record; Consistency = stable scope and stable classification; Reconciliation Quality
+    = raw record and evidence ref traceable.
+  decision_chain: kurz
+  version_break_rule: ''
+  interpretation: 'Nur mit Scope, Trend, Datenvertrauen und Ausnahmen interpretieren. Ziel/Gate: >=90%; regulated/customer-impacting
+    =100%. Decision Trigger: Ohne Herkunftsnachweis kann man AI-Risiken nicht reproduzieren oder auditieren.'
+  example_tasks:
+  - • Verify scope, denominator, and evidence against the system of record. • Drill deviations by service, asset,
+    owner, and criticality. • Create an action with owner, due date, and evidence ref. • Re-validate the effect
+    in the next cycle using the audit test.
+  guardrails: kein Array
+  next_chain: Ohne Herkunftsnachweis kann man AI-Risiken nicht reproduzieren oder auditieren.
+  source:
+    kind: docx_extraction
+    source_card_version: 1.0.0

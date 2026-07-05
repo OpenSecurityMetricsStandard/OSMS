@@ -1,0 +1,50 @@
+version: 0.9.1
+indicator_types:
+- metric
+- kpi
+- kri
+- kci
+- outcome
+- confidence
+- maturity
+- helper
+priorities:
+- P0
+- P1
+- P2
+- P3
+lag_types:
+- leading
+- lagging
+- not_specified
+calculation_types:
+- Ratio
+- Duration
+- Count
+- Index
+- Composite
+- Weighted Sum
+- Weighted Average
+- Monetary Risk
+- Penalty
+- Ranking
+- Delta
+- Score
+- Unit Cost
+directions:
+- higher_is_better
+- lower_is_better
+- zero_is_target
+- band_is_better
+- context_dependent
+data_confidence_components:
+- Completeness
+- Freshness
+- Source Authority
+- Consistency
+- Reconciliation Quality
+threshold_modes:
+- risk_appetite_bound
+- guidance
+- hybrid
+- inherited
