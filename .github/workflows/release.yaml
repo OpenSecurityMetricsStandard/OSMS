@@ -1,0 +1,37 @@
+name: Release on tag
+# Two ways to trigger - both end with bundle + checksums attached:
+#   a) Terminal/Codespace:  git tag -a v0.9.1 -m "..." && git push origin v0.9.1
+#   b) Web UI only:         Releases -> "Draft a new release" -> type new tag v0.9.1 -> Publish
+#      (the workflow then attaches the assets to that existing release)
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate catalog before releasing
+        run: |
+          pip install pyyaml jsonschema
+          python tools/osms_validate.py catalog/osms-catalog.yaml \
+            --taxonomy catalog/taxonomy.yaml --domains catalog/domains.yaml \
+            --expect-count 327 --json release-validation.json
+          python -c "import json,yaml,jsonschema; v=jsonschema.Draft202012Validator(json.load(open('schema/osms-card.schema.json'))); d=yaml.safe_load(open('catalog/osms-catalog.yaml',encoding='utf-8')); e=[x.message for c in d['cards'] for x in v.iter_errors(c)]; print('schema errors:',len(e)); raise SystemExit(1 if e else 0)"
+      - name: Build bundle + checksums
+        run: bash tools/make_checksums.sh "${GITHUB_REF_NAME}"
+      - name: Create release or attach assets to existing one
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          ASSETS="release/osms-${TAG}-catalog.zip release/SHA256SUMS.txt release/MANIFEST-SHA256.txt"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" $ASSETS --clobber
+          else
+            gh release create "$TAG" $ASSETS \
+              --title "OSMS ${TAG} - Public Review Candidate" \
+              --notes-file .github/RELEASE_NOTES.md
+          fi
