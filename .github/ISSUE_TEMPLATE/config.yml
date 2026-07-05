@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Review form (non-GitHub reviewers)
+    url: https://opensecuritymetrics.org/review
+    about: Submit findings without a GitHub account
+  - name: Confidential expert feedback
+    url: mailto:review@opensecuritymetrics.org
+    about: Private channel for enterprise reviewers
