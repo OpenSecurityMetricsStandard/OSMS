@@ -1,0 +1,57 @@
+name: Review Finding (OSMS 0.9)
+description: Report a finding against the OSMS 0.9 public review candidate
+title: "[Finding] "
+labels: ["finding", "triage"]
+body:
+  - type: input
+    id: card_id
+    attributes:
+      label: Card ID(s)
+      description: e.g. OSMS-DR-014 — leave empty for cross-cutting findings
+      placeholder: OSMS-XX-000
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Card Contract
+        - Formula
+        - Data Source
+        - Data Confidence
+        - Taxonomy
+        - Domain
+        - Decision Chain
+        - Evidence
+        - Helper / Parent / Child
+        - Board Relevance
+        - Implementation
+        - Language
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: critical = blocks freeze · major = must be decided before freeze · minor = editorial
+      options:
+        - critical
+        - major
+        - minor
+    validations:
+      required: true
+  - type: textarea
+    id: finding
+    attributes:
+      label: Finding
+      description: What is wrong, unclear or not reproducible?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change (optional)
+  - type: input
+    id: version
+    attributes:
+      label: OSMS version
+      value: "0.9.0"
