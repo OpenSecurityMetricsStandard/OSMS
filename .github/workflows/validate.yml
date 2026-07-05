@@ -1,0 +1,25 @@
+name: Validate OSMS Catalog
+on:
+  push:
+    paths: ["catalog/**", "schema/**", "tools/**"]
+  pull_request:
+    paths: ["catalog/**", "schema/**", "tools/**"]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml jsonschema
+      - name: Validate catalog against OSMS card contract
+        run: |
+          python tools/osms_validate.py catalog/ \
+            --schema schema/osms-card.schema.json \
+            --json validation-report.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: validation-report
+          path: validation-report.json
