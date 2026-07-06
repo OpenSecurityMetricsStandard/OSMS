@@ -166,8 +166,7 @@
         "Delta",
         "Score",
         "Unit Cost"
-      ],
-      "$comment": "Delta, Score and Unit Cost are declared in the catalog header but not yet in taxonomy.yaml — review-board item."
+      ]
     },
     "calculation_type_check": {
       "type": "string"
