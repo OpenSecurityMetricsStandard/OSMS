@@ -341,6 +341,7 @@ cards:
   next_chain: AI risk starts with unknown AI systems.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AI-002
   name: AI Data & Model Lineage Coverage
@@ -476,6 +477,7 @@ cards:
   next_chain: Without provenance, AI risks cannot be reproduced or audited.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AI-003
   name: AI Output Sensitive Data Leakage Rate
@@ -619,6 +621,7 @@ cards:
   next_chain: AI must not become the new exfiltration channel.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AI-004
   name: AI Red-Team Coverage for High-Risk Use Cases
@@ -754,6 +757,7 @@ cards:
   next_chain: AI-specific failures do not show up in classic pentests.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AI-005
   name: Autonomous Action Kill-Switch Coverage
@@ -889,6 +893,7 @@ cards:
   next_chain: Autonomy without the ability to shut down is an operational risk.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AI-006
   name: AI Policy Enforcement Coverage
@@ -1040,6 +1045,7 @@ cards:
   next_chain: Policy without enforcement is training material.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AI-007
   name: AI Model Access Review Coverage
@@ -1177,6 +1183,7 @@ cards:
   next_chain: AI systems often have highly privileged data access.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: MET-001
   name: Metric Contract Completeness
@@ -1295,6 +1302,7 @@ cards:
   next_chain: Prevents metric folklore and KPI gaming.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: MET-002
   name: Denominator Drift Rate
@@ -1423,6 +1431,7 @@ cards:
   next_chain: Catches green traffic lights that arise only from scope shrinking.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: MET-003
   name: Green-with-Low-Confidence Blocker Rate
@@ -1544,6 +1553,7 @@ cards:
   next_chain: Forces truth over optics.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: MET-004
   name: Decision Activation Rate
@@ -1659,6 +1669,7 @@ cards:
   next_chain: A metric that triggers nothing is decoration.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: MET-005
   name: Evidence Tamper-Proofing Coverage
@@ -1783,6 +1794,7 @@ cards:
   next_chain: Auditability dies when evidence can be changed after the fact.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: MET-006
   name: Independent Control Test Coverage
@@ -1903,6 +1915,7 @@ cards:
   next_chain: Prevents effectiveness claims that rest on self-attestation alone.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: MET-007
   name: Metric Owner Attestation Currency
@@ -2026,6 +2039,7 @@ cards:
   next_chain: Metrics need accountable owners, not just creators.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AIM-001
   name: Autonomous Investigation Rate
@@ -2156,6 +2170,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Reconcile a sample from the denominator (all alerts in scope) against SIEM/SOAR and check completeness
     including manually handled alerts as well as the correct application of the documented deduplication rule (duplicate_flag).
@@ -2296,6 +2311,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of received alerts from the SIEM and check against case management whether a documented
     closure decision (true positive, false positive, benign, escalation) exists. Additionally check that the documented
@@ -2424,6 +2440,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of closed alerts and reconcile received_at/closed_at against the raw timestamps in SIEM,
     case management, and the event log of AI decisions (timezone-consistent, unique per case). Recompute the duration
@@ -2555,6 +2572,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of reviewed AI decisions from the AI SOC platform and substantiate via reviewer tags
     that a human review actually took place. For numerator cases, check the correction type (escalation, re-classification,
@@ -2684,6 +2702,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of threats classified as missed and substantiate the source per case: threat-hunting
     case, red-team report, post-incident review, re-analysis, or external threat-intel report with evidence_ref.
@@ -2822,6 +2841,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Reconstruct alerts_received from the SIEM raw data and check that the documented deduplication rule
     was applied and test alerts were excluded. Check a sample of filtered alerts in the AI triage engine: classified
@@ -2962,6 +2982,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Load the versioned baseline (value, baseline date, baseline scope, rule version) from the historical
     baseline values and check that it is unchanged since the last report; every change must be documented as a trend
@@ -3094,6 +3115,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of AI actions from the denominator and check in the reasoning trace repository that
     all five elements of the reasoning chain are present: inputs, model version, confidence, evidence sources, derived
@@ -3218,6 +3240,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of the models productive as of the as-of date period_end from the model registry (model_id,
     model_version). For each model counted as monitored, substantiate in the MLOps platform or performance monitoring
@@ -3342,6 +3365,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of AI outputs from the audit log of AI actions (output_id, model_id, reporting period).
     Reconcile every output counted as hallucinated/reversed against reversal logs and reviewer logs: the withdrawal
@@ -3476,6 +3500,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of detected attack attempts from the input filters and prompt sanitizing layer and
     reconcile them against the AI platform logs (record_id, evidence_ref, prompt_or_policy_ref). Recount the denominator
@@ -3610,6 +3635,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of autonomously completed investigations from the AI SOC platform and case management
     and substantiate per case that no human intervention occurred (human_override_flag, evidence_ref) - cases "with
@@ -3750,6 +3776,7 @@ cards:
   next_chain: AppSec without an app/API denominator is theater.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-002
   name: Secure SDLC Control Coverage for Critical Apps
@@ -3878,6 +3905,7 @@ cards:
   next_chain: Shifts security left without an illusion of control.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-003
   name: Threat Modeling Coverage for High-Risk Changes
@@ -4007,6 +4035,7 @@ cards:
   next_chain: Finds design flaws that scanners never find.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-004
   name: SAST / DAST / SCA Coverage
@@ -4135,6 +4164,7 @@ cards:
   next_chain: Makes AppSec minimum hygiene measurable.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-005
   name: Critical AppSec Exposure Hours
@@ -4277,6 +4307,7 @@ cards:
   next_chain: Time at risk beats ticket counting.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-006
   name: SBOM Coverage
@@ -4413,6 +4444,7 @@ cards:
   next_chain: Without an SBOM, impact analysis for new CVEs takes too long.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-007
   name: Known Vulnerable Dependency Exposure
@@ -4565,6 +4597,7 @@ cards:
   next_chain: Closes the gap between infra VM and the software supply chain.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-008
   name: Build Provenance / SLSA Coverage
@@ -4694,6 +4727,7 @@ cards:
   next_chain: Prevents build/release manipulation, one of the most expensive blind spots.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-009
   name: CI/CD Privileged Path Control Coverage
@@ -4831,6 +4865,7 @@ cards:
   next_chain: CI/CD is production admin by another name.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-010
   name: Secrets in Repositories Exposure Age
@@ -4978,6 +5013,7 @@ cards:
   next_chain: A found secret is done only once it is rotated.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-011
   name: API Runtime Protection Coverage
@@ -5110,6 +5146,7 @@ cards:
   next_chain: APIs are often the real perimeter surface today.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-012
   name: Security Gate Bypass Rate
@@ -5241,6 +5278,7 @@ cards:
   next_chain: The bypass rate shows whether security engineering counts in reality.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-013
   name: Open Source Package Health Coverage
@@ -5370,6 +5408,7 @@ cards:
   next_chain: Not every dependency weakness has a CVE; project health counts.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-014
   name: Container Runtime Drift
@@ -5496,6 +5535,7 @@ cards:
   next_chain: Closes the gap between the checked build and running reality.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: APP-015
   name: Release Integrity Verification Coverage
@@ -5628,6 +5668,7 @@ cards:
   next_chain: Stops the classic 'A was checked, B was deployed'.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AST-001
   name: Internal Asset Inventory Coverage
@@ -5750,6 +5791,7 @@ cards:
   next_chain: Without a denominator, every coverage metric is contestable; the inventory is the foundation.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AST-002
   name: Unknown Internal Assets
@@ -5885,6 +5927,7 @@ cards:
   next_chain: Unknown assets are unpatched, unmeasured, unprotected.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AST-003
   name: Internal Asset Owner Coverage
@@ -6006,6 +6049,7 @@ cards:
   next_chain: Without an owner, no remediation accountability; the risk remains anonymous.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AST-004
   name: Asset Criticality & Business Service Mapping Coverage
@@ -6129,6 +6173,7 @@ cards:
   next_chain: Enables risk-weighted prioritization instead of a CVSS lottery.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AST-005
   name: Software Inventory Coverage
@@ -6249,6 +6294,7 @@ cards:
   next_chain: Without a software denominator, vulnerability, license, and supply-chain risks remain invisible.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AST-006
   name: Unauthorized Software Execution Rate
@@ -6385,6 +6431,7 @@ cards:
   next_chain: Shadow tools and adware are entry points and compliance debt.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AST-007
   name: Unsupported / EOL Technology Exposure
@@ -6522,6 +6569,7 @@ cards:
     the exposure persists and becomes architecture and budget debt.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AST-008
   name: CMDB-to-Observed Asset Drift
@@ -6647,6 +6695,7 @@ cards:
   next_chain: Protects all other denominators from silent distortion.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AST-009
   name: Mobile/BYOD/IoT Asset Coverage
@@ -6784,6 +6833,7 @@ cards:
   next_chain: IoT/BYOD otherwise becomes a shadow surface outside the SOC and patch management.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: AST-010
   name: Crown-Jewel Dependency Mapping Coverage
@@ -6922,6 +6972,7 @@ cards:
   next_chain: Without a dependency map, risk, blast radius, and recovery are only guessed.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: STD-023
   name: Unknown External Assets
@@ -7040,6 +7091,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull the EASM population at the as-of date and reconcile a sample of external assets against the
     CMDB and cloud inventory: owner_id present, business_purpose documented, inventory assignment substantiated.
@@ -7180,6 +7232,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull the list of external assets/services newly detected in the reporting period from EASM, DNS/certificate,
     and cloud inventory sources. Check a sample: discovered_at lies within the period, deduplication by stable asset/exposure
@@ -7307,6 +7360,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull the EASM hit list of publicly reachable admin/management interfaces at the as-of date. Per sampled
     hit, check: service_type confirmed as an admin interface, public reachability verified against the raw record
@@ -7443,6 +7497,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull the CSPM/CNAPP and cloud inventory findings at the as-of date and verify a sample of public
     storage resources against the cloud control plane (publicly_reachable = true). Per hit, check the approval status
@@ -7599,6 +7654,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the certificate population in scope from the DNS/certificate inventory at the as-of date and
     recount the denominator deduplicated by stable certificate ID. Per defect class (expiry <30 days, weak algorithms,
@@ -7726,6 +7782,7 @@ cards:
   type_label: Confidence Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of external assets from EASM and the DNS/certificate inventory and reconcile it against
     the CMDB/cloud inventory; per asset, check owner_id, owner_role, and owner_confirmed_at and prove the owner
@@ -7857,6 +7914,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Reconcile the list of critical business services against EASM and the cloud inventory and pull a sample
     of the services counted as exposed; per hit, substantiate the direct or indirect internet exposure on the raw
@@ -8003,6 +8061,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of the contributing shadow SaaS individual records and substantiate each app via evidence_ref
     against the source system (EASM, GRC/ISMS, risk register); per individual record, check the factors usage_volume,
@@ -8124,6 +8183,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of the counted entries from the DNS/certificate inventory; per entry, verify that approved=false
     or owner_unknown=true actually applies, by reconciling the approval and owner_id against ticketing/CMDB; recount
@@ -8256,6 +8316,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of the counted third-party assets from EASM and the cloud inventory; per asset, verify
     the counting condition: risk_score at or above the documented threshold, or a missing owner, contract, controls,
@@ -8400,6 +8461,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of publicly reachable resources from CSPM/CNAPP or AWS Security Hub and verify the exposure
     per resource against EASM and the cloud inventory. Check the risk factors (exposure, data_sensitivity, vulnerability,
@@ -8525,6 +8587,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of applicable CSPM controls per cloud account from CSPM/CNAPP or AWS Security Hub;
     reconcile the pass/fail status per finding_id/policy_id against the source system and evidence_ref. Recalculate
@@ -8670,6 +8733,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of contributing IAM findings from Entra ID/AD/IAM and CSPM/CNAPP; per individual record,
     verify the factors privilege, scope, external_access, and policy_risk against the source system, the versioned
@@ -8811,6 +8875,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of the rated cloud roles; per role, verify granted_permissions against used_permissions
     or the least-privilege violation in the IAM/PAM source system via evidence_ref. Check the criticality weight
@@ -8966,6 +9031,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of open critical findings from the vulnerability scanner and reconcile each resource_id
     against the productive workload state (evidence_ref). Check the factors runtime_exposure and workload_criticality
@@ -9102,6 +9168,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of confirmed secret exposures and verify the confirmation status per finding_id against
     the source system and evidence_ref (confirmed vs. unconfirmed). Check denominator completeness: reconcile the
@@ -9228,6 +9295,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of critical cloud resources from the denominator and check the criticality rating against
     the versioned scope definition. Per resource, verify in CloudTrail/CloudWatch or AWS Security Hub via evidence_ref
@@ -9352,6 +9420,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of sensitive cloud data resources from the denominator and check the sensitivity rating
     against the versioned scope definition. Per resource_id, verify in CSPM/CNAPP or AWS Security Hub via evidence_ref
@@ -9470,6 +9539,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of scanned IaC artifacts from the IaC scanner and check the denominator completeness
     against the connected IaC repo. Per numerator case, verify that the artifact has at least one finding rated
@@ -9617,6 +9687,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of cloud identities/workloads with a high blast_radius_score; reconcile the three exposure
     subscores including card version, scope ID, and weighting (0.40/0.30/0.30) against the findings in CSPM/CNAPP
@@ -9752,6 +9823,7 @@ cards:
     change.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: CRY-001
   name: Crypto-Agility & Post-Quantum Readiness
@@ -9918,6 +9990,7 @@ cards:
     (subscore_inventorying, subscore_migration) and validated via the audit test.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DAT-011
   name: Data-at-Rest Encryption Coverage
@@ -10051,6 +10124,7 @@ cards:
   next_chain: Data classification without encryption coverage is only inventory, not protection.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DAT-001
   name: Sensitive Data Discovery Coverage
@@ -10175,6 +10249,7 @@ cards:
   next_chain: You cannot protect data nobody knows about.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DAT-002
   name: Data Classification Coverage
@@ -10300,6 +10375,7 @@ cards:
   next_chain: Without classification, DLP, encryption, and access reviews are blind.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DAT-003
   name: Sensitive Data Overexposure Risk
@@ -10432,6 +10508,7 @@ cards:
   next_chain: Data risk is often permission risk, not an infrastructure problem.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DAT-004
   name: DLP Coverage for Critical Channels
@@ -10557,6 +10634,7 @@ cards:
   next_chain: Makes exfiltration protection steerable instead of merely incident-driven.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DAT-005
   name: Confirmed Data Exfiltration Events
@@ -10690,6 +10768,7 @@ cards:
   next_chain: Forces investments onto data exfiltration instead of abstract alerts.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DAT-006
   name: Encryption Key Hygiene
@@ -10816,6 +10895,7 @@ cards:
   next_chain: Keys are the control behind many other controls.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DAT-007
   name: Data Retention & Deletion Compliance
@@ -10940,6 +11020,7 @@ cards:
   next_chain: Holding data too long enlarges the damage and regulatory burden.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DAT-008
   name: Privileged Data Access Review Coverage
@@ -11060,6 +11141,7 @@ cards:
   next_chain: Data access is the last protection against insiders and credential abuse.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DAT-009
   name: Crown-Jewel Data Flow Mapping Coverage
@@ -11193,6 +11275,7 @@ cards:
   next_chain: Without data flows, you cannot contain exfiltration, privacy, and third-party risk.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DAT-010
   name: Sensitive Non-Production Data Protection Coverage
@@ -11328,6 +11411,7 @@ cards:
   next_chain: Test data is a classically underestimated data exfiltration path.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-001
   name: Priority Detection Use-Case Coverage
@@ -11451,6 +11535,7 @@ cards:
     evidence ref.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-002
   name: Detection-as-Code Test Coverage
@@ -11573,6 +11658,7 @@ cards:
     with an owner, deadline, and evidence ref.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-003
   name: Detection Rule Freshness / Decay
@@ -11702,6 +11788,7 @@ cards:
     as an individual case with an owner, deadline, and evidence ref.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-004
   name: Alert Routing Accuracy
@@ -11827,6 +11914,7 @@ cards:
     the effectiveness.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-005
   name: Case Evidence Completeness
@@ -11948,6 +12036,7 @@ cards:
     evidence with an owner, deadline, and evidence ref, and escalate material incidents as individual cases.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-006
   name: Incident Severity Calibration Accuracy
@@ -12029,10 +12118,10 @@ cards:
   - evidence_ref
   - owner_id
   - status
-  - initiale_severity_stufe
-  - finale_kalibrierte_severity_stufe
+  - initial_severity_level
+  - final_calibrated_severity_level
   - final_priority_class_p0_p1_flag
-  - abweichungsrichtung
+  - deviation_direction
   - timestamp
   framework_mapping:
   - NIST CSF 2.0 RS.AN/RS.MA
@@ -12074,6 +12163,7 @@ cards:
     as an individual case with an owner, deadline, and evidence ref.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-007
   name: Purple-Team False-Negative Validation Coverage
@@ -12195,6 +12285,7 @@ cards:
     close undetected tests as findings with an owner, deadline, and evidence ref.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-008
   name: Detection Engineering Lead Time
@@ -12316,6 +12407,7 @@ cards:
     with an owner, deadline, and evidence ref.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-009
   name: Playbook Automation Safe-Execution Coverage
@@ -12450,6 +12542,7 @@ cards:
     evidence ref).'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-010
   name: Incident Timeline Reconstruction Completeness
@@ -12589,6 +12682,7 @@ cards:
     ref); until closure, mark the RCA results of the affected incidents as not reliable.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-011
   name: Legal / Regulatory Notification Readiness
@@ -12721,6 +12815,7 @@ cards:
     and evidence ref, and schedule a tabletop exercise - before the next notifiable incident.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-012
   name: Corrective Action Closure Effectiveness
@@ -12863,6 +12958,7 @@ cards:
     to the CISO with a decision on remediation and funding (owner, deadline, evidence ref).'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-013
   name: Threat Hunting Coverage of Priority Hypotheses
@@ -12993,6 +13089,7 @@ cards:
     evidence ref, and track the transfer into detection/control improvement.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-014
   name: Repeat Incident Root Cause Recurrence
@@ -13119,6 +13216,7 @@ cards:
     with a decision on remediation, funding, or risk acceptance (owner, deadline, evidence ref).'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-015
   name: Detection Rule Health & Noise Governance
@@ -13258,6 +13356,7 @@ cards:
     test evidence up to date with an owner, deadline, and evidence ref.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: STD-001
   name: Dynamic Security Posture Score
@@ -13395,6 +13494,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull all 16 child card inputs (p(card ID), 0-100) at the as-of date with card version and scope from
     the lineage and reconcile them against the source cards; direct raw-value inputs are a finding. Recalculate
@@ -13516,6 +13616,7 @@ cards:
   type_label: Helper
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Check active P1 incidents, KEV hits on in-scope assets, and confirmed IOC hits at the as-of date against
     incident management, the CISA KEV reconciliation/vulnerability scanner, and the threat intelligence platform
@@ -13645,6 +13746,7 @@ cards:
   type_label: Helper
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the open exceptions, risk acceptances, and overdue remediations at the as-of date from the GRC/risk
     register, exception register, and remediation tracker and deduplicate them across all source systems via the
@@ -13776,6 +13878,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the denominator population (all assessed prioritized risk scenarios in scope and the reporting
     period) from GRC/ISMS and the risk register and reconcile it against the system of record. For a sample from
@@ -13914,6 +14017,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Reconcile the scenario list against the risk register: all prioritized scenarios must be included;
     selectively omitted scenarios are a finding. For a sample, check per scenario the LEF and loss magnitude assumptions
@@ -14056,6 +14160,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Check the object list against the scope: all business services must be scored — a top N without a
     complete scope is a finding. For a sample of services, recalculate service_risk_raw = Σ(asset_risk) * service_criticality
@@ -14194,6 +14299,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Load the subscores STD-032, STD-062, and STD-070 with card version and scope from the lineage and
     reconcile them against the child cards; raw values without a p(card ID) transformation are a finding. Recalculate
@@ -14332,6 +14438,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Load the versioned baseline (value, date, scope, rule version) and the versioned plan trajectory (plan_value_period,
     decision_ref) and reconcile them against the risk register and GRC/ISMS; a missing baseline or missing plan
@@ -14488,6 +14595,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of completed security investments and substantiate the costs in the unit fixed with
     versioning per scope_id — euros against finance/ERP, person-days against time tracking; mixed units in the same
@@ -14623,6 +14731,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of critical controls from GRC/ISMS and, per control, reconcile the effectiveness_score
     against the test evidence in the evidence repository (the share of passed effectiveness tests and evidence freshness).
@@ -14745,6 +14854,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Check the tier-1 control list from the GRC/control register against the criticality rubric — silent
     scope narrowings to embellish the coverage are a guardrail violation. For a sample of the tier-1 controls, reconcile
@@ -14879,6 +14989,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of applicable mandatory requirements from GRC/ISMS and, per requirement, check the
     current evidence in the evidence repository via evidence_ref: present, valid, assigned to the requirement. Recalculate
@@ -15017,6 +15128,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of the tier-1 services from the CMDB/service catalog and, per service, check the recovery_confidence_score
     against the raw evidence: recovery tests and RTO/RPO fidelity in the BCM tool, backup successes in the backup
@@ -15158,6 +15270,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Check the stored result for the baseline value, baseline date, baseline scope, and formula version
     (baseline_ref) — silent baseline changes are a violation; a baseline switch without a major version and marked
@@ -15299,6 +15412,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of open security-relevant management decisions from GRC/ISMS or the risk register and,
     per case, reconcile the decision_ref, risk class, and request time (decision_requested_at) against the source
@@ -15436,6 +15550,7 @@ cards:
   type_label: Confidence Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: For a sample of reported KPIs, pull the five subscores (completeness, freshness, source authority,
     consistency, reconciliation quality) as 0-100 values including the lineage reference and check them against
@@ -15572,6 +15687,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of roadmap actions from GRC/ISMS and reconcile measure_completion (a fraction of 0-1)
     against the status and evidence reference in the source system. Check expected_risk_reduction_weight per action
@@ -15743,6 +15859,7 @@ cards:
     in the next monthly roll-up per the audit test and report the result including residual risks to the CISO.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: STD-053
   name: Evidence-backed Control Effectiveness
@@ -15872,6 +15989,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of controls from the numerator; per control_id, cross-check the current evidence (evidence_id,
     evidence_ref, due_date not exceeded) and the documented technical/operational effectiveness proof with the result
@@ -15989,6 +16107,7 @@ cards:
   type_label: Confidence Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of required evidence items; per evidence_id, check the date, status, and due date (due_date)
     in the evidence repository or GRC/ISMS against the raw record, in particular whether the evidence was currently
@@ -16116,6 +16235,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of open and expired risk acceptances (exception_id) from GRC/ISMS or the risk register;
     per case, reconcile the acceptance or expiry date, status, and criticality (residual_risk_rating) against the
@@ -16263,6 +16383,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of active policy exceptions (exception_id) from GRC/ISMS and the policy repository;
     per exception, reconcile residual_risk (the reference rubric), age_factor (the approval/expiry date), and compensating_control_gap
@@ -16386,6 +16507,7 @@ cards:
   type_label: Confidence Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of controls from the numerator; per control_id, check in GRC/ISMS that the subject-matter
     and technical owners are named and confirmed (owner_id, status); recount the numerator and denominator from
@@ -16514,6 +16636,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of closed findings from the numerator; per finding_id, check the closure time against
     due_date, the backed evidence (evidence_ref), and the non-recurrence up to the as-of date period_end (no new
@@ -16651,6 +16774,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of budget items from the numerator; reconcile the assignment of each item to a top risk
     or risk reduction objective against the risk register and finance/ERP; re-sum the total budget and the assigned
@@ -16767,6 +16891,7 @@ cards:
   type_label: Confidence Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of applicable requirements from GRC/ISMS; per requirement, check the mapping to the
     risk (the risk register), control, and KPI against the individual records. Recalculate the rate from raw data:
@@ -16898,6 +17023,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of decided cases from GRC/ISMS; reconcile decision_request_date, decision_date, and
     risk_class per case timezone-consistently against the source system. Recalculate the duration = decision_date
@@ -17023,6 +17149,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of critical third parties from the denominator; per supplier, verify the assurance
     evidence (evidence_id with an evidence_date) in the evidence repository, including compliance with the freshness
@@ -17154,6 +17281,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a device sample from the CMDB and check the denominator completeness of the managed endpoints
     against MDM/UEM. Per device_id, reconcile the enforced FDE status in the BitLocker/FileVault reporting with
@@ -17302,6 +17430,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Check the weights (0.35/0.25/0.20/0.20) against the reported card version; pull the four subscores
     phishing_report_rate, simulation_failure_rate, training_currency, and risky_action_rate as 0-100 posture scores
@@ -17420,6 +17549,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a campaign sample (campaign_id) from the phishing simulation platform; reconcile delivered_simulations
     against the delivery proofs and reported_simulations against the report-button telemetry; recalculate the rate
@@ -17535,6 +17665,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a campaign sample and reconcile delivered_simulations against the delivery proof of the platform
     or the email gateway telemetry; check the clicked_or_submitted events (a click, data entry, and attachment as
@@ -17661,6 +17792,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of campaigns and reconcile the reported and failed simulations of the same campaign
     base against the simulation platform and report-button telemetry; recalculate the ratio reported_simulations/failed_simulations
@@ -17783,6 +17915,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of reported cases, simulations and real cases separately; reconcile delivery_timestamp
     and report_timestamp against the simulation platform, report-button telemetry, or SOAR and check timezone consistency;
@@ -17808,7 +17941,7 @@ cards:
   calculation_plain: For High-Risk User Concentration, first all valid records in the defined scope and reporting
     period are determined. From these, the denominator is built. Then the records meeting the numerator condition
     are counted. The value results from the numerator divided by the denominator times 100.
-  variables_inputs: Numerator = users with >=3 fails in 90 days. Denominator = active users. The numerator must be
+  variables_inputs: Numerator = users with ≥3 fails in 90 days. Denominator = active users. The numerator must be
     a true subset of the denominator; both populations must use the same scope and reporting period.
   rebuild_steps: 'Rebuild: 1) Define scope and reporting period. 2) Determine the denominator as all valid cases.
     3) Count the numerator as the subset meeting the condition. 4) With denominator = 0, report n/a. 5) Otherwise
@@ -17817,10 +17950,10 @@ cards:
     that are not also contained in the denominator. Data confidence < 70 prevents operational Green; data confidence
     < 85 prevents management/board Green. Missing mandatory fields lead to n/a or provisional. Changes to formula,
     scope, direction, threshold mode, or weighting produce at least one visible trend break.
-  calculation_example: 'Example: active users = 500, of which users with >=3 fails in 90 days = 15. Result = 15 /
+  calculation_example: 'Example: active users = 500, of which users with ≥3 fails in 90 days = 15. Result = 15 /
     500 * 100 = 3%. With denominator = 0, n/a is reported with the absolute base.'
   target_thresholds: 'Target: <2%; Amber: 2-5%; Red: >5%'
-  numerator_denominator: Users with >=3 fails in 90 days / active users
+  numerator_denominator: Users with ≥3 fails in 90 days / active users
   frequency: Quarterly, rolling monthly
   threshold_mode: guidance — the target bands of this card are guidance in the guide; local thresholds must be approved
     and documented versioned, bound to the risk appetite, service criticality, and data confidence.
@@ -17849,7 +17982,7 @@ cards:
   - 'NIST CSF 2.0: PR.AT, GV.RR'
   - ISO/IEC 27001:2022 A.6.3
   reproducibility: 'A rolling 90-day window at the as-of date; denominator = the active users per HR/IdP at the
-    as-of date, numerator = users with >=3 failed simulations in the window; leavers and role changes are cleaned
+    as-of date, numerator = users with ≥3 failed simulations in the window; leavers and role changes are cleaned
     up, and the threshold definition (3 fails/90 days) is fixed - every change produces a trend break. Formula:
     (users_with_3plus_failures_90d / active_users) * 100.'
   drilldown_lineage: 'Archetype: Ratio · Drill axes: period · business unit · identity/account · target group ·
@@ -17896,8 +18029,9 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
-  audit_test: Pull a user sample from the numerator and, per user, substantiate the >=3 failed simulations in the
+  audit_test: Pull a user sample from the numerator and, per user, substantiate the ≥3 failed simulations in the
     90-day window against the raw data of the simulation platform; reconcile the denominator (active users) against
     the HR master data and IdP and check the leaver/role-change cleanup; recalculate the rate; verify that the 3-fail
     threshold is unchanged and that no conspicuous persons were silently taken out of campaigns.
@@ -18012,6 +18146,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of detected real campaigns from the SOAR/IR platform and trace the campaign clustering
     against the email gateway raw data; per campaign, check the timestamp chain from delivery to the workforce report
@@ -18127,6 +18262,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull an employee sample and reconcile completion_status, training_completed_at, and training_valid_until
     including the completion proof against the LMS and certificate repository; check the role-to-module assignment
@@ -18245,6 +18381,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of risk triggers from the denominator and verify each trigger against the source system
     (the phishing simulation platform, DLP/SIEM) and the versioned trigger catalog. For numerator cases, check the
@@ -18368,6 +18505,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of the numerator users and, per case, check the raw record in DLP/CASB or the browser
     telemetry: the detected input, data class, and target service. Reconcile the target service against the version
@@ -18535,6 +18673,7 @@ cards:
     source, and criticality of the family IDN-FAM Identity, Secrets & Machine Access.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: STD-033
   name: Privileged MFA Coverage
@@ -18659,6 +18798,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the population of privileged accounts from Entra ID/AD/IAM and PAM (the demarcation via privilege_level)
     and build a sample; per account, check mfa_enforced against the actual enforcement directly in the source system,
@@ -18788,6 +18928,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Determine the population of critical/privileged accounts from Entra ID/AD/IAM and PAM and pull a sample;
     per account, check mfa_type in the source system and substantiate that the factor is classified as phishing-resistant,
@@ -18926,6 +19067,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of the contributing accounts from Entra ID/AD/IAM and PAM; per account, verify the
     components against the source system: dormancy_days from last_seen_at, privilege_weight from privilege_level,
@@ -19062,6 +19204,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of deviating assignments from the drift list and, per case, check in Entra ID/AD/IAM
     or PAM whether the entitlement is actually without coverage in the target role model or expired; reconcile the
@@ -19193,6 +19336,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of due JML events from the reporting period and, per event, reconcile the joining, change,
     or leaving in the HR system against the actual rights granting or withdrawal in Entra ID/AD/IAM and ITSM access
@@ -19349,6 +19493,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of break-glass/emergency accounts from Entra ID/AD/IAM and PAM and, per account, check
     the control components (MFA or a compensating control, vaulting, monitoring, approval, a periodic test, owner)
@@ -19478,6 +19623,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of privileged sessions in scope from Entra ID/AD/IAM and, per session, check in the
     PAM whether it was monitored or brokered and recorded. Cross-check: check privileged accounts for access paths
@@ -19639,6 +19785,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of external users/guests from Entra ID/AD/IAM and, per identity, check the risk factors
     against the source systems: access_level and the entitlements against IAM/PAM, dormancy against last_seen_at,
@@ -19787,6 +19934,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of the counted accounts/apps with legacy authentication and prove the auth mechanism
     per case in Entra ID/AD/IAM. Cross-check via the CMDB and cloud inventory whether accounts or apps with legacy
@@ -19917,6 +20065,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Check the rule set of the toxic combinations (toxic_combination_rules) for versioning and approval.
     Pull a sample of reported hits and verify the permission combination per identity directly in Entra ID/AD/IAM
@@ -20084,6 +20233,7 @@ cards:
     the effect in the next reporting cycle against the audit test.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: STD-073
   name: Measure Impact Realization
@@ -20202,6 +20352,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of measures (measure_id, objective_id) from GRC/ISMS or ITSM; verify expected_risk_reduction
     against the planning data and actual_result against evidence (evidence_ref); recalculate the rate verified_actual_impact
@@ -20330,6 +20481,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of measures (measure_id) from GRC/ISMS and the risk register; reconcile expected_risk_reduction
     against the baseline documented before the measure start and actual_risk_reduction against the evidence repository
@@ -20454,6 +20606,7 @@ cards:
   type_label: Confidence Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of running measures (measure_id, status, due_date) from ITSM and GRC/ISMS; check the
     five sub-assessments (plan_quality, dependency_status, resource_availability, evidence_progress, risk_to_delivery)
@@ -20591,6 +20744,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of measures with a reported value from GRC/ISMS; per measure_id, substantiate the before-after
     measurement of the risk exposure against the baseline via evidence_ref in the evidence repository. Reconcile
@@ -20718,6 +20872,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of open blockers from ITSM and reconcile blocker_created_at against the unaltered original
     timestamp in the source system; check timezone consistency and uniqueness per blocker. Recalculate the age per
@@ -20868,6 +21023,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of completed measures from GRC/ISMS; reconcile measure_completed_at against the unaltered
     original timestamp in the source system, benefit_observed_at against the versioned KPI measurement series, and
@@ -20995,6 +21151,7 @@ cards:
   type_label: Confidence Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the denominator list of all measures in scope and the reporting period from GRC/ISMS and check
     it for completeness. Pull a sample of the measures counted as complete; per measure_id, prove the evidence on
@@ -21124,6 +21281,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of key results; reconcile kr_actual_value and kr_target_value per KR against the source
     systems (GRC/ISMS, ITSM) and evidence_ref. Per KR, recalculate the achievement rate MIN(kr_actual_value / kr_target_value;
@@ -21234,6 +21392,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull the denominator list of the completed measures in scope from ITSM/GRC-ISMS. Check a sample of
     the measures counted as side-effect-affected: substantiate the side effect (downtime, an FP increase, user friction)
@@ -21353,6 +21512,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull the top-risk list at the reporting as-of date from the risk register and fix it as the denominator.
     Check a sample of the risks counted as covered: per risk, prove at least one active or planned measure with
@@ -21489,6 +21649,7 @@ cards:
   next_chain: Limits the blast radius; without segmentation, every incident quickly becomes enterprise-wide.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: NET-002
   name: Segmentation Policy Drift
@@ -21623,6 +21784,7 @@ cards:
   next_chain: Prevents "temporary" openings from becoming permanent.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: NET-003
   name: Egress Control Coverage
@@ -21745,6 +21907,7 @@ cards:
   next_chain: Egress prevents C2 and exfiltration before detection alone has to save the day.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: NET-004
   name: Remote Access / ZTNA Policy Compliance
@@ -21878,6 +22041,7 @@ cards:
   next_chain: Remote access is the royal road for attackers; here there must be no gray zone.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: NET-005
   name: NAC / Untrusted Device Quarantine Coverage
@@ -22001,6 +22165,7 @@ cards:
   next_chain: Stops shadow assets at the entry point.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: NET-006
   name: DNS Security Coverage
@@ -22122,6 +22287,7 @@ cards:
   next_chain: DNS is a cheap C2 and exfiltration sensor.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: NET-007
   name: Email Authentication Enforcement Coverage
@@ -22264,6 +22430,7 @@ cards:
   next_chain: Reduces spoofing and business email compromise.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: NET-008
   name: Email/Web Protection Escape Rate
@@ -22399,6 +22566,7 @@ cards:
   next_chain: Measures the real protection performance against the most frequent initial vector.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: NET-009
   name: Shadow DNS / Public Resolver Usage
@@ -22519,6 +22687,7 @@ cards:
   next_chain: A bypass renders central protection layers ineffective.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: NET-010
   name: Network Monitoring Coverage
@@ -22642,6 +22811,7 @@ cards:
   next_chain: Without network transparency, lateral movement remains visible late.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: TPR-013
   name: Critical Function to ICT Dependency Mapping Completeness
@@ -22771,6 +22941,7 @@ cards:
     missing or invalid maps with an owner, deadline, and evidence ref and keep them current change-triggered.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: OT-001
   name: OT/ICS/IoT Security Domain Coverage
@@ -22923,6 +23094,7 @@ cards:
     in the next reporting cycle per the audit test (walkdown/passive inventory).'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: PRI-001
   name: Privacy Operations Coverage
@@ -23063,6 +23235,7 @@ cards:
     detail metrics; on a gate breach, the stored decision chain continues via the DPO and CISO.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: STD-063
   name: Backup Restore Success Rate
@@ -23174,6 +23347,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of performed restore tests (restore_test_id) from the backup platform; reconcile test_result
     and the evidence (evidence_ref) per test against the source system. Recalculate the rate from raw data: successful_restore_tests
@@ -23306,6 +23480,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of critical services from the CMDB/service catalog; reconcile the three weighted subscores
     test_success, runbook_freshness, and dependency_coverage per service against the backup platform, BCM tool,
@@ -23430,6 +23605,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of recoveries/exercises from the backup platform or BCM tool; per case, reconcile the
     measured recovery time, the stored rto, and test_result against the exercise evidence (evidence_ref). Recalculate
@@ -23555,6 +23731,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of recoveries/exercises from the backup platform or BCM tool; per case, reconcile the
     measured data loss, the stored rpo, and test_result against the exercise logs. Recalculate the rate from raw
@@ -23675,6 +23852,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of critical systems from the CMDB/service catalog; per system, verify the immutable
     or ransomware-resistant status of the backup (backup_id) directly in the backup platform, not only in a reported
@@ -23803,6 +23981,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of the five subscores (network_isolation, identity_separation, admin_separation, monitoring,
     restore_access_control) with the weight, card version, and scope ID; reconcile every subscore value against
@@ -23931,6 +24110,7 @@ cards:
   type_label: Maturity Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of the subscore inputs (exercise_frequency, scenario_realism, stakeholder_participation,
     lessons_learned_closure); reconcile the exercise proofs against the exercise reports and BCM tool (exercise_id,
@@ -24071,6 +24251,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of critical supplier dependencies (supplier_id, service_id) from the CMDB/service catalog
     and BCM tool; per individual record, reconcile service_criticality, dependency_strength, SLA_gap, and test_gap
@@ -24204,6 +24385,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Per component (untested_services, failed_restore_tests, RTO_RPO_unknown, stale_runbooks), pull a sample
     of the individual records and verify them against the backup platform, BCM tool, and exercise reports (restore_test_id,
@@ -24322,6 +24504,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Reconcile the denominator (the critical services in scope) against the CMDB/service catalog (service_criticality);
     pull a sample from the numerator and check the BC test evidence (bc_test_id, bc_test_date, test_result, evidence_ref)
@@ -24467,6 +24650,7 @@ cards:
   next_chain: RTO/RPO without a fresh BIA are numbers without authority.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: RES-002
   name: End-to-End Service Recovery Test Depth
@@ -24595,6 +24779,7 @@ cards:
   next_chain: A restore of a file is not a recovery of a business service.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: RES-003
   name: Clean-Room / Ransomware Recovery Readiness
@@ -24718,6 +24903,7 @@ cards:
   next_chain: Ransomware recovery needs a clean environment, not only backups.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: RES-004
   name: Recovery Environment Capacity Adequacy
@@ -24858,6 +25044,7 @@ cards:
   next_chain: Many recovery plans fail on capacity, not on backup files.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: RES-005
   name: Crisis Communications Reachability
@@ -24974,6 +25161,7 @@ cards:
   next_chain: When mail/Teams is down, this KCI decides on the capability to act.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: RES-006
   name: Manual Workaround Coverage for Critical Services
@@ -25101,6 +25289,7 @@ cards:
   next_chain: Digital resilience also means being capable of acting without digital systems.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: RES-007
   name: Cyber Insurance Coverage-to-Exposure Fit
@@ -25232,6 +25421,7 @@ cards:
   next_chain: Insurance is not a substitute for controls, but a measurable transfer lever.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: RES-008
   name: Backup Privileged Access Separation Coverage
@@ -25365,6 +25555,7 @@ cards:
   next_chain: Backups deletable with the same admins are not resilience.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: RES-009
   name: Recovery Dependency Drift
@@ -25515,6 +25706,7 @@ cards:
     the effect in the following month and in the next recovery test.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: RES-010
   name: Post-Recovery Security Validation Coverage
@@ -25659,6 +25851,7 @@ cards:
     the affected service again in the next recovery test or the following quarter.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: CFG-001
   name: Secure Configuration Baseline Compliance
@@ -25809,6 +26002,7 @@ cards:
   next_chain: Hardening prevents entire attack classes; do not only close findings.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: CFG-002
   name: Configuration Drift Age
@@ -25943,6 +26137,7 @@ cards:
   next_chain: Old drift is silently accepted risk.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: CFG-003
   name: Baseline Exception Aging
@@ -26081,6 +26276,7 @@ cards:
   next_chain: Prevents baselines from becoming decoration.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: CFG-004
   name: Network Device Config Backup & Review Coverage
@@ -26236,6 +26432,7 @@ cards:
   next_chain: A device without secured config knowledge is a recovery and attack-surface risk.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: CFG-005
   name: Security Change Gate Compliance
@@ -26379,6 +26576,7 @@ cards:
   next_chain: Stops risky changes before they become incidents.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: END-001
   name: Endpoint Protection Coverage
@@ -26520,6 +26718,7 @@ cards:
   next_chain: Without coverage, endpoint detection is only a sample.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: END-002
   name: EDR Sensor Health & Tamper Protection
@@ -26679,6 +26878,7 @@ cards:
   next_chain: 'An installed but dead sensor is worse than a missing one: it produces false security.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: END-003
   name: Malware Prevention Control Test Pass Rate
@@ -26810,6 +27010,7 @@ cards:
   next_chain: Proves prevention and detection more realistically than the vendor status.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: END-004
   name: Host Firewall & Local Attack Surface Coverage
@@ -26948,6 +27149,7 @@ cards:
   next_chain: Reduces lateral movement and commodity attacks.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: END-005
   name: Removable Media Control Coverage
@@ -27090,6 +27292,7 @@ cards:
   next_chain: Closes simple exfiltration and malware paths.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-001
   name: Log Source Coverage
@@ -27224,6 +27427,7 @@ cards:
     gaps, their funding has priority over detection optimization, and the MTTD/detection rate are not reliable.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-002
   name: Critical Log Freshness SLA
@@ -27360,6 +27564,7 @@ cards:
     deadline; deliberately paused sources only as a time-limited exception with an expiry date.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-003
   name: Required Event Coverage by Source Class
@@ -27487,6 +27692,7 @@ cards:
     counts as a named detection blockade for the affected TTPs.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-004
   name: Parser & Normalization Coverage
@@ -27618,6 +27824,7 @@ cards:
     and false-negative measurement are not reliable.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-005
   name: Log Field Completeness Score
@@ -27768,6 +27975,7 @@ cards:
     Green without the field completeness.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-006
   name: Clock Synchronization Coverage
@@ -27896,6 +28104,7 @@ cards:
     not auditable.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-007
   name: Log Retention Compliance
@@ -28030,6 +28239,7 @@ cards:
     or escalate the residual risk.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-008
   name: Log Integrity & Tamper-Evidence Coverage
@@ -28158,6 +28368,7 @@ cards:
     residual risk time-limited.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-009
   name: Log Ingestion Drop / Loss Rate
@@ -28315,6 +28526,7 @@ cards:
   next_chain: A drop rise triggers a platform incident and a capacity decision.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-010
   name: Security Sensor Health Coverage
@@ -28452,6 +28664,7 @@ cards:
   next_chain: Close the sensor gaps first; detection successes without a sensor population are window dressing.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-011
   name: Telemetry Blind-Spot Age
@@ -28578,6 +28791,7 @@ cards:
   next_chain: Aging blind spots are escalated to the risk committee, not hidden in the SOC.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-012
   name: ATT&CK Data Source Coverage for Priority Threats
@@ -28706,6 +28920,7 @@ cards:
   next_chain: 'A missing data source: rule building is impossible; prioritize the telemetry before use-case rhetoric.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-013
   name: Telemetry-to-Detection Utilization
@@ -28842,6 +29057,7 @@ cards:
     decision with an owner, deadline, and evidence ref.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-014
   name: End-to-End Synthetic Event Detection Pass Rate
@@ -28973,6 +29189,7 @@ cards:
     evidence ref.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-015
   name: Logging Exception Debt
@@ -29110,6 +29327,7 @@ cards:
   next_chain: Forces a remediation or explicit risk acceptance for logging gaps.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: LOG-016
   name: Telemetry Cost-to-Value Ratio
@@ -29253,6 +29471,7 @@ cards:
     decision with an owner, deadline, and evidence ref.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: VAL-001
   name: Penetration Test Scope & Finding Remediation Coverage
@@ -29423,6 +29642,7 @@ cards:
     and a review of the pentest scope, frequency, and budget.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: TLPT-001
   name: Threat-Led Penetration Testing / TIBER Program Compliance
@@ -29580,6 +29800,7 @@ cards:
     the effect in the following quarter per the audit test.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: SOC-046
   name: Threat Intelligence Utilization
@@ -29694,6 +29915,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of TI-applicable incidents/detections from the SIEM and incident register; per case,
     verify the referenced TI context (the TIP entry, MITRE ATT&CK mapping) in the threat intel platform; recalculate
@@ -29819,6 +30041,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the subscores (active_memberships, contributions, received_actionable_intel, SLA_to_process_shared_intel)
     together with the weights, card versions, and scope from the lineage; substantiate individual proofs of memberships,
@@ -29952,6 +30175,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull all incidents with incident_status = 'confirmed' in the reporting period from the ITSM (the denominator);
     for a sample, verify initial_report_source against the documented first report (the ticket, call, mail); recalculate
@@ -30079,6 +30303,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of due third-party risks from the risk register and reconcile it against GRC/ISMS; per
     case, check due_date against the versioned sla_deadline of the risk class as well as the treatment, acceptance,
@@ -30218,6 +30443,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of survey responses (survey_response_id) from the survey/feedback tool and reconcile
     survey_score, survey_weight, and survey_scale against the raw record; recalculate csat_score as Σ(value_i*weight_i)/Σ(weight_i)
@@ -30353,6 +30579,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Load the subscores communication_timeliness_score, error_rate, stakeholder_feedback, and template_usage
     with the card version and scope from the lineage and check that all inputs are 0-100 posture scores (no raw
@@ -30483,6 +30710,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of relevant stakeholders (stakeholder_id_or_group) from the denominator individual records
     in the ITSM and check the relevance status (relevance_status) against the versioned relevance definition (relevance_definition_version);
@@ -30630,6 +30858,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of reportable incidents from ITSM/GRC and reconcile detected_at/reported_at against
     the immutably logged source timestamps (timezone consistency, no backdating); recalculate the reporting time
@@ -30757,6 +30986,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of incidents with a collaboration requirement from the denominator individual records
     in the ITSM; per case, check the involvement evidence of the required business units (communication_event_id,
@@ -30877,6 +31107,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of due prioritized feedback items (feedback_id) from the denominator individual records
     and reconcile it against the source system (the lessons-learned/improvement register or ITSM/incident register);
@@ -31006,6 +31237,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of confirmed incidents of the reporting period from the ITSM/incident register; per
     case, reconcile first_compromise_at and detected_at against the raw timestamps in SIEM/SOAR. Recalculate the
@@ -31141,6 +31373,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of confirmed incidents per incident_id from the ITSM/incident register; reconcile occurred_at
     and detected_at against the raw data in SIEM/SOAR. Recalculate the duration = detected_at - occurred_at per
@@ -31275,6 +31508,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of resolved incidents of the reporting period from the ITSM/incident register; reconcile
     detected_at, contained_at, and resolved_at against the raw data in SIEM/SOAR. Recalculate MTTR = resolved_at
@@ -31403,6 +31637,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample from the denominator (all confirmed incidents of the period) in the ITSM/incident register;
     per case, reconcile detection_source against the raw data in the SIEM/EDR alerts. Verify the numerator membership
@@ -31533,6 +31768,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample from the denominator (the performed APT scenarios, purple-team scenarios, and validated
     APT activities of the reporting period); per case, check evidence_ref and the execution proof in the ITSM/incident
@@ -31675,6 +31911,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample from the denominator: the simulated attempts from the phishing simulation platform,
     the confirmed real cases from the ITSM/incident register. Per case, check the block, report, or detection evidence
@@ -31807,6 +32044,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of validated exfiltration events and tests from the denominator; per case, reconcile
     evidence_ref against the raw records in the SIEM and ITSM/incident register. For every sample case, check whether
@@ -31934,6 +32172,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of completed hunts of the reporting period from the ITSM/SOAR; per hunt, check the
     success proof: a validated finding in the incident register, a new rule in the detection rule repository, or
@@ -32066,6 +32305,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull the four subscores effective_coverage, detection_success, containment_success, and telemetry_quality
     with the card version, scope ID, and lineage reference from EDR/XDR and the SIEM; check that every input is
@@ -32192,6 +32432,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Reconcile a sample of validated UEBA cases and test cases from SIEM/SOAR against the ITSM/incident
     register; retrace true_positive_rate and scenario_detection_rate as 0-100 posture scores with the scope ID and
@@ -32318,6 +32559,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Reconcile a sample of correlated alerts/cases from the SIEM via ticket_id against the ITSM/incident
     register; per numerator case, substantiate the validated security relation via evidence_ref. Check that the
@@ -32448,6 +32690,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of completed incidents per severity from the ITSM/incident register; reconcile detected_at
     and contained_at against the raw events in SIEM/SOAR/EDR (timezone-consistent, unaltered timestamps, a unique
@@ -32576,6 +32819,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Reconcile the list of the zero-day/emerging-TTP scenarios performed in the reporting period plus the
     validated real cases (the denominator) against the detection rule repository and the test protocols in the SIEM.
@@ -32709,6 +32953,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the confirmed malware events and defined tests of the reporting period from the ITSM/incident
     register and the test protocols (the denominator); check the separation of a test vs. a real incident per record.
@@ -32847,6 +33092,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the confirmed ransomware cases and simulations of the reporting period from the ITSM/incident
     register and the test protocols (the denominator). Per numerator case, prove detected_at and contained_at in
@@ -32984,6 +33230,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the confirmed insider cases and defined test scenarios of the reporting period from the ITSM/incident
     register (the denominator). Per numerator case, substantiate the detection source (the controls, UBA, DLP, or
@@ -33115,6 +33362,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of reviewed IDS alerts from the SIEM and, per alert, reconcile review_disposition (TP/FP),
     reviewer_id, reviewed_at, and evidence_ref against the associated ticket in the ITSM/incident register. Recount
@@ -33249,6 +33497,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of observed unauthorized/malicious connection attempts from the SIEM and, per case,
     reconcile against the raw record (record_id, evidence_ref, detection_source) whether the attempt was actually
@@ -33377,6 +33626,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the list of all validated anomalies plus the defined test scenarios of the reporting period as
     the denominator and, per case, reconcile against the ticket (ticket_id) and raw record in SIEM/ITSM. For a sample,
@@ -33528,6 +33778,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of the cost positions per cost_type and reconcile against the source systems: labor_cost
     against the time tracking (effort_hours), tool_cost_allocated against the SOC tooling cost register, third_party_cost
@@ -33671,6 +33922,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of standardized SOC tasks and reconcile the automation_flag per task against the ITSM
     tickets and time tracking; only tasks with a validated automation quality may stand in the numerator. Check
@@ -33820,6 +34072,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Recalculate the three index components from the SIEM raw data: false_positive_alerts/total_alerts,
     low_value_alerts/total_alerts, and alerts_per_analyst/target_alerts_per_analyst, each *100 and composed with
@@ -33944,6 +34197,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample from the alert review sample and, per alert, reconcile the analyst triage label (a false
     positive yes/no) against the ticket and evidence_ref in SIEM/SOAR/ITSM. Recount the denominator as all alerts
@@ -34073,6 +34327,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Reconstruct the denominator: pull the confirmed incidents plus the defined test scenarios of the
     reporting period from the ITSM/incident register and the purple-team/test results and, per case, reconcile against
@@ -34211,6 +34466,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of the incidents closed in the reporting period from the ITSM/incident register and
     reconcile the reopen status, reopened_at, and reopen_reason_code against the case management/SOAR. Check that
@@ -34367,6 +34623,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of completed findings from the vulnerability scanner and reconcile vulnerability_detected_at
     and remediated_or_mitigated_at against the ITSM patch ticket and the re-scan proof (rescan_verified_at). Check
@@ -34497,6 +34754,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of time bookings from the time tracking and reconcile the effort_hours against the
     ITSM tickets or activity category (incident, triage, hunting, engineering, improvement). Verify the available
@@ -34631,6 +34889,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of escalation-obligated incidents from the ITSM/case management and reconcile detected_or_triaged_at
     and escalated_at against SIEM/SOAR and the escalation logs. Check that escalation_level and recipient substantiate
@@ -34773,6 +35032,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample from the escalation logs (ITSM/SOAR) and, per entry, reconcile escalation_id, severity,
     recipient, and reason_code against the source system. Check for double counting across correlated tickets and
@@ -34918,6 +35178,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of incidents from the ITSM/incident register and reconcile the resolution status, resolved_at,
     due_at, and closure evidence against the case management and RCA repository. Rebuild the denominator (the incidents
@@ -35040,6 +35301,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of alerts/incidents from SIEM/SOAR and reconcile alert_created_at and acknowledged_at
     against the ITSM and alert queue. Check that acknowledged_at substantiates an actual analyst action — no auto-acknowledge
@@ -35184,6 +35446,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of automated cases (automation_flag) from the ITSM and time tracking and reconcile
     the effort_hours and cost assignment against finance/ERP; check that no scripts are counted along that are no
@@ -35331,6 +35594,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Load the versioned weights (0.35/0.25/0.20/0.20) and the four components SLA_compliance, normalized_MTTR,
     reopen_rate, and resource_efficiency from the lineage. Reconcile a sample of the components against the ITSM
@@ -35464,6 +35728,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Rebuild actual_effort_share_by_severity from the time-tracking/ITSM raw records (the effort_hours
     per severity/risk class, severity_class) and check that the shares sum to 1.0. Reconcile expected_effort_share_by_risk
@@ -35628,6 +35893,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of the incidents with an operational interruption and reconcile outage_start_at/outage_end_at
     against the ITSM or monitoring/availability platform. Check service_criticality_weight per affected service
@@ -35754,6 +36020,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Load the components detection_success, false_positive_burden, coverage, availability, and response_capability
     with the card version and scope from the lineage; check that all inputs are 0-100 posture scores (no raw values);
@@ -35871,6 +36138,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of due prioritized improvements (improvement_id) from the ITSM and reconcile it against
     the reported denominator; per numerator case, check the demonstrable positive effect via evidence_ref (the baseline
@@ -35985,6 +36253,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of approved new capabilities (initiative_id, approval_date) from the ITSM and reconcile
     it against the denominator; per numerator case, check via adoption_status and evidence_ref that the productive
@@ -36108,6 +36377,7 @@ cards:
   type_label: Maturity Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the four subscores (threat_to_detection_time_score, policy_playbook_update_rate, coverage_of_priority_threats,
     exercise_validation) with the card version and scope from the lineage; check that every input is a 0-100 posture
@@ -36233,6 +36503,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of the numerator budget positions from finance/ERP and check the classification as R&D/detection
     engineering/automation against the receipts (evidence_ref); reconcile the denominator against the entire security
@@ -36352,6 +36623,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of identified action-obligated threats/risks from GRC/ISMS and SIEM/SOAR and reconcile
     it against the denominator; per numerator case, check via evidence_ref that the mitigation was completed before
@@ -36468,6 +36740,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of shift handovers (shift_id) from the ITSM and reconcile it against the total set of
     all handovers in the period; per numerator case, check the handover checklist for completeness, freedom from
@@ -36585,6 +36858,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Reconcile a sample of the available capacity hours per shift (shift_id, timestamp) against the captured
     shift data in the ITSM and check that all shifts are captured and no values are smoothed by hand; retrace the
@@ -36712,6 +36986,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the weighted cases per analyst (analyst_id_or_pseudonym, ticket_id) with the documented severity/shift
     weights from the ITSM and check that all shifts are captured — a selective capture distorts the score; recalculate
@@ -36834,6 +37109,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of the departures counted in the period and substantiate every case via record_id/evidence_ref
     against the leading HR system. Independently rebuild the average SOC staff count from the headcount states of
@@ -36955,6 +37231,7 @@ cards:
   type_label: Maturity Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull all subscores (governance, detection, response, people, technology, improvement) with the card
     version, weight, scope ID, and lineage reference from the reporting state. For a sample of the subscores, retrace
@@ -37074,6 +37351,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull the component values SLA_triage_compliance, classification_accuracy, false_positive_burden,
     and automation_assist_rate with the scope and reporting period from SIEM/SOAR/ITSM and check their 0-100 scaling.
@@ -37193,6 +37471,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample from the denominator (the cases with a documented correlation need, correlation_required)
     in SIEM/ITSM and substantiate the correlation need at the raw record. For the cases counted as correctly correlated,
@@ -37313,6 +37592,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of shifts (shift_id) and substantiate the activity data at the raw record in the ITSM;
     check for the capture across all shifts and complete activity categories. Independently rebuild the available
@@ -37433,6 +37713,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of the incidents counted as closed within the SLA from the ITSM; reconcile the status
     and closing timestamp against the SLA deadline of the ticket. Independently rebuild the denominator (the incidents
@@ -37583,6 +37864,7 @@ cards:
     or formal, time-limited risk acceptance.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: SOC-036
   name: Incident Impact Analysis Accuracy
@@ -37699,6 +37981,7 @@ cards:
   type_label: Outcome Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull the denominator list of all incidents with a documented impact forecast in the reporting period
     from GRC/ISMS. A sample per case: reconcile the forecast impact, actual impact, and tolerance assessment against
@@ -37818,6 +38101,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the list of the checked classified alerts/events (review_id) in the reporting period from GRC/ISMS.
     Reconcile a sample of the cases rated as correct against the documented review result and evidence_ref. Recalculate
@@ -37943,6 +38227,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Reconcile the denominator of the applicable requirements against the policy repository and GRC/ISMS
     and check that scope changes are documented versioned. Pull a sample of the requirements rated as implemented
@@ -38067,6 +38352,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the denominator list of the post-mortem-obligated incidents based on the classification and incident_detected_at
     in the reporting period from GRC/ISMS. Reconcile a sample of the cases rated as completed against the documented
@@ -38199,6 +38485,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of RCA-obligated high/critical incidents and reconcile the start timestamp (rca_start_at
     per the versioned start-point rule, the default incident_detected_at) as well as the end timestamp (rca_completed_at)
@@ -38317,6 +38604,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of playbook-obligated incidents from GRC/ISMS; per incident, reconcile the mandatory
     steps of the associated playbook_id against dated evidence (evidence_id, evidence_ref) in the evidence repository;
@@ -38455,6 +38743,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the versioned baseline (the value, date, scope) and the weights of the four components from the
     card documentation; reconcile the raw values for the click-rate reduction and reporting rate against the phishing
@@ -38576,6 +38865,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the denominator list of the SOC staff in scope from the HR system and build a sample; per person,
     check the role-related mandatory proofs with a validity date against the LMS/training platform and evidence
@@ -38705,6 +38995,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull all confirmed policy violations of the period from GRC/ISMS, the audit findings, and the incident
     register as the denominator; per violation, check in SIEM/SOAR whether a detection through controls or a report
@@ -38823,6 +39114,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the register of the applicable regulatory requirements from GRC/ISMS and build a sample; per
     requirement, verify the implemented control and the valid, dated proof (evidence_ref) in the evidence repository;
@@ -38972,6 +39264,7 @@ cards:
   next_chain: Without the supplier denominator, supply-chain risk is not steerable.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: TPR-002
   name: Supplier Control Evidence Freshness
@@ -39136,6 +39429,7 @@ cards:
   next_chain: Third-party risk needs proofs, not self-disclosures.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: TPR-003
   name: Supplier Residual Risk within Appetite
@@ -39267,6 +39561,7 @@ cards:
   next_chain: Lifts TPRM from questionnaire administration to risk decision.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: TPR-004
   name: Contractual Security Clause Coverage
@@ -39416,6 +39711,7 @@ cards:
   next_chain: Without the contract lever, supplier security remains wishful thinking.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: TPR-005
   name: Supplier Incident Notification SLA Coverage
@@ -39557,6 +39853,7 @@ cards:
   next_chain: A supplier incident without a communication path automatically becomes a company incident.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: TPR-006
   name: Fourth-Party Concentration Risk
@@ -39703,6 +40000,7 @@ cards:
   next_chain: Systemic risk often arises at the same few platforms.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: TPR-007
   name: Supplier Exit / Portability Test Success
@@ -39846,6 +40144,7 @@ cards:
   next_chain: Prevents supplier lock-in as a resilience risk.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: TPR-008
   name: Critical Supplier Telemetry / Assurance Feed Coverage
@@ -39989,6 +40288,7 @@ cards:
   next_chain: Outsourcing must not outsource visibility.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: TPR-009
   name: MSP/MSSP Privileged Access Control Coverage
@@ -40139,6 +40439,7 @@ cards:
     in the next cycle against the IAM/PAM/session logs.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: TPR-010
   name: Supplier Remediation SLA Compliance
@@ -40277,6 +40578,7 @@ cards:
     residual risk, or sharpen the contracts/SLAs; validate the closure in the next cycle per a retest and evidence.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: TPR-011
   name: ICT Third-Party Register / DORA Register-of-Information Completeness
@@ -40428,6 +40730,7 @@ cards:
     next cycle against the five sources.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: TPR-012
   name: Critical ICT Provider Concentration Risk Index
@@ -40576,6 +40879,7 @@ cards:
     the board review; check the effect in the next quarter against the baseline.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: DET-016
   name: Threat-Intel-to-Detection Conversion Rate
@@ -40728,6 +41032,7 @@ cards:
     pipeline.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: SOC-071
   name: Threat Intelligence Integration Rate
@@ -40844,6 +41149,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of the TI items rated as actionable from the TIP/threat intel platform (threat_id, observed_at,
     confidence). For the items counted as integrated, check the proof in SIEM detections, blocklists, risk decisions,
@@ -40970,6 +41276,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of the assessments with an observable outcome from the risk register/GRC (scenario_id,
     predicted_class, observed_outcome_class). Reconcile the predicted occurrence/impact class against the documented
@@ -41098,6 +41405,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the subscores threat_report_freshness, relevance_to_asset_base, stakeholder_distribution, and
     action_conversion_rate with the card version, scope ID, and the normative weights 0.30/0.30/0.20/0.20 from the
@@ -41224,6 +41532,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the denominator list of all validated used/simulated attack vectors in the reporting period and
     scope from the TIP/SIEM. Reconcile a sample of the vectors via evidence_ref and record_id against the source
@@ -41354,6 +41663,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull the denominator list of all analyzed attacks/scenarios in the reporting period from the TIP/SIEM
     or GRC/ISMS. Reconcile a sample via evidence_ref against the source system: the kill-chain/ATT&CK mapping (killchain_attack_mapping_ref)
@@ -41481,6 +41791,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull the denominator list of the relevant available feeds in scope from the threat intel platform/TIP.
     Check a sample per feed: the active use, a documented quality rating, and the implementation in use cases (referenced
@@ -41608,6 +41919,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull the denominator list of all risk mitigation plans due in the reporting period from the risk
     register/GRC. Check a sample per plan via evidence_ref: the on-deadline completion documented and the risk reduction
@@ -41765,6 +42077,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of identified risks in scope from the risk register/GRC; reconcile risk_identified_at,
     treatment_started_at, and the versioned risk_weight (the reference rubric 1-4) against the treatment proof in
@@ -41891,6 +42204,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull the denominator list of all impact forecasts with an observed outcome in the reporting period
     from GRC/ISMS or the TIP/SIEM. Check a sample per case via evidence_ref: the forecast value, the actual impact,
@@ -42045,6 +42359,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the list of the highly prioritized vulnerabilities in the reporting period from the vulnerability
     scanner and ITSM patch tickets. Reconcile a sample per vulnerability against KEV, EPSS, and the documented exploitation/risk
@@ -42202,6 +42517,7 @@ cards:
     their rescan verification and data confidence depend directly on the vulnerability view being fresh and authenticated.'
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: VM-001
   name: Patch / Update Success Rate
@@ -42378,6 +42694,7 @@ cards:
     rests on fresh, authenticated scan data.
   source:
     kind: docx_extraction
+    file: OSMS_Leitfaden_Arbeitsfassung_V2_0_OSMS_Version_1_0.docx
     source_card_version: 1.0.0
 - id: STD-013
   name: Risk-weighted Vulnerability Exposure Hours
@@ -42529,6 +42846,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of findings from the vulnerability scanner and recalculate the open_hours: for closed
     cases remediated_at - detected_at, for open cases the as-of date - detected_at at the data state period_end.
@@ -42690,6 +43008,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull the open findings with the kev_flag from the vulnerability scanner and reconcile the cve_id of
     every position against the CISA KEV list at the as-of date. Check the asset criticality of the hits against
@@ -42832,6 +43151,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of open findings from the vulnerability scanner; reconcile the epss_score against the
     EPSS state at the as-of date, and asset_criticality and the exposure against the CMDB/asset inventory or EASM.
@@ -42966,6 +43286,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Rebuild the denominator independently: pull all internet-exposed Critical findings due in the reporting
     period from the vulnerability scanner and EASM, and verify the exposure against the CMDB/asset inventory. For
@@ -43111,6 +43432,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of completed cases and reconcile finding_detected_at against the scanner raw record
     as well as risk_reduced_at against the ITSM patch tickets and the validation_status (a rescan or documented
@@ -43239,6 +43561,7 @@ cards:
   type_label: Key Performance Indicator (KPI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Rebuild the denominator: pull all vulnerabilities from the vulnerability scanner whose 90-day observation
     window ends in the reporting period (remediated_at in the reporting period minus 90 days, the validation_status
@@ -43384,6 +43707,7 @@ cards:
   type_label: Risk Indicator (KRI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample of open patch exceptions from the ITSM patch tickets and check exception_created_at
     as well as exception_expires_at against the original record. Recalculate age_days = the as-of date - exception_created_at
@@ -43518,6 +43842,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: Pull a sample from the findings marked as remediated in the reporting period (record_id, asset_id,
     cve_id). Per case, reconcile the validation_status and evidence_ref against the rescan/agent proof in the vulnerability
@@ -43663,6 +43988,7 @@ cards:
   type_label: Control Indicator (KCI)
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of non-patchable high-risk findings from the vulnerability scanner and per case check
     the denominator criteria: high-risk (the severity in {critical, high} or the kev_flag = true or the epss_score
@@ -43798,6 +44124,7 @@ cards:
   type_label: Confidence Metric
   source:
     kind: baseline_catalog_yaml
+    file: kpi_catalog.yaml
     source_card_version: 1.0.0
   audit_test: 'Pull a sample of assets from the VM scope (the CMDB/asset inventory). Per asset, check in the vulnerability
     scanner whether a current authenticated scan is present: the scan timestamp within the versioned freshness window
