@@ -72,6 +72,15 @@ def mgmt(method, path, data=None):
     except urllib.error.HTTPError as e:
         return e.code, e.read().decode()
 
+def retry(fn, tries=4, gap=8):
+    last = None
+    for _ in range(tries):
+        try:
+            return fn()
+        except Exception as e:
+            last = e; time.sleep(gap)
+    raise last
+
 def hec_send(token, events):
     payload = "".join(json.dumps(e) for e in events).encode()
     req = urllib.request.Request(A.hec + "/services/collector/event", data=payload, method="POST",
@@ -80,9 +89,12 @@ def hec_send(token, events):
         return json.loads(resp.read())
 
 def oneshot(search):
-    st, body = mgmt("POST", "/services/search/jobs",
-                    {"search": "search " + search if not search.lstrip().startswith(("search", "|", "index=")) else search,
-                     "exec_mode": "oneshot", "output_mode": "json", "count": "10"})
+    try:
+        st, body = retry(lambda: mgmt("POST", "/services/search/jobs",
+                        {"search": "search " + search if not search.lstrip().startswith(("search", "|", "index=")) else search,
+                         "exec_mode": "oneshot", "output_mode": "json", "count": "10"}), tries=3, gap=6)
+    except Exception as e:
+        return None, str(e)[:300]
     if st != 200:
         return None, body[:300]
     try:
@@ -102,20 +114,30 @@ if A.dry_run:
     sys.exit(0)
 
 # ---------------- live ----------------
-t0 = time.time()
-while True:
-    st, _ = mgmt("GET", "/services/server/info?output_mode=json")
-    if st == 200:
-        break
-    if time.time() - t0 > A.timeout:
-        print("Splunk not reachable"); sys.exit(2)
-    time.sleep(5)
+def _ready():
+    try:
+        st, _ = mgmt("GET", "/services/server/info?output_mode=json")
+        return st == 200
+    except Exception:
+        return False
+
+t0 = time.time(); streak = 0
+while streak < 2:
+    if _ready():
+        streak += 1
+        if streak == 1:
+            time.sleep(15)  # survive the provisioning restart of splunkd
+    else:
+        streak = 0
+        if time.time() - t0 > A.timeout:
+            print("Splunk not reachable within %ss" % A.timeout); sys.exit(2)
+        time.sleep(5)
 
 for idx in ("osms", "osms_empty", "security_findings", "security_incidents"):
-    mgmt("POST", "/services/data/indexes", {"name": idx})
-mgmt("POST", "/services/data/inputs/http/http", {"disabled": "0", "enableSSL": "0"})
-st, body = mgmt("POST", "/services/data/inputs/http?output_mode=json",
-                {"name": "osms_ci", "index": "osms", "indexes": "osms,security_findings,security_incidents"})
+    retry(lambda i=idx: mgmt("POST", "/services/data/indexes", {"name": i}))
+retry(lambda: mgmt("POST", "/services/data/inputs/http/http", {"disabled": "0", "enableSSL": "0"}))
+st, body = retry(lambda: mgmt("POST", "/services/data/inputs/http?output_mode=json",
+                {"name": "osms_ci", "index": "osms", "indexes": "osms,security_findings,security_incidents"}))
 tok = None
 if st in (200, 201):
     tok = json.loads(body)["entry"][0]["content"]["token"]
@@ -130,7 +152,7 @@ for f in plan_fx:
     t = f.get("tables", {})
     events = [{"event": {"card": cid}, "sourcetype": t.get("spl_sourcetype", "records"),
                "index": t.get("spl_index", "osms"), "fields": row} for row in rows_for_spl(f)]
-    hec_send(tok, events)
+    retry(lambda ev=events: hec_send(tok, ev))
 time.sleep(8)  # index latency
 for f in plan_fx:
     cid = f["card"]
