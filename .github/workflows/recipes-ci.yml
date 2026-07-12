@@ -1,0 +1,111 @@
+name: Recipe CI
+
+on:
+  push:
+    paths:
+      - 'catalog/**'
+      - 'recipes/**'
+      - '.github/workflows/recipes-ci.yml'
+  workflow_dispatch:
+
+jobs:
+  gates:
+    name: gates (lints, DuckDB, Python, KQL analyzer)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install pyyaml duckdb pandas
+      - run: npm install @kusto/language-service-next
+      - name: Generate recipes and CI candidates
+        run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
+      - name: Gate battery
+        run: python recipes/gates.py --bundle recipes/out
+      - name: KQL analyzer (all snippets)
+        run: node recipes/kql_check.js recipes/out/kql_jobs.json
+      - name: Runner logic dry-runs
+        run: |
+          python recipes/ci/esql_runner.py --out recipes/out --dry-run
+          python recipes/ci/spl_runner.py --out recipes/out --dry-run
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: recipes-out
+          path: |
+            recipes/out/manifest.json
+            recipes/out/fixtures.json
+
+  esql:
+    name: ES|QL engine (Elasticsearch service container)
+    runs-on: ubuntu-latest
+    services:
+      elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:8.17.4
+        env:
+          discovery.type: single-node
+          xpack.security.enabled: 'false'
+          ES_JAVA_OPTS: -Xms1g -Xmx1g
+        ports:
+          - 9200:9200
+        options: >-
+          --health-cmd "curl -s http://localhost:9200 >/dev/null || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pyyaml
+      - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
+      - name: Fixture and empty-run verification
+        run: python recipes/ci/esql_runner.py --out recipes/out --es http://localhost:9200
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: esql-report
+          path: recipes/out/esql_report.json
+
+  spl:
+    # Opt-in: set the repository variable ENABLE_SPL_CI to 'true' AFTER
+    # verifying the Splunk General Terms for CI use of the Docker image.
+    # Version matrix: 9.4 (last supported 9.x) and 10.2 - engine drift between
+    # versions shows up as separate green/red states per version.
+    # 10.x images additionally require SPLUNK_GENERAL_TERMS acceptance.
+    name: SPL engine ${{ matrix.splunk_version }} (opt-in)
+    if: ${{ vars.ENABLE_SPL_CI == 'true' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - splunk_version: '9.4'
+            sgt_env: ''
+          - splunk_version: '10.2'
+            sgt_env: "-e SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pyyaml
+      - name: Start Splunk ${{ matrix.splunk_version }}
+        run: |
+          docker run -d --name splunk -p 8089:8089 -p 8088:8088 \
+            -e SPLUNK_START_ARGS=--accept-license ${{ matrix.sgt_env }} \
+            -e SPLUNK_PASSWORD='${{ secrets.SPLUNK_CI_PASSWORD }}' \
+            splunk/splunk:${{ matrix.splunk_version }}
+      - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
+      - name: Fixture and empty-parse verification
+        run: python recipes/ci/spl_runner.py --out recipes/out --password '${{ secrets.SPLUNK_CI_PASSWORD }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: spl-report-${{ matrix.splunk_version }}
+          path: recipes/out/spl_report.json
