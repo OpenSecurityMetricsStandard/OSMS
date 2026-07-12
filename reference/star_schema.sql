@@ -25,6 +25,9 @@
 -- The conformed core below covers the fields shared across cards (scope_id,
 -- record_id, evidence_ref, period_*, owner, asset, service, source, control,
 -- severity, status, timestamps, numeric_value). Card-specific fields live in
+-- Convention: the bare `timestamp` column is the technical observation/
+-- extraction time of the source record; business event times use specific
+-- *_at / *_timestamp fields and are the only time fields formulas compute on.
 -- fact_evidence_item.attributes (JSONB); each card's minimum_data_fields list
 -- in the catalog is the binding per-card contract that loaders and
 -- validators enforce against that JSONB payload.
