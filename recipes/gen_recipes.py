@@ -448,11 +448,14 @@ index=osms sourcetype=records scope_id="prod"
 | sort 0 d_h
 | streamstats count AS rk
 | eventstats count AS n, avg(d_h) AS mean_h
-| eval is50 = if(rk == ceiling(0.5 * n), d_h, null()),
-       is90 = if(rk == ceiling(0.9 * n), d_h, null())
-| stats max(n) AS valid_cases, max(is50) AS p50_h,
+| eval is50a = if(rk == ceiling(0.5 * n), d_h, null()),
+       is50b = if(rk == floor(0.5 * n) + 1, d_h, null()),
+       is90  = if(rk == ceiling(0.9 * n), d_h, null())
+| stats max(n) AS valid_cases, max(is50a) AS p50_lo, max(is50b) AS p50_hi,
         max(is90) AS p90_h, max(mean_h) AS mean_h_supplementary
-``` nearest rank, explicit; empty case base -> no results = n/a ```"""
+| eval p50_h = (p50_lo + p50_hi) / 2
+| fields valid_cases, p50_h, p90_h, mean_h_supplementary
+``` P50 true median (lower/upper middle averaged), P90 nearest rank ```"""
 
 def t_dur_esql(cid, end, start, concrete):
     if concrete:
