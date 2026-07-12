@@ -1,0 +1,20 @@
+{
+ "STD-016": {
+  "gsql": "ANSI CTE form, portable across warehouses. The table name findings is illustrative \u2014 map your own source system. Bind the :parameters; the CASE encodes the fail-closed rule (empty denominator \u2192 NULL, never 0).",
+  "pg": "The FILTER aggregate expresses the numerator as a true subset of the denominator in one scan \u2014 the subset rule of the card, made structural. PostgreSQL 14+; the same shape works on most modern warehouses.",
+  "kql": "Microsoft Sentinel, Defender or Log Analytics; findings stands for your findings export table. Parameters via let; iff(due == 0, real(null), \u2026) reports n/a, never 0.",
+  "spl": "Splunk; index and sourcetype are illustrative. Timestamps are assumed to be epoch fields; $tokens$ come from dashboard inputs or macros. null() reports n/a, never 0.",
+  "esql": "Elasticsearch 8.14+ with named query parameters (?name); findings stands for your index or data stream. CASE(due == 0, NULL, \u2026) reports n/a, never 0.",
+  "dax": "Power BI measure. Period and scope are shown inline for self-containment \u2014 in production the period usually comes from a date-table relationship and slicers. BLANK() reports n/a, never 0.",
+  "py": "pandas; column names follow the card's minimum data fields. A missing remediated_at (NaT) never counts as within SLA. None reports n/a, never 0."
+ },
+ "SOC-002": {
+  "gsql": "percentile_disc \u2026 WITHIN GROUP is the SQL:2016 exact nearest-rank percentile \u2014 the method the card example uses. Interval-to-hours conversion is dialect-specific; the PostgreSQL tab shows it concretely. Table name illustrative; bind the :parameters.",
+  "pg": "percentile_disc returns the exact nearest-rank value and matches the card's P90 method one-to-one. PostgreSQL 14+; invalid cases (missing or negative timestamps) are excluded here and belong in data confidence.",
+  "kql": "percentile() is a T-digest estimate, not exact nearest rank \u2014 on small case bases the difference is nil, for board-grade exactness compute the rank explicitly. Empty case base returns no row = n/a.",
+  "spl": "exactperc50/90 request exact percentiles; verify your version's estimator against the card's nearest-rank method. Epoch timestamps assumed; $tokens$ from dashboard inputs. Empty case base returns no results = n/a.",
+  "esql": "MEDIAN and PERCENTILE are T-digest estimates (exact on a case base as small as the fixture). Elasticsearch 8.14+ with named parameters. Empty case base yields null aggregates = n/a.",
+  "dax": "The nearest-rank P90 is built explicitly via ROUNDUP + TOPN, because PERCENTILE.INC interpolates \u2014 on the fixture it would return 26 h instead of the correct 30 h. Expose P50 (MEDIANX) and the supplementary mean as sibling measures.",
+  "py": "Explicit nearest rank (ceil(0.9 \u00b7 n)) matches the card example. NaT timestamps never count; negative durations are excluded as data-quality errors and belong in data confidence."
+ }
+}
