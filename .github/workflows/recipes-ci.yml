@@ -13,11 +13,11 @@ jobs:
     name: gates (lints, DuckDB, Python, KQL analyzer)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '22'
       - run: pip install pyyaml duckdb pandas
@@ -32,7 +32,7 @@ jobs:
         run: |
           python recipes/ci/esql_runner.py --out recipes/out --dry-run
           python recipes/ci/spl_runner.py --out recipes/out --dry-run
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: recipes-out
@@ -41,32 +41,30 @@ jobs:
             recipes/out/fixtures.json
 
   esql:
-    name: ES|QL engine (Elasticsearch service container)
+    name: ES|QL engine (Elasticsearch 8.17.4)
     runs-on: ubuntu-latest
-    services:
-      elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch:8.17.4
-        env:
-          discovery.type: single-node
-          xpack.security.enabled: 'false'
-          ES_JAVA_OPTS: -Xms1g -Xmx1g
-        ports:
-          - 9200:9200
-        options: >-
-          --health-cmd "curl -s http://localhost:9200 >/dev/null || exit 1"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 30
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - run: pip install pyyaml
+      - name: Kernel setting required by Elasticsearch
+        run: sudo sysctl -w vm.max_map_count=262144
+      - name: Start Elasticsearch
+        run: |
+          docker run -d --name es -p 9200:9200 \
+            -e discovery.type=single-node \
+            -e xpack.security.enabled=false \
+            -e ES_JAVA_OPTS='-Xms1g -Xmx1g' \
+            docker.elastic.co/elasticsearch/elasticsearch:8.17.4
       - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
       - name: Fixture and empty-run verification
         run: python recipes/ci/esql_runner.py --out recipes/out --es http://localhost:9200
-      - uses: actions/upload-artifact@v4
+      - name: Elasticsearch logs on failure
+        if: failure()
+        run: docker logs es 2>&1 | tail -80
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: esql-report
@@ -90,8 +88,8 @@ jobs:
           - splunk_version: '10.2'
             sgt_env: "-e SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com"
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - run: pip install pyyaml
@@ -104,7 +102,10 @@ jobs:
       - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
       - name: Fixture and empty-parse verification
         run: python recipes/ci/spl_runner.py --out recipes/out --password '${{ secrets.SPLUNK_CI_PASSWORD }}'
-      - uses: actions/upload-artifact@v4
+      - name: Splunk logs on failure
+        if: failure()
+        run: docker logs splunk 2>&1 | tail -120
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: spl-report-${{ matrix.splunk_version }}
