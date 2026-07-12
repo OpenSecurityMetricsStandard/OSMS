@@ -31439,7 +31439,8 @@ cards:
   - alert_at
   - ack_at
   - detected_at
-  - contained_at/resolved_at
+  - contained_at
+  - resolved_at
   - detection_source
   - ticket_id
   - period_start
@@ -32493,7 +32494,7 @@ cards:
   minimum_data_fields:
   - incident_id
   - correlation_id
-  - classification_status (True Positive/False Positive)
+  - classification_status
   - classified_at
   - detected_at
   - detection_source
@@ -32623,7 +32624,8 @@ cards:
   - severity
   - asset_id
   - detected_at
-  - contained_at/resolved_at
+  - contained_at
+  - resolved_at
   - detection_source
   - ticket_id
   - period_start
@@ -32750,7 +32752,7 @@ cards:
   - incident_id
   - scenario_id
   - test_library_version
-  - case_type (test scenario/real case)
+  - case_type
   - validation_status
   - asset_id
   - occurred_at
@@ -32881,9 +32883,9 @@ cards:
   - EDR/XDR
   minimum_data_fields:
   - incident_id
-  - case_type (confirmed event/defined test)
+  - case_type
   - confirmation_status
-  - malware_subset (bekannte Malware/testbasierte TTPs)
+  - malware_subset
   - asset_id
   - occurred_at
   - detected_at
@@ -33017,13 +33019,14 @@ cards:
   - EDR/XDR
   minimum_data_fields:
   - incident_id
-  - case_type (simulation/real case)
+  - case_type
   - confirmation_status
-  - impact_point_ref (versioned impact point)
+  - impact_point_ref
   - asset_id
   - occurred_at
   - detected_at
-  - contained_at/resolved_at
+  - contained_at
+  - resolved_at
   - detection_source
   - ticket_id
   - period_start
@@ -33155,7 +33158,7 @@ cards:
   - Meldekanal (interne Meldungen/Hinweisgebersystem)
   minimum_data_fields:
   - incident_id
-  - case_type (test scenario/real case)
+  - case_type
   - confirmation_status
   - scenario_list_version
   - asset_id
@@ -33291,8 +33294,8 @@ cards:
   - rule_id
   - detection_source
   - reviewed_at
-  - review_disposition (TP/FP)
-  - test_flag (als Test deklariert ja/nein)
+  - review_disposition
+  - test_flag
   - reviewer_id
   - severity
   - asset_id
@@ -33424,9 +33427,10 @@ cards:
   - observed_at
   - src_ip
   - dest_ip
-  - dest_port/protocol
-  - attempt_classification (unauthorized/malicious)
-  - blocked_flag (blockiert ja/nein)
+  - dest_port
+  - protocol
+  - attempt_classification
+  - blocked_flag
   - firewall_rule_id
   - detection_source
   - asset_id
@@ -33554,9 +33558,9 @@ cards:
   - Detection Rule Repository
   minimum_data_fields:
   - anomaly_id
-  - validation_status (validiert ja/nein)
-  - test_scenario_flag (ja/nein)
-  - detected_flag (detected by anomaly detection yes/no)
+  - validation_status
+  - test_scenario_flag
+  - detected_flag
   - detected_at
   - detection_source
   - severity
@@ -33702,12 +33706,13 @@ cards:
   - SOC Tooling Cost Register
   minimum_data_fields:
   - incident_id
-  - incident_status (confirmed/test/false positive)
+  - incident_status
   - cost_type
-  - cost_amount (the amount in EUR per cost position)
+  - cost_amount
   - effort_hours
   - detected_at
-  - contained_at/resolved_at
+  - contained_at
+  - resolved_at
   - severity
   - ticket_id
   - service_id
@@ -33850,11 +33855,11 @@ cards:
   - SOC Tooling Cost Register
   minimum_data_fields:
   - task_id
-  - standardized_task_flag (ja/nein)
+  - standardized_task_flag
   - task_volume
-  - criticality (1-4)
-  - automation_flag (voll-/teilautomatisiert/manuell)
-  - automation_quality_validated (ja/nein)
+  - criticality
+  - automation_flag
+  - automation_quality_validated
   - ticket_id
   - service_id
   - period_start
@@ -34000,8 +34005,8 @@ cards:
   minimum_data_fields:
   - alert_id
   - detection_source
-  - alert_disposition (TP/FP)
-  - low_value_flag (ja/nein)
+  - alert_disposition
+  - low_value_flag
   - reviewed_at
   - analyst_count
   - target_alerts_per_analyst
@@ -34131,7 +34136,7 @@ cards:
   - rule_id
   - detection_source
   - reviewed_at
-  - review_disposition (TP/FP)
+  - review_disposition
   - reviewer_id
   - severity
   - ticket_id
@@ -34226,7 +34231,8 @@ cards:
     the absolute base, never 0.
   variables_inputs: Numerator = undetected confirmed incidents or test scenarios. Denominator = confirmed incidents
     plus defined test scenarios. The numerator must be a true subset of the denominator; both populations must use
-    the same scope and reporting period.
+    the same scope and reporting period. The discovery_source values are
+    threat hunting, purple team, or external report.
   rebuild_steps: 'Rebuild: 1) Define scope and period. 2) Build the denominator as all valid cases. 3) Build the
     numerator as the subset meeting the condition. 4) Value = numerator / denominator * 100. 5) Report denominator
     = 0 as n/a. 6) Check data confidence, guardrails, and thresholds.'
@@ -34252,13 +34258,13 @@ cards:
   - 'Primary evidence: SIEM, SOAR, ITSM/Incident Register, Detection Rule Repository, threat hunting results, purple
     team/test results, external reports. Financial context only for follow-up costs.'
   minimum_data_fields:
-  - case_id (incident_id or test_scenario_id)
-  - case_type (confirmed incident/test scenario)
+  - case_id
+  - case_type
   - confirmed_at
-  - detected_flag (detected by existing detection yes/no)
+  - detected_flag
   - detected_at
   - detection_source
-  - discovery_source (Threat Hunting/Purple Team/externe Meldung)
+  - discovery_source
   - severity
   - ticket_id
   - period_start
@@ -34541,11 +34547,11 @@ cards:
   - asset_id
   - vulnerability_detected_at
   - remediated_or_mitigated_at
-  - remediation_type (remediated/mitigated)
+  - remediation_type
   - rescan_verified_at
   - severity
   - risk_weight
-  - exposure_flag (internet-facing)
+  - exposure_flag
   - kev_flag
   - ticket_id
   - period_start
@@ -35071,7 +35077,8 @@ cards:
     count in the period of their due date. The evaluation as-of date at the earliest after the expiry of the SLA
     deadline (due_at) of all denominator cases so that the SLA fulfillment is settled for every case; until then,
     the value is provisional. The numerator must be a true subset of the denominator; both populations must use
-    the same scope and reporting period.
+    the same scope and reporting period. The discovery_source values are
+    threat hunting, purple team, or external report.
   rebuild_steps: 'Rebuild: 1) Define the scope and reporting period; the evaluation at the earliest after the expiry
     of the SLA deadline (due_at) of all denominator cases. 2) The denominator = all confirmed incidents opened in
     the period (opened_at) or due (due_at); every incident counts exactly once — decisive is the period in which
@@ -38515,7 +38522,8 @@ cards:
     n/a is reported with the absolute base, never 0.
   variables_inputs: Numerator = incidents with completely documented mandatory steps. Denominator = playbook-obligated
     incidents. The numerator is a subset of the denominator (numerator <= denominator); both populations must use
-    the same scope and reporting period.
+    the same scope and reporting period. The discovery_source values are
+    threat hunting, purple team, or external report.
   rebuild_steps: 'Rebuild: 1) Define scope and period. 2) Build the denominator as all valid cases. 3) Build the
     numerator as the subset meeting the condition. 4) Value = numerator / denominator * 100. 5) Report denominator
     = 0 as n/a. 6) Check data confidence, guardrails, and thresholds.'
@@ -41179,7 +41187,8 @@ cards:
     The value results from the numerator divided by the denominator times 100.
   variables_inputs: Numerator = assessments with a confirmed forecast within the tolerance. Denominator = assessments
     with an observable outcome. The numerator must be a true subset of the denominator; both populations must use
-    the same scope and reporting period.
+    the same scope and reporting period. The discovery_source values are
+    threat hunting, purple team, or external report.
   rebuild_steps: 'Rebuild: 1) Define scope and reporting period. 2) Determine the denominator as all valid cases.
     3) Count the numerator as the subset meeting the condition. 4) With denominator = 0, report n/a. 5) Otherwise
     calculate numerator/denominator*100. 6) Apply thresholds and guardrails.'
