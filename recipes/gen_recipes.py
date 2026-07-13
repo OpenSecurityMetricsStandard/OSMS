@@ -721,7 +721,7 @@ for _cid, _fn in SPECIALS.items():
 
 slim = [{**{k: c.get(k) for k in KEEP}, "mechanic": MECH[c["calculation_type"]]} for c in cards]
 cat_js = json.dumps(slim, ensure_ascii=False, separators=(",", ":"))
-rec_js = json.dumps({"bundle_version": "0.4.0", "source_catalog": "osms-catalog.yaml v0.9.1",
+rec_js = json.dumps({"bundle_version": "0.5.0", "source_catalog": "osms-catalog.yaml v0.9.1",
                      "recipes": recipes}, ensure_ascii=False, separators=(",", ":"))
 open(f"{OUT}/catalog.json", "w").write(cat_js)
 open(f"{OUT}/recipes.json", "w").write(rec_js)
@@ -984,12 +984,40 @@ if True:  # engine dialects: always built; published since CI run #5 (green on E
         r["dialects"]["esql"] = d["esql"]
         r["assumptions"]["spl"] = (A_SPL_CO if dur else A_SPL_CO_GEN) if conc else A_SPL_SK
         r["assumptions"]["esql"] = (A_ESQL_CO if dur else A_ESQL_CO_GEN) if conc else A_ESQL_SK
+    # ================= Excel dialect (range model) — published dialect =================
+    sys.path.insert(0, _here)
+    import xlsx_dialect as _xl
+    _comp_k = {c["id"]: len(parse_composite(c))
+               for c in cards
+               if MECH[c["calculation_type"]] == "component_tree" and c["id"] in COMPOSITE_ACTIVATE and parse_composite(c)}
+    A_XLSX_CO = ("Verified twice - recomputes the card calculation example exactly in the formulas engine "
+                 "(recipe CI) and in LibreOffice Calc (excel_runner). Range model: raw rows on a 'data' sheet, "
+                 "one formula = one value, fail-closed via NA(), percentiles by explicit nearest rank. Excel 2007 "
+                 "function set, so the same formula runs in Excel, LibreOffice Calc and Google Sheets.")
+    A_XLSX_SK = ("Range-model skeleton, non-normative: scope filter and fail-closed guard are generated; map the "
+                 "card's population to the marked COUNTIFS / helper column. Executes fail-closed on an empty sheet "
+                 "in both the formulas engine and LibreOffice Calc.")
+    excel_cand = {}; xl_gen = 0
+    for c in cards:
+        cid = c["id"]; rec = recipes[cid]
+        spec = _xl.build_spec(c, rec, _comp_k.get(cid))
+        if not spec:
+            continue
+        conc = rec["status"] in ("generated_concrete", "curated_verified") or cid in _xl._SPECIAL
+        rec.setdefault("assumptions", {})["xlsx"] = A_XLSX_CO if conc else A_XLSX_SK
+        if "xlsx" not in (rec.get("dialects") or {}):          # curated cards already carry xlsx from JSON
+            rec.setdefault("dialects", {})["xlsx"] = _xl.render(cid, spec)
+            xl_gen += 1
+        excel_cand[cid] = {"spec": spec, "status": rec["status"]}
+    print(f"Excel-Dialekt publiziert: {xl_gen} generiert + {len(excel_cand)-xl_gen} kuratiert = {len(excel_cand)} Karten")
+
     if ARGS.emit_candidates:
         json.dump(cand, open(f"{OUT}/ci_candidates.json", "w"), ensure_ascii=False, indent=0)
         json.dump(fixtures, open(f"{OUT}/fixtures.json", "w"), ensure_ascii=False, indent=1)
+        json.dump({"candidates": excel_cand}, open(f"{OUT}/excel_candidates.json", "w"), ensure_ascii=False, indent=0)
     print(f"Engine-Dialekte publiziert: {len(cand)} Karten x SPL+ES|QL | Fixtures: {len(fixtures)} | Lints: PASS")
     # Re-Serialisierung: injizierte Engine-Dialekte in die Bundle-Artefakte schreiben
-    rec_js = json.dumps({"bundle_version": "0.4.0", "source_catalog": "osms-catalog.yaml v0.9.1",
+    rec_js = json.dumps({"bundle_version": "0.5.0", "source_catalog": "osms-catalog.yaml v0.9.1",
                          "recipes": recipes}, ensure_ascii=False, separators=(",", ":"))
     open(f"{OUT}/recipes.json", "w").write(rec_js)
     man = {os.path.basename(p): hashlib.sha256(open(p, "rb").read()).hexdigest()

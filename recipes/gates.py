@@ -25,8 +25,9 @@ DESTR = {"gsql": r"\b(drop|delete|insert|update|alter|create|grant|truncate|merg
  "kql": r"(\.ingest|\.set|\.append|\.drop|externaldata|evaluate\s+python)",
  "spl": r"\b(outputlookup|collect|sendemail|runshellscript|script|delete|map|rest)\b",
  "esql": r"\.ingest", "dax": r"\bpathitem\b",
+ "xlsx": r"\b(webservice|rtd|dde|call|registerid|hyperlink|filterxml|encodeurl)\b",
  "py": r"(\bimport\s+(?!math\b|pandas\b)\w+|os\.|sys\.|subprocess|eval\(|exec\(|__import__|open\(|requests|socket|pickle|shutil)"}
-CMT = {"gsql": ("--", "/*"), "pg": ("--", "/*"), "kql": ("//",), "spl": ("```",), "esql": ("//",), "dax": ("//",), "py": ("#",)}
+CMT = {"gsql": ("--", "/*"), "pg": ("--", "/*"), "kql": ("//",), "spl": ("```",), "esql": ("//",), "dax": ("//",), "py": ("#",), "xlsx": ("'",)}
 
 def is_comment_span(lang, line):
     s = line.strip()
@@ -47,6 +48,8 @@ for cid, r in B.items():
                     core = ln.split("//")[0]
                 elif lang == "py":
                     core = ln.split("#")[0]
+                elif lang == "xlsx":
+                    core = re.sub(r'"[^"]*"', "", ln)
                 bad = {ch for ch in core if ord(ch) > 126}
                 if bad: p.append(f"nonascii-code {bad}"); break
         stripped = []
@@ -56,9 +59,10 @@ for cid, r in B.items():
             elif lang in ("kql", "esql", "dax"): c = c.split("//")[0]
             elif lang == "py": c = c.split("#")[0]
             elif lang == "spl": c = re.sub(r"```.*?```", "", c)
+            elif lang == "xlsx": c = "" if ln.strip().startswith("'") else re.sub(r'"[^"]*"', "", ln)
             stripped.append(c)
         if re.search(DESTR[lang], "\n".join(stripped), re.I): p.append("destruktiv")
-        if not re.search(r"(NULL|null\(\)|real\(null\)|BLANK|None|n/a)", code): p.append("kein-fail-closed")
+        if not re.search(r"(NULL|null\(\)|real\(null\)|BLANK|NA\(\)|None|n/a)", code): p.append("kein-fail-closed")
         if p:
             lintfail += 1
             if lintfail <= 6: fails.append(f"LINT {cid} {lang}: {p}")
@@ -274,6 +278,32 @@ if os.path.exists(fx_path):
         except Exception as e:
             fails.append("FX-PY %s: %s" % (cid, str(e)[:110]))
     print("[8] Universal-Fixture-Gate: %d/%d gsql exakt, %d/%d py exakt" % (ok8, len(FX), py8, len(FX)))
+
+# ---------------- 9) Excel-Fixture-Gate: formulas-Engine exakt ----------------
+xc_path = os.path.join(BND, "excel_candidates.json")
+if os.path.exists(fx_path) and os.path.exists(xc_path):
+    import tempfile
+    sys.path.insert(0, _here)
+    import xlsx_dialect as _xl
+    XC = json.load(open(xc_path))["candidates"]
+    tmp = tempfile.mkdtemp()
+    ok9 = n9 = 0
+    for f in FX:
+        cid = f["card"]
+        if cid not in XC:
+            continue
+        n9 += 1
+        try:
+            p = os.path.join(tmp, cid + ".xlsx")
+            orows = _xl.build_workbook(XC[cid]["spec"], f, p)
+            got = _xl.eval_formulas(p, orows)
+            for k, exp in f["expect"].items():
+                gv = got.get(k)
+                assert isinstance(gv, float) and abs(gv - float(exp)) < 1e-4, "%s exp %s got %s" % (k, exp, gv)
+            ok9 += 1
+        except Exception as e:
+            fails.append("FX-XLSX %s: %s" % (cid, str(e)[:110]))
+    print("[9] Excel-Fixture-Gate (formulas): %d/%d exakt" % (ok9, n9))
 
 print("\nFINDINGS:" if fails else "\nALLE GATES PASS")
 for f in fails[:12]: print(" -", f)
