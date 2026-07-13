@@ -9,7 +9,7 @@
   "py": "pandas; column names follow the card's minimum data fields. A missing remediated_at (NaT) never counts as within SLA. None reports n/a, never 0."
  },
  "SOC-002": {
-  "gsql": "percentile_disc \u2026 WITHIN GROUP is the SQL:2016 exact nearest-rank percentile \u2014 the method the card example uses. Interval-to-hours conversion is dialect-specific; the PostgreSQL tab shows it concretely. Table name illustrative; bind the :parameters.",
+  "gsql": "Concrete duration recipe honoring the card output contract: hours (ttd_h), named outputs valid_cases/p50_h/p90_h/mean_h_supplementary. P50 as the true median (percentile_cont), P90 as the exact nearest rank (percentile_disc) - verified against the card example in the fixture gate. Empty case base returns NULL = n/a, never 0.",
   "pg": "percentile_disc returns the exact nearest-rank value and matches the card's P90 method one-to-one. PostgreSQL 14+; invalid cases (missing or negative timestamps) are excluded here and belong in data confidence.",
   "kql": "percentile() is a T-digest estimate, not exact nearest rank \u2014 on small case bases the difference is nil, for board-grade exactness compute the rank explicitly. Empty case base returns no row = n/a.",
   "spl": "Concrete duration recipe: P50 as the true median (lower/upper middle averaged, parity-safe), P90 as an explicit nearest rank via sort/streamstats - engine percentile estimators differ from the card-mandated method (Splunk fixture finding: nearest-rank P50 returned 10 instead of the median 15 for even case counts). Timestamps arrive as epoch seconds. Empty case base returns no results = n/a.",

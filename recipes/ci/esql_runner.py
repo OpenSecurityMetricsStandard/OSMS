@@ -24,11 +24,13 @@ FIX = json.load(open(os.path.join(A.out, "fixtures.json")))
 CAT = {c["id"]: c for c in json.load(open(os.path.join(A.out, "catalog.json")))}
 
 def es_type(field):
-    if field.endswith("_at") or field.endswith("_timestamp") or field.startswith("period_") or field.startswith("date_"):
+    if field == "exclusion_does_not_apply":
+        return "double"
+    if field.endswith("_at") or field.endswith("_timestamp") or field.startswith("period_") or field.startswith("date_") or field.endswith("_date"):
         return "date"
     if field.endswith("_flag") or field in ("internet_facing",) or field.startswith("is_"):
         return "boolean"
-    if re.search(r"(_value|_score|^weight$|_weight|_amount|_hours|_days|_cost)", field):
+    if re.search(r"(_value|_score|^weight$|_weight|_amount|_hours|_days|_cost|_eur|_pct)", field):
         return "double"
     return "keyword"
 

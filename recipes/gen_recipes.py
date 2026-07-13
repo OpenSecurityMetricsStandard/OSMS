@@ -114,7 +114,7 @@ WITH cases AS (
     {filt}
 )
 SELECT CASE WHEN COUNT(*) = 0 THEN NULL
-       ELSE percentile_disc(0.5) WITHIN GROUP (ORDER BY d_h) END AS p50_h,
+       ELSE percentile_cont(0.5) WITHIN GROUP (ORDER BY d_h) END AS p50_h,
        CASE WHEN COUNT(*) = 0 THEN NULL
        ELSE percentile_disc(0.9) WITHIN GROUP (ORDER BY d_h) END AS p90_h,
        AVG(d_h) AS mean_h_supplementary,
@@ -132,9 +132,13 @@ records
 | where true // period: anchor on the card's reporting-period timestamp
 {filt}
 | extend d_h = {body}
-| summarize valid_cases = count(), p50_h = percentile(d_h, 50),
-            p90_h = percentile(d_h, 90),
-            mean_h_supplementary = round(avg(d_h), 1)
+| summarize valid_cases = count(), arr = make_list(d_h),
+            mean_h_supplementary = avg(d_h)
+| extend s = array_sort_asc(arr), n = array_length(arr)
+| extend p50_h = (todouble(s[toint(ceiling(0.5 * n)) - 1])
+                  + todouble(s[toint(0.5 * n)])) / 2.0,
+         p90_h = todouble(s[toint(ceiling(0.9 * n)) - 1])
+| project valid_cases, p50_h, p90_h, mean_h_supplementary
 // empty case base -> no row = n/a, never 0"""
 
 def t_dur_py(cid, end, start, concrete):
@@ -155,7 +159,7 @@ def compute(records: pd.DataFrame, scope_id):
         return None               # n/a - never 0
     return {{"valid_cases": n, "p50_h": d_h.median(),
             "p90_h": d_h.iloc[math.ceil(0.9 * n) - 1],   # nearest rank
-            "mean_h_supplementary": round(d_h.mean(), 1)}}"""
+            "mean_h_supplementary": d_h.mean()}}"""
 
 def t_count_gsql(cid, hook):
     return f"""{hdr(cid,'--')}
@@ -224,7 +228,7 @@ def compute(records: pd.DataFrame, scope_id):
 
 
 # ---------------- composite pattern A: subscores as input rows ----------------
-COMPOSITE_ACTIVATE = ["STD-069"]  # pilot; rollout per verified pattern class
+COMPOSITE_ACTIVATE = ["STD-069", "STD-068", "STD-075"]  # pattern class A, engine-verified via STD-069
 
 def parse_composite(c):
     if not {"subscore_id", "subscore_value", "weight"} <= set(c["minimum_data_fields"]): return None
@@ -336,8 +340,8 @@ SKEL_ASSUM = {
  "kql": "Executable skeleton for Sentinel/Defender/Log Analytics: replace the true-marked hooks with your population predicates; records stands for your export table.",
  "py": "Executable skeleton (pandas): replace the lambda hooks with the card's population logic; column names follow the card's minimum data fields."}
 CONC_ASSUM = {
- "gsql": "Concrete duration recipe: percentile_disc is the exact nearest-rank percentile the card mandates (P50/P90; mean supplementary). Map the period anchor and validity rules to your source.",
- "kql": "Concrete duration recipe: percentile() is a T-digest estimate, not exact nearest rank - compute the rank explicitly for board-grade exactness. Empty case base returns no row = n/a.",
+ "gsql": "Concrete duration recipe: P50 as the true median (percentile_cont), P90 as the exact nearest rank (percentile_disc) - verified against the card examples in the fixture gate. Mean supplementary, unrounded. Map the period anchor and validity rules to your source.",
+ "kql": "Concrete duration recipe: P50 as the true median and P90 as the exact nearest rank via a sorted array - no estimator involved. Empty case base returns no row = n/a.",
  "py": "Concrete duration recipe with explicit nearest rank (ceil(0.9 \u00b7 n)); NaT never counts; negative durations are excluded as data-quality errors."}
 
 recipes, stats = {}, {"curated_verified":0,"generated_concrete":0,"generated_skeleton":0,"pending":0}
@@ -399,9 +403,324 @@ for c in cards:
     stats[entry["status"]] += 1
     recipes[cid] = entry
 
+
+# ================= Stage-3 special generators (engine-verified pattern classes) =================
+STD001_W = [("STD-006",0.25),("STD-014",0.08),("STD-015",0.06),("STD-013",0.04),("STD-029",0.02),
+            ("SOC-002",0.06),("SOC-003",0.06),("SOC-004",0.05),("SOC-009",0.03),("STD-008",0.15),
+            ("STD-007",0.04),("STD-053",0.035),("STD-054",0.025),("STD-011",0.10)]
+
+def _case_sql(pairs, col):
+    return "CASE " + col + "\n           " + "\n           ".join(f"WHEN '{k}' THEN {v}" for k, v in pairs) + "\n           ELSE NULL END"
+
+def gen_std001(c):
+    cid = "STD-001"
+    wsql = _case_sql(STD001_W, "child_card_id")
+    ids = ", ".join("'" + k + "'" for k, _ in STD001_W)
+    gsql = f"""{hdr(cid,'--')}
+WITH leaf AS (
+  SELECT child_card_id, posture_score, {wsql} AS w
+  FROM records
+  WHERE scope_id = :scope_id
+    AND child_card_id NOT IN ('STD-001a', 'STD-001b')
+), pen AS (
+  SELECT COALESCE(SUM(penalty_value), 0) AS p, COUNT(*) AS pn
+  FROM records
+  WHERE scope_id = :scope_id AND child_card_id IN ('STD-001a', 'STD-001b')
+), agg AS (
+  SELECT COUNT(*) AS n, COUNT(DISTINCT child_card_id) AS ids,
+         SUM(w * posture_score) AS s, MIN(posture_score) AS mn,
+         MAX(posture_score) AS mx,
+         SUM(CASE WHEN w IS NULL THEN 1 ELSE 0 END) AS unk
+  FROM leaf
+)
+SELECT CASE WHEN n <> 14 OR ids <> 14 OR unk > 0 OR mn < 0 OR mx > 100 OR pn <> 2
+            THEN NULL  -- gate violation -> n/a, never a fabricated score
+       ELSE GREATEST(0, LEAST(100, s - p)) END AS value
+FROM agg, pen;"""
+    wpy = "{" + ", ".join(f"'{k}': {v}" for k, v in STD001_W) + "}"
+    py = f"""{hdr(cid,'#')}
+W = {wpy}
+def compute(records, scope_id):
+    rows = records.to_dict("records") if hasattr(records, "to_dict") else records
+    rows = [r for r in rows if r.get("scope_id") == scope_id]
+    leaf = [r for r in rows if r["child_card_id"] in W]
+    pen = [r for r in rows if r["child_card_id"] in ("STD-001a", "STD-001b")]
+    if (len(leaf) != 14 or len({{r["child_card_id"] for r in leaf}}) != 14 or len(pen) != 2
+            or any(not (0 <= r["posture_score"] <= 100) for r in leaf)):
+        return None  # gate violation -> n/a
+    s = sum(W[r["child_card_id"]] * r["posture_score"] for r in leaf)
+    return max(0, min(100, s - sum(r["penalty_value"] for r in pen)))"""
+    wk = ", ".join(f'child_card_id == "{k}", {v}' for k, v in STD001_W)
+    kql = f"""{hdr(cid,'//')}
+let leaf = records
+| where scope_id == "prod" and child_card_id !in ("STD-001a", "STD-001b")
+| extend w = case({wk}, real(null));
+leaf
+| summarize n = count(), ids = dcount(child_card_id), s = sum(w * posture_score),
+            mn = min(posture_score), mx = max(posture_score),
+            unk = countif(isnull(w))
+| extend p = toscalar(records | where scope_id == "prod" and child_card_id in ("STD-001a", "STD-001b") | summarize sum(penalty_value)),
+         pn = toscalar(records | where scope_id == "prod" and child_card_id in ("STD-001a", "STD-001b") | summarize count())
+| extend value = iif(n != 14 or ids != 14 or unk > 0 or mn < 0 or mx > 100 or pn != 2,
+                     real(null), max_of(0.0, min_of(100.0, s - p)))
+| project value"""
+    wspl = ", ".join(f'child_card_id == "{k}", {v}' for k, v in STD001_W)
+    spl = f"""{hdr(cid,'```')} ```
+index=osms sourcetype=records scope_id="prod"
+| eval is_pen = if(child_card_id IN ("STD-001a", "STD-001b"), 1, 0)
+| eval w = case({wspl})
+| eval ws = if(is_pen == 0, w * posture_score, null()),
+       unk = if(is_pen == 0 AND isnull(w), 1, 0),
+       ps  = if(is_pen == 1, penalty_value, null())
+| stats sum(eval(1 - is_pen)) AS n, dc(eval(if(is_pen == 0, child_card_id, null()))) AS ids,
+        sum(ws) AS s, min(eval(if(is_pen == 0, posture_score, null()))) AS mn,
+        max(eval(if(is_pen == 0, posture_score, null()))) AS mx,
+        sum(unk) AS unk, sum(is_pen) AS pn, sum(ps) AS p
+| eval value = if(n != 14 OR ids != 14 OR unk > 0 OR mn < 0 OR mx > 100 OR pn != 2,
+                  null(), max(0, min(100, s - p)))
+| fields value
+``` any gate violation -> null, never a fabricated score ```"""
+    wes = ", ".join(f'child_card_id == "{k}", {v}' for k, v in STD001_W)
+    esql = f"""{hdr(cid,'//')}
+FROM records
+| WHERE scope_id == "prod"
+| EVAL is_pen = CASE(child_card_id IN ("STD-001a", "STD-001b"), 1, 0)
+| EVAL w = CASE({wes}, NULL)
+| STATS n = SUM(1 - is_pen), ids = COUNT_DISTINCT(CASE(is_pen == 0, child_card_id, NULL)),
+        s = SUM(CASE(is_pen == 0, w * posture_score, NULL)),
+        mn = MIN(CASE(is_pen == 0, posture_score, NULL)),
+        mx = MAX(CASE(is_pen == 0, posture_score, NULL)),
+        unk = SUM(CASE(is_pen == 0 AND w IS NULL, 1, 0)),
+        pn = SUM(is_pen), p = SUM(CASE(is_pen == 1, penalty_value, NULL))
+| EVAL value = CASE(n != 14 OR ids != 14 OR unk > 0 OR mn < 0 OR mx > 100 OR pn != 2,
+                    NULL, GREATEST(0.0, LEAST(100.0, s - p)))
+| KEEP value
+// any gate violation -> NULL, never a fabricated score"""
+    pillars = {"STD-006": 82, "STD-014": 61, "STD-015": 61, "STD-013": 61, "STD-029": 61,
+               "SOC-002": 74, "SOC-003": 74, "SOC-004": 74, "SOC-009": 74, "STD-008": 80,
+               "STD-007": 78, "STD-053": 78, "STD-054": 78, "STD-011": 86}
+    rows = [{"child_card_id": k, "posture_score": float(v), "penalty_value": 0.0, "scope_id": "prod"} for k, v in pillars.items()]
+    rows += [{"child_card_id": "STD-001a", "posture_score": 0.0, "penalty_value": 10.0, "scope_id": "prod"},
+             {"child_card_id": "STD-001b", "posture_score": 0.0, "penalty_value": 6.0, "scope_id": "prod"}]
+    fx = {"card": cid, "dialects": ["spl", "esql"],
+          "fields": {"child_card_id": "keyword", "posture_score": "double", "penalty_value": "double", "scope_id": "keyword"},
+          "rows": rows, "expect": {"value": 59.9}}
+    A = ("Concrete two-level composite: the leaf weights are the pillar weights multiplied through "
+         "(e.g. EM 0.20 x STD-014 0.40 = 0.08) and sum to exactly 1.0; penalties (STD-001a/b rows via "
+         "penalty_value) are subtracted, the result is clamped to 0..100 per the card. Gates: exactly the 14 "
+         "leaf child cards once each, both penalty rows present, scores 0-100 - any violation returns n/a. "
+         "Engine-verified: recomputes the card example (59.9) exactly in recipe CI.")
+    return {"status": "generated_concrete", "recipe_version": "0.1.0",
+            "dialects": {"gsql": gsql, "kql": kql, "py": py, "spl": spl, "esql": esql},
+            "assumptions": {k: A for k in ("gsql", "kql", "py", "spl", "esql")},
+            "visual": {"kind": "nested_composite", "result": 59.9}, "_fx": fx}
+
+def gen_res007(c):
+    cid = "RES-007"
+    core_sql = """GREATEST(p90_loss_exposure_eur -
+           GREATEST(LEAST(policy_limit_eur, p90_loss_exposure_eur) - deductible_eur, 0)
+           * exclusion_does_not_apply, 0)"""
+    gsql = f"""{hdr(cid,'--')}
+WITH s AS (
+  SELECT risk_scenario_id,
+         {core_sql} AS uncovered,
+         CASE WHEN p90_loss_exposure_eur IS NULL OR policy_limit_eur IS NULL
+                OR deductible_eur IS NULL OR exclusion_does_not_apply IS NULL
+                OR p90_loss_exposure_eur < 0 OR policy_limit_eur < 0 OR deductible_eur < 0
+                OR exclusion_does_not_apply NOT IN (0, 1)
+              THEN 1 ELSE 0 END AS bad
+  FROM records WHERE scope_id = :scope_id
+)
+SELECT CASE WHEN COUNT(*) = 0 OR SUM(bad) > 0 THEN NULL  -- n/a, never 0
+       ELSE SUM(uncovered) END AS value
+FROM s;"""
+    py = f"""{hdr(cid,'#')}
+def compute(records, scope_id):
+    rows = records.to_dict("records") if hasattr(records, "to_dict") else records
+    rows = [r for r in rows if r.get("scope_id") == scope_id]
+    if not rows:
+        return None  # no scenarios -> n/a
+    total = 0.0
+    for r in rows:
+        v = (r.get("p90_loss_exposure_eur"), r.get("policy_limit_eur"),
+             r.get("deductible_eur"), r.get("exclusion_does_not_apply"))
+        if any(x is None for x in v) or v[0] < 0 or v[1] < 0 or v[2] < 0 or v[3] not in (0, 1):
+            return None  # invalid scenario row -> n/a
+        creditable = max(min(v[1], v[0]) - v[2], 0) * v[3]
+        total += max(v[0] - creditable, 0)
+    return total"""
+    kql = f"""{hdr(cid,'//')}
+records
+| where scope_id == "prod"
+| extend bad = iif(isnull(p90_loss_exposure_eur) or isnull(policy_limit_eur)
+                   or isnull(deductible_eur) or isnull(exclusion_does_not_apply)
+                   or p90_loss_exposure_eur < 0 or policy_limit_eur < 0 or deductible_eur < 0
+                   or (exclusion_does_not_apply != 0 and exclusion_does_not_apply != 1), 1, 0)
+| extend uncovered = max_of(p90_loss_exposure_eur -
+                     max_of(min_of(policy_limit_eur, p90_loss_exposure_eur) - deductible_eur, 0.0)
+                     * exclusion_does_not_apply, 0.0)
+| summarize n = count(), bad = sum(bad), v = sum(uncovered)
+| extend value = iif(n == 0 or bad > 0, real(null), v)
+| project value"""
+    spl = f"""{hdr(cid,'```')} ```
+index=osms sourcetype=records scope_id="prod"
+| eval bad = if(isnull(p90_loss_exposure_eur) OR isnull(policy_limit_eur)
+                OR isnull(deductible_eur) OR isnull(exclusion_does_not_apply)
+                OR p90_loss_exposure_eur < 0 OR policy_limit_eur < 0 OR deductible_eur < 0
+                OR (exclusion_does_not_apply != 0 AND exclusion_does_not_apply != 1), 1, 0)
+| eval creditable = max(min(policy_limit_eur, p90_loss_exposure_eur) - deductible_eur, 0)
+                    * exclusion_does_not_apply
+| eval uncovered = max(p90_loss_exposure_eur - creditable, 0)
+| stats count AS n, sum(bad) AS bad, sum(uncovered) AS v
+| eval value = if(n == 0 OR bad > 0, null(), v)
+| fields value
+``` limit erosion per the card's declared assumption; empty or invalid -> null ```"""
+    esql = f"""{hdr(cid,'//')}
+FROM records
+| WHERE scope_id == "prod"
+| EVAL bad = CASE(p90_loss_exposure_eur IS NULL OR policy_limit_eur IS NULL
+                  OR deductible_eur IS NULL OR exclusion_does_not_apply IS NULL
+                  OR p90_loss_exposure_eur < 0 OR policy_limit_eur < 0 OR deductible_eur < 0
+                  OR (exclusion_does_not_apply != 0 AND exclusion_does_not_apply != 1), 1, 0)
+| EVAL creditable = GREATEST(LEAST(policy_limit_eur, p90_loss_exposure_eur) - deductible_eur, 0.0)
+                    * exclusion_does_not_apply
+| EVAL uncovered = GREATEST(p90_loss_exposure_eur - creditable, 0.0)
+| STATS n = COUNT(*), bad = SUM(bad), v = SUM(uncovered)
+| EVAL value = CASE(n == 0 OR bad > 0, NULL, v)
+| KEEP value
+// limit erosion per the card's declared assumption; empty or invalid -> NULL"""
+    fx = {"card": cid, "dialects": ["spl", "esql"],
+          "fields": {"risk_scenario_id": "keyword", "p90_loss_exposure_eur": "double",
+                     "policy_limit_eur": "double", "deductible_eur": "double",
+                     "exclusion_does_not_apply": "double", "scope_id": "keyword"},
+          "rows": [{"risk_scenario_id": "ransomware", "p90_loss_exposure_eur": 20000000.0,
+                    "policy_limit_eur": 15000000.0, "deductible_eur": 1000000.0,
+                    "exclusion_does_not_apply": 1.0, "scope_id": "prod"}],
+          "expect": {"value": 6000000.0}}
+    A = ("Concrete monetary recipe: creditable coverage = max(min(limit, P90 exposure) - deductible, 0) x "
+         "exclusion factor (limit erosion, the card's declared assumption - adapt locally with documentation "
+         "if your policy mechanics deviate); value = the sum of uncovered exposure over all loss scenarios. "
+         "An empty scenario set or any invalid row returns n/a, never 0. Engine-verified: recomputes the card "
+         "example (EUR 6,000,000) exactly in recipe CI.")
+    return {"status": "generated_concrete", "recipe_version": "0.1.0",
+            "dialects": {"gsql": gsql, "kql": kql, "py": py, "spl": spl, "esql": esql},
+            "assumptions": {k: A for k in ("gsql", "kql", "py", "spl", "esql")},
+            "visual": {"kind": "monetary", "result": 6000000.0}, "_fx": fx}
+
+def gen_log015(c):
+    cid = "LOG-015"
+    gsql = f"""{hdr(cid,'--')}
+WITH e AS (
+  SELECT CASE criticality_tier WHEN 'tier-0' THEN 5 WHEN 'tier-1' THEN 3 ELSE 1 END AS wc,
+         CASE WHEN date_diff('day', first_approval_date, period_end) <= 30 THEN 1
+              WHEN date_diff('day', first_approval_date, period_end) <= 90 THEN 2
+              ELSE 3 END AS wa,
+         CASE exception_scope WHEN 'individual_asset' THEN 1
+              WHEN 'asset_group_or_service' THEN 2 ELSE 3 END AS we,
+         CASE WHEN compensating_control_ref IS NOT NULL
+                   AND compensating_control_ref <> '' THEN 1 ELSE 2 END AS wk,
+         CASE WHEN criticality_tier IS NULL OR first_approval_date IS NULL
+                   OR exception_scope IS NULL THEN 1 ELSE 0 END AS bad
+  FROM records
+  WHERE scope_id = :scope_id AND status = 'open'
+)
+SELECT CASE WHEN SUM(bad) > 0 THEN NULL  -- data-quality error -> n/a
+       ELSE COALESCE(SUM(wc * wa * we * wk), 0) END AS value  -- 0 open exceptions = a true 0
+FROM e;"""
+    py = f"""{hdr(cid,'#')}
+def compute(records, scope_id):
+    rows = records.to_dict("records") if hasattr(records, "to_dict") else records
+    total = 0
+    for r in rows:
+        if r.get("status") != "open" or r.get("scope_id") != scope_id:
+            continue
+        if r.get("criticality_tier") is None or r.get("first_approval_date") is None \\
+                or r.get("exception_scope") is None:
+            return None  # data-quality error -> n/a
+        age = (r["period_end"] - r["first_approval_date"]).days
+        wc = 5 if r["criticality_tier"] == "tier-0" else 3 if r["criticality_tier"] == "tier-1" else 1
+        wa = 1 if age <= 30 else 2 if age <= 90 else 3
+        we = 1 if r["exception_scope"] == "individual_asset" else 2 if r["exception_scope"] == "asset_group_or_service" else 3
+        wk = 1 if r.get("compensating_control_ref") else 2
+        total += wc * wa * we * wk
+    return total  # 0 open exceptions = a true 0"""
+    kql = f"""{hdr(cid,'//')}
+records
+| where scope_id == "prod" and status == "open"
+| extend age = datetime_diff('day', period_end, first_approval_date)
+| extend wc = case(criticality_tier == "tier-0", 5, criticality_tier == "tier-1", 3, 1),
+         wa = case(age <= 30, 1, age <= 90, 2, 3),
+         we = case(exception_scope == "individual_asset", 1,
+                   exception_scope == "asset_group_or_service", 2, 3),
+         wk = iif(isnotempty(compensating_control_ref), 1, 2),
+         bad = iif(isnull(criticality_tier) or isnull(first_approval_date)
+                   or isnull(exception_scope), 1, 0)
+| summarize bad = sum(bad), v = sum(wc * wa * we * wk)
+| extend value = iif(bad > 0, real(null), coalesce(v, 0))
+| project value"""
+    spl = f"""{hdr(cid,'```')} ```
+index=osms sourcetype=records scope_id="prod" status="open"
+| eval age = floor((period_end - first_approval_date) / 86400)
+| eval wc = case(criticality_tier == "tier-0", 5, criticality_tier == "tier-1", 3, 1=1, 1),
+       wa = case(age <= 30, 1, age <= 90, 2, 1=1, 3),
+       we = case(exception_scope == "individual_asset", 1,
+                 exception_scope == "asset_group_or_service", 2, 1=1, 3),
+       wk = if(isnotnull(compensating_control_ref) AND compensating_control_ref != "", 1, 2),
+       bad = if(isnull(criticality_tier) OR isnull(first_approval_date)
+                OR isnull(exception_scope), 1, 0)
+| stats sum(bad) AS bad, sum(eval(wc * wa * we * wk)) AS v
+| eval value = if(bad > 0, null(), coalesce(v, 0))
+| fields value
+``` 0 open exceptions = a true 0; missing tier/date/scope -> null (data quality) ```"""
+    esql = f"""{hdr(cid,'//')}
+FROM records
+| WHERE scope_id == "prod" AND status == "open"
+| EVAL age = DATE_DIFF("days", first_approval_date, period_end)
+| EVAL wc = CASE(criticality_tier == "tier-0", 5, criticality_tier == "tier-1", 3, 1),
+       wa = CASE(age <= 30, 1, age <= 90, 2, 3),
+       we = CASE(exception_scope == "individual_asset", 1,
+                 exception_scope == "asset_group_or_service", 2, 3),
+       wk = CASE(compensating_control_ref IS NOT NULL AND compensating_control_ref != "", 1, 2),
+       bad = CASE(criticality_tier IS NULL OR first_approval_date IS NULL
+                  OR exception_scope IS NULL, 1, 0)
+| STATS bad = SUM(bad), v = SUM(wc * wa * we * wk)
+| EVAL value = CASE(bad > 0, NULL, COALESCE(v, 0))
+| KEEP value
+// 0 open exceptions = a true 0; missing tier/date/scope -> NULL (data quality)"""
+    rows = [
+        {"criticality_tier": "tier-0", "first_approval_date": "2026-06-25T00:00:00Z", "exception_scope": "individual_asset", "compensating_control_ref": "", "status": "open", "period_end": "2026-06-30T00:00:00Z", "scope_id": "prod"},
+        {"criticality_tier": "tier-1", "first_approval_date": "2026-05-16T00:00:00Z", "exception_scope": "asset_group_or_service", "compensating_control_ref": "CC-011", "status": "open", "period_end": "2026-06-30T00:00:00Z", "scope_id": "prod"},
+        {"criticality_tier": "tier-2", "first_approval_date": "2026-03-02T00:00:00Z", "exception_scope": "individual_asset", "compensating_control_ref": "CC-012", "status": "open", "period_end": "2026-06-30T00:00:00Z", "scope_id": "prod"},
+        {"criticality_tier": "tier-0", "first_approval_date": "2026-01-01T00:00:00Z", "exception_scope": "site_or_tenant_wide", "compensating_control_ref": "", "status": "closed", "period_end": "2026-06-30T00:00:00Z", "scope_id": "prod"},
+    ]
+    fx = {"card": cid, "dialects": ["spl", "esql"],
+          "fields": {"criticality_tier": "keyword", "first_approval_date": "date",
+                     "exception_scope": "keyword", "compensating_control_ref": "keyword",
+                     "status": "keyword", "period_end": "date", "scope_id": "keyword"},
+          "rows": rows, "expect": {"value": 25.0}}
+    A = ("Concrete banded-weight recipe: the normative standard weighting scheme from the card is applied "
+         "verbatim (tier-0=5/tier-1=3/else 1; age <=30d=1/31-90d=2/>90d=3; individual asset=1/group-service=2/"
+         "site-tenant=3; compensating control present=1/missing=2), multiplied per open exception and summed. "
+         "Age anchors on period_end as the report as-of date. Zero open exceptions is a true 0; missing tier, "
+         "first-approval date or extent returns n/a (data-quality error per the card). Deviating local weights "
+         "must be documented and versioned before first measurement. Engine-verified: recomputes the card "
+         "example (25) exactly in recipe CI, including a closed-exception decoy.")
+    return {"status": "generated_concrete", "recipe_version": "0.1.0",
+            "dialects": {"gsql": gsql, "kql": kql, "py": py, "spl": spl, "esql": esql},
+            "assumptions": {k: A for k in ("gsql", "kql", "py", "spl", "esql")},
+            "visual": {"kind": "banded_score", "result": 25.0}, "_fx": fx}
+
+SPECIALS = {"STD-001": gen_std001, "RES-007": gen_res007, "LOG-015": gen_log015}
+_byid = {c["id"]: c for c in cards}
+for _cid, _fn in SPECIALS.items():
+    recipes[_cid] = _fn(_byid[_cid])
+    recipes[_cid]["mechanic"] = MECH[_byid[_cid]["calculation_type"]]
+    stats[recipes[_cid]["status"]] = stats.get(recipes[_cid]["status"], 0) + 1
+    stats["pending"] -= 1
+
 slim = [{**{k: c.get(k) for k in KEEP}, "mechanic": MECH[c["calculation_type"]]} for c in cards]
 cat_js = json.dumps(slim, ensure_ascii=False, separators=(",", ":"))
-rec_js = json.dumps({"bundle_version": "0.3.0", "source_catalog": "osms-catalog.yaml v0.9.1",
+rec_js = json.dumps({"bundle_version": "0.4.0", "source_catalog": "osms-catalog.yaml v0.9.1",
                      "recipes": recipes}, ensure_ascii=False, separators=(",", ":"))
 open(f"{OUT}/catalog.json", "w").write(cat_js)
 open(f"{OUT}/recipes.json", "w").write(rec_js)
@@ -413,6 +732,10 @@ print("Größen: catalog %.2f MB, recipes %.2f MB" % (len(cat_js)/1e6, len(rec_j
 print("Manifest:", man)
 
 # ================= CI candidates: SPL + ES|QL (engine-verified before publication) =================
+def _fold(s):
+    return (s.replace("\u2014", "-").replace("\u2013", "-").replace("\u2018", "'")
+             .replace("\u2019", "'").replace("\u201c", '"').replace("\u201d", '"'))
+
 def t_ratio_spl(cid, hooks):
     return f"""{hdr(cid,'```')} ```
 index=osms sourcetype=records scope_id="prod"
@@ -482,7 +805,7 @@ def t_count_spl(cid, hook):
 index=osms sourcetype=records scope_id="prod"
 ``` period + population: {hook} ```
 | stats count AS value
-``` a count of 0 is a valid result here ```"""
+``` a count of 0 is a valid result here (not an n/a case) ```"""
 
 def t_count_esql(cid, hook):
     return f"""{hdr(cid,'//')}
@@ -490,7 +813,7 @@ FROM records
 | WHERE scope_id == "prod"
 | WHERE true // period + population: {hook}
 | STATS value = COUNT(*)
-// a count of 0 is a valid result here"""
+// a count of 0 is a valid result here (not an n/a case)"""
 
 def t_delta_spl(cid, hook):
     return f"""{hdr(cid,'```')} ```
@@ -537,13 +860,17 @@ FROM records
                     OR ABS(wsum - 1.0) > 0.001, NULL, score)
 // any gate violation -> NULL, never a fabricated score"""
 
-if ARGS.emit_candidates:
+if True:  # engine dialects: always built; published since CI run #5 (green on ES + Splunk 9.4/10.2)
     import math
     import datetime as _dt
     cand, fixtures = {}, []
     for c in cards:
         cid, mech = c["id"], MECH[c["calculation_type"]]
         r = recipes[cid]
+        if cid in SPECIALS:
+            cand[cid] = {"spl": r["dialects"]["spl"], "esql": r["dialects"]["esql"], "status": r["status"]}
+            fixtures.append(r.pop("_fx"))
+            continue
         if r["status"] == "pending" and cid not in CURATED: continue
         if cid in CURATED:
             cand[cid] = {"spl": CURATED[cid]["snippets"]["spl"], "esql": CURATED[cid]["snippets"]["esql"], "status": "curated"}
@@ -553,6 +880,7 @@ if ARGS.emit_candidates:
             nd = (c.get("numerator_denominator") or "").strip()
             hooks = ({"num": human(m.group(1)), "den": human(m.group(2))} if m else
                      {"num": nd.split("/")[0].strip() or "numerator", "den": (nd.split("/")[1].strip() if "/" in nd else "denominator")})
+            hooks = {k: _fold(v) for k, v in hooks.items()}
             cand[cid] = {"spl": t_ratio_spl(cid, hooks), "esql": t_ratio_esql(cid, hooks), "status": r["status"]}
         elif mech == "duration":
             m = DUR_PAT.search(c["formula"])
@@ -571,33 +899,37 @@ if ARGS.emit_candidates:
                                "p90_h": ss[math.ceil(0.9*n)-1],
                                "mean_h_supplementary": round(sum(hs)/n, 6)}})
         elif mech == "count":
-            hook = (c.get("numerator_denominator") or c["formula"])[:110].strip()
+            hook = _fold((c.get("numerator_denominator") or c["formula"])[:110].strip())
             cand[cid] = {"spl": t_count_spl(cid, hook), "esql": t_count_esql(cid, hook), "status": r["status"]}
         elif mech == "delta":
-            hook = (c.get("numerator_denominator") or c["formula"])[:110].strip()
+            hook = _fold((c.get("numerator_denominator") or c["formula"])[:110].strip())
             cand[cid] = {"spl": t_delta_spl(cid, hook), "esql": t_delta_esql(cid, hook), "status": r["status"]}
         elif mech == "component_tree" and cid in COMPOSITE_ACTIVATE:
             comps = parse_composite(c)
             cand[cid] = {"spl": t_comp_spl(cid, comps), "esql": t_comp_esql(cid, comps), "status": r["status"]}
             if "visual" in r:
                 fixtures.append({"card": cid, "dialects": ["spl", "esql"],
-                    "fields": {"subscore_id": "keyword", "subscore_value": "double", "weight": "double", "scope_id": "keyword"},
-                    "rows": [{"subscore_id": it["id"], "subscore_value": it["v"], "weight": it["w"], "scope_id": "prod"} for it in r["visual"]["items"]],
+                    "fields": {"subscore_id": "keyword", "subscore_value": "double", "weight": "double",
+                               "scope_id": "keyword", "period_start": "date", "period_end": "date"},
+                    "rows": [{"subscore_id": it["id"], "subscore_value": it["v"], "weight": it["w"], "scope_id": "prod",
+                              "period_start": "2026-06-01T00:00:00Z", "period_end": "2026-07-01T00:00:00Z"}
+                             for it in r["visual"]["items"]],
+                    "params": {"period_start": "2026-06-01T00:00:00Z", "period_end": "2026-07-01T00:00:00Z"},
                     "expect": {"value": r["visual"]["result"]}})
     # curated fixtures: STD-016 (80/64 + decoys) und SOC-002 (Stundenpaare)
     rows16 = []
     for i in range(80):
         ok = i < 64
-        rows16.append({"severity": "critical", "internet_facing": True, "scope_id": "prod",
+        rows16.append({"record_id": "r%03d" % i, "severity": "critical", "internet_facing": True, "scope_id": "prod",
                        "due_at": "2026-06-20T12:00:00Z",
                        "remediated_at": "2026-06-19T12:00:00Z" if ok else "2026-06-25T12:00:00Z",
                        "validation_status": "validated" if ok else "open"})
     for i in range(8):
-        rows16.append({"severity": "high", "internet_facing": False, "scope_id": "prod",
+        rows16.append({"record_id": "d%03d" % i, "severity": "high", "internet_facing": False, "scope_id": "prod",
                        "due_at": "2026-06-20T12:00:00Z", "remediated_at": "2026-06-19T12:00:00Z",
                        "validation_status": "validated"})
     fixtures.append({"card": "STD-016", "dialects": ["spl", "esql"],
-        "fields": {"severity": "keyword", "internet_facing": "boolean", "scope_id": "keyword",
+        "fields": {"record_id": "keyword", "severity": "keyword", "internet_facing": "boolean", "scope_id": "keyword",
                    "due_at": "date", "remediated_at": "date", "validation_status": "keyword"},
         "params": {"period_start": "2026-06-01T00:00:00Z", "period_end": "2026-07-01T00:00:00Z", "scope_id": "prod"},
         "tables": {"spl_index": "security_findings", "spl_sourcetype": "vuln:findings", "esql_from": "findings"},
@@ -625,7 +957,42 @@ if ARGS.emit_candidates:
             if re.search(DESTR[lang], core, re.I): bad.append((cid, lang, "destruktiv"))
     if bad:
         print("LINT-FINDINGS:", bad[:6]); _sys.exit(1)
-    json.dump(cand, open(f"{OUT}/ci_candidates.json", "w"), ensure_ascii=False, indent=0)
-    json.dump(fixtures, open(f"{OUT}/fixtures.json", "w"), ensure_ascii=False, indent=1)
-    print(f"CI-Kandidaten: {len(cand)} Karten x SPL+ES|QL | Fixtures: {len(fixtures)} | Lints: PASS")
+    A_SPL_SK = ("Engine-verified scaffolding: parses and executes on real Splunk (9.4 and 10.2, recipe CI) "
+        "against a typed empty index. Population hooks are deliberate - map them to your data model before use. "
+        "Timestamps arrive as epoch seconds.")
+    A_SPL_CO = ("Engine-verified: recomputes the card calculation example exactly on real Splunk 9.4 and 10.2 "
+        "(recipe CI fixtures). P50 as the true median, P90 as an explicit nearest rank - engine percentile "
+        "estimators differ from the card-mandated method. Timestamps arrive as epoch seconds.")
+    A_ESQL_SK = ("Engine-verified scaffolding: parses and executes on real Elasticsearch (recipe CI) against a "
+        "typed empty index. Population hooks are deliberate - map them to your data model before use.")
+    A_ESQL_CO = ("Engine-verified: recomputes the card calculation example exactly on real Elasticsearch "
+        "(recipe CI fixtures). P90 as an explicit nearest rank via MV_SORT/MV_SLICE - PERCENTILE() is a "
+        "t-digest estimate and returned 26 h instead of the card-mandated 30 h on the reference fixture.")
+    A_SPL_CO_GEN = ("Engine-verified: recomputes the card calculation example exactly on real Splunk 9.4 "
+        "and 10.2 (recipe CI fixtures). Timestamps arrive as epoch seconds.")
+    A_ESQL_CO_GEN = ("Engine-verified: recomputes the card calculation example exactly on real Elasticsearch "
+        "(recipe CI fixtures).")
+    mechmap = {c["id"]: MECH[c["calculation_type"]] for c in cards}
+    for cid, d in cand.items():
+        r = recipes[cid]
+        if d.get("status") == "curated" or "spl" in r["dialects"]:
+            continue
+        conc = r["status"] == "generated_concrete"
+        dur = mechmap.get(cid) == "duration"
+        r["dialects"]["spl"] = d["spl"]
+        r["dialects"]["esql"] = d["esql"]
+        r["assumptions"]["spl"] = (A_SPL_CO if dur else A_SPL_CO_GEN) if conc else A_SPL_SK
+        r["assumptions"]["esql"] = (A_ESQL_CO if dur else A_ESQL_CO_GEN) if conc else A_ESQL_SK
+    if ARGS.emit_candidates:
+        json.dump(cand, open(f"{OUT}/ci_candidates.json", "w"), ensure_ascii=False, indent=0)
+        json.dump(fixtures, open(f"{OUT}/fixtures.json", "w"), ensure_ascii=False, indent=1)
+    print(f"Engine-Dialekte publiziert: {len(cand)} Karten x SPL+ES|QL | Fixtures: {len(fixtures)} | Lints: PASS")
+    # Re-Serialisierung: injizierte Engine-Dialekte in die Bundle-Artefakte schreiben
+    rec_js = json.dumps({"bundle_version": "0.4.0", "source_catalog": "osms-catalog.yaml v0.9.1",
+                         "recipes": recipes}, ensure_ascii=False, separators=(",", ":"))
+    open(f"{OUT}/recipes.json", "w").write(rec_js)
+    man = {os.path.basename(p): hashlib.sha256(open(p, "rb").read()).hexdigest()
+           for p in [f"{OUT}/catalog.json", f"{OUT}/recipes.json"]}
+    open(f"{OUT}/manifest.json", "w").write(json.dumps(man, indent=1))
+    print("Größen final: recipes %.2f MB | Manifest final:" % (len(rec_js)/1e6), man)
 

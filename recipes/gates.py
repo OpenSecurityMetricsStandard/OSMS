@@ -12,9 +12,10 @@ CAT = {c["id"]: c for c in json.load(open(os.path.join(BND, "catalog.json")))}
 fails = []
 
 def typ(f):
-    if f.endswith("_at") or f.endswith("_timestamp") or f.startswith("date_") or f.startswith("period_"): return "TIMESTAMP", "datetime64[ns]", "datetime"
+    if f == "exclusion_does_not_apply": return "DOUBLE", "float64", "real"
+    if f.endswith("_at") or f.endswith("_timestamp") or f.startswith("date_") or f.startswith("period_") or f.endswith("_date"): return "TIMESTAMP", "datetime64[ns]", "datetime"
     if f.endswith("_flag") or f in ("internet_facing",) or f.startswith("is_"): return "BOOLEAN", "bool", "bool"
-    if re.search(r"(_value|_score|^weight$|_weight|_amount|_hours|_days|_cost)", f): return "DOUBLE", "float64", "real"
+    if re.search(r"(_value|_score|^weight$|_weight|_amount|_hours|_days|_cost|_eur|_pct)", f): return "DOUBLE", "float64", "real"
     return "VARCHAR", "object", "string"
 
 # ---------------- 1) Sicherheits-Lints ----------------
@@ -81,7 +82,9 @@ for cid, r in B.items():
         row = con.execute(q, params).fetchone()
         sqlrun += 1
         if r["mechanic"] in ("ratio", "delta") and row[0] is not None: raise AssertionError(f"fail-closed verletzt: {row}")
-        if r["mechanic"] == "duration" and not (row[0] is None and row[3] == 0): raise AssertionError(f"fail-closed verletzt: {row}")
+        if r["mechanic"] == "duration":
+            zeros = sum(1 for v in row if v == 0); nones = sum(1 for v in row if v is None)
+            if not (zeros == 1 and nones == len(row) - 1): raise AssertionError(f"fail-closed verletzt: {row}")
         if r["mechanic"] == "count" and row[0] != 0: raise AssertionError(f"count leer != 0: {row}")
     except Exception as e:
         sqlfail += 1
@@ -204,6 +207,73 @@ for cid, r in B.items():
     else:
         fails.append(f"COMPOSITE {cid}: py={res} sql={sqlres} exp={exp} neg={neg}/{negw}")
 print(f"[7] Composite-Selbstfixtures: {c7_ok}/{c7_n} PASS (inkl. Negativtests)")
+
+# ---------------- 8) Universal-Fixture-Gate: DuckDB + Python exakt ----------------
+import datetime as _dt, inspect as _insp
+fx_path = os.path.join(BND, "fixtures.json")
+if os.path.exists(fx_path):
+    FX = json.load(open(fx_path))
+    ok8 = py8 = 0
+    for f in FX:
+        cid = f["card"]; rec = B[cid]
+        tbl = (f.get("tables") or {}).get("esql_from", "records")
+        try:
+            con = duckdb.connect()
+            cols = ", ".join('"%s" %s' % (k, "TIMESTAMP" if v == "date" else
+                             "DOUBLE" if v in ("double", "long") else
+                             "BOOLEAN" if v == "boolean" else "VARCHAR")
+                             for k, v in f["fields"].items())
+            con.execute('CREATE TABLE "%s" (%s)' % (tbl, cols))
+            for row in f["rows"]:
+                vals = []
+                for k, ty in f["fields"].items():
+                    v = row.get(k)
+                    if ty == "date" and v is not None:
+                        v = _dt.datetime.strptime(v, "%Y-%m-%dT%H:%M:%SZ")
+                    vals.append(v)
+                con.execute('INSERT INTO "%s" VALUES (%s)' % (tbl, ", ".join(["?"] * len(vals))), vals)
+            q = rec["dialects"]["gsql"]
+            params = {"scope_id": "prod", "period_start": "2026-06-01T00:00:00Z",
+                      "period_end": "2026-07-01T00:00:00Z"}
+            params.update(f.get("params") or {})
+            for k, v in params.items():
+                lit = ("TIMESTAMP '%s'" % str(v).replace("T", " ").replace("Z", "")
+                       if isinstance(v, str) and len(v) >= 10 and v[4] == "-" and v[7] == "-"
+                       else "'%s'" % v)
+                q = q.replace(":" + k, lit)
+            cur = con.execute(q)
+            names = [d[0] for d in cur.description]
+            got = dict(zip(names, cur.fetchone()))
+            for k, exp in f["expect"].items():
+                gv = got.get(k, got.get("value"))
+                if gv is None and len(got) == 1 and len(f["expect"]) == 1:
+                    gv = list(got.values())[0]
+                assert gv is not None and abs(float(gv) - float(exp)) < 1e-6, "gsql %s exp %s got %s" % (k, exp, gv)
+            ok8 += 1
+        except Exception as e:
+            fails.append("FX-SQL %s: %s" % (cid, str(e)[:110]))
+        try:
+            df = pd.DataFrame(f["rows"])
+            for k, ty in f["fields"].items():
+                if ty == "date" and k in df:
+                    df[k] = pd.to_datetime(df[k].astype(str).str.replace("Z", "", regex=False))
+            ns = {}
+            exec(compile(rec["dialects"]["py"], cid, "exec"), ns)
+            fn = ns.get("compute") or ns.get("mttd") or ns.get("sla_compliance_pct")
+            nargs = len(_insp.signature(fn).parameters)
+            ps = pd.to_datetime(params.get("period_start", "2026-06-01").replace("Z", ""))
+            pe = pd.to_datetime(params.get("period_end", "2026-07-01").replace("Z", ""))
+            res = fn(df, ps, pe, "prod") if nargs == 4 else fn(df, "prod")
+            if isinstance(res, dict):
+                for k, exp in f["expect"].items():
+                    assert res.get(k) is not None and abs(float(res[k]) - float(exp)) < 1e-6, "py %s exp %s got %s" % (k, exp, res.get(k))
+            else:
+                expv = f["expect"].get("value", list(f["expect"].values())[0])
+                assert res is not None and abs(float(res) - float(expv)) < 1e-6, "py exp %s got %s" % (expv, res)
+            py8 += 1
+        except Exception as e:
+            fails.append("FX-PY %s: %s" % (cid, str(e)[:110]))
+    print("[8] Universal-Fixture-Gate: %d/%d gsql exakt, %d/%d py exakt" % (ok8, len(FX), py8, len(FX)))
 
 print("\nFINDINGS:" if fails else "\nALLE GATES PASS")
 for f in fails[:12]: print(" -", f)
