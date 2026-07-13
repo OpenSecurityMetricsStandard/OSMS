@@ -43,6 +43,75 @@ def _ascii(s):
     return "".join(ch if ord(ch) < 127 else "?" for ch in s)
 
 
+# German (de-DE) Excel localisation: same formula, localised function names, ";" argument
+# separator and "," decimal. Only names that differ from en-US are listed; MEDIAN/MAX/MIN/ABS/N
+# are identical in de-DE. Applied longest-first, before "(" only, with string literals protected.
+_FUNC_DE = [("COUNTIFS", "Z\u00c4HLENWENNS"), ("SUMPRODUCT", "SUMMENPRODUKT"), ("SUMIFS", "SUMMEWENNS"),
+            ("AVERAGE", "MITTELWERT"), ("CEILING", "OBERGRENZE"), ("SMALL", "KKLEINSTE"),
+            ("COUNT", "ANZAHL"), ("SUM", "SUMME"), ("IF", "WENN"), ("AND", "UND"), ("OR", "ODER"),
+            ("NA", "NV")]
+_FUNC_EN = [(de, en) for en, de in _FUNC_DE]   # inverse, for the round-trip check
+
+# German documentation phrases for the de-DE rendering. These are the fixed scaffolding
+# labels emitted inside N("...") documentation terms; card-derived hook fragments and all
+# data-value literals ("critical", "validated", ...) stay English. Longest-first so nested
+# phrases ("denominator population" before "population") resolve correctly.
+_NDOC = [
+    ("range-model skeleton, non-normative", "Range-Modell-Skelett, nicht normativ"),
+    ("add your population/condition criteria pairs to the two COUNTIFS",
+     "Kriterien-Paare f\u00fcr Population/Bedingung in die beiden COUNTIFS erg\u00e4nzen"),
+    ("a count of 0 is a valid result; n/a only when the source itself is unavailable",
+     "Ein Z\u00e4hlwert von 0 ist ein g\u00fcltiges Ergebnis; k.A. nur wenn die Quelle selbst nicht verf\u00fcgbar ist"),
+    ("delta = current-period quantity minus previous-period quantity",
+     "Delta = Gr\u00f6\u00dfe der aktuellen Periode minus Gr\u00f6\u00dfe der Vorperiode"),
+    ("map the period split and the quantity: ", "Periodenaufteilung und Gr\u00f6\u00dfe mappen: "),
+    ("duration expression: map per the card formula", "Dauer-Ausdruck: gem\u00e4\u00df Kartenformel mappen"),
+    ("denominator population: ", "Nenner-Population: "),
+    ("numerator condition: ", "Z\u00e4hler-Bedingung: "),
+    ("population: ", "Population: "),
+]
+
+
+def _split_strings(f):
+    return re.split(r'("(?:[^"]*)")', f)       # odd indices are quoted string literals
+
+
+def to_de_de(formula):
+    """Render an en-US formula as paste-ready de-DE (German Excel) text: localised function
+    names, ';' separator, ',' decimal, and German N() documentation. Data-value literals and
+    card-derived hook fragments stay English."""
+    out = []
+    for i, seg in enumerate(_split_strings(formula)):
+        if i % 2 == 1:                          # string literal: translate doc phrases only
+            for en, de in _NDOC:
+                seg = seg.replace(en, de)
+            out.append(seg); continue
+        for en, de in _FUNC_DE:
+            seg = re.sub(r"\b" + en + r"(?=\()", de, seg)
+        seg = re.sub(r"\bTRUE\b", "WAHR", seg)
+        seg = seg.replace(",", ";")            # argument separators
+        seg = re.sub(r"(?<=\d)\.(?=\d)", ",", seg)   # decimal points
+        out.append(seg)
+    return "".join(out)
+
+
+def _to_en_from_de(formula):
+    """Inverse of to_de_de, used only to prove the de-DE rendering is faithful."""
+    out = []
+    for i, seg in enumerate(_split_strings(formula)):
+        if i % 2 == 1:                          # string literal: docs back to English
+            for en, de in _NDOC:
+                seg = seg.replace(de, en)
+            out.append(seg); continue
+        seg = re.sub(r"(?<=\d),(?=\d)", ".", seg)    # decimals back first
+        seg = seg.replace(";", ",")
+        seg = re.sub(r"\bWAHR\b", "TRUE", seg)
+        for de, en in _FUNC_EN:
+            seg = re.sub(r"\b" + de + r"(?=\()", en, seg)
+        out.append(seg)
+    return "".join(out)
+
+
 # ============ spec builders (each returns dict or None) ============
 # spec = {columns, params:[..], helpers:[(name, formula_template_with_{r})], outputs:{key:formula}, note}
 
@@ -257,6 +326,10 @@ def render(cid, spec):
     out.append("' Result cell(s):")
     for key, form in spec["outputs"].items():
         out.append("    %s%s" % (key + ":  " if key != "value" else "", form))
+    out.append("' German Excel (de-DE) - same formula, localised names, ';' separator, ',' decimal;")
+    out.append("' copy the line after the apostrophe (a saved .xlsx localises automatically on open):")
+    for key, form in spec["outputs"].items():
+        out.append("'   %s%s" % (key + ":  " if key != "value" else "", to_de_de(form)))
     return "\n".join(out)
 
 

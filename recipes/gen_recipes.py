@@ -990,13 +990,24 @@ if True:  # engine dialects: always built; published since CI run #5 (green on E
     _comp_k = {c["id"]: len(parse_composite(c))
                for c in cards
                if MECH[c["calculation_type"]] == "component_tree" and c["id"] in COMPOSITE_ACTIVATE and parse_composite(c)}
-    A_XLSX_CO = ("Verified twice - recomputes the card calculation example exactly in the formulas engine "
-                 "(recipe CI) and in LibreOffice Calc (excel_runner). Range model: raw rows on a 'data' sheet, "
-                 "one formula = one value, fail-closed via NA(), percentiles by explicit nearest rank. Excel 2007 "
-                 "function set, so the same formula runs in Excel, LibreOffice Calc and Google Sheets.")
-    A_XLSX_SK = ("Range-model skeleton, non-normative: scope filter and fail-closed guard are generated; map the "
-                 "card's population to the marked COUNTIFS / helper column. Executes fail-closed on an empty sheet "
-                 "in both the formulas engine and LibreOffice Calc.")
+    A_XLSX_CO = {
+        "en": ("Verified twice - recomputes the card calculation example exactly in the formulas engine "
+               "(recipe CI) and in LibreOffice Calc (excel_runner). Range model: raw rows on a 'data' sheet, "
+               "one formula = one value, fail-closed via NA(), percentiles by explicit nearest rank. Excel 2007 "
+               "function set, so the same formula runs in Excel, LibreOffice Calc and Google Sheets."),
+        "de": ("Zweifach verifiziert - rechnet das Kartenbeispiel exakt in der formulas-Engine (Recipe-CI) und "
+               "in LibreOffice Calc (excel_runner) nach. Range-Modell: Rohzeilen auf einem Blatt 'data', eine "
+               "Formel = ein Wert, fail-closed \u00fcber NA(), Perzentile per explizitem Nearest-Rank. "
+               "Excel-2007-Funktionssatz - dieselbe Formel l\u00e4uft in Excel, LibreOffice Calc und Google Sheets."),
+    }
+    A_XLSX_SK = {
+        "en": ("Range-model skeleton, non-normative: scope filter and fail-closed guard are generated; map the "
+               "card's population to the marked COUNTIFS / helper column. Executes fail-closed on an empty sheet "
+               "in both the formulas engine and LibreOffice Calc."),
+        "de": ("Range-Modell-Skelett, nicht normativ: Scope-Filter und Fail-closed-Absicherung sind generiert; "
+               "die Population der Karte in die markierten COUNTIFS / die Helferspalte mappen. Rechnet auf einem "
+               "leeren Blatt fail-closed - in der formulas-Engine wie in LibreOffice Calc."),
+    }
     excel_cand = {}; xl_gen = 0
     for c in cards:
         cid = c["id"]; rec = recipes[cid]
