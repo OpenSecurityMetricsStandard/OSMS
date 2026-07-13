@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
-      - run: pip install pyyaml duckdb pandas
+      - run: pip install pyyaml duckdb pandas formulas openpyxl
       - run: npm install @kusto/language-service-next
       - name: Generate recipes and CI candidates
         run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
@@ -32,6 +32,7 @@ jobs:
         run: |
           python recipes/ci/esql_runner.py --out recipes/out --dry-run
           python recipes/ci/spl_runner.py --out recipes/out --dry-run
+          python recipes/ci/excel_runner.py --out recipes/out --dry-run
       - uses: actions/upload-artifact@v7
         if: always()
         with:
@@ -69,6 +70,28 @@ jobs:
         with:
           name: esql-report
           path: recipes/out/esql_report.json
+
+  excel:
+    name: Excel engine (LibreOffice Calc)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install pyyaml formulas openpyxl
+      - name: Install LibreOffice (headless)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libreoffice-calc
+      - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
+      - name: Fixture and empty-run verification (second engine)
+        run: python recipes/ci/excel_runner.py --out recipes/out --soffice soffice
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: excel-report
+          path: recipes/out/excel_report.json
 
   spl:
     # Opt-in: set the repository variable ENABLE_SPL_CI to 'true' AFTER
