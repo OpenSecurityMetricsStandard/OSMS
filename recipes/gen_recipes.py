@@ -467,14 +467,15 @@ leaf
     wspl = ", ".join(f'child_card_id == "{k}", {v}' for k, v in STD001_W)
     spl = f"""{hdr(cid,'```')} ```
 index=osms sourcetype=records scope_id="prod"
-| eval is_pen = if(child_card_id IN ("STD-001a", "STD-001b"), 1, 0)
+| eval is_pen = if(in(child_card_id, "STD-001a", "STD-001b"), 1, 0)
+| eval score = tonumber(posture_score), pval = tonumber(penalty_value)
 | eval w = case({wspl})
-| eval ws = if(is_pen == 0, w * posture_score, null()),
+| eval ws = if(is_pen == 0, w * score, null()),
        unk = if(is_pen == 0 AND isnull(w), 1, 0),
-       ps  = if(is_pen == 1, penalty_value, null())
+       ps  = if(is_pen == 1, pval, null())
 | stats sum(eval(1 - is_pen)) AS n, dc(eval(if(is_pen == 0, child_card_id, null()))) AS ids,
-        sum(ws) AS s, min(eval(if(is_pen == 0, posture_score, null()))) AS mn,
-        max(eval(if(is_pen == 0, posture_score, null()))) AS mx,
+        sum(ws) AS s, min(eval(if(is_pen == 0, score, null()))) AS mn,
+        max(eval(if(is_pen == 0, score, null()))) AS mx,
         sum(unk) AS unk, sum(is_pen) AS pn, sum(ps) AS p
 | eval value = if(n != 14 OR ids != 14 OR unk > 0 OR mn < 0 OR mx > 100 OR pn != 2,
                   null(), max(0, min(100, s - p)))
@@ -564,13 +565,13 @@ records
 | project value"""
     spl = f"""{hdr(cid,'```')} ```
 index=osms sourcetype=records scope_id="prod"
-| eval bad = if(isnull(p90_loss_exposure_eur) OR isnull(policy_limit_eur)
-                OR isnull(deductible_eur) OR isnull(exclusion_does_not_apply)
-                OR p90_loss_exposure_eur < 0 OR policy_limit_eur < 0 OR deductible_eur < 0
-                OR (exclusion_does_not_apply != 0 AND exclusion_does_not_apply != 1), 1, 0)
-| eval creditable = max(min(policy_limit_eur, p90_loss_exposure_eur) - deductible_eur, 0)
-                    * exclusion_does_not_apply
-| eval uncovered = max(p90_loss_exposure_eur - creditable, 0)
+| eval p90 = tonumber(p90_loss_exposure_eur), lim = tonumber(policy_limit_eur),
+       ded = tonumber(deductible_eur), ex = tonumber(exclusion_does_not_apply)
+| eval bad = if(isnull(p90) OR isnull(lim) OR isnull(ded) OR isnull(ex)
+                OR p90 < 0 OR lim < 0 OR ded < 0
+                OR (ex != 0 AND ex != 1), 1, 0)
+| eval creditable = max(min(lim, p90) - ded, 0) * ex
+| eval uncovered = max(p90 - creditable, 0)
 | stats count AS n, sum(bad) AS bad, sum(uncovered) AS v
 | eval value = if(n == 0 OR bad > 0, null(), v)
 | fields value
