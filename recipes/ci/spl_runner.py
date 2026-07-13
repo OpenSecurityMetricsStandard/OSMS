@@ -45,11 +45,17 @@ def adapt(search, fixture=None):
     leftover = re.findall(r"\$[a-z_]+\$", s)
     if leftover:
         raise RuntimeError("unresolved params: %s" % leftover)
-    if fixture and fixture.get("tables"):
-        t = fixture["tables"]
-        s = re.sub(r"index=\S+", "index=" + t.get("spl_index", "osms"), s, count=1)
-        s = re.sub(r"sourcetype=\S+", "sourcetype=" + t.get("spl_sourcetype", "records"), s, count=1)
+    if fixture and (fixture.get("card") or fixture.get("tables")):
+        s = re.sub(r"index=\S+", "index=" + ix_for(fixture), s, count=1)
+        s = re.sub(r"sourcetype=\S+", "sourcetype=" + st_for(fixture), s, count=1)
     return s
+
+def st_for(fixture):
+    t = fixture.get("tables") or {}
+    return t.get("spl_sourcetype") or "records_" + fixture["card"].lower().replace("-", "_")
+
+def ix_for(fixture):
+    return (fixture.get("tables") or {}).get("spl_index") or "osms"
 
 def rows_for_spl(fixture):
     out = []
@@ -149,9 +155,8 @@ report = {"fixtures": [], "empty": {"pass": 0, "fail": []}}
 fail = 0
 for f in plan_fx:
     cid = f["card"]
-    t = f.get("tables", {})
-    events = [{"event": {"card": cid}, "sourcetype": t.get("spl_sourcetype", "records"),
-               "index": t.get("spl_index", "osms"), "fields": row} for row in rows_for_spl(f)]
+    events = [{"event": {"card": cid}, "sourcetype": st_for(f),
+               "index": ix_for(f), "fields": row} for row in rows_for_spl(f)]
     retry(lambda ev=events: hec_send(tok, ev))
 time.sleep(8)  # index latency
 for f in plan_fx:
