@@ -1,0 +1,14 @@
+[
+  {
+    "term": "PLACEHOLDER",
+    "path": "index.html",
+    "reason": "Standard web-platform vocabulary: the CSS ::placeholder pseudo-element and the HTML placeholder attribute of the two search inputs on the Readiness Check page. Not an internal draft marker; removing it would break standard input hinting.",
+    "artefact": "website/readiness/index.html (OSMS Readiness Check v1)"
+  },
+  {
+    "term": "PLACEHOLDER",
+    "path": "README.md",
+    "reason": "The README documents the artefact-bound exemption itself and must name the CSS/HTML placeholder vocabulary it covers. Web-platform term, not an internal draft marker.",
+    "artefact": "tools/readiness/README.md (OSMS Readiness Check v1)"
+  }
+]

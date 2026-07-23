@@ -1,0 +1,1514 @@
+taxonomy_version: 1.0.0
+catalog_version: 0.9.1
+generated_from: catalog/osms-catalog.yaml
+groups:
+- id: detect
+  label: Detection & Response
+- id: endpoint
+  label: Endpoint, Email & Network
+- id: identity
+  label: Identity & Access
+- id: vuln
+  label: Vulnerabilities & Attack Surface
+- id: cloud
+  label: Cloud & Infrastructure
+- id: appsec
+  label: Applications & Supply Chain
+- id: data
+  label: Data Security & Privacy
+- id: grc
+  label: GRC, Risk & Audit
+- id: ops
+  label: Service Management & Operations
+- id: people
+  label: People & Awareness
+- id: third
+  label: Third Parties & Legal
+- id: resilience
+  label: Resilience & Continuity
+- id: ai
+  label: AI Governance
+classes:
+- id: siem
+  label: SIEM
+  group: detect
+- id: soar
+  label: SOAR & response playbooks
+  group: detect
+- id: case_mgmt
+  label: Case management & threat hunting
+  group: detect
+- id: detection_repo
+  label: Detection rule repository (detection-as-code)
+  group: detect
+- id: threat_intel
+  label: Threat intelligence platform & feeds
+  group: detect
+- id: telemetry_pipeline
+  label: Log pipeline & telemetry health
+  group: detect
+- id: ai_soc_mlops
+  label: AI SOC / ML operations platform
+  group: detect
+- id: edr
+  label: EDR / XDR & endpoint telemetry
+  group: endpoint
+- id: endpoint_mgmt
+  label: Endpoint management (MDM/UEM, config, imaging)
+  group: endpoint
+- id: email_sec
+  label: Email security gateway & report-button telemetry
+  group: endpoint
+- id: network_sec
+  label: Network security (firewall, IDS/NDR, NAC, VPN)
+  group: endpoint
+- id: proxy_swg
+  label: Web proxy / secure web gateway
+  group: endpoint
+- id: ot_iot
+  label: OT / ICS & IoT platforms
+  group: endpoint
+- id: idp_iam
+  label: Identity provider / IAM / directory
+  group: identity
+- id: pam
+  label: PAM & break-glass records
+  group: identity
+- id: iga_reviews
+  label: Access reviews & identity governance
+  group: identity
+- id: secrets_kms
+  label: Secrets, keys & crypto management (Vault, KMS/HSM)
+  group: identity
+- id: vuln_scanner
+  label: Vulnerability scanner
+  group: vuln
+- id: vuln_intel_feeds
+  label: Vulnerability intel feeds (EPSS, CISA KEV)
+  group: vuln
+- id: config_compliance
+  label: Secure-configuration & benchmark scanning
+  group: vuln
+- id: easm
+  label: EASM / external attack surface
+  group: vuln
+- id: cmdb_assets
+  label: CMDB / asset inventory & service catalog
+  group: vuln
+- id: asset_discovery
+  label: Asset discovery (DHCP/IPAM, network discovery)
+  group: vuln
+- id: dns_cert
+  label: DNS, certificate & PKI inventory
+  group: vuln
+- id: pentest_redteam
+  label: Security testing (pentest, red/purple team, BAS)
+  group: vuln
+- id: cloud_platform
+  label: Cloud platform inventory & configuration
+  group: cloud
+- id: cloud_logs
+  label: Cloud audit & flow logs (CloudTrail etc.)
+  group: cloud
+- id: cspm
+  label: CSPM / CNAPP / cloud security posture
+  group: cloud
+- id: container_k8s
+  label: Container & Kubernetes runtime
+  group: cloud
+- id: platform_audit_logs
+  label: Platform & admin audit logs
+  group: cloud
+- id: cicd_repo
+  label: CI/CD & source code platform
+  group: appsec
+- id: appsec_tools
+  label: Code & IaC security scanning (SAST/DAST/SCA)
+  group: appsec
+- id: artifact_sbom
+  label: Artifact registries, SBOM & signing
+  group: appsec
+- id: api_gateway
+  label: API gateway & API inventory
+  group: appsec
+- id: dlp
+  label: DLP (endpoint, network, cloud)
+  group: data
+- id: casb_saas
+  label: CASB / SaaS security & discovery
+  group: data
+- id: dspm_dataclass
+  label: Data catalog, classification & DSPM
+  group: data
+- id: privacy_tool
+  label: Privacy records (RoPA, DPIA, DSAR)
+  group: data
+- id: backup
+  label: Backup & immutable storage
+  group: data
+- id: grc_isms
+  label: GRC / ISMS platform
+  group: grc
+- id: policy_repo
+  label: Policy repository
+  group: grc
+- id: risk_register
+  label: Risk register & risk quantification
+  group: grc
+- id: audit_findings
+  label: Audit findings & control test results
+  group: grc
+- id: evidence_repo
+  label: Evidence repository & attestations
+  group: grc
+- id: metric_store
+  label: Metric store, KPI engine & dashboards
+  group: grc
+- id: security_reference
+  label: Framework reference mappings (ATT&CK, OWASP)
+  group: grc
+- id: itsm_incidents
+  label: ITSM, ticketing & incident register
+  group: ops
+- id: workforce_ops
+  label: On-call, roster & workforce capacity
+  group: ops
+- id: finance_cost
+  label: Finance, procurement & cost data
+  group: ops
+- id: docs_architecture
+  label: Architecture & design documentation
+  group: ops
+- id: hr_system
+  label: HR system (joiners, movers, leavers)
+  group: people
+- id: lms_training
+  label: LMS / training platform
+  group: people
+- id: phishing_sim
+  label: Phishing simulation platform
+  group: people
+- id: survey_feedback
+  label: Surveys, feedback & internal reporting channels
+  group: people
+- id: tprm
+  label: TPRM / supplier register & portals
+  group: third
+- id: legal_contracts
+  label: Contracts, legal & regulator records
+  group: third
+- id: cyber_insurance
+  label: Cyber insurance records
+  group: third
+- id: bia_bcm
+  label: BIA, BCM, DR & crisis management
+  group: resilience
+- id: ai_governance
+  label: AI registry & governance (approved AI tools)
+  group: ai
+mapping:
+  AI SOC platform:
+  - ai_soc_mlops
+  AI gateway:
+  - ai_governance
+  AI platform:
+  - ai_governance
+  AI platform logs:
+  - ai_governance
+  AI red-team reports:
+  - pentest_redteam
+  AI registry:
+  - ai_governance
+  AI triage engine:
+  - ai_soc_mlops
+  AP data:
+  - network_sec
+  API gateway:
+  - api_gateway
+  API inventory:
+  - api_gateway
+  ATT&CK data source mapping:
+  - security_reference
+  ATT&CK map:
+  - security_reference
+  ATT&CK mapping:
+  - security_reference
+  AWS Security Hub:
+  - cspm
+  Alert backlog register:
+  - siem
+  AppSec tools:
+  - appsec_tools
+  Application control:
+  - endpoint_mgmt
+  Architecture repositories:
+  - docs_architecture
+  Architecture review:
+  - docs_architecture
+  Architekturdiagramme:
+  - iga_reviews
+  Asset-/Applikationsinventar:
+  - cmdb_assets
+  Asset/service criticality.:
+  - cmdb_assets
+  Atomic tests:
+  - pentest_redteam
+  Audit Findings:
+  - audit_findings
+  Audit Log:
+  - platform_audit_logs
+  Audit log of AI actions:
+  - ai_soc_mlops
+  Audit log of AI decisions:
+  - ai_soc_mlops
+  Audit log of override actions:
+  - ai_soc_mlops
+  Ausnahmenregister (Exception Register):
+  - grc_isms
+  BCM:
+  - bia_bcm
+  BCM (recovery dependency):
+  - bia_bcm
+  BCM Tool:
+  - bia_bcm
+  BCM plans:
+  - bia_bcm
+  BCM tests:
+  - bia_bcm
+  BCM tool:
+  - bia_bcm
+  BI semantic layer:
+  - metric_store
+  BIA:
+  - bia_bcm
+  Backup Platform:
+  - backup
+  Backup platform:
+  - backup
+  Backup/recovery tools:
+  - backup
+  Baseline studies on analyst handling time:
+  - workforce_ops
+  BitLocker-/FileVault-Reporting:
+  - endpoint_mgmt
+  Breach-Playbooks:
+  - soar
+  Browser-Telemetrie:
+  - edr
+  Business Impact Analysis (loss magnitude):
+  - risk_register
+  CASB:
+  - casb_saas
+  CASB/SSE:
+  - casb_saas
+  CASB/SaaS discovery:
+  - casb_saas
+  CI/CD:
+  - cicd_repo
+  CI/CD logs:
+  - cicd_repo
+  CIS benchmark scanner:
+  - config_compliance
+  CISA KEV:
+  - vuln_intel_feeds
+  CISA-KEV-Abgleich plus Schwachstellenscanner:
+  - vuln_intel_feeds
+  CMDB:
+  - cmdb_assets
+  CMDB criticality:
+  - cmdb_assets
+  CMDB snapshots:
+  - cmdb_assets
+  CMDB/Asset Inventory:
+  - cmdb_assets
+  CMDB/Service Catalog:
+  - cmdb_assets
+  CMDB/service mapping:
+  - docs_architecture
+  CSPM:
+  - cspm
+  CSPM/CNAPP:
+  - cspm
+  Case Management:
+  - case_mgmt
+  Case management:
+  - case_mgmt
+  Cloud IAM:
+  - idp_iam
+  Cloud Inventory:
+  - cloud_platform
+  Cloud Security Controls (CASB/CSPM):
+  - cspm
+  Cloud-Flow-Logs:
+  - cloud_logs
+  CloudTrail/CloudWatch:
+  - cloud_logs
+  Config scanners:
+  - config_compliance
+  Container Registry:
+  - artifact_sbom
+  Contract and assurance register:
+  - legal_contracts
+  Contract repository:
+  - legal_contracts
+  Contracts:
+  - legal_contracts
+  Control Test Results:
+  - audit_findings
+  Control test results:
+  - audit_findings
+  Crisis contact list:
+  - workforce_ops
+  Crypto libraries/SBOM:
+  - secrets_kms
+  DAST/API tests:
+  - appsec_tools
+  DHCP/IPAM:
+  - pam
+  DLP:
+  - dlp
+  DLP discovery:
+  - dlp
+  DLP labels:
+  - dlp
+  DLP/CASB:
+  - dlp
+  DLP/DSPM:
+  - dlp
+  DLP/SIEM (Trigger):
+  - siem
+  DMARC reports:
+  - email_sec
+  DNS:
+  - dns_cert
+  DNS logs:
+  - dns_cert
+  DNS records:
+  - dns_cert
+  DNS resolver logs:
+  - dns_cert
+  DNS/Certificate Inventory:
+  - dns_cert
+  DORA Register of Information:
+  - tprm
+  DORA/TIBER applicability assessment:
+  - pentest_redteam
+  DPA records:
+  - privacy_tool
+  DPIA-Dokumentation:
+  - privacy_tool
+  DPO/legal approvals:
+  - privacy_tool
+  DR exercise reports:
+  - bia_bcm
+  DR plans:
+  - bia_bcm
+  DR platform capacity:
+  - bia_bcm
+  DSAR-Protokolle:
+  - privacy_tool
+  DSPM:
+  - dspm_dataclass
+  DSPM/DLP:
+  - dlp
+  Data catalog:
+  - dspm_dataclass
+  Data classification:
+  - dspm_dataclass
+  Datenkatalog:
+  - dspm_dataclass
+  Datenschutzdokumentation:
+  - privacy_tool
+  Detection Rule Repository:
+  - detection_repo
+  Detection backlog:
+  - detection_repo
+  Detection repo:
+  - detection_repo
+  Detection repository:
+  - detection_repo
+  Directory Services:
+  - idp_iam
+  E-Mail-Gateway:
+  - email_sec
+  E-Mail-Gateway-Telemetrie:
+  - email_sec
+  EASM:
+  - easm
+  EASM/CAASM:
+  - easm
+  EDR:
+  - edr
+  EDR alerts:
+  - edr
+  EDR device posture:
+  - edr
+  EDR network telemetry:
+  - edr
+  EDR test harness:
+  - edr
+  EDR/DLP/device control:
+  - edr
+  EDR/XDR:
+  - edr
+  EDR/XDR console:
+  - edr
+  EPSS:
+  - vuln_intel_feeds
+  EPSS/KEV-style threat intel:
+  - threat_intel
+  Einsatzregeln (Rules of Engagement):
+  - pentest_redteam
+  Email Security Gateway:
+  - email_sec
+  Email security gateway:
+  - email_sec
+  Endpoint-Telemetrie:
+  - edr
+  Entra ID/AD/IAM:
+  - idp_iam
+  Event log of AI decisions:
+  - ai_soc_mlops
+  Evidence Repository:
+  - evidence_repo
+  Evidence repository:
+  - evidence_repo
+  Exception register:
+  - grc_isms
+  Exception-Register:
+  - grc_isms
+  Exercise Reports:
+  - bia_bcm
+  Exit plans:
+  - bia_bcm
+  External threat-intel reports:
+  - threat_intel
+  Finance/ERP:
+  - finance_cost
+  Findings-Tracker:
+  - audit_findings
+  Firewall:
+  - network_sec
+  Firewall manager:
+  - network_sec
+  Firewall policy:
+  - network_sec
+  Firewall-Logs:
+  - network_sec
+  Firewall/proxy/SWG:
+  - proxy_swg
+  GRC:
+  - grc_isms
+  GRC access reviews:
+  - iga_reviews
+  GRC evidence:
+  - evidence_repo
+  GRC exceptions:
+  - grc_isms
+  GRC obligations:
+  - iga_reviews
+  GRC risk acceptances:
+  - risk_register
+  GRC risk scenarios:
+  - risk_register
+  GRC/ISMS:
+  - grc_isms
+  GRC/Risk-Register:
+  - grc_isms
+  GRC/control register (tier-1 classification):
+  - grc_isms
+  GRC/legal requirements:
+  - grc_isms
+  Gap register:
+  - audit_findings
+  Git:
+  - cicd_repo
+  Git platform:
+  - cicd_repo
+  Git/detection-as-code repo:
+  - detection_repo
+  HR System:
+  - hr_system
+  HR directory:
+  - idp_iam
+  HR-Stammdaten:
+  - hr_system
+  HR-Stammdaten (Rollen):
+  - hr_system
+  HR-Stammdaten (Rollen, Ein-/Austritte):
+  - hr_system
+  HR-System (Personalstammdaten, Austritte — System-of-Record):
+  - hr_system
+  Historical baseline values:
+  - metric_store
+  IAM:
+  - idp_iam
+  IAM logs:
+  - idp_iam
+  IAM review:
+  - iga_reviews
+  IAM/IAG:
+  - iga_reviews
+  IAM/PAM:
+  - pam
+  ICT register:
+  - tprm
+  IDS/IPS:
+  - network_sec
+  ITSM:
+  - itsm_incidents
+  ITSM (Offboarding-Abgleich):
+  - itsm_incidents
+  ITSM Access Requests:
+  - itsm_incidents
+  ITSM Patch Tickets:
+  - itsm_incidents
+  ITSM actions:
+  - itsm_incidents
+  ITSM changes:
+  - itsm_incidents
+  ITSM exception register:
+  - grc_isms
+  ITSM exceptions:
+  - grc_isms
+  ITSM/Incident Register:
+  - itsm_incidents
+  IaC:
+  - appsec_tools
+  IaC Scanner:
+  - appsec_tools
+  IdP:
+  - idp_iam
+  IdP (Credential-Eingaben):
+  - idp_iam
+  IdP (Rollen/Privilegien):
+  - idp_iam
+  Incident RCA:
+  - itsm_incidents
+  Incident Register:
+  - itsm_incidents
+  Incident playbooks:
+  - soar
+  Incident register:
+  - itsm_incidents
+  Incident timeline:
+  - itsm_incidents
+  Incident-Management:
+  - itsm_incidents
+  Input filters:
+  - ai_soc_mlops
+  Insurance questionnaires:
+  - cyber_insurance
+  IoT platform:
+  - ot_iot
+  Jira/ITSM:
+  - itsm_incidents
+  KI-Freigabeliste (Approved-Tool-Register):
+  - ai_governance
+  KMS:
+  - secrets_kms
+  KMS/HSM:
+  - secrets_kms
+  KMS/HSM inventory:
+  - secrets_kms
+  KPI catalog:
+  - metric_store
+  KPI engine:
+  - metric_store
+  Kampagnen-Clustering:
+  - phishing_sim
+  Key-Escrow-System:
+  - secrets_kms
+  Kubernetes:
+  - container_k8s
+  Kubernetes/runtime sensors:
+  - container_k8s
+  LMS:
+  - lms_training
+  LMS/Intervention-Engine:
+  - lms_training
+  LMS/Training Platform:
+  - lms_training
+  Last-Use-Logdaten:
+  - platform_audit_logs
+  Lessons-Learned-/Improvement-Register:
+  - itsm_incidents
+  Lieferantenregister:
+  - tprm
+  Logging policy:
+  - policy_repo
+  MDM:
+  - endpoint_mgmt
+  MDM/GPO:
+  - endpoint_mgmt
+  MDM/UEM:
+  - endpoint_mgmt
+  MDM/UEM (Intune, Jamf):
+  - endpoint_mgmt
+  MITRE ATT&CK Mapping:
+  - security_reference
+  MLOps platform:
+  - ai_soc_mlops
+  MSSP SLA reports:
+  - workforce_ops
+  Meldekanal (interne Meldungen/Hinweisgebersystem):
+  - survey_feedback
+  Metric store:
+  - metric_store
+  Model registry:
+  - ai_soc_mlops
+  Monitoring/Availability Platform:
+  - telemetry_pipeline
+  NAC:
+  - network_sec
+  NDR:
+  - network_sec
+  NDR/IDS:
+  - network_sec
+  NTP monitoring:
+  - telemetry_pipeline
+  Network config management:
+  - network_sec
+  Network discovery:
+  - asset_discovery
+  Netzwerk-/Cloud-Logs:
+  - network_sec
+  Netzwerkdiagramme:
+  - iga_reviews
+  OT asset inventory:
+  - ot_iot
+  OWASP LLM Top 10 mapping:
+  - security_reference
+  OpenSSF Scorecard:
+  - artifact_sbom
+  PAM:
+  - pam
+  Packet Broker:
+  - network_sec
+  Patch management:
+  - endpoint_mgmt
+  Pentest-Plan:
+  - pentest_redteam
+  Performance monitoring:
+  - telemetry_pipeline
+  Phishing Simulation:
+  - phishing_sim
+  Phishing Simulation Platform:
+  - phishing_sim
+  Phishing-Melde-Telemetrie:
+  - phishing_sim
+  Phishing-Simulationsplattform:
+  - phishing_sim
+  Platform configurations:
+  - secrets_kms
+  Policy Repository:
+  - policy_repo
+  Post-Incident Reviews:
+  - itsm_incidents
+  ? 'Primary evidence: ITSM/Incident Register, Case Management, SOAR, RCA Repository, Reopen Reason Codes.
+    Financial context: Time Tracking and cost centers only for rework costs.'
+  : - case_mgmt
+    - finance_cost
+    - itsm_incidents
+    - soar
+  ? 'Primary evidence: ITSM/Incident Register, SOAR, Case Management, Incident Closure Evidence, RCA Repository.
+    Financial context only for cost impact.'
+  : - case_mgmt
+    - finance_cost
+    - itsm_incidents
+    - soar
+  ? 'Primary evidence: ITSM/Incident Register, SOAR/Case Management, Escalation Logs, On-call/Roster System,
+    Reason Codes. Financial context only for capacity analysis.'
+  : - case_mgmt
+    - finance_cost
+    - itsm_incidents
+    - soar
+    - workforce_ops
+  ? 'Primary evidence: SIEM, SOAR, ITSM/Incident Register, Alert Queue, On-call/Roster System. Financial
+    context only for capacity and sourcing evaluation.'
+  : - finance_cost
+    - itsm_incidents
+    - siem
+    - soar
+    - workforce_ops
+  ? 'Primary evidence: SIEM, SOAR, ITSM/Incident Register, Case Management, Escalation Logs, On-call/Roster
+    System. Financial context only for capacity and sourcing decisions.'
+  : - case_mgmt
+    - finance_cost
+    - itsm_incidents
+    - siem
+    - soar
+    - workforce_ops
+  ? 'Primary evidence: SIEM, SOAR, ITSM/Incident Register, Detection Rule Repository, threat hunting results,
+    purple team/test results, external reports. Financial context only for follow-up costs.'
+  : - detection_repo
+    - finance_cost
+    - itsm_incidents
+    - pentest_redteam
+    - siem
+    - soar
+  ? 'Primary evidence: SIEM, SOAR, ITSM/Incident Register, alert review sample, analyst triage labels.
+    Financial context: Time Tracking and SOC Tooling Cost Register only for capacity/cost impact.'
+  : - finance_cost
+    - itsm_incidents
+    - siem
+    - soar
+  ? 'Primary evidence: Vulnerability Scanner, CMDB/Asset Inventory, ITSM Patch Tickets, re-scan evidence,
+    EPSS, CISA KEV, EASM. Financial data is only optional context for capacity planning.'
+  : - cmdb_assets
+    - easm
+    - itsm_incidents
+    - vuln_intel_feeds
+    - vuln_scanner
+  Privacy-Tool/GRC:
+  - privacy_tool
+  Prompt sanitizing layer:
+  - ai_soc_mlops
+  Proxy:
+  - proxy_swg
+  Proxy/SWG:
+  - proxy_swg
+  Proxy/SWG Logs:
+  - proxy_swg
+  Purple-team platform:
+  - pentest_redteam
+  RBAC:
+  - idp_iam
+  RCA:
+  - itsm_incidents
+  RCA actions:
+  - itsm_incidents
+  RCA records:
+  - itsm_incidents
+  Re-analysis results:
+  - ai_soc_mlops
+  Reasoning trace repository:
+  - ai_soc_mlops
+  Recovery test records:
+  - bia_bcm
+  Red team reports:
+  - pentest_redteam
+  Remediation-Tracker.:
+  - audit_findings
+  Report-Button-Telemetrie:
+  - email_sec
+  Report-Button-Telemetrie (Outlook/Gmail):
+  - email_sec
+  Retention-Regeln:
+  - privacy_tool
+  Retest-Evidenz:
+  - pentest_redteam
+  Reversal logs:
+  - ai_soc_mlops
+  Reviewer logs:
+  - ai_soc_mlops
+  Reviewer tags:
+  - ai_soc_mlops
+  Risk Register:
+  - risk_register
+  Risk Register (FAIR scenarios):
+  - risk_register
+  Risk quantification:
+  - risk_register
+  RoPA:
+  - privacy_tool
+  SAM:
+  - cmdb_assets
+  SAST/DAST/SCA:
+  - appsec_tools
+  SAST/DAST/SCA tools:
+  - appsec_tools
+  SAST/SCA tools:
+  - appsec_tools
+  SBOM:
+  - artifact_sbom
+  SBOM (sofern vorhanden):
+  - artifact_sbom
+  SBOM repository:
+  - artifact_sbom
+  SCA:
+  - appsec_tools
+  SIEM:
+  - siem
+  SIEM cost/usage:
+  - siem
+  SIEM coverage tests:
+  - telemetry_pipeline
+  SIEM data catalog:
+  - telemetry_pipeline
+  SIEM deployment logs:
+  - telemetry_pipeline
+  SIEM event samples:
+  - telemetry_pipeline
+  SIEM hits:
+  - siem
+  SIEM ingestion metadata:
+  - telemetry_pipeline
+  SIEM ingestion metrics:
+  - telemetry_pipeline
+  SIEM links:
+  - siem
+  SIEM parser stats:
+  - telemetry_pipeline
+  SIEM queries:
+  - siem
+  SIEM rule exports:
+  - detection_repo
+  SIEM schema validation:
+  - telemetry_pipeline
+  SIEM source inventory:
+  - telemetry_pipeline
+  SIEM timestamp diagnostics:
+  - telemetry_pipeline
+  SIEM/DLP (riskante Aktionen):
+  - siem
+  SIEM/SOAR:
+  - siem
+  SIEM/SOAR cases:
+  - siem
+  SIEM/SOAR queues:
+  - siem
+  SIEM/SOAR rule inventory:
+  - siem
+  SIEM/admin audit logs:
+  - siem
+  SIEM/data lake retention config:
+  - telemetry_pipeline
+  SIEM/security validation:
+  - siem
+  SIEM/source inventory:
+  - siem
+  SOAR:
+  - soar
+  SOAR (reale Meldungen):
+  - soar
+  SOAR actions:
+  - soar
+  SOAR cases:
+  - soar
+  SOAR/IR-Pipeline:
+  - soar
+  SOAR/IR-Plattform:
+  - soar
+  SOAR/agent platform:
+  - soar
+  SOC Tooling Cost Register:
+  - finance_cost
+  SOC reports:
+  - audit_findings
+  SOC roster:
+  - workforce_ops
+  STD-032/062/070.:
+  - metric_store
+  SWG:
+  - proxy_swg
+  SWG/proxy:
+  - proxy_swg
+  SaaS CASB:
+  - casb_saas
+  SaaS OAuth Apps:
+  - casb_saas
+  SaaS admin roles:
+  - idp_iam
+  SaaS discovery:
+  - casb_saas
+  SaaS metadata:
+  - casb_saas
+  SaaS permissions:
+  - casb_saas
+  SaaS retention settings:
+  - casb_saas
+  Secrets Vault:
+  - secrets_kms
+  Secrets scanning:
+  - secrets_kms
+  Secure Web Gateway/CASB:
+  - proxy_swg
+  Service catalog:
+  - cmdb_assets
+  Sharing-/ISAC-Plattform:
+  - threat_intel
+  Source cards STD-006, STD-053, and STD-054:
+  - metric_store
+  Staff capacity data:
+  - workforce_ops
+  Supplier inventory:
+  - tprm
+  Supplier portals/APIs:
+  - tprm
+  Survey-/Feedback-Tool:
+  - survey_feedback
+  TIP:
+  - threat_intel
+  TLPT threat intelligence report:
+  - threat_intel
+  TLS/certificate scans:
+  - dns_cert
+  TPRM:
+  - tprm
+  TPRM platform:
+  - tprm
+  TPRM risk assessments:
+  - tprm
+  Testergebnisse:
+  - pentest_redteam
+  Threat Hunting Cases:
+  - case_mgmt
+  Threat Intel Platform:
+  - threat_intel
+  Threat Intel Platform (TIP):
+  - threat_intel
+  Threat Intelligence:
+  - threat_intel
+  Threat Intelligence (frequency):
+  - threat_intel
+  Threat intel:
+  - threat_intel
+  Threat-Intelligence-Plattform.:
+  - threat_intel
+  Ticketing:
+  - itsm_incidents
+  Time Tracking:
+  - finance_cost
+  UBA/UEBA:
+  - detection_repo
+  VPC-Flow-Logs:
+  - cloud_logs
+  VPN/ZTNA:
+  - network_sec
+  Vulnerability Management:
+  - vuln_scanner
+  Vulnerability Scanner:
+  - vuln_scanner
+  Vulnerability scanner:
+  - vuln_scanner
+  WAF:
+  - network_sec
+  Zertifikats-Repository:
+  - dns_cert
+  access logs:
+  - platform_audit_logs
+  access reviews:
+  - iga_reviews
+  action logs:
+  - platform_audit_logs
+  admin groups:
+  - platform_audit_logs
+  admission controller:
+  - container_k8s
+  agent heartbeat:
+  - edr
+  agent manager:
+  - edr
+  alert statistics:
+  - siem
+  application maps:
+  - docs_architecture
+  application portfolio:
+  - cmdb_assets
+  architecture:
+  - docs_architecture
+  architecture discovery:
+  - docs_architecture
+  artifact registry:
+  - artifact_sbom
+  artifact repository:
+  - artifact_sbom
+  asset inventory:
+  - cmdb_assets
+  atomic tests:
+  - pentest_redteam
+  attack-path tools:
+  - pentest_redteam
+  attestations:
+  - evidence_repo
+  audit findings:
+  - audit_findings
+  audit logs:
+  - platform_audit_logs
+  audit plan:
+  - audit_findings
+  audit policy exports:
+  - config_compliance
+  audit rights evidence:
+  - audit_findings
+  authenticated scan logs:
+  - vuln_scanner
+  backup platform:
+  - backup
+  baselines:
+  - metric_store
+  break-glass records:
+  - pam
+  broker/insurer communications:
+  - cyber_insurance
+  bug tracker:
+  - cicd_repo
+  business acceptance:
+  - evidence_repo
+  business impact assessment:
+  - risk_register
+  business owner attestations:
+  - evidence_repo
+  business owner sign-off:
+  - evidence_repo
+  case management:
+  - case_mgmt
+  certificate inventory:
+  - dns_cert
+  certification evidence:
+  - audit_findings
+  change control:
+  - itsm_incidents
+  change log:
+  - itsm_incidents
+  change logs:
+  - itsm_incidents
+  change management:
+  - itsm_incidents
+  change records:
+  - itsm_incidents
+  cloud:
+  - cloud_platform
+  cloud AI roles:
+  - ai_governance
+  cloud AI services:
+  - ai_governance
+  cloud IAM/storage ACLs:
+  - idp_iam
+  cloud NAT/egress:
+  - cloud_platform
+  cloud SG/NACL:
+  - cloud_platform
+  cloud account owners:
+  - cloud_platform
+  cloud accounts:
+  - cloud_platform
+  cloud agents:
+  - cloud_platform
+  cloud audit logs:
+  - cloud_logs
+  cloud billing:
+  - cloud_platform
+  cloud change logs:
+  - cloud_logs
+  cloud graph:
+  - cloud_platform
+  cloud inventory:
+  - cloud_platform
+  cloud lifecycle policies:
+  - cloud_platform
+  cloud log delivery status:
+  - telemetry_pipeline
+  cloud logs:
+  - cloud_logs
+  cloud posture:
+  - cspm
+  cloud quotas:
+  - cloud_platform
+  cloud runtime:
+  - cloud_platform
+  cloud security groups:
+  - cloud_platform
+  cloud storage:
+  - cloud_platform
+  cloud storage scanners:
+  - cspm
+  cloud tags:
+  - cloud_platform
+  cloud time services:
+  - telemetry_pipeline
+  collector queues:
+  - telemetry_pipeline
+  config baseline scanner:
+  - config_compliance
+  config scan findings:
+  - config_compliance
+  config scanner:
+  - config_compliance
+  contact lists:
+  - workforce_ops
+  contact tests:
+  - bia_bcm
+  container registry:
+  - artifact_sbom
+  container runtime:
+  - container_k8s
+  contract inventory:
+  - legal_contracts
+  contract repository:
+  - legal_contracts
+  contracts:
+  - legal_contracts
+  control attestations:
+  - evidence_repo
+  control evidence:
+  - evidence_repo
+  control test records:
+  - audit_findings
+  control validation:
+  - pentest_redteam
+  cost data:
+  - finance_cost
+  credential health:
+  - idp_iam
+  dashboard alerts:
+  - metric_store
+  dashboard data:
+  - metric_store
+  dashboard inventory:
+  - metric_store
+  dashboard status logic:
+  - metric_store
+  data catalog:
+  - dspm_dataclass
+  data confidence score:
+  - metric_store
+  data export logs:
+  - tprm
+  data inventory:
+  - dspm_dataclass
+  data lineage:
+  - dspm_dataclass
+  data platforms:
+  - dspm_dataclass
+  data processing records:
+  - privacy_tool
+  data volumes:
+  - telemetry_pipeline
+  database permissions:
+  - dspm_dataclass
+  database scans:
+  - vuln_scanner
+  databases:
+  - dspm_dataclass
+  decision log:
+  - evidence_repo
+  dependency maps:
+  - docs_architecture
+  deployment controller:
+  - cicd_repo
+  deployment data:
+  - cicd_repo
+  detection repo:
+  - detection_repo
+  detection repository:
+  - detection_repo
+  detection tests:
+  - detection_repo
+  detection-as-code CI:
+  - detection_repo
+  discovery:
+  - asset_discovery
+  domain inventory:
+  - easm
+  email gateway:
+  - email_sec
+  endpoint DLP:
+  - dlp
+  endpoint config:
+  - endpoint_mgmt
+  endpoint/browser telemetry:
+  - edr
+  endpoint/server config:
+  - endpoint_mgmt
+  endpoint/server management:
+  - endpoint_mgmt
+  engineering workstation inventory:
+  - ot_iot
+  enrichment logs:
+  - telemetry_pipeline
+  enrichment tables:
+  - telemetry_pipeline
+  environment inventory:
+  - cmdb_assets
+  escalation logs:
+  - itsm_incidents
+  escalation matrix:
+  - workforce_ops
+  evaluation logs:
+  - ai_soc_mlops
+  evaluation platform:
+  - ai_soc_mlops
+  exception decisions:
+  - evidence_repo
+  exception register:
+  - grc_isms
+  exercise records:
+  - bia_bcm
+  exercise reports:
+  - bia_bcm
+  exit plans:
+  - bia_bcm
+  file shares:
+  - dspm_dataclass
+  finance:
+  - finance_cost
+  findings register:
+  - audit_findings
+  firewall:
+  - network_sec
+  firewall manager:
+  - network_sec
+  firewall/DNS/EDR block lists:
+  - network_sec
+  forensic notes:
+  - itsm_incidents
+  fourth-party disclosures:
+  - tprm
+  freshness SLA definitions per source/tier (versioned):
+  - telemetry_pipeline
+  golden images:
+  - endpoint_mgmt
+  hunt backlog:
+  - case_mgmt
+  hunt logs:
+  - case_mgmt
+  hunt tickets:
+  - case_mgmt
+  identity break-glass:
+  - pam
+  identity graph:
+  - idp_iam
+  identity/asset inventory:
+  - cmdb_assets
+  - idp_iam
+  identity/asset resolver:
+  - cmdb_assets
+  - idp_iam
+  incident history:
+  - itsm_incidents
+  incident playbooks:
+  - soar
+  incident register:
+  - itsm_incidents
+  incident scenarios:
+  - bia_bcm
+  insurance policy:
+  - cyber_insurance
+  issue tracker:
+  - cicd_repo
+  legal:
+  - legal_contracts
+  legal hold records:
+  - privacy_tool
+  legal/privacy records:
+  - privacy_tool
+  legal/regulatory mappings:
+  - grc_isms
+  logs:
+  - platform_audit_logs
+  materiality assessment:
+  - risk_register
+  microsegmentation:
+  - network_sec
+  microsegmentation tooling:
+  - network_sec
+  model registry:
+  - ai_soc_mlops
+  network config management:
+  - network_sec
+  network config tool:
+  - network_sec
+  network discovery:
+  - asset_discovery
+  network isolation:
+  - network_sec
+  network logs:
+  - network_sec
+  network reachability:
+  - network_sec
+  network segmentation:
+  - network_sec
+  network segmentation maps:
+  - network_sec
+  network telemetry:
+  - network_sec
+  network/security tools:
+  - network_sec
+  notification tool:
+  - bia_bcm
+  object lock/WORM configs:
+  - backup
+  object storage:
+  - dspm_dataclass
+  on-call schedule:
+  - workforce_ops
+  package deployment logs:
+  - endpoint_mgmt
+  package managers:
+  - artifact_sbom
+  package registries:
+  - artifact_sbom
+  passive discovery:
+  - asset_discovery
+  pen-test summaries:
+  - pentest_redteam
+  pipeline configs:
+  - cicd_repo
+  pipeline monitor:
+  - cicd_repo
+  playbook repo:
+  - soar
+  playbook repository:
+  - soar
+  policy conditions:
+  - policy_repo
+  policy exceptions:
+  - policy_repo
+  policy versions:
+  - policy_repo
+  post-incident report:
+  - metric_store
+  problem management:
+  - itsm_incidents
+  process documentation:
+  - docs_architecture
+  procurement:
+  - finance_cost
+  prompt logs:
+  - ai_soc_mlops
+  prompt/version control:
+  - ai_soc_mlops
+  provenance attestations:
+  - artifact_sbom
+  proxy:
+  - proxy_swg
+  purple-team platform:
+  - pentest_redteam
+  purple-team validation:
+  - pentest_redteam
+  questionnaires:
+  - tprm
+  recovery plans:
+  - bia_bcm
+  recovery tests:
+  - bia_bcm
+  red/purple team:
+  - pentest_redteam
+  red/purple-team results:
+  - pentest_redteam
+  registry:
+  - artifact_sbom
+  regulator communication:
+  - legal_contracts
+  regulator notifications:
+  - legal_contracts
+  release management:
+  - cicd_repo
+  remediation evidence:
+  - audit_findings
+  repo:
+  - cicd_repo
+  repo inventory:
+  - cicd_repo
+  repo metadata:
+  - cicd_repo
+  repo platform:
+  - cicd_repo
+  repo platforms:
+  - cicd_repo
+  repo protection:
+  - cicd_repo
+  report:
+  - metric_store
+  risk acceptance:
+  - risk_register
+  risk committee minutes:
+  - risk_register
+  risk register:
+  - risk_register
+  rollback tickets:
+  - itsm_incidents
+  rule metadata:
+  - detection_repo
+  runtime exposure:
+  - cspm
+  runtime inventory:
+  - container_k8s
+  safe simulation tools:
+  - pentest_redteam
+  schema validation:
+  - telemetry_pipeline
+  secrets manager:
+  - secrets_kms
+  service catalog:
+  - cmdb_assets
+  service dependency map:
+  - docs_architecture
+  service maps:
+  - docs_architecture
+  service mesh:
+  - container_k8s
+  signing service:
+  - artifact_sbom
+  signing/attestation service:
+  - artifact_sbom
+  software asset management:
+  - cmdb_assets
+  software inventory:
+  - cmdb_assets
+  source configurations:
+  - telemetry_pipeline
+  source counters:
+  - telemetry_pipeline
+  source heartbeat events:
+  - telemetry_pipeline
+  storage lifecycle policies:
+  - telemetry_pipeline
+  storage/DB/cloud encryption config:
+  - secrets_kms
+  subprocessors:
+  - tprm
+  supplier action plans:
+  - tprm
+  supplier inventory:
+  - tprm
+  switch/wireless controllers:
+  - network_sec
+  tabletop records:
+  - bia_bcm
+  tamper events:
+  - edr
+  technical validation:
+  - pentest_redteam
+  test harness:
+  - pentest_redteam
+  test plan:
+  - pentest_redteam
+  test results:
+  - pentest_redteam
+  threat intel:
+  - threat_intel
+  threat intel changes:
+  - threat_intel
+  threat modeling tool:
+  - docs_architecture
+  threat models:
+  - docs_architecture
+  threat scenarios:
+  - risk_register
+  ticket timestamps:
+  - itsm_incidents
+  ticketing:
+  - itsm_incidents
+  tuning tickets:
+  - detection_repo
+  user reports:
+  - survey_feedback
+  vendor access gateway:
+  - tprm
+  vendor inventory:
+  - tprm
+  vendor lifecycle feeds:
+  - tprm
+  version control:
+  - cicd_repo
+  vulnerability data:
+  - vuln_scanner
+  vulnerability scanner:
+  - vuln_scanner
+  vulnerability/config scans:
+  - vuln_scanner
+  vulnerability/config/control data:
+  - vuln_scanner
