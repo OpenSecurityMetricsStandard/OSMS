@@ -29,3 +29,13 @@ jobs:
         with:
           name: validation-report
           path: validation-report.json
+  readiness-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - name: Readiness taxonomy gate
+        run: python3 tools/readiness/build_readiness_bundle.py --check
