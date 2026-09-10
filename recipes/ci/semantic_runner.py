@@ -142,7 +142,7 @@ def main():
                         if isinstance(exc,urllib.error.HTTPError):row['error']+=' '+exc.read().decode('utf-8',errors='replace')[:2000]
                         if isinstance(exc,(subprocess.TimeoutExpired,FileNotFoundError,urllib.error.URLError)):aborted=True
                     report['cases'].append(row)
-                    if row['status']=='fail':print(cid,c['name'],row.get('failed_outputs',row.get('error')),flush=True)
+                    if row['status']=='fail':print(cid,c['name'],row.get('failed_outputs',row.get('error')),json.dumps(row.get('actual',{}),ensure_ascii=False)[:2500],flush=True)
                     if aborted:break
                 if aborted:break
             if aborted:break

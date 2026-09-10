@@ -87,6 +87,9 @@ index=osms_input earliest=0 latest=now
     for k,v in vals.items():
         empty=p.get('empty_outputs',{}).get(k,0 if p['empty']=='ok' else None)
         lines.append('| eval '+k+'=case(evaluation_status="invalid_input" OR evaluation_status="population_unverified" OR evaluation_status="capacity_exceeded",null(),selected_records=0,'+lit(empty)+',true(),'+v+')')
+    # Explicit round-trip precision for REST/text transport. Calculation and
+    # threshold evaluation above still use the native numeric fields.
+    lines.append('| eval '+','.join(k+'=if(isnull('+k+'),null(),printf("%.17g",'+k+'))' for k in vals))
     lines.append('| table '+' '.join([*vals,'evaluation_status','selected_records','invalid_records']))
     return '\n'.join(lines)
 
@@ -102,5 +105,6 @@ def ranking_tail(p,lines):
         '| appendpipe [ stats count as _existing | where _existing=0 | eval selected_records=0,invalid_records=0,distinct_records=0,factor_conflicts=0 ]',
         '| eval evaluation_status=case($period_start$>=$period_end$ OR len(trim($scope_id$))=0 OR len(trim($segment_id$))=0,"invalid_input",$population_complete$!=1,"population_unverified",selected_records>10000,"capacity_exceeded",invalid_records>0 OR selected_records!=distinct_records OR factor_conflicts>0,"invalid_input",selected_records=0,"not_applicable",true(),"ok")',
         '| eval service_risk_raw=if(evaluation_status="ok",service_risk_raw,null()),service_risk=if(evaluation_status="ok",service_risk,null()),competition_rank=if(evaluation_status="ok",competition_rank,null())',
+        '| eval service_risk_raw=if(isnull(service_risk_raw),null(),printf("%.17g",service_risk_raw)),service_risk=if(isnull(service_risk),null(),printf("%.17g",service_risk)),competition_rank=if(isnull(competition_rank),null(),printf("%.0f",competition_rank))',
         '| table business_service_id service_risk_raw service_risk competition_rank evaluation_status selected_records invalid_records']
     return '\n'.join(lines)

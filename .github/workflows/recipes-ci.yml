@@ -174,7 +174,7 @@ jobs:
         env:
           SPLUNK_PASSWORD: ${{ secrets.SPLUNK_CI_PASSWORD }}
         run: |
-          python recipes/ci/semantic_runner.py --bundle recipes/out --engine spl --cards STD-006 --positive-only
+          python recipes/ci/semantic_runner.py --bundle recipes/out --engine spl --cards STD-006,STD-001a,STD-003 --positive-only
           python recipes/ci/semantic_runner.py --bundle recipes/out --engine spl
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: always()
