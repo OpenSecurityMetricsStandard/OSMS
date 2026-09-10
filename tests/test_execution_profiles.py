@@ -250,7 +250,10 @@ class LineageContractTests(unittest.TestCase):
         import drill_engine
         catalog=drill_engine.Catalog(ROOT/'catalog/osms-catalog.yaml')
         axes={a for c in catalog.cards.values() for a in c.axes}
-        self.assertEqual(len(axes),47)
+        self.assertEqual(len(axes),50)
+        self.assertTrue(all(c.axes or c.has_parts for c in catalog.cards.values()))
+        self.assertIn("reporting-obligation class",catalog["SOC-053"].axes)
+        self.assertIn("risk class/weight",catalog["SOC-078"].axes)
         self.assertTrue(axes<=set(drill_engine.AXIS_SQL))
         self.assertIn('detection source',catalog['SOC-002'].axes)
         # Check query execution over the schema, not only membership in a dict.

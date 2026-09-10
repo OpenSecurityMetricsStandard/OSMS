@@ -7,7 +7,7 @@ from .model import compute
 def protocol(plan):
     prefix='FROM osms_input | WHERE card_id == '+json.dumps(plan['card_id'])+' AND scope_id == ?scope_id AND segment_id == ?segment_id AND period_start == ?period_start AND period_end == ?period_end'
     return {'execution_mode':'esql_export_python_exact_reducer','queries':{
-        'count':prefix+' | STATS source_rows=COUNT(*)',
+        'count':prefix+' | STATS source_rows=COUNT(*) | LIMIT 1',
         'rows':prefix+' | KEEP '+', '.join(plan['inputs'])+' | LIMIT 10000'},
         'reducer':'recipes/semantic/esql.py:reduce_export','native_percentile_claim':False,
         'requirements':'Both responses must refer to one immutable source snapshot. Reporting period fields use native dates with millisecond-aligned boundaries. Other business timestamps are preserved as ISO UTC keyword strings so the reducer retains submillisecond precision. Bind native UTC reporting datetime parameters; reject warnings, partial results, schema drift, missing/duplicate columns and count mismatch. Maximum 10000 records. Numeric outputs and rankings use the typed plan in the Python reducer.'}

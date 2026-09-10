@@ -16,7 +16,7 @@ import sys
 
 def queries(scope_parameter='?scope_id'):
     fields='incident_id, scope_id, evidence_ref, detected_at, resolved_at, alert_at, ack_at, contained_at'
-    return {'count':f'FROM incidents | WHERE scope_id == {scope_parameter} | STATS source_rows=COUNT(*)',
+    return {'count':f'FROM incidents | WHERE scope_id == {scope_parameter} | STATS source_rows=COUNT(*) | LIMIT 1',
             'rows':f'FROM incidents | WHERE scope_id == {scope_parameter} | KEEP {fields} | LIMIT 10000'}
 
 

@@ -125,7 +125,8 @@ FROM metric_inputs
 | STATS n=COUNT(*), bad=SUM(invalid), a=MAX(numerator), b=MAX(denominator)
 | EVAL evaluation_status=CASE(?period_start>=?period_end OR TRIM(?scope_id)=="","invalid_input",n==0,"missing_input",n!=1 OR bad>0,"invalid_input",b==0,"not_applicable","ok")
 | EVAL value=CASE(evaluation_status=="ok",{c['scale']}.0*(a/b),TO_DOUBLE(NULL))
-| KEEP value,evaluation_status'''
+| KEEP value,evaluation_status
+| LIMIT 1'''
 
 
 def excel_spec(c):

@@ -149,7 +149,7 @@
       "title": "Lineage-Anforderungen und offene Referenzrubriken vollständig bereitstellen",
       "original_severity": "Mittel",
       "status": "Implementiert – Kandidaten-CI ausstehend",
-      "change_or_remaining_work": "Alle 47 deklarierten Achsen sind explizit zugeordnet; unbekannte Achsen schlagen fehl. Zwölf Guide-Verweise führen zu offenen Rubriken. Die drei langen Lineage-Pfade sind gekürzt und der Katalogvalidator meldet keine Warnung."
+      "change_or_remaining_work": "Alle 50 deklarierten Achsen sind explizit zugeordnet; unbekannte Achsen schlagen fehl. Zwölf Guide-Verweise führen zu offenen Rubriken. Die drei langen Lineage-Pfade sind gekürzt und der Katalogvalidator meldet keine Warnung."
     },
     {
       "id": "F-22",

@@ -64,7 +64,7 @@ def native_http(engine, method, path, data=None):
         context=ssl._create_unverified_context()  # isolated loopback test container
     req=urllib.request.Request(base+path,data=body,headers=headers,method=method)
     with urllib.request.urlopen(req,timeout=90,context=context) as response:
-        if response.headers.get('Warning'):raise ValueError('Engine warning prevents a clean conformance result')
+        if response.headers.get('Warning'):raise ValueError('Engine warning prevents a clean conformance result: '+response.headers['Warning'][:2000])
         return json.loads(response.read())
 
 

@@ -57,7 +57,7 @@ multipliers fail. A zero maximum is a known all-zero population, not missing inp
 ## Drilldown dimensions
 
 `drill_engine.py::Card` parses both comma-separated and middle-dot-separated axes.
-All 47 distinct declared axes have explicit SQLite query mappings. Additional axes
+All 50 distinct declared axes have explicit SQLite query mappings. Additional axes
 use the documented `AXIS_ATTRIBUTES` canonical JSON fields in evidence rows. Their
 source adapters must populate those fields and retain lineage; missing dimensions
 remain visible as NULL groups. Criticality is a separate canonical field from

@@ -54,7 +54,7 @@ MECHANIC = {
 }
 
 CARD_REF = re.compile(r'\b([A-Z]{2,4}-\d{3}[a-z]?)\b')
-LINEAGE_AXES = re.compile(r'Drill axes:\s*(.*?)\s*·\s*Path:', re.S)
+LINEAGE_AXES = re.compile(r'Drill axes:\s*(.*?)\s*·\s*(?:Path|Primary path|The primary path(?:\s*\([^)]*\))?):', re.S | re.I)
 
 # lineage axis -> (SELECT expression, JOIN clause) on fact_evidence_item e
 AXIS_SQL = {
@@ -93,6 +93,9 @@ AXIS_ATTRIBUTES = {
     'KEV/EPSS':'kev_epss', 'activity category':'activity_category',
     'shift':'shift', 'escalation level':'escalation_level', 'recipient':'recipient',
     'reason code':'reason_code', 'SLA':'sla',
+    'reporting-obligation class':'reporting_obligation_class',
+    'recipient (the authority/stakeholder)':'recipient',
+    'risk class/weight':'risk_class_weight',
 }
 AXIS_SQL.update({axis:("json_extract(e.attributes, '$."+field+"')", '')
                  for axis,field in AXIS_ATTRIBUTES.items()})

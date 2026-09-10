@@ -54,7 +54,11 @@ def run(profile,case,engine,folder,soffice='soffice'):
                 status=result[0].get('evaluation_status') if result else 'not_applicable'
                 services=[{k:(r[k] if k=='business_service_id' else float(r[k])) for k in ['business_service_id','service_risk_raw','service_risk','competition_rank']} for r in result if r.get('business_service_id') and status=='ok']
                 return {'evaluation_status':status,'outputs':{'services':services if status in ('ok','not_applicable') else None,'service_count':len(services) if status in ('ok','not_applicable') else None}}
-            if len(result)!=1:raise ValueError('Expected one SPL result row')
+            if len(result)!=1:
+                # Diagnostic only: preserve the failure; never substitute a
+                # differently executed query for the advertised implementation.
+                diagnostic=native_http('spl','POST','/services/search/jobs',{'search':query,'exec_mode':'oneshot','output_mode':'json','count':'10'})
+                raise ValueError('Expected one SPL result row: '+json.dumps({'requested':response,'diagnostic_count_10':diagnostic})[:2000])
             actual=result[0];return {'evaluation_status':actual.pop('evaluation_status'),'outputs':actual}
         from semantic.esql import reduce_export
         # Only the explicitly selected ES test runner creates disposable fixture

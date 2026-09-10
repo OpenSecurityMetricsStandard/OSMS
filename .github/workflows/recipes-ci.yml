@@ -70,7 +70,7 @@ jobs:
             -e discovery.type=single-node \
             -e xpack.security.enabled=false \
             -e ES_JAVA_OPTS='-Xms1g -Xmx1g' \
-            docker.elastic.co/elasticsearch/elasticsearch:8.17.4
+            docker.elastic.co/elasticsearch/elasticsearch:8.17.4@sha256:413d8df69823e9f41f6008f025fcbaf31a5849ab9c74894731d7ded65543cd56
       - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
       - name: Fixture and empty-run verification
         run: python recipes/ci/esql_runner.py --out recipes/out --es http://localhost:9200
@@ -137,8 +137,10 @@ jobs:
       matrix:
         include:
           - splunk_version: '9.4'
+            image: 'splunk/splunk:9.4.15@sha256:bdc510b7eccfdb8b986fc4c876bc699d29d48555fe6b0b4dcd1016b8ed91f035'
             sgt_env: ''
           - splunk_version: '10.2'
+            image: 'splunk/splunk:10.2.7@sha256:da47bf2f183fc815f9e36dff3202dd1232bf475c44b2f71b958c54a9a004d6d7'
             sgt_env: "-e SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -153,7 +155,7 @@ jobs:
           docker run -d --name splunk -p 8089:8089 -p 8088:8088 \
             -e SPLUNK_START_ARGS=--accept-license ${{ matrix.sgt_env }} \
             -e SPLUNK_PASSWORD \
-            splunk/splunk:${{ matrix.splunk_version }}
+            ${{ matrix.image }}
       - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
       - name: Fixture and empty-parse verification
         env:
@@ -171,7 +173,9 @@ jobs:
       - name: Prepared observation profiles on native SPL
         env:
           SPLUNK_PASSWORD: ${{ secrets.SPLUNK_CI_PASSWORD }}
-        run: python recipes/ci/semantic_runner.py --bundle recipes/out --engine spl
+        run: |
+          python recipes/ci/semantic_runner.py --bundle recipes/out --engine spl --cards STD-006 --positive-only
+          python recipes/ci/semantic_runner.py --bundle recipes/out --engine spl
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: always()
         with:
@@ -186,7 +190,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:18.6
+        image: postgres:18.6@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280
         env:
           POSTGRES_DB: osms_ci
           POSTGRES_USER: osms_ci
