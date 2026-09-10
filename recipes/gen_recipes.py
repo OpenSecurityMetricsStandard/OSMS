@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Formula Lab bundle builder — catalog.json + recipes.json for the website.
 
-Statuses: curated_verified | generated_concrete | generated_skeleton | pending.
-Skeletons are executable by construction (hooks are `AND TRUE /* map: ... */`).
+Statuses: curated_candidate | generated_concrete | generated_skeleton | pending.
+Incomplete templates are preserved separately; executable outputs fail closed.
 """
 import yaml, json, re, hashlib, sys, os
 
@@ -24,6 +24,7 @@ KEEP = ["id","name","card_version","domain","type_label","calculation_type","uni
         "target_thresholds","minimum_data_fields","data_sources","numerator_denominator","threshold_mode"]
 
 cards = yaml.safe_load(open(os.path.join(REPO, "catalog/osms-catalog.yaml"), "rb"))
+catalog_version = str(cards["version"]) if isinstance(cards, dict) else str(cards[0]["osms_version"])
 cards = cards["cards"] if isinstance(cards, dict) and "cards" in cards else cards
 
 def human(v):  # snake_case variable -> readable phrase
@@ -266,15 +267,16 @@ WITH subs AS (
   FROM records  -- subscore rows per the card's minimum data fields
   WHERE scope_id = :scope_id
     AND period_start = :period_start AND period_end = :period_end
-    AND subscore_id IN ({ids})
+
 ),
 checks AS (
-  SELECT COUNT(*) AS n, COUNT(DISTINCT subscore_id) AS ids, SUM(weight) AS wsum,
+  SELECT COUNT(*) AS n, COUNT(DISTINCT CASE WHEN subscore_id IN ({ids}) THEN subscore_id END) AS ids, SUM(weight) AS wsum,
+         SUM(CASE WHEN subscore_value IS NULL OR weight IS NULL OR NOT (subscore_value BETWEEN 0 AND 100) OR NOT (weight BETWEEN 0 AND 1) THEN 1 ELSE 0 END) AS bad,
          MIN(subscore_value) AS vmin, MAX(subscore_value) AS vmax
   FROM subs
 )
 SELECT CASE
-  WHEN n <> {k} OR ids <> {k} THEN NULL     -- component missing or duplicated -> n/a
+  WHEN n <> {k} OR ids <> {k} OR bad > 0 THEN NULL     -- component missing or duplicated -> n/a
   WHEN vmin < 0 OR vmax > 100 THEN NULL     -- inputs must be 0-100 posture scores
   WHEN ABS(wsum - 1.0) > 0.001 THEN NULL    -- versioned weights must sum to 1.0
   ELSE (SELECT SUM(weight * subscore_value) FROM subs)
@@ -291,11 +293,12 @@ let p_start = datetime(2026-06-01);
 let p_end = datetime(2026-07-01);
 records
 | where scope_id == scope and period_start == p_start and period_end == p_end
-| where subscore_id in ({ids})
-| summarize n = count(), ids = dcount(subscore_id), wsum = sum(weight),
+| summarize n = count(), id_set = make_set_if(subscore_id, subscore_id in ({ids}), {k}), wsum = sum(weight),
+            bad = countif(isnull(subscore_value) or not(isfinite(subscore_value)) or subscore_value < 0 or subscore_value > 100 or isnull(weight) or not(isfinite(weight)) or weight < 0 or weight > 1),
             vmin = min(subscore_value), vmax = max(subscore_value),
             score = sum(weight * subscore_value)
-| extend value = iff(n != {k} or ids != {k} or vmin < 0.0 or vmax > 100.0
+| extend ids = array_length(id_set)
+| extend value = iff(bad > 0 or n != {k} or ids != {k} or vmin < 0.0 or vmax > 100.0
                      or abs(wsum - 1.0) > 0.001, real(null), score)
 | project value, valid_components = ids
 // any gate violation -> real(null), never a fabricated score"""
@@ -312,11 +315,10 @@ EXPECTED = {{{ids}}}
 def compute(records: pd.DataFrame, period_start, period_end, scope_id):
     s = records[(records["scope_id"] == scope_id)
                 & (records["period_start"] == period_start)
-                & (records["period_end"] == period_end)
-                & records["subscore_id"].isin(EXPECTED)]
-    if len(s) != {k} or s["subscore_id"].nunique() != {k}:
+                & (records["period_end"] == period_end)]
+    if len(s) != {k} or set(s["subscore_id"]) != EXPECTED:
         return None                        # component missing or duplicated -> n/a
-    if s["subscore_value"].min() < 0 or s["subscore_value"].max() > 100:
+    if s[["subscore_value", "weight"]].isna().any().any() or not s["subscore_value"].between(0, 100).all() or not s["weight"].between(0, 1).all():
         return None                        # inputs must be 0-100 posture scores
     if abs(s["weight"].sum() - 1.0) > 0.001:
         return None                        # versioned weights must sum to 1.0
@@ -344,12 +346,14 @@ CONC_ASSUM = {
  "kql": "Concrete duration recipe: P50 as the true median and P90 as the exact nearest rank via a sorted array - no estimator involved. Empty case base returns no row = n/a.",
  "py": "Concrete duration recipe with explicit nearest rank (ceil(0.9 \u00b7 n)); NaT never counts; negative durations are excluded as data-quality errors."}
 
-recipes, stats = {}, {"curated_verified":0,"generated_concrete":0,"generated_skeleton":0,"pending":0}
+recipes, stats = {}, {"curated_candidate":0,"generated_concrete":0,"generated_skeleton":0,"pending":0}
 for c in cards:
     cid, mech = c["id"], MECH[c["calculation_type"]]
     entry = {"mechanic": mech, "card_version": str(c["card_version"])}
     if cid in CURATED:
-        entry.update(status="curated_verified", recipe_version=CURATED[cid]["recipe_version"],
+        if str(CURATED[cid]['card_version']) != str(c['card_version']):
+            raise ValueError(f'{cid}: curated recipe and catalog card versions differ')
+        entry.update(status="curated_candidate", recipe_version=CURATED[cid]["recipe_version"],
                      dialects=CURATED[cid]["snippets"], assumptions=CURATED_ASSUM[cid])
         ex = ratio_example(c["calculation_example"]) if mech == "ratio" else duration_example(c["calculation_example"])
         if ex: entry["visual"] = {"kind": mech, **ex}
@@ -423,17 +427,18 @@ WITH leaf AS (
   WHERE scope_id = :scope_id
     AND child_card_id NOT IN ('STD-001a', 'STD-001b')
 ), pen AS (
-  SELECT COALESCE(SUM(penalty_value), 0) AS p, COUNT(*) AS pn
+  SELECT SUM(penalty_value) AS p, COUNT(*) AS pn, COUNT(DISTINCT child_card_id) AS pids,
+         SUM(CASE WHEN penalty_value IS NULL OR NOT (penalty_value BETWEEN 0 AND CASE WHEN child_card_id = 'STD-001a' THEN 25 ELSE 15 END) THEN 1 ELSE 0 END) AS pbad
   FROM records
   WHERE scope_id = :scope_id AND child_card_id IN ('STD-001a', 'STD-001b')
 ), agg AS (
   SELECT COUNT(*) AS n, COUNT(DISTINCT child_card_id) AS ids,
          SUM(w * posture_score) AS s, MIN(posture_score) AS mn,
          MAX(posture_score) AS mx,
-         SUM(CASE WHEN w IS NULL THEN 1 ELSE 0 END) AS unk
+         SUM(CASE WHEN w IS NULL OR posture_score IS NULL OR NOT (posture_score BETWEEN 0 AND 100) THEN 1 ELSE 0 END) AS unk
   FROM leaf
 )
-SELECT CASE WHEN n <> 14 OR ids <> 14 OR unk > 0 OR mn < 0 OR mx > 100 OR pn <> 2
+SELECT CASE WHEN n <> 14 OR ids <> 14 OR unk > 0 OR mn < 0 OR mx > 100 OR pn <> 2 OR pids <> 2 OR pbad > 0
             THEN NULL  -- gate violation -> n/a, never a fabricated score
        ELSE GREATEST(0, LEAST(100, s - p)) END AS value
 FROM agg, pen;"""
@@ -443,10 +448,12 @@ W = {wpy}
 def compute(records, scope_id):
     rows = records.to_dict("records") if hasattr(records, "to_dict") else records
     rows = [r for r in rows if r.get("scope_id") == scope_id]
-    leaf = [r for r in rows if r["child_card_id"] in W]
+    leaf = [r for r in rows if r["child_card_id"] not in ("STD-001a", "STD-001b")]
     pen = [r for r in rows if r["child_card_id"] in ("STD-001a", "STD-001b")]
-    if (len(leaf) != 14 or len({{r["child_card_id"] for r in leaf}}) != 14 or len(pen) != 2
-            or any(not (0 <= r["posture_score"] <= 100) for r in leaf)):
+    if (len(leaf) != 14 or len({{r["child_card_id"] for r in leaf}}) != 14 or set(r["child_card_id"] for r in leaf) != set(W)
+            or len(pen) != 2 or set(r["child_card_id"] for r in pen) != {{"STD-001a", "STD-001b"}}
+            or any(r.get("posture_score") is None or not (0 <= r["posture_score"] <= 100) for r in leaf)
+            or any(r.get("penalty_value") is None or not (0 <= r["penalty_value"] <= (25 if r["child_card_id"] == "STD-001a" else 15)) for r in pen)):
         return None  # gate violation -> n/a
     s = sum(W[r["child_card_id"]] * r["posture_score"] for r in leaf)
     return max(0, min(100, s - sum(r["penalty_value"] for r in pen)))"""
@@ -458,10 +465,12 @@ let leaf = records
 leaf
 | summarize n = count(), ids = dcount(child_card_id), s = sum(w * posture_score),
             mn = min(posture_score), mx = max(posture_score),
-            unk = countif(isnull(w))
+            unk = countif(isnull(w) or isnull(posture_score) or not(isfinite(posture_score)))
 | extend p = toscalar(records | where scope_id == "prod" and child_card_id in ("STD-001a", "STD-001b") | summarize sum(penalty_value)),
-         pn = toscalar(records | where scope_id == "prod" and child_card_id in ("STD-001a", "STD-001b") | summarize count())
-| extend value = iif(n != 14 or ids != 14 or unk > 0 or mn < 0 or mx > 100 or pn != 2,
+         pn = toscalar(records | where scope_id == "prod" and child_card_id in ("STD-001a", "STD-001b") | summarize count()),
+         pa = toscalar(records | where scope_id == "prod" and child_card_id == "STD-001a" | summarize count()),
+         pbad = toscalar(records | where scope_id == "prod" and child_card_id in ("STD-001a", "STD-001b") | summarize countif(isnull(penalty_value) or not(isfinite(penalty_value)) or penalty_value < 0 or penalty_value > iff(child_card_id == "STD-001a", 25.0, 15.0)))
+| extend value = iif(n != 14 or ids != 14 or unk > 0 or mn < 0 or mx > 100 or pn != 2 or pa != 1 or pbad > 0,
                      real(null), max_of(0.0, min_of(100.0, s - p)))
 | project value"""
     wspl = ", ".join(f'child_card_id == "{k}", {v}' for k, v in STD001_W)
@@ -471,13 +480,15 @@ index=osms sourcetype=records scope_id="prod"
 | eval score = tonumber(posture_score), pval = tonumber(penalty_value)
 | eval w = case({wspl})
 | eval ws = if(is_pen == 0, w * score, null()),
-       unk = if(is_pen == 0 AND isnull(w), 1, 0),
+       unk = if(is_pen == 0 AND (isnull(w) OR isnull(score)), 1, 0),
        ps  = if(is_pen == 1, pval, null())
 | stats sum(eval(1 - is_pen)) AS n, dc(eval(if(is_pen == 0, child_card_id, null()))) AS ids,
         sum(ws) AS s, min(eval(if(is_pen == 0, score, null()))) AS mn,
         max(eval(if(is_pen == 0, score, null()))) AS mx,
-        sum(unk) AS unk, sum(is_pen) AS pn, sum(ps) AS p
-| eval value = if(n != 14 OR ids != 14 OR unk > 0 OR mn < 0 OR mx > 100 OR pn != 2,
+        sum(unk) AS unk, sum(is_pen) AS pn, sum(ps) AS p,
+        sum(eval(if(child_card_id == "STD-001a", 1, 0))) AS pa,
+        sum(eval(if(is_pen == 1 AND (isnull(pval) OR pval < 0 OR pval > if(child_card_id == "STD-001a", 25, 15)), 1, 0))) AS pbad
+| eval value = if(n != 14 OR ids != 14 OR unk > 0 OR mn < 0 OR mx > 100 OR pn != 2 OR pa != 1 OR pbad > 0,
                   null(), max(0, min(100, s - p)))
 | fields value
 ``` any gate violation -> null, never a fabricated score ```"""
@@ -491,9 +502,11 @@ FROM records
         s = SUM(CASE(is_pen == 0, w * posture_score, NULL)),
         mn = MIN(CASE(is_pen == 0, posture_score, NULL)),
         mx = MAX(CASE(is_pen == 0, posture_score, NULL)),
-        unk = SUM(CASE(is_pen == 0 AND w IS NULL, 1, 0)),
-        pn = SUM(is_pen), p = SUM(CASE(is_pen == 1, penalty_value, NULL))
-| EVAL value = CASE(n != 14 OR ids != 14 OR unk > 0 OR mn < 0 OR mx > 100 OR pn != 2,
+        unk = SUM(CASE(is_pen == 0 AND (w IS NULL OR posture_score IS NULL), 1, 0)),
+        pn = SUM(is_pen), p = SUM(CASE(is_pen == 1, penalty_value, NULL)),
+        pa = SUM(CASE(child_card_id == "STD-001a", 1, 0)),
+        pbad = SUM(CASE(is_pen == 1 AND (penalty_value IS NULL OR penalty_value < 0 OR penalty_value > CASE(child_card_id == "STD-001a", 25, 15)), 1, 0))
+| EVAL value = CASE(n != 14 OR ids != 14 OR unk > 0 OR mn < 0 OR mx > 100 OR pn != 2 OR pa != 1 OR pbad > 0,
                     NULL, GREATEST(0.0, LEAST(100.0, s - p)))
 | KEEP value
 // any gate violation -> NULL, never a fabricated score"""
@@ -716,12 +729,14 @@ _byid = {c["id"]: c for c in cards}
 for _cid, _fn in SPECIALS.items():
     recipes[_cid] = _fn(_byid[_cid])
     recipes[_cid]["mechanic"] = MECH[_byid[_cid]["calculation_type"]]
+    recipes[_cid]["card_version"] = str(_byid[_cid]["card_version"])
     stats[recipes[_cid]["status"]] = stats.get(recipes[_cid]["status"], 0) + 1
     stats["pending"] -= 1
 
-slim = [{**{k: c.get(k) for k in KEEP}, "mechanic": MECH[c["calculation_type"]]} for c in cards]
+slim = [{**c, "mechanic": MECH[c["calculation_type"]]} for c in cards]
 cat_js = json.dumps(slim, ensure_ascii=False, separators=(",", ":"))
-rec_js = json.dumps({"bundle_version": "0.5.0", "source_catalog": "osms-catalog.yaml v0.9.1",
+rec_js = json.dumps({"bundle_version": "0.5.0", "source_catalog": "catalog/osms-catalog.yaml",
+                     "source_catalog_version": catalog_version,
                      "recipes": recipes}, ensure_ascii=False, separators=(",", ":"))
 open(f"{OUT}/catalog.json", "w").write(cat_js)
 open(f"{OUT}/recipes.json", "w").write(rec_js)
@@ -841,11 +856,13 @@ FROM records
 def t_comp_spl(cid, comps):
     ids = ", ".join('"' + n + '"' for n, _ in comps); k = len(comps)
     return f"""{hdr(cid,'```')} ```
-index=osms sourcetype=records scope_id="prod" subscore_id IN ({ids})
-| stats count AS n, dc(subscore_id) AS ids, sum(weight) AS wsum,
+index=osms sourcetype=records scope_id="prod"
+| where period_start == $period_start$ AND period_end == $period_end$
+| eval bad = if(isnull(weight) OR isnull(subscore_value) OR weight < 0 OR weight > 1 OR subscore_value < 0 OR subscore_value > 100 OR NOT in(subscore_id, {ids}), 1, 0)
+| stats sum(bad) AS bad, count AS n, dc(subscore_id) AS ids, sum(weight) AS wsum,
         min(subscore_value) AS vmin, max(subscore_value) AS vmax,
         sum(eval(weight * subscore_value)) AS score
-| eval value = if(n != {k} OR ids != {k} OR vmin < 0 OR vmax > 100
+| eval value = if(bad > 0 OR n != {k} OR ids != {k} OR vmin < 0 OR vmax > 100
                   OR abs(wsum - 1.0) > 0.001, null(), score)
 ``` any gate violation -> null, never a fabricated score ```"""
 
@@ -853,11 +870,12 @@ def t_comp_esql(cid, comps):
     ids = ", ".join('"' + n + '"' for n, _ in comps); k = len(comps)
     return f"""{hdr(cid,'//')}
 FROM records
-| WHERE scope_id == "prod" AND subscore_id IN ({ids})
-| STATS n = COUNT(*), ids = COUNT_DISTINCT(subscore_id), wsum = SUM(weight),
+| WHERE scope_id == "prod" AND period_start == ?period_start AND period_end == ?period_end
+| EVAL bad = CASE(weight IS NULL OR subscore_value IS NULL OR weight < 0 OR weight > 1 OR subscore_value < 0 OR subscore_value > 100 OR subscore_id IS NULL OR NOT (subscore_id IN ({ids})), 1, 0)
+| STATS bad = SUM(bad), n = COUNT(*), ids = COUNT_DISTINCT(subscore_id), wsum = SUM(weight),
         vmin = MIN(subscore_value), vmax = MAX(subscore_value),
         score = SUM(weight * subscore_value)
-| EVAL value = CASE(n != {k} OR ids != {k} OR vmin < 0.0 OR vmax > 100.0
+| EVAL value = CASE(bad > 0 OR n != {k} OR ids != {k} OR vmin < 0.0 OR vmax > 100.0
                     OR ABS(wsum - 1.0) > 0.001, NULL, score)
 // any gate violation -> NULL, never a fabricated score"""
 
@@ -924,26 +942,26 @@ if True:  # engine dialects: always built; published since CI run #5 (green on E
         rows16.append({"record_id": "r%03d" % i, "severity": "critical", "internet_facing": True, "scope_id": "prod",
                        "due_at": "2026-06-20T12:00:00Z",
                        "remediated_at": "2026-06-19T12:00:00Z" if ok else "2026-06-25T12:00:00Z",
-                       "validation_status": "validated" if ok else "open"})
+                       "mitigated_at": None, "validation_status": "validated" if ok else "open"})
     for i in range(8):
         rows16.append({"record_id": "d%03d" % i, "severity": "high", "internet_facing": False, "scope_id": "prod",
                        "due_at": "2026-06-20T12:00:00Z", "remediated_at": "2026-06-19T12:00:00Z",
-                       "validation_status": "validated"})
+                       "mitigated_at": None, "validation_status": "validated"})
     fixtures.append({"card": "STD-016", "dialects": ["spl", "esql"],
         "fields": {"record_id": "keyword", "severity": "keyword", "internet_facing": "boolean", "scope_id": "keyword",
-                   "due_at": "date", "remediated_at": "date", "validation_status": "keyword"},
+                   "due_at": "date", "remediated_at": "date", "mitigated_at": "date", "validation_status": "keyword"},
         "params": {"period_start": "2026-06-01T00:00:00Z", "period_end": "2026-07-01T00:00:00Z", "scope_id": "prod"},
         "tables": {"spl_index": "security_findings", "spl_sourcetype": "vuln:findings", "esql_from": "findings"},
         "rows": rows16, "expect": {"sla_compliance_pct": 80.0}})
     hs2 = [2, 4, 10, 20, 30]
-    fixtures.append({"card": "SOC-002", "dialects": ["spl", "esql"],
-        "fields": {"occurred_at": "date", "detected_at": "date", "scope_id": "keyword"},
+    fixtures.append({"card": "SOC-002", "dialects": ["spl"],
+        "fields": {"occurred_at": "date", "detected_at": "date", "confirmed_at": "date", "severity": "keyword", "scope_id": "keyword"},
         "params": {"period_start": "2026-06-01T00:00:00Z", "period_end": "2026-07-01T00:00:00Z", "scope_id": "prod"},
         "tables": {"spl_index": "security_incidents", "spl_sourcetype": "incident", "esql_from": "incidents"},
         "rows": [{"occurred_at": "2026-06-10T00:00:00Z",
                   "detected_at": (_dt.datetime(2026, 6, 10) + _dt.timedelta(hours=h)).strftime("%Y-%m-%dT%H:%M:%SZ"),
-                  "scope_id": "prod"} for h in hs2],
-        "expect": {"valid_cases": 5, "p50_h": 10.0, "p90_h": 30.0, "mean_h_supplementary": 13.2}})
+                  "confirmed_at": "2026-06-15T00:00:00Z", "severity": "P3", "scope_id": "prod"} for h in hs2],
+        "expect": {"valid_cases": 5, "p50_h": 10.0, "p90_h": 30.0, "mean_h_supplementary": 13.2, "severity_weighted_avg": 13.2}})
     # Sicherheits-Lint über alle Kandidaten
     import sys as _sys
     INV = re.compile("[\u202a-\u202e\u2066-\u2069\u200b-\u200f\u2060\ufeff\u00ad]")
@@ -1014,25 +1032,71 @@ if True:  # engine dialects: always built; published since CI run #5 (green on E
         spec = _xl.build_spec(c, rec, _comp_k.get(cid))
         if not spec:
             continue
-        conc = rec["status"] in ("generated_concrete", "curated_verified") or cid in _xl._SPECIAL
+        conc = rec["status"] in ("generated_concrete", "curated_candidate") or cid in _xl._SPECIAL
         rec.setdefault("assumptions", {})["xlsx"] = A_XLSX_CO if conc else A_XLSX_SK
         if "xlsx" not in (rec.get("dialects") or {}):          # curated cards already carry xlsx from JSON
             rec.setdefault("dialects", {})["xlsx"] = _xl.render(cid, spec)
             xl_gen += 1
         excel_cand[cid] = {"spec": spec, "status": rec["status"]}
-    print(f"Excel-Dialekt publiziert: {xl_gen} generiert + {len(excel_cand)-xl_gen} kuratiert = {len(excel_cand)} Karten")
+    print(f"Excel candidates generated: {xl_gen} generiert + {len(excel_cand)-xl_gen} kuratiert = {len(excel_cand)} Karten")
+
+    # A generated snippet is a candidate, never evidence of engine verification.
+    # Preserve incomplete templates for implementers, but make the displayed
+    # executable fail closed until population, period and units are mapped.
+    for cid, rec in recipes.items():
+        dialects = rec.get("dialects", {})
+        rec["verification"] = {"status": "not_run", "engine_reports": [],
+                               "note": "Run gates on this exact source and recipe hash; generation is not verification."}
+        if cid in CURATED:
+            rec["verification"].update(CURATED[cid].get("verification", {}))
+        for lang in dialects:
+            rec.setdefault("assumptions", {})[lang] = "Candidate implementation; no engine verification is implied. See recipes/CONTRACTS.md and the versioned card."
+        incomplete = rec.get("status") == "generated_skeleton" or (rec.get("mechanic") == "duration" and cid not in CURATED)
+        if incomplete:
+            rec["status"] = "generated_skeleton"
+            rec["evaluation_status"] = "mapping_required"
+            rec["templates"] = dict(dialects)
+            for lang in list(dialects):
+                dialects[lang] = {
+                    "gsql": "-- mapping_required: complete the card-specific adapter before use.\nSELECT CAST(NULL AS DOUBLE) AS value, 'mapping_required' AS evaluation_status;",
+                    "kql": "// mapping_required: no KPI value available.\nprint value = real(null), evaluation_status = 'mapping_required'",
+                    "py": "# mapping_required is distinct from a measured n/a.\ndef compute(records, scope_id):\n    raise NotImplementedError('mapping_required: implement the card-specific contract')",
+                    "spl": '``` mapping_required: no KPI value available ```\nindex=osms sourcetype=records | head 1 | eval value=null(), evaluation_status="mapping_required" | fields value, evaluation_status',
+                    "esql": '// mapping_required: no KPI value available.\nFROM records | LIMIT 0 | EVAL value=TO_DOUBLE(NULL) | KEEP value',
+                    "xlsx": "' mapping_required: no measured value.\n    value: =NA()",
+                }[lang]
+            if cid in excel_cand:
+                spec = excel_cand[cid]["spec"]
+                spec["helpers"] = []
+                spec["outputs"] = {"value": "=NA()"}
+                spec["note"] = "mapping_required: no measured value until the adapter is complete."
+        if cid in cand:
+            for lang in ("spl", "esql"):
+                cand[cid][lang] = dialects[lang]
+            cand[cid]["status"] = rec["status"]
+    # Preserve arithmetic examples of incomplete templates separately. They
+    # cannot count as conformance evidence for an implemented metric.
+    template_fixtures = [f for f in fixtures if recipes[f["card"]].get("evaluation_status") == "mapping_required"]
+    fixtures = [f for f in fixtures if recipes[f["card"]].get("evaluation_status") != "mapping_required"]
+    json.dump(template_fixtures, open(f"{OUT}/template-fixtures.json", "w"), indent=2)
+    json.dump({"catalog_cards": len(cards), "numeric_fixture_cards": len({f["card"] for f in fixtures}),
+               "mapping_required": sum(r.get("evaluation_status") == "mapping_required" for r in recipes.values()),
+               "pending": sum(r.get("status") == "pending" for r in recipes.values()),
+               "verified_by_generation": 0}, open(f"{OUT}/coverage.json", "w"), indent=2)
 
     if ARGS.emit_candidates:
         json.dump(cand, open(f"{OUT}/ci_candidates.json", "w"), ensure_ascii=False, indent=0)
         json.dump(fixtures, open(f"{OUT}/fixtures.json", "w"), ensure_ascii=False, indent=1)
         json.dump({"candidates": excel_cand}, open(f"{OUT}/excel_candidates.json", "w"), ensure_ascii=False, indent=0)
-    print(f"Engine-Dialekte publiziert: {len(cand)} Karten x SPL+ES|QL | Fixtures: {len(fixtures)} | Lints: PASS")
+    print(f"Engine candidates generated: {len(cand)} Karten x SPL+ES|QL | Fixtures: {len(fixtures)} | Lints: PASS")
+    print("Final implementation status:", {status: sum(r.get("status") == status for r in recipes.values()) for status in sorted({r.get("status") for r in recipes.values()})})
     # Re-Serialisierung: injizierte Engine-Dialekte in die Bundle-Artefakte schreiben
-    rec_js = json.dumps({"bundle_version": "0.5.0", "source_catalog": "osms-catalog.yaml v0.9.1",
+    rec_js = json.dumps({"bundle_version": "0.6.0-draft", "source_catalog": "catalog/osms-catalog.yaml",
+                         "source_catalog_version": catalog_version,
+                         "source_catalog_sha256": hashlib.sha256(open(os.path.join(REPO, 'catalog/osms-catalog.yaml'), 'rb').read()).hexdigest(),
                          "recipes": recipes}, ensure_ascii=False, separators=(",", ":"))
     open(f"{OUT}/recipes.json", "w").write(rec_js)
     man = {os.path.basename(p): hashlib.sha256(open(p, "rb").read()).hexdigest()
            for p in [f"{OUT}/catalog.json", f"{OUT}/recipes.json"]}
     open(f"{OUT}/manifest.json", "w").write(json.dumps(man, indent=1))
     print("Größen final: recipes %.2f MB | Manifest final:" % (len(rec_js)/1e6), man)
-

@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://opensecuritymetrics.org/schema/0.9/osms-card.schema.json",
-  "title": "OSMS Metric Card Contract (production structure)",
-  "description": "Open Security Metrics Standard (OSMS) v0.9 — calibrated 2026-07-04 against osms-catalog.yaml (flat card structure, 46 contract fields). Enums mirror catalog/taxonomy.yaml plus the calculation types declared in the catalog header. Licensed CC BY 4.0; schema file itself MIT.",
+  "$id": "https://opensecuritymetrics.org/schema/0.9.2/osms-card.schema.json",
+  "title": "OSMS 0.9.2 Metric Card Contract (maintainer draft)",
+  "description": "Open Security Metrics Standard (OSMS) v0.9 — calibrated 2026-07-04 against osms-catalog.yaml (flat card structure, 47 contract fields). Enums mirror catalog/taxonomy.yaml plus the calculation types declared in the catalog header. Licensed CC BY 4.0; schema file itself MIT.",
   "type": "object",
   "required": [
     "id",
@@ -57,31 +57,42 @@
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^[A-Z]{2,4}-[0-9]{3}[a-z]?$"
+      "pattern": "^[A-Z]{2,4}-[0-9]{3}[a-z]?$",
+      "minLength": 1
     },
     "name": {
       "type": "string",
-      "minLength": 3
+      "minLength": 3,
+      "pattern": "\\S"
     },
     "osms_version": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "card_version": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "release_status": {
       "type": "string",
       "examples": [
         "review_candidate"
-      ]
+      ],
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "domain": {
       "type": "string",
       "minLength": 2,
-      "description": "Must match an entry in catalog/domains.yaml (checked semantically by the validator)."
+      "description": "Must match an entry in catalog/domains.yaml (checked semantically by the validator).",
+      "pattern": "\\S"
     },
     "type_label": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "type": {
       "type": "string",
@@ -94,7 +105,9 @@
         "confidence",
         "maturity",
         "helper"
-      ]
+      ],
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "lag_type": {
       "type": "string",
@@ -102,7 +115,9 @@
         "leading",
         "lagging",
         "not_specified"
-      ]
+      ],
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "priority": {
       "type": "string",
@@ -111,11 +126,14 @@
         "P1",
         "P2",
         "P3"
-      ]
+      ],
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "mvp": {
       "type": "string",
-      "pattern": "^MVP-[0-9]$"
+      "pattern": "^MVP-[0-9]$",
+      "minLength": 1
     },
     "status": {
       "type": "string",
@@ -123,32 +141,44 @@
         "normative_candidate",
         "helper"
       ],
-      "description": "Helper cards are not independently reportable."
+      "description": "Helper cards are not independently reportable.",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "scope": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "unit": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "purpose": {
       "type": "string",
-      "minLength": 20
+      "minLength": 20,
+      "pattern": "\\S"
     },
     "story": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "management_question": {
       "type": "string",
-      "minLength": 10
+      "minLength": 10,
+      "pattern": "\\S"
     },
     "definition": {
       "type": "string",
-      "minLength": 10
+      "minLength": 10,
+      "pattern": "\\S"
     },
     "formula": {
       "type": "string",
-      "minLength": 3
+      "minLength": 3,
+      "pattern": "\\S"
     },
     "calculation_type": {
       "type": "string",
@@ -166,48 +196,75 @@
         "Delta",
         "Score",
         "Unit Cost"
-      ]
+      ],
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "calculation_type_check": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "calculation_plain": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "variables_inputs": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "rebuild_steps": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "special_cases_gates": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "calculation_example": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "target_thresholds": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "numerator_denominator": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "frequency": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "threshold_mode": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "direction": {
       "type": "string",
       "pattern": "^(higher_is_better|lower_is_better|zero_is_target|band_is_better|context_dependent)\\b",
-      "description": "Machine-readable prefix followed by ' - ' and prose context."
+      "description": "Machine-readable prefix followed by ' - ' and prose context.",
+      "minLength": 1
     },
     "accountable_owner": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "escalation_owner": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "data_sources": {
       "type": "array",
@@ -249,32 +306,46 @@
       "minItems": 1
     },
     "audit_test": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "reproducibility": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "drilldown_lineage": {
       "type": "string",
-      "description": "Contains the 'Pfad:' segment with at most 4 steps (value -> dimension -> record -> raw/evidence)."
+      "description": "Contains the 'Pfad:' segment with at most 4 steps (value -> dimension -> record -> raw/evidence).",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "data_confidence": {
       "type": "string",
-      "description": "Must reference the 70 (operational) and 85 (management) gates."
+      "description": "Must reference the 70 (operational) and 85 (management) gates.",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "confidence_production_rule": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "decision_chain": {
       "type": "string",
-      "minLength": 30
+      "minLength": 30,
+      "pattern": "\\S"
     },
     "version_break_rule": {
       "type": "string",
-      "minLength": 15
+      "minLength": 15,
+      "pattern": "\\S"
     },
     "interpretation": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "example_tasks": {
       "type": "array",
@@ -291,7 +362,9 @@
       "minItems": 1
     },
     "next_chain": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
     },
     "source": {
       "type": "object",

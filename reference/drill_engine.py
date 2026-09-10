@@ -2,11 +2,11 @@
 """OSMS(TM) Reference Drill Engine
 ================================
 
-Resolves any card of the OSMS catalog from its aggregate value down to the
-raw evidence records, and verifies the reconciliation invariant at every
-step ("a path that does not add up is a data error").
+Traverses reference drill mechanics and checks selected arithmetic and reference
+identity invariants. It is not a complete evaluator of all per-card contracts;
+see recipes/CONTRACTS.md for adapter and assurance limitations.
 
-Aligned to catalog v0.9.1 (327 cards, 13 calculation types) and to
+Aligned to catalog v0.9.2 (327 cards, 13 calculation types) and to
 reference/star_schema.sql. The catalog is data, the engine is fixed:
 13 strategies - one per calculation type - grouped into 6 drill mechanics.
 
@@ -35,7 +35,8 @@ implementations should push aggregation into the warehouse (PostgreSQL,
 Snowflake, BigQuery) using the same schema and the same invariants.
 """
 from __future__ import annotations
-import argparse, re, sqlite3, statistics, sys
+import argparse, re, sqlite3, statistics, sys, math, json
+from pathlib import Path
 import yaml
 
 # ---------------------------------------------------------------------------
@@ -72,7 +73,7 @@ AXIS_SQL = {
     'source':         ("src.name",
                        "LEFT JOIN dim_source src ON src.source_key = e.source_key"),
 }
-TOL = 0.5  # reconciliation tolerance for 0-100 style scores
+TOL = 1e-8  # raw-value absolute arithmetic tolerance; counts are exact
 
 
 # ---------------------------------------------------------------------------
@@ -80,6 +81,7 @@ TOL = 0.5  # reconciliation tolerance for 0-100 style scores
 # ---------------------------------------------------------------------------
 class Card:
     def __init__(self, raw):
+        self.raw = raw
         self.id = raw['id']
         self.name = raw['name']
         self.calc_type = raw['calculation_type']
@@ -94,7 +96,7 @@ class Card:
 
 class Catalog:
     def __init__(self, path):
-        doc = yaml.safe_load(open(path, encoding='utf-8'))
+        doc = yaml.safe_load(Path(path).read_text(encoding='utf-8'))
         self.version = doc.get('version')
         self.cards = {c['id']: Card(c) for c in doc['cards']}
 
@@ -120,15 +122,15 @@ class Strategy:
     def value_row(self, scope, period_end):
         r = self.con.execute(
             """SELECT v.value_id, v.value_numeric, v.is_na, v.numerator,
-                      v.denominator, v.scope_id, v.period_end
+                      v.denominator, v.scope_id, v.period_end, v.card_key, v.period_start
                FROM fact_kpi_value v JOIN dim_card d ON d.card_key = v.card_key
-               WHERE d.card_id = ? AND d.is_current
+               WHERE d.card_id = ? AND d.card_version = ?
                  AND v.scope_id = ? AND v.period_end = ?""",
-            (self.card.id, scope, period_end)).fetchone()
+            (self.card.id, self.card.raw['card_version'], scope, period_end)).fetchone()
         if not r:
             raise LookupError(f"no fact_kpi_value for {self.card.id}/{scope}/{period_end}")
         return dict(zip(('value_id', 'value', 'is_na', 'num', 'den',
-                         'scope', 'period_end'), r))
+                         'scope', 'period_end', 'card_key', 'period_start'), r))
 
     def evidence_agg(self, value_id, select, joins="", group=""):
         sql = (f"SELECT {select} FROM fact_evidence_item e {joins} "
@@ -137,12 +139,27 @@ class Strategy:
 
     def reconcile(self, scope, period_end):
         v = self.value_row(scope, period_end)
-        recomputed = self.recompute(v)
-        if v['is_na']:
-            ok = recomputed is None
-            return {'stored': None, 'recomputed': recomputed, 'ok': ok}
-        ok = recomputed is not None and abs(v['value'] - recomputed) <= TOL
-        return {'stored': v['value'], 'recomputed': recomputed, 'ok': ok}
+        errors = []
+        try:
+            recomputed = self.recompute(v)
+        except (ValueError, TypeError, NotImplementedError) as exc:
+            recomputed = None
+            errors.append(str(exc))
+        arithmetic_ok = ((recomputed is None and v['is_na']) or
+                         (recomputed is not None and not v['is_na'] and math.isfinite(recomputed)
+                          and abs(v['value'] - recomputed) <= (0 if self.card.calc_type == 'Count' else TOL)))
+        if self.mechanic != 'component_tree':
+            bad = self.con.execute("""SELECT COUNT(*) FROM fact_evidence_item e
+                WHERE e.value_id = ? AND (e.card_key <> ? OR e.scope_id <> ?
+                OR e.period_start IS NULL OR e.period_start <> ? OR e.period_end <> ?
+                OR e.evidence_ref IS NULL OR TRIM(e.evidence_ref) = '' OR e.source_key IS NULL)""",
+                (v['value_id'], v['card_key'], v['scope'], v['period_start'], v['period_end'])).fetchone()[0]
+            if bad:
+                errors.append('evidence identity, scope, period or reference mismatch')
+        return {'stored': None if v['is_na'] else v['value'], 'recomputed': recomputed,
+                'arithmetic_ok': bool(arithmetic_ok), 'ok': bool(arithmetic_ok and not errors),
+                'errors': errors, 'assurance': 'arithmetic_and_reference_identity_only',
+                'card_contract_validated': False}
 
     def drill(self, scope, period_end, axis=None, limit=8):
         v = self.value_row(scope, period_end)
@@ -159,7 +176,9 @@ class Strategy:
 class EvidenceStrategy(Strategy):
     """Base for types whose aggregate re-derives from fact_evidence_item."""
     def axis_parts(self, axis):
-        expr, join = AXIS_SQL.get(axis, AXIS_SQL['period'])
+        if axis not in AXIS_SQL:
+            raise ValueError(f'Unsupported drill axis: {axis}')
+        expr, join = AXIS_SQL[axis]
         return expr, join
 
     def items(self, v, limit):
@@ -177,30 +196,32 @@ class RatioStrategy(EvidenceStrategy):
             v['value_id'], "SUM(e.in_numerator), SUM(e.in_denominator)")
         if not den:                       # empty denominator => n/a, never 0
             return None
-        return 100.0 * num / den
+        return (100.0 if re.search(r'\*\s*100\b', self.card.raw['formula']) else 1.0) * num / den
     def breakdown(self, v, axis):
         expr, join = self.axis_parts(axis)
         return self.evidence_agg(
             v['value_id'],
-            f"{expr}, ROUND(100.0*SUM(e.in_numerator)/"
+            f"{expr}, ROUND({100.0 if re.search(r'\*\s*100\b', self.card.raw['formula']) else 1.0}*SUM(e.in_numerator)/"
             f"NULLIF(SUM(e.in_denominator),0), 1)",
             join, f"GROUP BY {expr}")
 
 class UnitCostStrategy(EvidenceStrategy):
     mechanic = 'ratio'                    # cost sum / unit count
     def recompute(self, v):
-        (cost, units), = self.evidence_agg(
-            v['value_id'],
-            "SUM(CASE WHEN e.in_numerator THEN e.numeric_value END), "
-            "SUM(e.in_denominator)")
-        return None if not units else cost / units
+        if self.card.id == 'STD-005':
+            rows = self.evidence_agg(v['value_id'], "e.attributes")
+            data = [json.loads(r[0]) for r in rows]
+            if not data:
+                return None
+            if any(not {'verified_risk_reduction','security_investment_cost'} <= set(r) for r in data):
+                raise ValueError('STD-005 requires verified risk reduction and cost amounts in attributes')
+            den = sum(r['security_investment_cost'] for r in data)
+            return sum(r['verified_risk_reduction'] for r in data) / den if den > 0 else None
+        raise NotImplementedError('Unit Cost requires a card-specific quantity adapter')
     def breakdown(self, v, axis):
-        expr, join = self.axis_parts(axis)
-        return self.evidence_agg(
-            v['value_id'],
-            f"{expr}, ROUND(SUM(CASE WHEN e.in_numerator THEN e.numeric_value END)"
-            f"/NULLIF(SUM(e.in_denominator),0), 2)",
-            join, f"GROUP BY {expr}")
+        self.axis_parts(axis)
+        return [('whole scope (quantity adapter)', self.recompute(v))]
+
 
 class CountStrategy(EvidenceStrategy):
     mechanic = 'count'
@@ -219,34 +240,50 @@ class DurationStrategy(EvidenceStrategy):
         rows = self.evidence_agg(
             value_id,
             "COALESCE(e.numeric_value, "
-            "(JULIANDAY(e.resolved_at)-JULIANDAY(e.detected_at))*24)")
+            f"(JULIANDAY(e.resolved_at)-JULIANDAY(e.detected_at))*{1440 if 'minutes' in self.card.unit else 24})")
         return sorted(r[0] for r in rows if r[0] is not None)
     def recompute(self, v):
         h = self._hours(v['value_id'])
+        if any(x < 0 or not math.isfinite(x) for x in h):
+            raise ValueError('invalid duration')
         return statistics.median(h) if h else None
     def breakdown(self, v, axis):
         expr, join = self.axis_parts(axis)
         rows = self.evidence_agg(
             v['value_id'],
             f"{expr}, COALESCE(e.numeric_value, "
-            f"(JULIANDAY(e.resolved_at)-JULIANDAY(e.detected_at))*24)", join)
+            f"(JULIANDAY(e.resolved_at)-JULIANDAY(e.detected_at))*{1440 if 'minutes' in self.card.unit else 24})", join)
         by = {}
         for label, hours in rows:
+            if hours is None:
+                continue
+            if hours < 0 or not math.isfinite(hours):
+                raise ValueError('invalid duration')
             by.setdefault(label, []).append(hours)
         return [(k, round(statistics.median(vv), 1)) for k, vv in by.items()]
 
 class DeltaStrategy(EvidenceStrategy):
     mechanic = 'delta'                    # each item carries its delta share
     def recompute(self, v):
-        (s,), = self.evidence_agg(v['value_id'], "SUM(e.numeric_value)")
+        aggregate = 'AVG' if self.card.id == 'STD-074' else 'SUM'
+        (s,), = self.evidence_agg(v['value_id'], f'{aggregate}(e.numeric_value)')
         return None if s is None else float(s)
     def breakdown(self, v, axis):
         expr, join = self.axis_parts(axis)
         return self.evidence_agg(v['value_id'],
-                                 f"{expr}, ROUND(SUM(e.numeric_value),2)",
+                                 f"{expr}, ROUND({'AVG' if self.card.id == 'STD-074' else 'SUM'}(e.numeric_value),2)",
                                  join, f"GROUP BY {expr}")
 
 class PenaltyStrategy(DeltaStrategy):
+    def recompute(self, v):
+        rows = self.evidence_agg(v['value_id'], 'e.numeric_value')
+        if any(r[0] is None or not math.isfinite(r[0]) or r[0] < 0 for r in rows):
+            raise ValueError('penalty contributions must be finite and nonnegative')
+        cap = {'STD-001a': 25, 'STD-001b': 15}.get(self.card.id)
+        if cap is None:
+            raise NotImplementedError('Penalty cap requires a card-specific contract')
+        return min(cap, sum(r[0] for r in rows))
+
     mechanic = 'delta'                    # deductions sum (optionally capped)
 
 
@@ -268,7 +305,20 @@ class ComponentStrategy(Strategy):
         comps = self.components(v['value_id'])
         if not comps:
             return None
-        s = sum(c[3] for c in comps)
+        for label, weight, value, contribution, child in comps:
+            if any(x is None or not math.isfinite(x) for x in (weight, value, contribution)) or weight < 0:
+                raise ValueError('invalid component input')
+            if abs(weight * value - contribution) > TOL:
+                raise ValueError('cached contribution does not equal weight * component value')
+            if child:
+                rows = self.con.execute("""SELECT f.value_numeric FROM fact_kpi_value f
+                    JOIN fact_kpi_component c ON c.child_card_key = f.card_key
+                    WHERE c.parent_value_id = ? AND f.scope_id = ? AND f.period_start = ? AND f.period_end = ?
+                      AND c.child_card_key = (SELECT card_key FROM dim_card WHERE card_id = ? AND card_version = ?)""",
+                    (v['value_id'], v['scope'], v['period_start'], v['period_end'], child, self.eng.catalog[child].raw['card_version'])).fetchall()
+                if len(rows) != 1 or rows[0][0] is None or abs(rows[0][0] - value) > TOL:
+                    raise ValueError('child value/version/scope/period is not bound to the component')
+        s = sum(c[1] * c[2] for c in comps)
         if self.weighted_average:
             w = sum(c[1] for c in comps)
             return None if not w else s / w
@@ -305,32 +355,34 @@ class RankingStrategy(Strategy):
     def value_row(self, scope, period_end):        # ranking has many rows
         return {'value_id': None, 'value': None, 'is_na': False,
                 'scope': scope, 'period_end': period_end}
-    def _ranked(self, period_end):
+    def _ranked(self, scope, period_end):
         return self.con.execute(
             """SELECT s.name, v.value_numeric
                FROM fact_kpi_value v
                JOIN dim_card d ON d.card_key = v.card_key
                LEFT JOIN dim_service s ON s.service_key = v.service_key
-               WHERE d.card_id = ? AND v.period_end = ?
-               ORDER BY v.value_numeric DESC""",
-            (self.card.id, period_end)).fetchall()
+               WHERE d.card_id = ? AND d.card_version = ? AND v.scope_id = ? AND v.period_end = ?
+               ORDER BY v.value_numeric DESC, s.service_id ASC""",
+            (self.card.id, self.card.raw['card_version'], scope, period_end)).fetchall()
     def recompute(self, v):
-        return float(len(self._ranked(v['period_end'])))
+        return float(len(self._ranked(v['scope'], v['period_end'])))
     def reconcile(self, scope, period_end):
-        rows = self._ranked(period_end)
-        vals = [r[1] for r in rows]
-        ok = bool(rows) and vals == sorted(vals, reverse=True)
-        return {'stored': len(rows), 'recomputed': len(rows), 'ok': ok}
+        rows = self._ranked(scope, period_end)
+        return {'stored': len(rows), 'recomputed': None, 'ok': False,
+                'arithmetic_ok': False, 'card_contract_validated': False,
+                'errors': ['Ranking requires independent entity risk inputs and an explicit ranking population'],
+                'assurance': 'not_implemented'}
+
     def breakdown(self, v, axis=None):
         return [(f"#{i} {name}", val)
-                for i, (name, val) in enumerate(self._ranked(v['period_end']), 1)]
+                for i, (name, val) in enumerate(self._ranked(v['scope'], v['period_end']), 1)]
     def items(self, v, limit):
         return []                          # each entity drills via its own card
     def drill(self, scope, period_end, axis=None, limit=8):
         v = self.value_row(scope, period_end)
         return {'card': f"{self.card.id} {self.card.name}",
                 'type': self.card.calc_type, 'mechanic': self.mechanic,
-                'L0_value': f"{len(self._ranked(period_end))} ranked entities",
+                'L0_value': f"{len(self._ranked(scope, period_end))} ranked entities",
                 'L1_breakdown': {'axis': 'rank', 'rows': self.breakdown(v)},
                 'L2_items': []}
 
@@ -352,6 +404,7 @@ STRATEGY = {
 class DrillEngine:
     def __init__(self, con, catalog: Catalog):
         self.con, self.catalog = con, catalog
+        self._active_drills = set()
         self._check_mechanics()
 
     def _check_mechanics(self):
@@ -370,7 +423,14 @@ class DrillEngine:
         return cls(self, card)
 
     def drill(self, card_id, scope, period_end, axis=None):
-        return self.strategy(card_id).drill(scope, period_end, axis)
+        key = (card_id, scope, period_end)
+        if key in self._active_drills:
+            raise ValueError(f'cyclic drill path at {card_id}')
+        self._active_drills.add(key)
+        try:
+            return self.strategy(card_id).drill(scope, period_end, axis)
+        finally:
+            self._active_drills.remove(key)
 
     def reconcile(self, card_id, scope, period_end):
         return self.strategy(card_id).reconcile(scope, period_end)
@@ -396,8 +456,8 @@ class DrillEngine:
 # Demo: one representative card per calculation type, plus a tamper test
 # ---------------------------------------------------------------------------
 DEMO = [  # (card_id, expected value)
-    ('AI-001', 85.0), ('STD-005', 40000.0), ('AIM-003', 5.5), ('AI-003', 4.0),
-    ('STD-074', 15.0), ('STD-001a', 25.0), ('AIM-012', 31.0), ('STD-006', 72.5),
+    ('AI-001', 85.0), ('STD-005', 0.3), ('AIM-003', 5.5), ('AI-003', 4.0),
+    ('STD-074', -1.0), ('STD-001a', 25.0), ('AIM-012', 31.0), ('STD-006', 72.5),
     ('STD-001', 65.5), ('AIM-007', 70.0), ('LOG-015', 25.0),
     ('STD-002a', 2500000.0), ('STD-003', None),
 ]
@@ -405,8 +465,8 @@ DEMO = [  # (card_id, expected value)
 def build_demo_db(schema_path, seed_path):
     con = sqlite3.connect(':memory:')
     con.execute("PRAGMA foreign_keys=ON")
-    con.executescript(open(schema_path).read().replace('JSONB', 'TEXT'))
-    con.executescript(open(seed_path).read())
+    con.executescript(Path(schema_path).read_text().replace('JSONB', 'TEXT'))
+    con.executescript(Path(seed_path).read_text())
     con.executescript("""
     INSERT INTO dim_date VALUES (20260731,'2026-07-31',2026,3,7,31,31,1);
     INSERT INTO dim_org_unit VALUES (1,'BU-01','Group IT',NULL,1);
@@ -418,9 +478,9 @@ def build_demo_db(schema_path, seed_path):
     """)
     key = {cid: k for k, cid in con.execute("SELECT card_key, card_id FROM dim_card")}
     def val(vid, cid, value, num=None, den=None, svc='NULL', scope='SCOPE-GLOBAL'):
-        con.execute(f"""INSERT INTO fact_kpi_value VALUES ({vid},{key[cid]},20260731,
+        con.execute(f"""INSERT INTO fact_kpi_value (value_id,card_key,date_key,period_start,period_end,scope_id,org_key,service_key,asset_key,value_numeric,is_na,numerator,denominator,sample_n,data_confidence,rag,threshold_key,loaded_at) VALUES ({vid},{key[cid]},20260731,
           '2026-07-01','2026-07-31','{scope}',1,{svc},NULL,{value},0,
-          {num or 'NULL'},{den or 'NULL'},NULL,90,'amber',NULL,CURRENT_TIMESTAMP)""")
+          {num if num is not None else 'NULL'},{den if den is not None else 'NULL'},NULL,90,'amber',NULL,CURRENT_TIMESTAMP)""")
     def ev(pk, vid, cid, rid, num, den, numeric='NULL', det='NULL', res='NULL', own=1):
         con.execute(f"""INSERT INTO fact_evidence_item VALUES ({pk},{key[cid]},{vid},
           '{rid}','ref://{rid}','SCOPE-GLOBAL','2026-07-01','2026-07-31',20260731,
@@ -438,11 +498,12 @@ def build_demo_db(schema_path, seed_path):
     for i in range(1, 21):
         ev(next(pk), 1, 'AI-001', f'AI-{i:03d}', 1 if i <= 17 else 0, 1,
            own=1 if i % 2 else 2)
-    # Unit Cost STD-005: 120k EUR / 3 units -> 40k
-    val(2, 'STD-005', 40000.0, 120000, 3)
-    for i, cost in enumerate([50000, 30000, 40000], 1):
-        ev(next(pk), 2, 'STD-005', f'INV-{i}', 1, 1, numeric=cost)
-    # Duration AIM-003: hours -> P50 = 5.5
+    # STD-005: 24 verified reduction points / 80 person-days = 0.3.
+    val(2, 'STD-005', 0.3, 24, 80)
+    ev(next(pk), 2, 'STD-005', 'INV-1', 1, 1)
+    con.execute("UPDATE fact_evidence_item SET attributes = ? WHERE value_id = 2",
+                (json.dumps({'verified_risk_reduction':24,'security_investment_cost':80,'cost_unit':'person-days'}),))
+    # Duration AIM-003: minutes -> P50 = 5.5
     val(3, 'AIM-003', 5.5)
     for i, h in enumerate([2, 3, 4, 5, 6, 8, 10, 24], 1):
         ev(next(pk), 3, 'AIM-003', f'CASE-{i}', 0, 1, numeric=h)
@@ -450,9 +511,9 @@ def build_demo_db(schema_path, seed_path):
     val(4, 'AI-003', 4.0, None, 4)
     for i in range(1, 5):
         ev(next(pk), 4, 'AI-003', f'LEAK-{i}', 0, 1)
-    # Delta STD-074: per-measure (expected - actual) = 6+5+4 -> 15
-    val(5, 'STD-074', 15.0)
-    for i, d in enumerate([6, 5, 4], 1):
+    # Delta STD-074: mean of actual-minus-expected deltas = (2-5+0)/3 = -1
+    val(5, 'STD-074', -1.0)
+    for i, d in enumerate([2, -5, 0], 1):
         ev(next(pk), 5, 'STD-074', f'MEAS-{i}', 0, 1, numeric=d)
     # Penalty STD-001a: shocks 5+8+12 -> 25
     val(6, 'STD-001a', 25.0)
@@ -486,14 +547,14 @@ def build_demo_db(schema_path, seed_path):
     return con
 
 def run_demo(engine):
-    print(f"Catalog v{engine.catalog.version} - demo across all 13 calculation types\n")
+    print(f"Catalog v{engine.catalog.version} - arithmetic mechanics demo, not card conformance\n")
     failures = 0
     for cid, expected in DEMO:
         card = engine.catalog[cid]
         d = engine.drill(cid, 'SCOPE-GLOBAL', '2026-07-31')
         r = engine.reconcile(cid, 'SCOPE-GLOBAL', '2026-07-31')
-        flag = 'OK' if r['ok'] else 'MISMATCH'
-        if not r['ok']:
+        flag = 'ARITHMETIC_OK' if r['ok'] else ('NOT_IMPLEMENTED' if r.get('assurance') == 'not_implemented' else 'MISMATCH')
+        if expected is not None and (not r['ok'] or abs(r['recomputed'] - expected) > TOL):
             failures += 1
         print(f"[{card.calc_type:16s}] {cid:9s} value={d['L0_value']} "
               f"recon={flag} (stored={r['stored']}, recomputed={r['recomputed']})")
@@ -524,7 +585,7 @@ def main():
     if a.coverage:
         c = engine.coverage()
         print(f"Coverage: {c['strategy_ok']}/{c['cards']} cards have a strategy, "
-              f"{c['lineage_ok']}/{c['cards']} lineages understood")
+              f"{c['lineage_ok']}/{c['cards']} lineages parsed (not semantic conformance)")
         for p in c['problems']:
             print("  !", p)
         sys.exit(0 if not c['problems'] else 1)

@@ -145,7 +145,7 @@ def main():
         # required completeness
         for req in REQUIRED:
             v=c.get(req)
-            if v in (None,"",[],{}):
+            if v in (None,"",[],{}) or (isinstance(v,str) and not v.strip()):
                 rep.err("required_fields",cid,f"missing/empty field '{req}'")
         # id
         if cid in ids: rep.err("id_uniqueness",cid,f"duplicate id (also in {ids[cid]})")

@@ -7,8 +7,9 @@ metrics: each KPI has a formula, a source, thresholds and a triggered decision.
 Numbers are published weekly in the "Review Status" discussion and become part of
 the public Review Board Summary at freeze.
 
-**Review window:** 6 July – 15 August 2026 (40 days) · **Checkpoint 1:** 25 July ·
-**Checkpoint 2:** 22 August · **Freeze target:** 30 August 2026
+**Schedule status:** the July/August 2026 dates below are the historical plan.
+The board is being assembled; adopt a new candidate baseline and timetable before
+formal board review. No completed review or approval is implied.
 
 | # | KPI | Formula / source | CP1 (25 Jul) | CP2 (22 Aug) | Freeze target | Triggered decision |
 |---|---|---|---|---|---|---|
@@ -22,9 +23,10 @@ the public Review Board Summary at freeze.
 | K-08 | Open critical findings | Count of open findings labelled severity:critical | — | — | **0** | > 0 → freeze blocker |
 | K-09 | Review Board quorum | Sessions held / active members | charter live | ≥ 3 active | ≥ 1 session, ≥ 3 active | Quorum missed → postpone freeze |
 
-**Go/no-go rule:** if K-01, K-02 and K-09 miss their thresholds at Checkpoint 2,
-the review is extended and the freeze date moves. OSMS 1.0 will not be frozen on
-schedule against its own evidence.
+**Candidate gate clarification:** the board must adopt the final gate combination.
+The previous AND wording is unresolved and must not be used as automatic approval.
+Proposed rule: each mandatory gate must pass; missing evidence remains unresolved.
+A calendar target cannot override missing review evidence.
 
 **How findings are counted:** open a
 [Review Finding issue](../../issues/new/choose) (category and severity are
@@ -32,3 +34,5 @@ mandatory dropdowns) or use the review form / review@opensecuritymetrics.org for
 non-GitHub submissions. Triage adds `cat:*` and `severity:*` labels within five
 working days; Review Board decisions add `decision:*` labels. The weekly numbers
 are produced by `tools/review_kpis.py`.
+
+Measurement implementation and limitations: [Review KPI method 0.2](review/REVIEW_KPI_METHOD.md).

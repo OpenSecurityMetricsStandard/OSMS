@@ -18,9 +18,26 @@ def audit(path):
     cards = data["cards"] if isinstance(data, dict) and "cards" in data else data
     ids = {c["id"] for c in cards}
     findings = []
+    graph = {c['id']: set(re.findall(r'p\(([A-Z]{2,4}-\d{3}[a-z]?)\)', c['formula'])) for c in cards}
+    visited, active = set(), []
+    def visit(cid):
+        if cid in active:
+            findings.append((cid, 'cyclic formula dependency: ' + ' -> '.join(active[active.index(cid):] + [cid])))
+            return
+        if cid in visited or cid not in graph:
+            return
+        active.append(cid)
+        for child in sorted(graph[cid]):
+            visit(child)
+        active.pop()
+        visited.add(cid)
+    for cid in sorted(graph):
+        visit(cid)
     for c in cards:
         f, cid = c["formula"], c["id"]
         fields = set(c["minimum_data_fields"])
+        if re.search(r'/\s*0(?:\.0+)?(?![\d.])(?:\b|\s|$)', f):
+            findings.append((cid, 'literal zero denominator'))
         if re.search(r"\b(TBD|TODO|FIXME|to be (?:defined|determined)|draft)\b", f, re.I):
             findings.append((cid, "editorial marker in formula"))
         if GERMAN_FORMULA.search(f):
@@ -58,6 +75,18 @@ def audit(path):
         for fd in c["minimum_data_fields"]:
             if GERMAN_FIELD.search(fd):
                 findings.append((cid, f"German word used as field name: {fd}"))
+        # Only claim a numeric check where assignments and a final result are
+        # explicit. This is not a parser for all 327 free-text examples.
+        function = re.search(r'p\(([^)]*)\)\s*=\s*([^;]+)', f)
+        if function and c['calculation_type'] == 'Composite':
+            terms = re.findall(r'(\d*\.?\d+)\s*\*\s*([a-z_][a-z0-9_]*)', function.group(2))
+            ex = c['calculation_example']
+            inputs = {name: re.search(r'\b' + re.escape(name) + r'\s*=\s*(-?\d+(?:\.\d+)?)', ex) for _, name in terms}
+            stated = re.findall(r'=\s*(-?\d+(?:\.\d+)?)\s*(?:→|->)', ex)
+            if terms and stated and all(inputs.values()):
+                calculated = sum(float(weight) * float(inputs[name].group(1)) for weight, name in terms)
+                if abs(calculated - float(stated[-1])) > 1e-8:
+                    findings.append((cid, f'composite example result {stated[-1]} != {calculated}'))
     return findings
 
 if __name__ == "__main__":

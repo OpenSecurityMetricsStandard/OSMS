@@ -34,7 +34,7 @@
 --
 -- CATALOG RULES ENCODED AS CONSTRAINTS:
 --   * "Empty denominator => result n/a, never 0"      -> chk_zero_denominator
---   * "Numerator is a subset of the denominator"      -> chk_numerator_subset
+--   * Numerator subset applies only to proportions   -> per-card adapter
 --   * "Confidence < 70 must not be Green"             -> chk_confidence_gate
 -- ============================================================================
 
@@ -218,7 +218,15 @@ CREATE TABLE fact_kpi_value (
     rag             TEXT        CHECK (rag IN ('green','amber','red')),
     threshold_key   INTEGER     REFERENCES kpi_threshold(threshold_key),
     loaded_at       TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    reporting_context TEXT NOT NULL DEFAULT 'operational' CHECK (reporting_context IN ('operational','board')),
+    validity_status TEXT NOT NULL DEFAULT 'provisional' CHECK (validity_status IN ('valid','provisional','invalid','not_applicable')),
     UNIQUE (card_key, period_end, scope_id),
+    CONSTRAINT chk_period CHECK (period_start <= period_end),
+    CONSTRAINT chk_denominator_nonnegative CHECK (denominator IS NULL OR denominator >= 0),
+    CONSTRAINT chk_sample_nonnegative CHECK (sample_n IS NULL OR sample_n >= 0),
+    CONSTRAINT chk_na_rag CHECK (is_na = FALSE OR rag IS NULL),
+    CONSTRAINT chk_valid_state CHECK (validity_status <> 'valid' OR is_na = FALSE),
+    CONSTRAINT chk_not_applicable_state CHECK (validity_status <> 'not_applicable' OR is_na = TRUE),
     -- value and n/a are mutually exclusive states
     CONSTRAINT chk_na_value CHECK (
         (is_na = TRUE  AND value_numeric IS NULL) OR
@@ -230,14 +238,17 @@ CREATE TABLE fact_kpi_value (
     ),
     -- catalog rule: "with data confidence < 70, the status must not be Green"
     CONSTRAINT chk_confidence_gate CHECK (
-        NOT (rag = 'green' AND data_confidence < 70)
+        rag IS NULL OR rag <> 'green' OR
+        (is_na = FALSE AND validity_status = 'valid' AND data_confidence IS NOT NULL
+         AND data_confidence >= CASE WHEN reporting_context = 'board' THEN 85 ELSE 70 END)
     )
 );
 
 -- Weighted parts of the component_tree family (Composite, Weighted Sum/Avg,
 -- Index, Score, Monetary Risk). A component is either another card
 -- (child_card_key, e.g. STD-052 = 0.40*STD-.. + ...) or a named sub-score.
--- Reconciliation invariant: SUM(contribution) = parent value_numeric.
+-- Weighted sums use SUM(weight * value); weighted averages divide by SUM(weight).
+-- Caches, input/profile identity and raw child values require separate checks.
 CREATE TABLE fact_kpi_component (
     component_id    BIGINT      PRIMARY KEY,
     parent_value_id BIGINT      NOT NULL REFERENCES fact_kpi_value(value_id)
@@ -254,8 +265,8 @@ CREATE TABLE fact_kpi_component (
 );
 
 -- The drill terminus: one row per raw record feeding a card in a period.
--- GROUP BY over this table losslessly re-produces the aggregates above -
--- the star schema makes the catalog's reconciliation invariant structural.
+-- Per-card adapters may aggregate these records. This table alone cannot
+-- establish complete input contracts, provenance or numerical methods.
 CREATE TABLE fact_evidence_item (
     evidence_pk     BIGINT      PRIMARY KEY,
     card_key        INTEGER     NOT NULL REFERENCES dim_card(card_key),
@@ -284,9 +295,9 @@ CREATE TABLE fact_evidence_item (
     attributes      JSONB       NOT NULL DEFAULT '{}',
     loaded_at       TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (card_key, scope_id, period_end, record_id),
-    -- catalog rule: "The numerator is a subset of the denominator"
-    CONSTRAINT chk_numerator_subset CHECK (
-        in_numerator = FALSE OR in_denominator = TRUE
+    -- Subset membership is enforced by the card-specific proportion adapter.
+    CONSTRAINT chk_boolean_membership CHECK (
+        in_numerator IN (FALSE, TRUE) AND in_denominator IN (FALSE, TRUE)
     )
 );
 
@@ -331,39 +342,61 @@ SELECT v.*
 FROM fact_kpi_value v
 JOIN (
     SELECT card_key, scope_id, MAX(period_end) AS max_pe
-    FROM fact_kpi_value GROUP BY card_key, scope_id
+    FROM fact_kpi_value f JOIN dim_card d USING (card_key)
+    WHERE d.is_current = TRUE GROUP BY card_key, scope_id
 ) latest
   ON latest.card_key = v.card_key
  AND latest.scope_id = v.scope_id
  AND latest.max_pe   = v.period_end;
 
--- Ratio/Count reconciliation: stored numerator/denominator must equal the
--- evidence flags. A row with recon_status <> 'OK' is a data error by
--- definition of the standard ("a path that does not add up is a data error").
+-- Evidence membership reconciliation. A general ratio cannot be reconstructed
+-- from boolean counts without its per-card adapter (weights, sums, scale).
 CREATE VIEW vw_recon_ratio_count AS
 SELECT v.value_id, v.card_key, v.scope_id, v.period_end,
        v.numerator, v.denominator,
-       SUM(CASE WHEN e.in_numerator   THEN 1 ELSE 0 END) AS evidence_numerator,
+       SUM(CASE WHEN e.in_numerator THEN 1 ELSE 0 END) AS evidence_numerator,
        SUM(CASE WHEN e.in_denominator THEN 1 ELSE 0 END) AS evidence_denominator,
-       CASE WHEN v.numerator   = SUM(CASE WHEN e.in_numerator   THEN 1 ELSE 0 END)
-             AND v.denominator = SUM(CASE WHEN e.in_denominator THEN 1 ELSE 0 END)
-            THEN 'OK' ELSE 'MISMATCH' END AS recon_status
+       CASE WHEN COUNT(e.evidence_pk) = 0 THEN 'MISSING_EVIDENCE'
+            WHEN SUM(CASE WHEN e.card_key <> v.card_key OR e.scope_id <> v.scope_id
+                            OR e.period_start IS NULL OR e.period_start <> v.period_start
+                            OR e.period_end <> v.period_end OR e.evidence_ref IS NULL
+                            OR TRIM(e.evidence_ref) = '' OR e.source_key IS NULL
+                          THEN 1 ELSE 0 END) > 0 THEN 'INVALID_EVIDENCE'
+            WHEN ct.name <> 'Count' THEN 'ADAPTER_REQUIRED'
+            WHEN v.value_numeric = SUM(CASE WHEN e.in_denominator THEN 1 ELSE 0 END)
+                 THEN 'ARITHMETIC_OK' ELSE 'MISMATCH' END AS recon_status
 FROM fact_kpi_value v
-JOIN fact_evidence_item e ON e.value_id = v.value_id
-GROUP BY v.value_id, v.card_key, v.scope_id, v.period_end,
-         v.numerator, v.denominator;
+JOIN dim_card d ON d.card_key = v.card_key
+JOIN dim_calc_type ct ON ct.calc_type_key = d.calc_type_key
+LEFT JOIN fact_evidence_item e ON e.value_id = v.value_id
+WHERE ct.name IN ('Count','Ratio','Unit Cost')
+GROUP BY v.value_id, v.card_key, v.scope_id, v.period_start, v.period_end,
+         v.numerator, v.denominator, v.value_numeric, ct.name;
 
--- Component-tree reconciliation: contributions must sum to the parent
--- (tolerance 0.5 for rounding of 0-100 scores).
+-- Arithmetic reconciliation only: independent multiplication checks cached
+-- contributions. This cannot establish evidence authenticity or profile validity.
 CREATE VIEW vw_recon_component AS
 SELECT v.value_id, v.card_key, v.scope_id, v.period_end,
-       v.value_numeric                       AS parent_value,
-       SUM(c.contribution)                   AS component_sum,
-       CASE WHEN ABS(v.value_numeric - SUM(c.contribution)) <= 0.5
-            THEN 'OK' ELSE 'MISMATCH' END    AS recon_status
+       v.value_numeric AS parent_value,
+       SUM(c.weight * c.component_value) AS component_sum,
+       CASE
+         WHEN COUNT(c.component_id) = 0 THEN 'MISSING_COMPONENTS'
+         WHEN SUM(CASE WHEN c.component_value IS NULL OR c.contribution IS NULL
+                         OR c.weight < 0 OR c.weight_version IS NULL OR TRIM(c.weight_version) = ''
+                         OR ABS(c.contribution - c.weight * c.component_value) > 0.00000001
+                       THEN 1 ELSE 0 END) > 0 THEN 'INVALID_COMPONENT'
+         WHEN ct.name = 'Weighted Average' AND SUM(c.weight) = 0 THEN 'ZERO_WEIGHT'
+         WHEN ABS(v.value_numeric - CASE WHEN ct.name = 'Weighted Average'
+                   THEN 1.0 * SUM(c.weight * c.component_value) / NULLIF(SUM(c.weight),0)
+                   ELSE SUM(c.weight * c.component_value) END) <= 0.00000001
+           THEN 'ARITHMETIC_OK'
+         ELSE 'MISMATCH' END AS recon_status
 FROM fact_kpi_value v
-JOIN fact_kpi_component c ON c.parent_value_id = v.value_id
-GROUP BY v.value_id, v.card_key, v.scope_id, v.period_end, v.value_numeric;
+JOIN dim_card d ON d.card_key = v.card_key
+JOIN dim_calc_type ct ON ct.calc_type_key = d.calc_type_key
+LEFT JOIN fact_kpi_component c ON c.parent_value_id = v.value_id
+WHERE ct.drill_mechanic = 'component_tree'
+GROUP BY v.value_id, v.card_key, v.scope_id, v.period_end, v.value_numeric, ct.name;
 
 
 -- ============================================================================

@@ -1,9 +1,15 @@
 standard: Open Security Metrics Standard
 short_name: OSMS
-version: 0.9.1
-release_phase: release
-release_name: OSMS 0.9.1 English
+version: 0.9.2
+release_phase: working_draft
+release_name: OSMS 0.9.2 maintainer draft
 language: en
+remediation:
+  status: working_draft
+  audit_date: 2026-09-10
+  findings_total: 32
+  findings_register: review/REMEDIATION.json
+  board_approved: false
 generated_at: '2026-07-05'
 maintainer: Nico Wiegand
 copyright: © 2026 Nico Wiegand
@@ -21,7 +27,8 @@ counts:
 calculation_types:
 - name: Ratio
   definition: Quotient of a precisely defined numerator and denominator from the same scope, expressed as a percentage
-    or ratio. The numerator is a subset of the denominator; inclusions and exclusions must be named. An empty denominator
+    or ratio. For a proportion, the numerator is a subset of the denominator; general quotients and capacity ratios
+    may exceed 1 or 100%. The card defines both populations, their dimensions and scale. An empty denominator
     yields n/a, never 0.
 - name: Duration
   definition: Time span between a defined start and end point per valid case. At minimum, P50/median and P90 are
@@ -215,7 +222,7 @@ domains:
 cards:
 - id: AI-001
   name: AI Asset Inventory & Approval Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -341,7 +348,7 @@ cards:
   next_chain: AI risk starts with unknown AI systems.
 - id: AI-002
   name: AI Data & Model Lineage Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -473,7 +480,7 @@ cards:
   next_chain: Without provenance, AI risks cannot be reproduced or audited.
 - id: AI-003
   name: AI Output Sensitive Data Leakage Rate
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -613,7 +620,7 @@ cards:
   next_chain: AI must not become the new exfiltration channel.
 - id: AI-004
   name: AI Red-Team Coverage for High-Risk Use Cases
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -745,7 +752,7 @@ cards:
   next_chain: AI-specific failures do not show up in classic pentests.
 - id: AI-005
   name: Autonomous Action Kill-Switch Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -877,7 +884,7 @@ cards:
   next_chain: Autonomy without the ability to shut down is an operational risk.
 - id: AI-006
   name: AI Policy Enforcement Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -1025,7 +1032,7 @@ cards:
   next_chain: Policy without enforcement is training material.
 - id: AI-007
   name: AI Model Access Review Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -1159,7 +1166,7 @@ cards:
   next_chain: AI systems often have highly privileged data access.
 - id: MET-001
   name: Metric Contract Completeness
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -1274,7 +1281,7 @@ cards:
   next_chain: Prevents metric folklore and KPI gaming.
 - id: MET-002
   name: Denominator Drift Rate
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -1399,7 +1406,7 @@ cards:
   next_chain: Catches green traffic lights that arise only from scope shrinking.
 - id: MET-003
   name: Green-with-Low-Confidence Blocker Rate
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -1517,7 +1524,7 @@ cards:
   next_chain: Forces truth over optics.
 - id: MET-004
   name: Decision Activation Rate
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -1629,7 +1636,7 @@ cards:
   next_chain: A metric that triggers nothing is decoration.
 - id: MET-005
   name: Evidence Tamper-Proofing Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -1750,7 +1757,7 @@ cards:
   next_chain: Auditability dies when evidence can be changed after the fact.
 - id: MET-006
   name: Independent Control Test Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -1867,7 +1874,7 @@ cards:
   next_chain: Prevents effectiveness claims that rest on self-attestation alone.
 - id: MET-007
   name: Metric Owner Attestation Currency
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: AI, GenAI & Metric Governance
@@ -2109,7 +2116,7 @@ cards:
   - As long as trend and data confidence are missing, the value is a snapshot, not steering.
   next_chain: 'Response: adjust the model, check use-case coverage, analyze override patterns, or prepare the investment
     decision for the next AI stage.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Reconcile a sample from the denominator (all alerts in scope) against SIEM/SOAR and check completeness
@@ -2246,7 +2253,7 @@ cards:
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: 'From the value follows one of four actions: additional AI capacity, recalibration of alerting thresholds,
     data-source integration, or targeted backlog reduction.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample of received alerts from the SIEM and check against case management whether a documented
@@ -2371,7 +2378,7 @@ cards:
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: 'Four paths: additional data enrichment, model optimization, workflow adjustment, or targeted backlog
     actions.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of closed alerts and reconcile received_at/closed_at against the raw timestamps in SIEM,
@@ -2499,7 +2506,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'From the value follows: model retraining, workflow or policy adjustment, targeted reviewer samples,
     or deliberate retention of higher override rates in sensitive classes.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of reviewed AI decisions from the AI SOC platform and substantiate via reviewer tags
@@ -2625,7 +2632,7 @@ cards:
   - Only trend and data confidence turn the numeric value into a basis for steering.
   next_chain: 'From the value follows: extend the AI scope, initiate model retraining, readjust escalation thresholds,
     or deliberately keep highly critical classes manual.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull a sample of threats classified as missed and substantiate the source per case: threat-hunting
@@ -2760,7 +2767,7 @@ cards:
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: 'Response: filter adjustment, source tuning, model retraining, or deliberate retention of higher forward
     rates in sensitive classes.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Reconstruct alerts_received from the SIEM raw data and check that the documented deduplication rule
@@ -2897,7 +2904,7 @@ cards:
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: 'From the value follows: extend the AI scope, playbook optimization, initiate model retraining, or
     deliberately keep highly critical classes manual.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: Load the versioned baseline (value, baseline date, baseline scope, rule version) from the historical
@@ -3026,7 +3033,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'Response: integration of additional logging sources, workflow adjustment, model change, or documented,
     time-limited risk acceptance of remaining trace gaps for defined action classes in scope.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of AI actions from the denominator and check in the reasoning trace repository that
@@ -3147,7 +3154,7 @@ cards:
   next_chain: 'Four paths: set up drift monitoring for unmonitored models, retire or consolidate the model, investment
     in MLOps monitoring capacity, or deliberate, documented risk acceptance for defined sandbox models with owner
     and due date.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Pull a sample of the models productive as of the as-of date period_end from the model registry (model_id,
@@ -3268,7 +3275,7 @@ cards:
   - Without trend, scope, and data confidence, the number is mere display - not a statement.
   next_chain: 'From the value follows per error class: prompt adjustment, retrieval extension, model change, workflow
     restriction, or deliberate acceptance in narrowly defined sandbox classes — with owner and due date.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull a sample of AI outputs from the audit log of AI actions (output_id, model_id, reporting period).
@@ -3399,7 +3406,7 @@ cards:
   - Only trend and data confidence turn the numeric value into a basis for steering.
   next_chain: 'Response: extend or calibrate the detection logic, set up a red-team program against the AI, architecture
     adjustment, or model hardening.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of detected attack attempts from the input filters and prompt sanitizing layer and
@@ -3530,7 +3537,7 @@ cards:
     limitations), decide on extending the AI classes or on model investment, plan staff repositioning to strategic
     work, or deliberately keep defined classes manual; building on that, prepare the investment decision for the
     next AI stage.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: Pull a sample of autonomously completed investigations from the AI SOC platform and case management
@@ -3541,7 +3548,7 @@ cards:
     must be traceable to the raw record via the lineage.
 - id: APP-001
   name: Application & API Inventory Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -3672,7 +3679,7 @@ cards:
   next_chain: AppSec without an app/API denominator is theater.
 - id: APP-002
   name: Secure SDLC Control Coverage for Critical Apps
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -3797,7 +3804,7 @@ cards:
   next_chain: Shifts security left without an illusion of control.
 - id: APP-003
   name: Threat Modeling Coverage for High-Risk Changes
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -3923,7 +3930,7 @@ cards:
   next_chain: Finds design flaws that scanners never find.
 - id: APP-004
   name: SAST / DAST / SCA Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -4048,7 +4055,7 @@ cards:
   next_chain: Makes AppSec minimum hygiene measurable.
 - id: APP-005
   name: Critical AppSec Exposure Hours
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -4187,7 +4194,7 @@ cards:
   next_chain: Time at risk beats ticket counting.
 - id: APP-006
   name: SBOM Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -4320,7 +4327,7 @@ cards:
   next_chain: Without an SBOM, impact analysis for new CVEs takes too long.
 - id: APP-007
   name: Known Vulnerable Dependency Exposure
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -4469,7 +4476,7 @@ cards:
   next_chain: Closes the gap between infra VM and the software supply chain.
 - id: APP-008
   name: Build Provenance / SLSA Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -4595,7 +4602,7 @@ cards:
   next_chain: Prevents build/release manipulation, one of the most expensive blind spots.
 - id: APP-009
   name: CI/CD Privileged Path Control Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -4729,7 +4736,7 @@ cards:
   next_chain: CI/CD is production admin by another name.
 - id: APP-010
   name: Secrets in Repositories Exposure Age
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -4873,7 +4880,7 @@ cards:
   next_chain: A found secret is done only once it is rotated.
 - id: APP-011
   name: API Runtime Protection Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -5002,7 +5009,7 @@ cards:
   next_chain: APIs are often the real perimeter surface today.
 - id: APP-012
   name: Security Gate Bypass Rate
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -5130,7 +5137,7 @@ cards:
   next_chain: The bypass rate shows whether security engineering counts in reality.
 - id: APP-013
   name: Open Source Package Health Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -5256,7 +5263,7 @@ cards:
   next_chain: Not every dependency weakness has a CVE; project health counts.
 - id: APP-014
   name: Container Runtime Drift
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -5379,7 +5386,7 @@ cards:
   next_chain: Closes the gap between the checked build and running reality.
 - id: APP-015
   name: Release Integrity Verification Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Application, API & Software Supply Chain
@@ -5508,7 +5515,7 @@ cards:
   next_chain: Stops the classic 'A was checked, B was deployed'.
 - id: AST-001
   name: Internal Asset Inventory Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Asset, Software & Ownership
@@ -5627,7 +5634,7 @@ cards:
   next_chain: Without a denominator, every coverage metric is contestable; the inventory is the foundation.
 - id: AST-002
   name: Unknown Internal Assets
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Asset, Software & Ownership
@@ -5759,7 +5766,7 @@ cards:
   next_chain: Unknown assets are unpatched, unmeasured, unprotected.
 - id: AST-003
   name: Internal Asset Owner Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Asset, Software & Ownership
@@ -5877,7 +5884,7 @@ cards:
   next_chain: Without an owner, no remediation accountability; the risk remains anonymous.
 - id: AST-004
   name: Asset Criticality & Business Service Mapping Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Asset, Software & Ownership
@@ -5997,7 +6004,7 @@ cards:
   next_chain: Enables risk-weighted prioritization instead of a CVSS lottery.
 - id: AST-005
   name: Software Inventory Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Asset, Software & Ownership
@@ -6114,7 +6121,7 @@ cards:
   next_chain: Without a software denominator, vulnerability, license, and supply-chain risks remain invisible.
 - id: AST-006
   name: Unauthorized Software Execution Rate
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Asset, Software & Ownership
@@ -6247,7 +6254,7 @@ cards:
   next_chain: Shadow tools and adware are entry points and compliance debt.
 - id: AST-007
   name: Unsupported / EOL Technology Exposure
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Asset, Software & Ownership
@@ -6381,7 +6388,7 @@ cards:
     the exposure persists and becomes architecture and budget debt.
 - id: AST-008
   name: CMDB-to-Observed Asset Drift
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Asset, Software & Ownership
@@ -6503,7 +6510,7 @@ cards:
   next_chain: Protects all other denominators from silent distortion.
 - id: AST-009
   name: Mobile/BYOD/IoT Asset Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Asset, Software & Ownership
@@ -6637,7 +6644,7 @@ cards:
   next_chain: IoT/BYOD otherwise becomes a shadow surface outside the SOC and patch management.
 - id: AST-010
   name: Crown-Jewel Dependency Mapping Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Asset, Software & Ownership
@@ -6882,7 +6889,7 @@ cards:
     owners; at Red, the CISO. Time window: clarification per hit by the next weekly report. Accountable: Attack
     Surface Owner. Action: assign an owner, document the business purpose, and add the CMDB assignment; shut down
     exposed services that are not needed, and run needed ones in a controlled way under platform standards.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull the EASM population at the as-of date and reconcile a sample of external assets against the
@@ -7019,7 +7026,7 @@ cards:
     report. Accountable: Attack Surface Owner. Action: document owner and approval per new exposure, close unapproved
     services or bring them under platform standards; on a persistent increase, correct provisioning processes and
     platform standards.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull the list of external assets/services newly detected in the reporting period from EASM, DNS/certificate,
@@ -7143,7 +7150,7 @@ cards:
     owners; at Red, the CISO. Time window: Red hits immediately, exception decision by the next weekly report. Accountable:
     Attack Surface Owner. Action: shut down publicly reachable admin interfaces or place them behind VPN, bastion,
     or zero-trust access; carry unavoidable cases with a documented, time-limited approved exception and an owner.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull the EASM hit list of publicly reachable admin/management interfaces at the as-of date. Per sampled
@@ -7276,7 +7283,7 @@ cards:
     sensitive data immediately, remaining ones by the next weekly report. Accountable: Attack Surface Owner. Action:
     block public access at the level of the cloud control plane, correct bucket/resource policies, remove or move
     sensitive data; carry legitimate public storage with a documented, valid approval via evidence_ref.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull the CSPM/CNAPP and cloud inventory findings at the as-of date and verify a sample of public
@@ -7429,7 +7436,7 @@ cards:
     immediately, remaining defects by the next monthly report. Accountable: Attack Surface Owner. Action: initiate
     renewal for expiring certificates (critical assets first), migrate weak algorithms to approved procedures, determine
     owners for ownerless certificates, and correct hostname mismatches.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull the certificate population in scope from the DNS/certificate inventory at the as-of date and
@@ -7553,7 +7560,7 @@ cards:
   - As long as trend and data confidence are missing, the value is a snapshot, not steering.
   next_chain: 'Trigger: coverage in the Amber band (85-95%) or Red (<85%). Consequence: inventory cleanup, owner
     assignment and confirmation, shutdown, or protection for the identified assets without a confirmed owner.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Confidence Metric
   audit_test: Pull a sample of external assets from EASM and the DNS/certificate inventory and reconcile it against
@@ -7681,7 +7688,7 @@ cards:
   next_chain: 'Trigger: at least one unknown or unapproved exposure (Red) or incomplete controls or a count above
     the target inventory (Amber). Reaction: consolidate the inventory and target inventory, set owners, close exposed
     services or run them on in a controlled way.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Reconcile the list of critical business services against EASM and the cloud inventory and pull a sample
@@ -7824,7 +7831,7 @@ cards:
     apps within 10 working days, remaining actions by the next reporting cycle. Accountable: Attack Surface Owner.
     Action: transfer the app into governance (owner, IAM, contract/privacy), run it on in a controlled way, or shut
     it down; consolidate the SaaS inventory.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of the contributing shadow SaaS individual records and substantiate each app via evidence_ref
@@ -7942,7 +7949,7 @@ cards:
   - Only trend and data confidence turn the numeric value into a basis for steering.
   next_chain: 'Trigger: at least one unclarified entry (Amber: 1-5 without a critical subdomain; Red: >5 or a critical
     subdomain affected). Reaction: consolidate the inventory, set owners, approve or remove entries.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of the counted entries from the DNS/certificate inventory; per entry, verify that approved=false
@@ -8070,7 +8077,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'Trigger: at least one counted case (Amber), a critical asset without a contract or owner (Red). Reaction:
     set owners, substantiate the contract and controls, migrate or shut down the asset; consolidate the inventory.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull a sample of the counted third-party assets from EASM and the cloud inventory; per asset, verify
@@ -8211,7 +8218,7 @@ cards:
   - The number carries only if trend, scope, and data quality come along.
   next_chain: 'From this follow: configuration correction, IaC hardening, logging activation, or a re-architecture
     step; approve and schedule exceptions.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of publicly reachable resources from CSPM/CNAPP or AWS Security Hub and verify the exposure
@@ -8333,7 +8340,7 @@ cards:
   - 'Data quality: CSPM scan freshness under 24 hours. Logging coverage measurable per cloud account. IaC repo connected.'
   - The number carries only if trend, scope, and data quality come along.
   next_chain: 'From this follow: configuration correction, IaC hardening, or tightening of guardrails/policies.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of applicable CSPM controls per cloud account from CSPM/CNAPP or AWS Security Hub;
@@ -8475,7 +8482,7 @@ cards:
   next_chain: 'From this follow: correction of the IAM misconfiguration (rights revocation, policy hardening, removal
     of external access paths), adaptation of role and policy standards, or a time-limited, documented risk acceptance
     per finding.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull a sample of contributing IAM findings from Entra ID/AD/IAM and CSPM/CNAPP; per individual record,
@@ -8613,7 +8620,7 @@ cards:
   - The number carries only if trend, scope, and data quality come along.
   next_chain: 'From this follow: immediate rights revocation or rights recertification of the affected roles, adaptation
     of the role model, or a formal, time-limited risk acceptance.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull a sample of the rated cloud roles; per role, verify granted_permissions against used_permissions
@@ -8765,7 +8772,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'From this follow: a base image update, rebuild and redeploy of the affected images, patch or mitigation
     within the SLA, or a time-limited, documented risk acceptance per finding.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull a sample of open critical findings from the vulnerability scanner and reconcile each resource_id
@@ -8898,7 +8905,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'From this follow: immediate rotation and blocking of the affected secret, cleanup of the source (repository,
     image, configuration), and preventive measures such as pre-commit scanning or pipeline gates.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull a sample of confirmed secret exposures and verify the confirmation status per finding_id against
@@ -9021,7 +9028,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'From this follow: logging activation/centralization including the budget for log volume, approval
     of documented exceptions, or a deployment restriction for the affected accounts.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of critical cloud resources from the denominator and check the criticality rating against
@@ -9142,7 +9149,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'From this follow: prioritized encryption remediation, migration to controlled key management, correction
     of the sensitivity classification, or a formal, time-limited risk acceptance per resource.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of sensitive cloud data resources from the denominator and check the sensitivity rating
@@ -9257,7 +9264,7 @@ cards:
   - As long as trend and data confidence are missing, the value is a snapshot, not steering.
   next_chain: 'From this follow: tightening of the pipeline gates (a merge blocker for critical IaC findings), adaptation
     of the IaC templates/modules, or targeted team enablement.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull a sample of scanned IaC artifacts from the IaC scanner and check the denominator completeness
@@ -9401,7 +9408,7 @@ cards:
     date by the next reporting cycle; a Red state must not remain unaddressed for longer than one reporting cycle.
     Accountable: Cloud Security Lead. Action: fix the misconfiguration, adapt IaC templates, ramp up logging, or
     rethink the architecture.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of cloud identities/workloads with a high blast_radius_score; reconcile the three exposure
@@ -9411,7 +9418,7 @@ cards:
     the raw record (evidence_ref).
 - id: RES-011
   name: Cyber Insurance Control Attestation Alignment
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Cyber Risk Financing & Resilience
@@ -9538,7 +9545,7 @@ cards:
     change.'
 - id: CRY-001
   name: Crypto-Agility & Post-Quantum Readiness
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Data Security & Cryptography
@@ -9701,7 +9708,7 @@ cards:
     (subscore_inventorying, subscore_migration) and validated via the audit test.
 - id: DAT-011
   name: Data-at-Rest Encryption Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Data Security & Cryptography
@@ -9831,7 +9838,7 @@ cards:
   next_chain: Data classification without encryption coverage is only inventory, not protection.
 - id: DAT-001
   name: Sensitive Data Discovery Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Data Security & Privacy
@@ -9952,7 +9959,7 @@ cards:
   next_chain: You cannot protect data nobody knows about.
 - id: DAT-002
   name: Data Classification Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Data Security & Privacy
@@ -10074,7 +10081,7 @@ cards:
   next_chain: Without classification, DLP, encryption, and access reviews are blind.
 - id: DAT-003
   name: Sensitive Data Overexposure Risk
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Data Security & Privacy
@@ -10203,7 +10210,7 @@ cards:
   next_chain: Data risk is often permission risk, not an infrastructure problem.
 - id: DAT-004
   name: DLP Coverage for Critical Channels
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Data Security & Privacy
@@ -10325,7 +10332,7 @@ cards:
   next_chain: Makes exfiltration protection steerable instead of merely incident-driven.
 - id: DAT-005
   name: Confirmed Data Exfiltration Events
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Data Security & Privacy
@@ -10455,7 +10462,7 @@ cards:
   next_chain: Forces investments onto data exfiltration instead of abstract alerts.
 - id: DAT-006
   name: Encryption Key Hygiene
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Data Security & Privacy
@@ -10578,7 +10585,7 @@ cards:
   next_chain: Keys are the control behind many other controls.
 - id: DAT-007
   name: Data Retention & Deletion Compliance
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Data Security & Privacy
@@ -10699,7 +10706,7 @@ cards:
   next_chain: Holding data too long enlarges the damage and regulatory burden.
 - id: DAT-008
   name: Privileged Data Access Review Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Data Security & Privacy
@@ -10816,7 +10823,7 @@ cards:
   next_chain: Data access is the last protection against insiders and credential abuse.
 - id: DAT-009
   name: Crown-Jewel Data Flow Mapping Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Data Security & Privacy
@@ -10946,7 +10953,7 @@ cards:
   next_chain: Without data flows, you cannot contain exfiltration, privacy, and third-party risk.
 - id: DAT-010
   name: Sensitive Non-Production Data Protection Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Data Security & Privacy
@@ -11078,7 +11085,7 @@ cards:
   next_chain: Test data is a classically underestimated data exfiltration path.
 - id: DET-001
   name: Priority Detection Use-Case Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -11198,7 +11205,7 @@ cards:
     evidence ref.
 - id: DET-002
   name: Detection-as-Code Test Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -11317,7 +11324,7 @@ cards:
     with an owner, deadline, and evidence ref.
 - id: DET-003
   name: Detection Rule Freshness / Decay
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -11443,7 +11450,7 @@ cards:
     as an individual case with an owner, deadline, and evidence ref.
 - id: DET-004
   name: Alert Routing Accuracy
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -11565,7 +11572,7 @@ cards:
     the effectiveness.
 - id: DET-005
   name: Case Evidence Completeness
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -11683,7 +11690,7 @@ cards:
     evidence with an owner, deadline, and evidence ref, and escalate material incidents as individual cases.
 - id: DET-006
   name: Incident Severity Calibration Accuracy
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -11806,7 +11813,7 @@ cards:
     as an individual case with an owner, deadline, and evidence ref.
 - id: DET-007
   name: Purple-Team False-Negative Validation Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -11924,7 +11931,7 @@ cards:
     close undetected tests as findings with an owner, deadline, and evidence ref.
 - id: DET-008
   name: Detection Engineering Lead Time
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -12042,7 +12049,7 @@ cards:
     with an owner, deadline, and evidence ref.
 - id: DET-009
   name: Playbook Automation Safe-Execution Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -12173,7 +12180,7 @@ cards:
     evidence ref).'
 - id: DET-010
   name: Incident Timeline Reconstruction Completeness
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -12309,7 +12316,7 @@ cards:
     ref); until closure, mark the RCA results of the affected incidents as not reliable.'
 - id: DET-011
   name: Legal / Regulatory Notification Readiness
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -12438,7 +12445,7 @@ cards:
     and evidence ref, and schedule a tabletop exercise - before the next notifiable incident.'
 - id: DET-012
   name: Corrective Action Closure Effectiveness
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -12577,7 +12584,7 @@ cards:
     to the CISO with a decision on remediation and funding (owner, deadline, evidence ref).'
 - id: DET-013
   name: Threat Hunting Coverage of Priority Hypotheses
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -12704,7 +12711,7 @@ cards:
     evidence ref, and track the transfer into detection/control improvement.'
 - id: DET-014
   name: Repeat Incident Root Cause Recurrence
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
@@ -12827,7 +12834,7 @@ cards:
     with a decision on remediation, funding, or risk acceptance (owner, deadline, evidence ref).'
 - id: DET-015
   name: Detection Rule Health & Noise Governance
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Detection Engineering & SOC
@@ -13092,7 +13099,7 @@ cards:
     Decision type: action prioritization, an investment proposal, or a risk appetite adjustment. Decision body:
     the risk committee, at Red escalation to the board. Time window: the next meeting, at Red within 14 days. Accountable:
     CISO. Action: address the weakest domain with an action package, owner, and deadline.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: Pull all 16 child card inputs (p(card ID), 0-100) at the as-of date with card version and scope from
@@ -13210,7 +13217,7 @@ cards:
     leadership; escalation to the CISO (escalation_owner), the board view runs via the referencing main card STD-001.
     Time window: immediately. Accountable: SOC leadership. Action: prioritize the containment, release the emergency
     budget.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Helper
   audit_test: Check active P1 incidents, KEV hits on in-scope assets, and confirmed IOC hits at the as-of date against
@@ -13336,7 +13343,7 @@ cards:
     review and remediation acceleration. Decision body: the exception review led by the CISO; if not reduced within
     the next steering cycle, escalation to the risk committee. Time window: the next steering cycle. Accountable:
     the risk and remediation owners. Action: reduce the oldest and most severe exceptions.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Helper
   audit_test: Pull the open exceptions, risk acceptances, and overdue remediations at the as-of date from the GRC/risk
@@ -13464,7 +13471,7 @@ cards:
     type: accept, reduce, transfer, or fund — per scenario. Decision body: the risk committee, at Red escalation
     to the board. Time window: the next meeting, at Red within 30 days. Accountable: CISO. Action: document the
     treatment decision with an owner and deadline.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull the denominator population (all assessed prioritized risk scenarios in scope and the reporting
@@ -13599,7 +13606,7 @@ cards:
     type: confirm the risk appetite or fund a reduction — led via the main card STD-002. Decision body: the risk
     committee; the submission to the board runs via the board cockpit of the main card. Time window: the quarter.
     Accountable: CISO. Action: adjust the appetite or budget actions that lower LEF or LM.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: 'Reconcile the scenario list against the risk register: all prioritized scenarios must be included;
@@ -13738,7 +13745,7 @@ cards:
     or escalation. Decision body: the risk committee, at Red escalation to the board. Time window: the next meeting,
     at Red within 30 days. Accountable: the CISO with the service owner. Action: start the investment, treat the
     risk, or bring about an appetite decision.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Check the object list against the scope: all business services must be scored — a top N without a
@@ -13873,7 +13880,7 @@ cards:
   next_chain: 'Trigger: a critical supplier risk open. Decision type: a contract, exit, or additional control. Decision
     body: inherited from the referencing main card STD-003; escalation to the board (escalation_owner). Time window:
     the defined deadline. Accountable: the TPRM Owner. Action: renegotiate, secure, or replace the supplier.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Load the subscores STD-032, STD-062, and STD-070 with card version and scope from the lineage and
@@ -14008,7 +14015,7 @@ cards:
     targeted investment, or escalation. Decision body: the risk committee, at Red escalation to the board. Time
     window: the next meeting, at Red within 30 days. Accountable: CISO. Action: re-steer the action portfolio or
     bring about an appetite/plan adjustment.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: Load the versioned baseline (value, date, scope, rule version) and the versioned plan trajectory (plan_value_period,
@@ -14026,7 +14033,7 @@ cards:
   lag_type: lagging
   priority: P1
   mvp: MVP-2
-  card_version: 0.9.1
+  card_version: 0.9.2
   status: normative_candidate
   scope: In-scope objects of the Executive & Enterprise Risk domain; local scope changes must be documented and
     versioned
@@ -14066,10 +14073,7 @@ cards:
     points (risk_score_or_amount falls in the risk register from 72 to 48, verified via evidence_ref). Result =
     24 / 80 = 0.3 score points of risk reduction per person-day. With denominator = 0, n/a is reported with the
     absolute base.'
-  target_thresholds: 'Target: a quotient > 0 with a stable or rising trend versus the previous period and all top-5
-    investments with a risk reduction verified via evidence_ref; Amber: a quotient > 0 but a falling trend versus
-    the previous period, or data confidence < 85 (uncertain evidence); Red: a quotient = 0 (no verified risk reduction
-    in the reporting period)'
+  target_thresholds: "Target: a quotient > 0 with a stable or rising trend versus the previous period and all top-5 investments with verified risk reduction; Amber: a positive quotient with a falling trend; Red: a quotient <= 0. Missing comparable prior-period evidence makes the trend provisional. Apply the confidence gates before assigning Green."
   numerator_denominator: Verified risk reduction (a score-point delta) / the costs of the action/program (euros
     or person-days) — different dimensions, no subset relationship
   frequency: Weekly to monthly
@@ -14161,7 +14165,7 @@ cards:
   next_chain: At Amber, the risk committee decides on an evidence commission or re-steering of the investment; at
     Red, the CISO escalates to the CFO with a proposal for a stop, budget reallocation, or formal risk acceptance;
     if the missing impact is confirmed over two quarters, the investment decision goes to the board.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: 'Pull a sample of completed security investments and substantiate the costs in the unit fixed with
@@ -14293,7 +14297,7 @@ cards:
   next_chain: At Amber (70-85), the CISO commissions retests and remediation with an owner and deadline; at Red
     (<70), the CISO escalates into the risk committee, which decides on a targeted investment, an adjustment of
     the risk appetite, or escalation to the board.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Pull a sample of critical controls from GRC/ISMS and, per control, reconcile the effectiveness_score
@@ -14412,7 +14416,7 @@ cards:
   next_chain: 'Trigger: coverage below the target. Decision type: a control investment or a conscious risk acceptance.
     Decision body: the CISO and board. Time window: the quarter. Accountable: the Control Owner. Action: close the
     gaps or formally accept the residual risk.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Check the tier-1 control list from the GRC/control register against the criticality rubric — silent
@@ -14543,7 +14547,7 @@ cards:
     (<85%) or a hard obligation without evidence, the GRC Lead escalates to the CISO, who decides on an immediate
     action, investment, or formal risk acceptance and, with a regulatory notification obligation, involves the risk
     committee or the board.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of applicable mandatory requirements from GRC/ISMS and, per requirement, check the
@@ -14678,7 +14682,7 @@ cards:
     at Red (<70 or a tier-1 service without a passed recovery test in the reporting period), the Resilience Owner
     escalates to the CISO, who decides on an investment, an adjustment of the risk appetite, or escalation toward
     the risk committee and board.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of the tier-1 services from the CMDB/service catalog and, per service, check the recovery_confidence_score
@@ -14816,7 +14820,7 @@ cards:
   next_chain: At Amber (CDI 100-120), the CISO commissions a reduction plan per top driver with an owner and deadline;
     at Red (CDI >120 or a critical individual position), the CISO escalates into the risk committee, which decides
     on a targeted investment, an adjustment of the risk appetite, or escalation to the board.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Check the stored result for the baseline value, baseline date, baseline scope, and formula version
@@ -14954,7 +14958,7 @@ cards:
   next_chain: At Amber (P90 30-60 days), the CISO schedules the oldest open decisions with a decision-maker and
     deadline; at Red (P90 >60 days or a critical case >7 days), the CISO escalates into the risk committee, which
     decides or lifts the decision to the board.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of open security-relevant management decisions from GRC/ISMS or the risk register and,
@@ -15088,7 +15092,7 @@ cards:
     the affected KPIs; at Red (<70), the CISO escalates into the risk committee, which decides on an investment
     in data quality or a formal acceptance of the uncertainty — the affected KPIs must not be reported as Green
     until then.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Confidence Metric
   audit_test: For a sample of reported KPIs, pull the five subscores (completeness, freshness, source authority,
@@ -15104,7 +15108,7 @@ cards:
   lag_type: lagging
   priority: P1
   mvp: MVP-2
-  card_version: 0.9.1
+  card_version: 0.9.2
   status: normative_candidate
   scope: In-scope objects of the Executive & Enterprise Risk domain; local scope changes must be documented and
     versioned
@@ -15136,9 +15140,7 @@ cards:
     with a weight of 4 and measure_completion 0.6 with a weight of 2. Result = (0.8*4 + 0.6*2) / (4+2) * 100 = 4.4
     / 6 * 100 = 73.3%. With a plan value of 70% for the period, the actual value lies above plan - the target is
     met.'
-  target_thresholds: 'Target: >plan (the actual value above plan_value_pct of the period); Amber: a plan deviation
-    of 10-25%; Red: a plan deviation of >25%. Plan deviation = (plan_value_pct - the actual value) / plan_value_pct
-    * 100; plan_value_pct is the versioned plan value per reporting period.'
+  target_thresholds: "Target: actual value >= plan_value_pct; Amber: a shortfall >0% and <=25%; Red: a shortfall >25%. Shortfall = (plan_value_pct - actual value) / plan_value_pct * 100. The plan is versioned and must be >0 for relative comparison; otherwise report the assessment as not applicable and retain the absolute values."
   numerator_denominator: 'A weighted average: sum(measure_completion_i * weight_i) / sum(weight_i) * 100, with measure_completion
     as a fraction of 0-1. If sum(weight_i)=0, the value is n/a.'
   frequency: Weekly to monthly
@@ -15221,7 +15223,7 @@ cards:
     of the risk committee within the reporting period. Accountable: CISO. Action: identify the actions with the
     highest risk reduction weight and the largest plan delay and re-steer them with resources, an owner, and a new
     date; alternatively, adjust plan_value_pct with versioning and mark it as a trend break.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: Pull a sample of roadmap actions from GRC/ISMS and reconcile measure_completion (a fraction of 0-1)
@@ -15232,7 +15234,7 @@ cards:
     the versioned planning and recalculate the plan deviation.
 - id: EXP-001
   name: CTEM Attack-Path & Lateral-Movement Exposure Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Exposure Management / CTEM
@@ -15515,7 +15517,7 @@ cards:
     reporting cycle; a Red state must not remain unaddressed for longer than one reporting cycle. Accountable: the
     GRC Lead. Action: assign the control owner, update the evidence, review the risk acceptance, or address the
     audit finding.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Pull a sample of controls from the numerator; per control_id, cross-check the current evidence (evidence_id,
@@ -15629,7 +15631,7 @@ cards:
     the risk acceptances, or reschedule the control test. Decision body: the GRC Lead with the control owners; at
     Red, the CISO. Time window: with an owner and date by the next reporting cycle. Accountable: the GRC Lead. Action:
     activate the owners, renew the evidence, review the acceptances, work off the findings.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Confidence Metric
   audit_test: Pull a sample of required evidence items; per evidence_id, check the date, status, and due date (due_date)
@@ -15643,7 +15645,7 @@ cards:
   lag_type: leading
   priority: P0
   mvp: MVP-1
-  card_version: 0.9.1
+  card_version: 0.9.2
   status: normative_candidate
   scope: In-scope objects of the Governance & Compliance domain; local scope changes must be documented and versioned
   unit: Duration (days)
@@ -15675,10 +15677,7 @@ cards:
     2, 4, 10, 20, and 30 days are present. P50/median = 10 days. P90 per the nearest-rank method (rank = ceil of
     0.9 * 5 = 5, i.e. the fifth-smallest value) = 30 days. One of the acceptances is non-critical and expired for
     20 days, and no critical acceptance is expired: status = Amber (an overdue status of <30d).'
-  target_thresholds: 'Target: no expired acceptances, in particular no expired critical acceptances; Amber: at least
-    one expired, non-critical acceptance with an overdue status of <30d; Red: at least one acceptance with an overdue
-    status of >30d or an expired critical acceptance (critical). The RAG assignment is case-based; P50/P90 of the
-    age values are reported supplementarily as a trend quantity.'
+  target_thresholds: "Target: no expired acceptances; Amber: at least one expired non-critical acceptance, maximum overdue_days <30, and no expired critical acceptance; Red: maximum overdue_days >=30 or any expired critical acceptance. Red overrides Amber. P50/P90 of age values are supplementary trend outputs."
   numerator_denominator: Not applicable as a rate. Case base = the open and expired risk acceptances in scope with
     a valid acceptance or expiry date at the as-of date; reported are P50/median and P90 of the age values in days
     and the case-based RAG status.
@@ -15753,7 +15752,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'Follow-up actions: renew or close expired risk acceptances, bring missing expiry dates up to date,
     escalate expired critical acceptances to the CISO, retake the risk decision with the risk owner.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of open and expired risk acceptances (exception_id) from GRC/ISMS or the risk register;
@@ -15897,7 +15896,7 @@ cards:
     one reporting cycle. Accountable: the GRC Lead. Action: bring missing expiry dates of critical exceptions up
     to date, put in place compensating controls and test them for effectiveness, close or reapprove critical exceptions,
     reduce the top contributions to the index value with an owner and date.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of active policy exceptions (exception_id) from GRC/ISMS and the policy repository;
@@ -16017,7 +16016,7 @@ cards:
     owner with a date by the next reporting cycle; a Red state must not remain unaddressed for longer than one reporting
     cycle. Accountable: the GRC Lead. Action: assign a subject-matter and technical owner to controls without an
     owner, have unconfirmed ownerships confirmed, refill orphaned or outdated owner entries after changes.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Confidence Metric
   audit_test: Pull a sample of controls from the numerator; per control_id, check in GRC/ISMS that the subject-matter
@@ -16142,7 +16141,7 @@ cards:
     and date by the next reporting cycle; a Red state must not remain unaddressed for longer than one reporting
     cycle. Accountable: the GRC Lead. Action: demand additional evidence per closure, professionally fix the recurrence
     causes, close due findings on time with evidence, and track the results in the next internal audit.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of closed findings from the numerator; per finding_id, check the closure time against
@@ -16276,7 +16275,7 @@ cards:
     Action: reallocate budget toward the top risk reduction objectives, check and assign unassigned items or report
     them outside with a rationale, validate the assignment rule in the portfolio/investment review, hand misallocations
     as a decision submission to the CISO and budget owners.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: Pull a sample of budget items from the numerator; reconcile the assignment of each item to a top risk
@@ -16389,7 +16388,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: 'From this follows: commission unmapped requirements with an owner and date for remapping to risk_id,
     control_id, and kpi_id; check the implementation in the follow-up review against the individual records.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Confidence Metric
   audit_test: 'Pull a sample of applicable requirements from GRC/ISMS; per requirement, check the mapping to the
@@ -16517,7 +16516,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: 'Follow-up actions: escalate overdue cases per risk class with a decision-maker and date, adjust the
     committee cadence and submission path, and check the effect in the follow-up review against P50/P90.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of decided cases from GRC/ISMS; reconcile decision_request_date, decision_date, and
@@ -16639,7 +16638,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'From this follows: activate the owners, renew the evidence, review the acceptances, work off the
     findings.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of critical third parties from the denominator; per supplier, verify the assurance
@@ -16767,7 +16766,7 @@ cards:
   - Encryption without an escrowed key protects nobody in the loss case - it only prevents your own recovery.
   next_chain: From this typically follows an enforcement rollout for the remainder, an escalation of unmanaged device
     classes, or a documented, time-limited risk acceptance with a compensating control.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Pull a device sample from the CMDB and check the denominator completeness of the managed endpoints
@@ -16912,7 +16911,7 @@ cards:
   - A single value, a single month - that deceives. Only the trajectory over several cycles is the statement.
   next_chain: From this typically follows a targeted intervention campaign, a policy or platform decision, an adjustment
     of the high-risk definition, or a conscious escalation toward the board.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: Check the weights (0.35/0.25/0.20/0.20) against the reported card version; pull the four subscores
@@ -17027,7 +17026,7 @@ cards:
   - A high report rate with falling difficulty is not progress - it is a staging.
   next_chain: From this typically follows targeted coaching for high-risk groups, an adjustment of the reporting/IR
     process, a platform or template update, or feeding the workforce as a detection source into the SOC workflow.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a campaign sample (campaign_id) from the phishing simulation platform; reconcile delivered_simulations
@@ -17139,7 +17138,7 @@ cards:
   - Whoever only lowers the click rate optimizes the statistics. Whoever raises the report rate optimizes the defense.
   next_chain: From this typically follows a role-specific training adjustment, a tightening of technical controls
     (banners, link rewriting), or a targeted campaign for repeat fallers.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a campaign sample and reconcile delivered_simulations against the delivery proof of the platform
@@ -17262,7 +17261,7 @@ cards:
     onto the units below the target with a root cause analysis (language, work context, device type), at Red (a
     ratio below 1.0), a binding intervention series in the affected unit, or with the target reached stably, the
     confirmation that the program works and can be scaled.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: Pull a sample of campaigns and reconcile the reported and failed simulations of the same campaign
@@ -17381,7 +17380,7 @@ cards:
     after-action report.
   next_chain: From this typically follows an optimization of the reporting path (a one-click button, mobile parity),
     SOAR automation for first reports, or targeted training on speed instead of only recognition.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of reported cases, simulations and real cases separately; reconcile delivery_timestamp
@@ -17491,7 +17490,7 @@ cards:
     culture that carries all other HRM metrics.
   next_chain: From this typically follows a targeted intervention series for the high-risk group, a compensating
     technical control for its critical entitlements, or a conscious, documented risk acceptance.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a user sample from the numerator and, per user, substantiate the ≥3 failed simulations in the
@@ -17604,7 +17603,7 @@ cards:
   - An exercise that cannot be recalled in the serious case was no exercise - it was occupation.
   next_chain: From this typically follows an adjustment of the simulation contents to real campaign patterns, a
     strengthening of the reporting paths for critical groups, or a gateway rule tightening.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Pull a sample of detected real campaigns from the SOAR/IR platform and trace the campaign clustering
@@ -17716,7 +17715,7 @@ cards:
   - This number holds up in the audit - it cannot steer. The behavioral metrics of this domain are there for that.
   next_chain: From this typically follows an escalation of delinquent units to their leadership, an evidence package
     for the audit and supervisory authority, or an adjustment of the role-module assignment.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Pull an employee sample and reconcile completion_status, training_completed_at, and training_valid_until
@@ -17831,7 +17830,7 @@ cards:
   - An intervention that comes days later is a newsletter.
   next_chain: From this typically follows the expansion of the trigger connection (DLP, gateway), the replacement
     of ineffective intervention formats, or an automation decision for the intervention engine.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of risk triggers from the denominator and verify each trigger against the source system
@@ -17951,7 +17950,7 @@ cards:
     for strictly confidential patterns, the handover of strictly confidential cases as individual incidents into
     the IR pipeline, the coupling of every detection to a just-in-time intervention (HRM-009), or a policy and communication
     decision.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull a sample of the numerator users and, per case, check the raw record in DLP/CASB or the browser
@@ -17961,7 +17960,7 @@ cards:
     value; additionally check that strictly confidential inputs are reported as Red cases.'
 - id: IDN-001
   name: Non-Human / Machine Identity Governance Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Identity & Access Management
@@ -18236,7 +18235,7 @@ cards:
   next_chain: 'Trigger: coverage 95-100% with a documented exception (Amber) or <95% or at least one admin account
     without MFA (Red). Reaction: activate MFA enforcement, withdraw privileges, reduce emergency accounts, strengthen
     JML discipline.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Pull the population of privileged accounts from Entra ID/AD/IAM and PAM (the demarcation via privilege_level)
@@ -18362,7 +18361,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'Trigger: coverage 70-90% (Amber) or <70% (Red). From the value: migration to phishing-resistant factors,
     an entitlement cleanup, an emergency account review, or a JML process improvement.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Determine the population of critical/privileged accounts from Entra ID/AD/IAM and PAM and pull a sample;
@@ -18497,7 +18496,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'Trigger: a score > 0 (Red with a critical privileged account inactive for >30 days). Reaction: withdraw
     privileges, tighten MFA, reduce emergency accounts, strengthen JML discipline.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull a sample of the contributing accounts from Entra ID/AD/IAM and PAM; per account, verify the
@@ -18630,7 +18629,7 @@ cards:
   - The number carries only if trend, scope, and data quality come along.
   next_chain: 'Reaction: withdraw or downgrade deviating assignments, update the target role model, clean up expired
     entitlements, document and schedule exceptions.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of deviating assignments from the drift list and, per case, check in Entra ID/AD/IAM
@@ -18758,7 +18757,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'Reaction: work off overdue JML events, correct the HR-to-IAM interface and escalation paths, automate
     the provisioning/deprovisioning, sharpen the SLA responsibilities per process step.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of due JML events from the reporting period and, per event, reconcile the joining, change,
@@ -18911,7 +18910,7 @@ cards:
     5 working days, the remaining components by the next monthly report. Accountable: the IAM Owner. Action: retrofit
     missing control components per account with evidence (MFA/compensating control, vaulting, monitoring, approval,
     a periodic test, owner), deactivate emergency accounts no longer needed.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Pull a sample of break-glass/emergency accounts from Entra ID/AD/IAM and PAM and, per account, check
@@ -19037,7 +19036,7 @@ cards:
   - As long as trend and data confidence are missing, the value is a snapshot, not steering.
   next_chain: 'From the value: connect target systems and accounts to the PAM, block direct access paths past the
     PAM, activate session recording, document and schedule exceptions.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of privileged sessions in scope from Entra ID/AD/IAM and, per session, check in the
@@ -19195,7 +19194,7 @@ cards:
   next_chain: 'From the value: deactivate or time-limit guest accounts, downgrade the entitlements of external users,
     enforce MFA for external accesses, remove inactive external accounts, bring the sponsor/owner per external identity
     up to date.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull a sample of external users/guests from Entra ID/AD/IAM and, per identity, check the risk factors
@@ -19340,7 +19339,7 @@ cards:
   - As long as trend and data confidence are missing, the value is a snapshot, not steering.
   next_chain: 'From the value: block legacy authentication via a conditional-access/auth policy, migrate the affected
     apps and clients to modern authentication, time-limit and document exceptions.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of the counted accounts/apps with legacy authentication and prove the auth mechanism
@@ -19467,7 +19466,7 @@ cards:
   next_chain: 'Reaction: untangle toxic permission combinations, withdraw individual rights or distribute them to
     separate identities, document and schedule SoD exceptions with a compensating control, sharpen toxic_combination_rules
     with versioning on false hits.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Check the rule set of the toxic combinations (toxic_combination_rules) for versioning and approval.
@@ -19476,7 +19475,7 @@ cards:
     sum from the individual records; critical combinations without an action must be reported as Red.
 - id: REG-001
   name: Regulatory Major Incident Reporting SLA Attainment
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Incident Response, Legal & Regulatory Reporting
@@ -19746,7 +19745,7 @@ cards:
   - 'Data quality: A/B logic or a comparable control. Measurement intervals uniform.'
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'Reaction: measure the effect against the baseline, confirm or abort the measure, adjust the portfolio.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: Pull a sample of measures (measure_id, objective_id) from GRC/ISMS or ITSM; verify expected_risk_reduction
@@ -19871,7 +19870,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: 'From this follow: verify the effect hypothesis, continue or stop the measure, reprioritize the program
     portfolio.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: Pull a sample of measures (measure_id) from GRC/ISMS and the risk register; reconcile expected_risk_reduction
@@ -19992,7 +19991,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'Reaction: initiate the replanning before gaps arise — take the schedule, scope, or resource decision
     per measure, escalate blocking dependencies, reassess the delivery confidence in the follow-up review.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Confidence Metric
   audit_test: Pull a sample of running measures (measure_id, status, due_date) from ITSM and GRC/ISMS; check the
@@ -20126,7 +20125,7 @@ cards:
   - The number carries only if trend, scope, and data quality come along.
   next_chain: 'From this follow: verify the effect hypothesis, continue or stop the measure, reprioritize the program
     portfolio.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: Pull a sample of measures with a reported value from GRC/ISMS; per measure_id, substantiate the before-after
@@ -20250,7 +20249,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'From this follow: escalate overaged blockers and resolve them with the responsible owners, re-plan
     or stop the blocked measures, reprioritize the dependencies in the program portfolio.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of open blockers from ITSM and reconcile blocker_created_at against the unaltered original
@@ -20397,7 +20396,7 @@ cards:
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: 'From this follow: verify the effect hypothesis, continue, correct, or stop the measure, and reprioritize
     the program portfolio.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: 'Pull a sample of completed measures from GRC/ISMS; reconcile measure_completed_at against the unaltered
@@ -20521,7 +20520,7 @@ cards:
   next_chain: 'Reaction: close the evidence gaps per measure (deliver missing proofs on the implementation, scope,
     or effect), mark effect statements without evidence as unsubstantiated, sharpen the proof process of the affected
     owners.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Confidence Metric
   audit_test: Pull the denominator list of all measures in scope and the reporting period from GRC/ISMS and check
@@ -20647,7 +20646,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'Reaction: correct key results with a low achievement rate, measure the effect against the baseline,
     confirm or abort the measure, adjust the portfolio.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: Pull a sample of key results; reconcile kr_actual_value and kr_target_value per KR against the source
@@ -20754,7 +20753,7 @@ cards:
   - Only trend and data confidence turn the numeric value into a basis for steering.
   next_chain: 'From this follow: verify the effect hypothesis, continue or stop the measure, reprioritize the program
     portfolio.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull the denominator list of the completed measures in scope from ITSM/GRC-ISMS. Check a sample of
@@ -20870,7 +20869,7 @@ cards:
   - As long as trend and data confidence are missing, the value is a snapshot, not steering.
   next_chain: 'Reaction: plan measures for uncovered top risks or bring about a documented, time-limited risk acceptance,
     adjust the portfolio.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: 'Pull the top-risk list at the reporting as-of date from the risk register and fix it as the denominator.
@@ -20880,7 +20879,7 @@ cards:
     and that denominator = 0 was reported as n/a with the absolute base.'
 - id: NET-001
   name: Network Segmentation Enforcement Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Network, Email & Web Defense
@@ -21008,7 +21007,7 @@ cards:
   next_chain: Limits the blast radius; without segmentation, every incident quickly becomes enterprise-wide.
 - id: NET-002
   name: Segmentation Policy Drift
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Network, Email & Web Defense
@@ -21139,7 +21138,7 @@ cards:
   next_chain: Prevents "temporary" openings from becoming permanent.
 - id: NET-003
   name: Egress Control Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Network, Email & Web Defense
@@ -21258,7 +21257,7 @@ cards:
   next_chain: Egress prevents C2 and exfiltration before detection alone has to save the day.
 - id: NET-004
   name: Remote Access / ZTNA Policy Compliance
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Network, Email & Web Defense
@@ -21388,7 +21387,7 @@ cards:
   next_chain: Remote access is the royal road for attackers; here there must be no gray zone.
 - id: NET-005
   name: NAC / Untrusted Device Quarantine Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Network, Email & Web Defense
@@ -21508,7 +21507,7 @@ cards:
   next_chain: Stops shadow assets at the entry point.
 - id: NET-006
   name: DNS Security Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Network, Email & Web Defense
@@ -21626,7 +21625,7 @@ cards:
   next_chain: DNS is a cheap C2 and exfiltration sensor.
 - id: NET-007
   name: Email Authentication Enforcement Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Network, Email & Web Defense
@@ -21765,7 +21764,7 @@ cards:
   next_chain: Reduces spoofing and business email compromise.
 - id: NET-008
   name: Email/Web Protection Escape Rate
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Network, Email & Web Defense
@@ -21897,7 +21896,7 @@ cards:
   next_chain: Measures the real protection performance against the most frequent initial vector.
 - id: NET-009
   name: Shadow DNS / Public Resolver Usage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Network, Email & Web Defense
@@ -22014,7 +22013,7 @@ cards:
   next_chain: A bypass renders central protection layers ineffective.
 - id: NET-010
   name: Network Monitoring Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Network, Email & Web Defense
@@ -22134,7 +22133,7 @@ cards:
   next_chain: Without network transparency, lateral movement remains visible late.
 - id: TPR-013
   name: Critical Function to ICT Dependency Mapping Completeness
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Operational Resilience & Service Dependency Management
@@ -22260,7 +22259,7 @@ cards:
     missing or invalid maps with an owner, deadline, and evidence ref and keep them current change-triggered.
 - id: OT-001
   name: OT/ICS/IoT Security Domain Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: OT/ICS/IoT Security
@@ -22408,7 +22407,7 @@ cards:
     in the next reporting cycle per the audit test (walkdown/passive inventory).'
 - id: PRI-001
   name: Privacy Operations Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Privacy / Data Protection Operations
@@ -22648,7 +22647,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: 'Reaction: a real restore test, an RTO/RPO adjustment, check the backup architecture, address the
     supplier dependency.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of performed restore tests (restore_test_id) from the backup platform; reconcile test_result
@@ -22777,7 +22776,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'Reaction: a real restore test, an RTO/RPO adjustment, check the backup architecture, address the
     supplier dependency.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of critical services from the CMDB/service catalog; reconcile the three weighted subscores
@@ -22898,7 +22897,7 @@ cards:
     measured per case, not estimated.'
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: 'Consequence: schedule a restore test, readjust RTO/RPO realistically, renegotiate the supplier SLA.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample of recoveries/exercises from the backup platform or BCM tool; per case, reconcile the
@@ -23020,7 +23019,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: 'Reaction: a real restore test, an RTO/RPO adjustment, check the backup architecture, address the
     supplier dependency.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample of recoveries/exercises from the backup platform or BCM tool; per case, reconcile the
@@ -23137,7 +23136,7 @@ cards:
   next_chain: 'Consequence: activate immutable/WORM protection for unprotected critical systems, retrofit backup
     isolation or an air gap, verify the immutable status in the backup platform, and document interim compensation
     controls with an expiry date.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of critical systems from the CMDB/service catalog; per system, verify the immutable
@@ -23262,7 +23261,7 @@ cards:
   next_chain: 'Reaction: harden the weakest component of the formula — network segmentation, separate backup identities,
     separated admin paths, sharpen the restore access control — and check the effect in the follow-up review on
     the subscore.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Pull a sample of the five subscores (network_isolation, identity_separation, admin_separation, monitoring,
@@ -23387,7 +23386,7 @@ cards:
   - The number carries only if trend, scope, and data quality come along.
   next_chain: 'Consequence: schedule the next crisis exercise with a more realistic scenario, plan missing stakeholders
     in obligatorily, close open lessons learned with a date and owner.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Maturity Metric
   audit_test: Pull a sample of the subscore inputs (exercise_frequency, scenario_realism, stakeholder_participation,
@@ -23524,7 +23523,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'Reaction: a real restore test, an RTO/RPO adjustment, check the backup architecture, address the
     supplier dependency.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of critical supplier dependencies (supplier_id, service_id) from the CMDB/service catalog
@@ -23654,7 +23653,7 @@ cards:
   next_chain: 'Reaction: reduce the debt components — schedule restore tests for untested services, rework failed
     restore tests, measure unknown RTO/RPO, update outdated runbooks; Tier-1 first, and check the effect in the
     follow-up review on the component value.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Per component (untested_services, failed_restore_tests, RTO_RPO_unknown, stale_runbooks), pull a sample
@@ -23769,7 +23768,7 @@ cards:
   - As long as trend and data confidence are missing, the value is a snapshot, not steering.
   next_chain: 'Consequence: schedule missing BC exercises for critical services, reschedule overdue tests, close
     coverage gaps per business unit.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Reconcile the denominator (the critical services in scope) against the CMDB/service catalog (service_criticality);
@@ -23779,7 +23778,7 @@ cards:
     subset of the denominator.
 - id: RES-001
   name: BIA Coverage & Freshness
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Resilience, Crisis & Recovery
@@ -23916,7 +23915,7 @@ cards:
   next_chain: RTO/RPO without a fresh BIA are numbers without authority.
 - id: RES-002
   name: End-to-End Service Recovery Test Depth
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Resilience, Crisis & Recovery
@@ -24041,7 +24040,7 @@ cards:
   next_chain: A restore of a file is not a recovery of a business service.
 - id: RES-003
   name: Clean-Room / Ransomware Recovery Readiness
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Resilience, Crisis & Recovery
@@ -24161,7 +24160,7 @@ cards:
   next_chain: Ransomware recovery needs a clean environment, not only backups.
 - id: RES-004
   name: Recovery Environment Capacity Adequacy
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Resilience, Crisis & Recovery
@@ -24298,7 +24297,7 @@ cards:
   next_chain: Many recovery plans fail on capacity, not on backup files.
 - id: RES-005
   name: Crisis Communications Reachability
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Resilience, Crisis & Recovery
@@ -24411,7 +24410,7 @@ cards:
   next_chain: When mail/Teams is down, this KCI decides on the capability to act.
 - id: RES-006
   name: Manual Workaround Coverage for Critical Services
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Resilience, Crisis & Recovery
@@ -24535,7 +24534,7 @@ cards:
   next_chain: Digital resilience also means being capable of acting without digital systems.
 - id: RES-007
   name: Cyber Insurance Coverage-to-Exposure Fit
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Resilience, Crisis & Recovery
@@ -24663,7 +24662,7 @@ cards:
   next_chain: Insurance is not a substitute for controls, but a measurable transfer lever.
 - id: RES-008
   name: Backup Privileged Access Separation Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Resilience, Crisis & Recovery
@@ -24793,7 +24792,7 @@ cards:
   next_chain: Backups deletable with the same admins are not resilience.
 - id: RES-009
   name: Recovery Dependency Drift
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Resilience, Crisis & Recovery
@@ -24940,7 +24939,7 @@ cards:
     the effect in the following month and in the next recovery test.'
 - id: RES-010
   name: Post-Recovery Security Validation Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Resilience, Crisis & Recovery
@@ -25081,7 +25080,7 @@ cards:
     the affected service again in the next recovery test or the following quarter.'
 - id: CFG-001
   name: Secure Configuration Baseline Compliance
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Secure Configuration & Endpoint
@@ -25228,7 +25227,7 @@ cards:
   next_chain: Hardening prevents entire attack classes; do not only close findings.
 - id: CFG-002
   name: Configuration Drift Age
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Secure Configuration & Endpoint
@@ -25359,7 +25358,7 @@ cards:
   next_chain: Old drift is silently accepted risk.
 - id: CFG-003
   name: Baseline Exception Aging
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Secure Configuration & Endpoint
@@ -25494,7 +25493,7 @@ cards:
   next_chain: Prevents baselines from becoming decoration.
 - id: CFG-004
   name: Network Device Config Backup & Review Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Secure Configuration & Endpoint
@@ -25646,7 +25645,7 @@ cards:
   next_chain: A device without secured config knowledge is a recovery and attack-surface risk.
 - id: CFG-005
   name: Security Change Gate Compliance
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Secure Configuration & Endpoint
@@ -25786,7 +25785,7 @@ cards:
   next_chain: Stops risky changes before they become incidents.
 - id: END-001
   name: Endpoint Protection Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Secure Configuration & Endpoint
@@ -25924,7 +25923,7 @@ cards:
   next_chain: Without coverage, endpoint detection is only a sample.
 - id: END-002
   name: EDR Sensor Health & Tamper Protection
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Secure Configuration & Endpoint
@@ -26080,7 +26079,7 @@ cards:
   next_chain: 'An installed but dead sensor is worse than a missing one: it produces false security.'
 - id: END-003
   name: Malware Prevention Control Test Pass Rate
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Secure Configuration & Endpoint
@@ -26208,7 +26207,7 @@ cards:
   next_chain: Proves prevention and detection more realistically than the vendor status.
 - id: END-004
   name: Host Firewall & Local Attack Surface Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Secure Configuration & Endpoint
@@ -26343,7 +26342,7 @@ cards:
   next_chain: Reduces lateral movement and commodity attacks.
 - id: END-005
   name: Removable Media Control Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Secure Configuration & Endpoint
@@ -26482,7 +26481,7 @@ cards:
   next_chain: Closes simple exfiltration and malware paths.
 - id: LOG-001
   name: Log Source Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -26613,7 +26612,7 @@ cards:
     gaps, their funding has priority over detection optimization, and the MTTD/detection rate are not reliable.'
 - id: LOG-002
   name: Critical Log Freshness SLA
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -26746,7 +26745,7 @@ cards:
     deadline; deliberately paused sources only as a time-limited exception with an expiry date.'
 - id: LOG-003
   name: Required Event Coverage by Source Class
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -26870,7 +26869,7 @@ cards:
     counts as a named detection blockade for the affected TTPs.'
 - id: LOG-004
   name: Parser & Normalization Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -26998,7 +26997,7 @@ cards:
     and false-negative measurement are not reliable.'
 - id: LOG-005
   name: Log Field Completeness Score
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -27145,7 +27144,7 @@ cards:
     Green without the field completeness.'
 - id: LOG-006
   name: Clock Synchronization Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -27270,7 +27269,7 @@ cards:
     not auditable.'
 - id: LOG-007
   name: Log Retention Compliance
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -27401,7 +27400,7 @@ cards:
     or escalate the residual risk.'
 - id: LOG-008
   name: Log Integrity & Tamper-Evidence Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -27526,7 +27525,7 @@ cards:
     residual risk time-limited.'
 - id: LOG-009
   name: Log Ingestion Drop / Loss Rate
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -27680,7 +27679,7 @@ cards:
   next_chain: A drop rise triggers a platform incident and a capacity decision.
 - id: LOG-010
   name: Security Sensor Health Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -27814,7 +27813,7 @@ cards:
   next_chain: Close the sensor gaps first; detection successes without a sensor population are window dressing.
 - id: LOG-011
   name: Telemetry Blind-Spot Age
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -27937,7 +27936,7 @@ cards:
   next_chain: Aging blind spots are escalated to the risk committee, not hidden in the SOC.
 - id: LOG-012
   name: ATT&CK Data Source Coverage for Priority Threats
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -28062,7 +28061,7 @@ cards:
   next_chain: 'A missing data source: rule building is impossible; prioritize the telemetry before use-case rhetoric.'
 - id: LOG-013
   name: Telemetry-to-Detection Utilization
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -28195,7 +28194,7 @@ cards:
     decision with an owner, deadline, and evidence ref.'
 - id: LOG-014
   name: End-to-End Synthetic Event Detection Pass Rate
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -28323,7 +28322,7 @@ cards:
     evidence ref.
 - id: LOG-015
   name: Logging Exception Debt
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -28457,7 +28456,7 @@ cards:
   next_chain: Forces a remediation or explicit risk acceptance for logging gaps.
 - id: LOG-016
   name: Telemetry Cost-to-Value Ratio
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Telemetry & Log Management
@@ -28597,7 +28596,7 @@ cards:
     decision with an owner, deadline, and evidence ref.
 - id: VAL-001
   name: Penetration Test Scope & Finding Remediation Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Validation & Assurance
@@ -28764,7 +28763,7 @@ cards:
     and a review of the pentest scope, frequency, and budget.'
 - id: TLPT-001
   name: Threat-Led Penetration Testing / TIBER Program Compliance
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Security Validation & Assurance / DORA
@@ -29024,7 +29023,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'Consequence: prioritize or cancel TI feeds, sharpen the TIP integration in SIEM/SOAR, derive detection
     rules and hunting hypotheses from TI, anchor TI-supported prioritization in the triage playbooks.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of TI-applicable incidents/detections from the SIEM and incident register; per case,
@@ -29146,7 +29145,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: 'From this follows: adjust the memberships, set the contribution cadence, sharpen the SLA for processing
     shared intel.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull the subscores (active_memberships, contributions, received_actionable_intel, SLA_to_process_shared_intel)
@@ -29276,7 +29275,7 @@ cards:
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: 'Consequence: with a detection gap, prioritize technical detection for the affected incident classes,
     otherwise strengthen the reporting channels and feedback to reporters.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull all incidents with incident_status = 'confirmed' in the reporting period from the ITSM (the denominator);
@@ -29400,7 +29399,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: 'From this follows: prioritize overdue third-party risks, sharpen the treatment plans with an owner
     and date, have acceptance decisions made formally by the risk owner.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of due third-party risks from the risk register and reconcile it against GRC/ISMS; per
@@ -29536,7 +29535,7 @@ cards:
   next_chain: 'From this follows: analyze the drivers per segment (business service, incident severity), resolve
     the action plan with an owner and date, check the effect via the feedback cycle in the following period against
     this metric.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of survey responses (survey_response_id) from the survey/feedback tool and reconcile
@@ -29668,7 +29667,7 @@ cards:
   next_chain: 'Consequence: identify the weakest subcomponent (the timeliness, error rate, stakeholder feedback,
     template usage) and sharpen it in a targeted way: update the escalation and communication plans, revise the
     templates, or schedule communication training.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Load the subscores communication_timeliness_score, error_rate, stakeholder_feedback, and template_usage
@@ -29795,7 +29794,7 @@ cards:
   - The number carries only if trend, scope, and data quality come along.
   next_chain: 'From this follows: identify uninvolved stakeholder groups, anchor participation duties bindingly
     in the processes and runbooks, or adjust the relevance definition justified and versioned.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of relevant stakeholders (stakeholder_id_or_group) from the denominator individual records
@@ -29939,7 +29938,7 @@ cards:
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: 'Consequence: per late case, perform the cause analysis, sharpen the reporting process, responsibilities,
     and escalation paths, if needed initiate and document a follow-up report to the authority or stakeholders.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of reportable incidents from ITSM/GRC and reconcile detected_at/reported_at against
@@ -30063,7 +30062,7 @@ cards:
   - The number carries only if trend, scope, and data quality come along.
   next_chain: 'Consequence: update the runbooks with mandatory involvements and deadlines per incident class, formalize
     the handovers, obligate the affected units.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of incidents with a collaboration requirement from the denominator individual records
@@ -30180,7 +30179,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: 'From this follows: reprioritize overdue feedback items, sharpen the implementation owners and dates,
     close unimplementable items justified and versioned.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of due prioritized feedback items (feedback_id) from the denominator individual records
@@ -30306,7 +30305,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: Follow-up reactions are detection tuning, a playbook adjustment, a shift briefing, or a concrete incident
     escalation.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of confirmed incidents of the reporting period from the ITSM/incident register; per
@@ -30438,7 +30437,7 @@ cards:
   - Only trend and data confidence turn the numeric value into a basis for steering.
   next_chain: Follow-up reactions are detection tuning, a playbook adjustment, a shift briefing, or a concrete incident
     escalation.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of confirmed incidents per incident_id from the ITSM/incident register; reconcile occurred_at
@@ -30570,7 +30569,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: Follow-up reactions are detection tuning, a playbook adjustment, a shift briefing, or a concrete incident
     escalation.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of resolved incidents of the reporting period from the ITSM/incident register; reconcile
@@ -30695,7 +30694,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: Follow-up reactions are detection tuning, a playbook adjustment, a shift briefing, or a concrete incident
     escalation.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample from the denominator (all confirmed incidents of the period) in the ITSM/incident register;
@@ -30822,7 +30821,7 @@ cards:
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: 'The consequence from the number: turn the detection dials, sharpen the playbook, brief the shift,
     or escalate an incident.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample from the denominator (the performed APT scenarios, purple-team scenarios, and validated
@@ -30961,7 +30960,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: 'The consequence from the number: turn the detection dials, sharpen the playbook, brief the shift,
     or escalate an incident.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample from the denominator: the simulated attempts from the phishing simulation platform,
@@ -31090,7 +31089,7 @@ cards:
   - Only trend and data confidence turn the numeric value into a basis for steering.
   next_chain: 'The consequence from the number: turn the detection dials, sharpen the playbook, brief the shift,
     or escalate an incident.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of validated exfiltration events and tests from the denominator; per case, reconcile
@@ -31214,7 +31213,7 @@ cards:
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: 'The consequence from the number: revise the hypothesis backlog, sharpen the validation criteria,
     adjust the hunt scope, or document the tuning/scope review versioned.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample of completed hunts of the reporting period from the ITSM/SOAR; per hunt, check the
@@ -31343,7 +31342,7 @@ cards:
   - Only trend and data confidence turn the numeric value into a basis for steering.
   next_chain: 'The consequence from the number: accelerate the agent rollout, prioritize the detection tuning, sharpen
     the containment playbook, or close the telemetry gaps — each starting at the weakest subscore.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull the four subscores effective_coverage, detection_success, containment_success, and telemetry_quality
@@ -31466,7 +31465,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: Follow-up reactions are detection tuning, a playbook adjustment, a shift briefing, or a concrete incident
     escalation.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Reconcile a sample of validated UEBA cases and test cases from SIEM/SOAR against the ITSM/incident
@@ -31589,7 +31588,7 @@ cards:
   - As long as trend and data confidence are missing, the value is a snapshot, not steering.
   next_chain: 'The consequence from the number: turn the detection dials, sharpen the playbook, brief the shift,
     or escalate an incident.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Reconcile a sample of correlated alerts/cases from the SIEM via ticket_id against the ITSM/incident
@@ -31717,7 +31716,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: 'The consequence from the number: turn the detection dials, sharpen the playbook, brief the shift,
     or escalate an incident.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of completed incidents per severity from the ITSM/incident register; reconcile detected_at
@@ -31842,7 +31841,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'The consequence from the number: turn the detection dials, sharpen the playbook, brief the shift,
     or escalate an incident.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Reconcile the list of the zero-day/emerging-TTP scenarios performed in the reporting period plus the
@@ -31972,7 +31971,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: Follow-up reactions are detection tuning, a playbook adjustment, a shift briefing, or a concrete incident
     escalation.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull the confirmed malware events and defined tests of the reporting period from the ITSM/incident
@@ -32108,7 +32107,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: 'The consequence from the number: turn the detection dials, sharpen the playbook, brief the shift,
     or escalate an incident.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull the confirmed ransomware cases and simulations of the reporting period from the ITSM/incident
@@ -32242,7 +32241,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: Follow-up reactions are detection tuning, a playbook adjustment, a shift briefing, or a concrete incident
     escalation.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull the confirmed insider cases and defined test scenarios of the reporting period from the ITSM/incident
@@ -32370,7 +32369,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: Follow-up reactions are detection tuning, a playbook adjustment, a shift briefing, or a concrete incident
     escalation.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of reviewed IDS alerts from the SIEM and, per alert, reconcile review_disposition (TP/FP),
@@ -32502,7 +32501,7 @@ cards:
   next_chain: Follow-up reactions are the targeted sharpening or supplementing of affected firewall rules (firewall_rule_id),
     the cleanup of outdated objects and exceptions in the firewall rule-set review, and, for acute cases, a concrete
     incident escalation.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Pull a sample of observed unauthorized/malicious connection attempts from the SIEM and, per case,
@@ -32627,7 +32626,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: Follow-up reactions are detection tuning, a playbook adjustment, a shift briefing, or a concrete incident
     escalation.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull the list of all validated anomalies plus the defined test scenarios of the reporting period as
@@ -32776,7 +32775,7 @@ cards:
     periods of the same kind.'
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: From the value comes a tooling business case, a sourcing decision, or an automation initiative.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample of the cost positions per cost_type and reconcile against the source systems: labor_cost
@@ -32916,7 +32915,7 @@ cards:
     of the same kind.'
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: From the value comes a tooling business case, a sourcing decision, or an automation initiative.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample of standardized SOC tasks and reconcile the automation_flag per task against the ITSM
@@ -33062,7 +33061,7 @@ cards:
     target value maintained versioned. Comparison periods of the same kind.'
   - Only trend and data confidence turn the numeric value into a basis for steering.
   next_chain: From the value comes a tooling business case, a sourcing decision, or an automation initiative.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Recalculate the three index components from the SIEM raw data: false_positive_alerts/total_alerts,
@@ -33183,7 +33182,7 @@ cards:
     coverage; unchecked alerts do not enter the rate and lower data confidence. Comparison periods of the same kind.'
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: 'The reaction: a budget discussion, license consolidation, or automation project.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample from the alert review sample and, per alert, reconcile the analyst triage label (a false
@@ -33310,7 +33309,7 @@ cards:
     detection_source) per case.'
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: From the value comes a tooling business case, a sourcing decision, or an automation initiative.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Reconstruct the denominator: pull the confirmed incidents plus the defined test scenarios of the
@@ -33445,7 +33444,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'The reaction: tighten the closure quality gate, sharpen the RCA process and playbooks of the affected
     incident classes, or introduce a training/review duty for repeatedly affected teams.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample of the incidents closed in the reporting period from the ITSM/incident register and
@@ -33598,7 +33597,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'The reaction: adjust the patch prioritization, trigger an emergency change for KEV or internet-facing
     findings, close the ownership gaps in the asset register, or formally time-limit a risk acceptance.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample of completed findings from the vulnerability scanner and reconcile vulnerability_detected_at
@@ -33725,7 +33724,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'The reaction: with oversteering, a capacity, automation, or sourcing measure (a staff buildup, automation,
     a tooling business case); with understeering, an adjustment of the task cut and activity portfolio.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample of time bookings from the time tracking and reconcile the effort_hours against the
@@ -33856,7 +33855,7 @@ cards:
   next_chain: 'The reaction: adjust the escalation matrix and escalation rules, replan the on-call staffing/roster,
     or automate the escalation paths; with a structural capacity bottleneck, prepare a sourcing or automation decision
     with a budget effect.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample of escalation-obligated incidents from the ITSM/case management and reconcile detected_or_triaged_at
@@ -33995,7 +33994,7 @@ cards:
   next_chain: 'The reaction: sharpen the playbooks and initial assignment of the affected incident classes, revise
     the escalation matrix, or with a structural capacity bottleneck, prepare an automation or sourcing decision
     with a budget effect.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample from the escalation logs (ITSM/SOAR) and, per entry, reconcile escalation_id, severity,
@@ -34138,7 +34137,7 @@ cards:
   next_chain: 'The reaction: analyze the SLA violation clusters per incident class, enforce the closure-evidence
     duty and closure quality gate, adjust the capacity or prioritization of the affected incident classes, or formally
     readjust the SLA rule set against the risk appetite.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample of incidents from the ITSM/incident register and reconcile the resolution status, resolved_at,
@@ -34257,7 +34256,7 @@ cards:
   - As long as trend and data confidence are missing, the value is a snapshot, not steering.
   next_chain: 'The reaction: adjust the alerting rules and shift coverage/roster, automate the triage prioritization,
     or with a structural capacity bottleneck, prepare a sourcing or automation decision with a budget effect.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull a sample of alerts/incidents from SIEM/SOAR and reconcile alert_created_at and acknowledged_at
@@ -34398,7 +34397,7 @@ cards:
   - Only trend and data confidence turn the numeric value into a basis for steering.
   next_chain: 'The reaction: a budget decision in the quarterly review — rework or stop the unprofitable automation
     use cases, consolidate the licenses, or extend the profitable automation projects.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: 'Pull a sample of automated cases (automation_flag) from the ITSM and time tracking and reconcile
@@ -34542,7 +34541,7 @@ cards:
     tighten the triage and handling steps with a high normalized_MTTR, introduce a quality assurance before the
     ticket closing with a high reopen_rate, a capacity or automation initiative with a weak resource_efficiency;
     from that follows the tooling business case, the sourcing decision, or the automation initiative.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Load the versioned weights (0.35/0.25/0.20/0.20) and the four components SLA_compliance, normalized_MTTR,
@@ -34672,7 +34671,7 @@ cards:
     deviation contributions are identified and the analyst capacity reallocated via the shift and task assignment
     to the undersupplied classes; only if the misallocation remains structural does a budget discussion, license
     consolidation, or automation project follow from it.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Rebuild actual_effort_share_by_severity from the time-tracking/ITSM raw records (the effort_hours
@@ -34833,7 +34832,7 @@ cards:
     interruption; prioritize the redundancies, restart plans, and hardening of the affected tier-1 services, with
     a rising weighted minute sum a cause analysis of the biggest minute contributions per service, and derive from
     that the budget or investment decision; the effect is remeasured in the following period.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of the incidents with an operational interruption and reconcile outage_start_at/outage_end_at
@@ -34956,7 +34955,7 @@ cards:
   next_chain: 'The reaction: analyze the weakest component (the detection, FP load, coverage, availability, response
     capability), decide a tuning plan with an owner and date, or take the replacement/switch-off into the tooling
     roadmap.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Load the components detection_success, false_positive_burden, coverage, availability, and response_capability
@@ -35070,7 +35069,7 @@ cards:
   next_chain: 'The reaction: equip overdue prioritized improvements with an owner and new date or deprioritize them
     with a justification, bring missing effect proofs (the baseline, effect measurement) up to date, and remeasure
     the effect in the following period.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of due prioritized improvements (improvement_id) from the ITSM and reconcile it against
@@ -35181,7 +35180,7 @@ cards:
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: 'The reaction: stop stalling rollouts or continue them with an adoption plan (an owner, date, target-benefit
     proof), and check the approval practice if capabilities are repeatedly approved without adoption.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of approved new capabilities (initiative_id, approval_date) from the ITSM and reconcile
@@ -35301,7 +35300,7 @@ cards:
   next_chain: 'The reaction: back the weakest subscore (e.g. coverage_of_priority_threats) with a concrete measure,
     owner, and date, bring overdue detection and playbook adjustments to prioritized threats up to date, and remeasure
     in the following period.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Maturity Metric
   audit_test: Pull the four subscores (threat_to_detection_time_score, policy_playbook_update_rate, coverage_of_priority_threats,
@@ -35423,7 +35422,7 @@ cards:
   - The number carries only if trend, scope, and data quality come along.
   next_chain: 'The reaction: adjust the budget allocation in the next planning cycle (a proposal to the CFO), bring
     the impact measurement for running R&D positions up to date, and update the tooling and innovation roadmap accordingly.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of the numerator budget positions from finance/ERP and check the classification as R&D/detection
@@ -35539,7 +35538,7 @@ cards:
   - As long as trend and data confidence are missing, the value is a snapshot, not steering.
   next_chain: 'The reaction: reprioritize open action-obligated threats/risks, accelerate the mitigation measures
     with an owner and date, and transfer recurring causes into detection rules and hardening measures.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of identified action-obligated threats/risks from GRC/ISMS and SIEM/SOAR and reconcile
@@ -35652,7 +35651,7 @@ cards:
     times captured at the handover time, not corrected afterwards. Consistent scales across quarters.'
   - The number carries only if trend, scope, and data quality come along.
   next_chain: 'From the number: readjust the shift setup, tighten the handovers, and address the tooling need.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of shift handovers (shift_id) from the ITSM and reconcile it against the total set of
@@ -35666,7 +35665,7 @@ cards:
   lag_type: lagging
   priority: P2
   mvp: MVP-3
-  card_version: 0.9.1
+  card_version: 0.9.2
   status: normative_candidate
   scope: In-scope objects of the SOC - Operational domain; local scope changes must be documented and versioned
   unit: Percent (%)
@@ -35695,7 +35694,7 @@ cards:
   calculation_example: 'Example: the required capacity hours per the service model = 800, the available SOC capacity
     hours = 760. Result = 760 / 800 * 100 = 95% → in the target band 90-110%. With denominator = 0, n/a is reported
     with the absolute base.'
-  target_thresholds: 'Target: 90-110%; Amber: 75-90% or 110-125%; Red: <75% or >125%'
+  target_thresholds: "Target: 90% <= value <=110%; Amber: 75% <= value <90% or 110% < value <=125%; Red: value <75% or value >125%. Apply confidence and demand-model validity gates before assigning Green."
   numerator_denominator: The available SOC capacity hours / the required capacity hours based on the volume, coverage,
     and SLA
   frequency: Weekly to monthly
@@ -35766,7 +35765,7 @@ cards:
   - 'Data quality: the activity data from at least two sources. No manual smoothing. The time recording documented.'
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'The reaction: a shift reorganization, handover discipline, a tooling investment, or a capacity decision.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Reconcile a sample of the available capacity hours per shift (shift_id, timestamp) against the captured
@@ -35890,7 +35889,7 @@ cards:
   - 'Data quality: the capture across all shifts. Complete activity categories. Consistent scales across quarters.'
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'The reaction: a shift reorganization, handover discipline, a tooling investment, or a capacity decision.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull the weighted cases per analyst (analyst_id_or_pseudonym, ticket_id) with the documented severity/shift
@@ -36009,7 +36008,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'From the number: set up a retention/staffing plan, start the knowledge preservation (documentation,
     cross-training), and adjust the shift setup.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of the departures counted in the period and substantiate every case via record_id/evidence_ref
@@ -36127,7 +36126,7 @@ cards:
     Missing P0 child cards marked as provisional.'
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'The reaction: a shift reorganization, handover discipline, a tooling investment, or a capacity decision.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Maturity Metric
   audit_test: Pull all subscores (governance, detection, response, people, technology, improvement) with the card
@@ -36243,7 +36242,7 @@ cards:
     stable.'
   - The number carries only if trend, scope, and data quality come along.
   next_chain: 'From the number: readjust the shift setup, tighten the handovers, and address the tooling need.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Pull the component values SLA_triage_compliance, classification_accuracy, false_positive_burden,
@@ -36359,7 +36358,7 @@ cards:
   - As long as trend and data confidence are missing, the value is a snapshot, not steering.
   next_chain: 'The reaction: tune the correlation rules, adjust the use-case design, and train the analysts in a
     targeted way.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample from the denominator (the cases with a documented correlation need, correlation_required)
@@ -36476,7 +36475,7 @@ cards:
   - Only trend and data confidence turn the numeric value into a basis for steering.
   next_chain: 'The reaction: a shift reorganization, load distribution, a tooling investment, or a personnel/capacity
     decision.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of shifts (shift_id) and substantiate the activity data at the raw record in the ITSM;
@@ -36593,7 +36592,7 @@ cards:
     to the reporting period (the due date or opening date) consistent across periods.'
   - As long as trend and data confidence are missing, the value is a snapshot, not steering.
   next_chain: 'From the number: readjust the shift setup, tighten the handovers, and address the tooling need.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of the incidents counted as closed within the SLA from the ITSM; reconcile the status
@@ -36602,7 +36601,7 @@ cards:
     reopened cases must not be counted as SLA-compliantly closed (check for sham completion).
 - id: SOC-081
   name: SOC Monitoring Coverage Hours
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: SOC Operations
@@ -36853,7 +36852,7 @@ cards:
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: 'From this follows: targeted samples, trainings, audit preparation, or a calibration of the impact
     forecast methodology and its tolerances.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Outcome Metric
   audit_test: 'Pull the denominator list of all incidents with a documented impact forecast in the reporting period
@@ -36969,7 +36968,7 @@ cards:
   next_chain: 'The trigger is a rate in Amber (75-90%) or Red (<75%): the follow-up measures are sharpening the
     sample program, training the classification discipline, and working the audit findings; the effect is remeasured
     via a second sample in the following period.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull the list of the checked classified alerts/events (review_id) in the reporting period from GRC/ISMS.
@@ -37091,7 +37090,7 @@ cards:
   next_chain: 'The trigger is a rate in Amber (85-95%) or Red (<85%): from this follows the proof renewal and remediation
     of open requirements (the binding ones first), flanked by targeted samples, trainings, and audit preparation;
     the effect is remeasured in the following period.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Reconcile the denominator of the applicable requirements against the policy repository and GRC/ISMS
@@ -37212,7 +37211,7 @@ cards:
   next_chain: 'The trigger is a rate in Amber (80-95%) or Red (<80%): outstanding post-mortems are caught up on
     with priority — per open case a date and responsible person, the lessons learned documented —; subsequent reclassifications
     that let the post-mortem obligation lapse are checked separately.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull the denominator list of the post-mortem-obligated incidents based on the classification and incident_detected_at
@@ -37341,7 +37340,7 @@ cards:
     RCA cases, the dominant driver is determined and fixed in a targeted way — close the telemetry gaps, clarify
     the RCA roles and responsibilities, or improve the analysis tools; the effect is remeasured at the P50/P90 of
     the following period.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of RCA-obligated high/critical incidents and reconcile the start timestamp (rca_start_at
@@ -37457,7 +37456,7 @@ cards:
   - 'Data quality: the step documentation reconciled by independent reviewers. The evidence with a date.'
   - Only trend and data confidence turn the numeric value into a basis for steering.
   next_chain: 'From this follows: targeted samples, trainings, audit preparation, or a playbook revision.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of playbook-obligated incidents from GRC/ISMS; per incident, reconcile the mandatory
@@ -37592,7 +37591,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'From this follows: adjust the campaign contents, target groups, or frequency and remeasure the effect
     against the versioned baseline.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Pull the versioned baseline (the value, date, scope) and the weights of the four components from the
@@ -37710,7 +37709,7 @@ cards:
   - A value without trend, scope, and data confidence is an assertion.
   next_chain: 'The follow-up measures: resteer the training plan per role, schedule the recertifications, and with
     critical gaps, adjust the shift planning.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull the denominator list of the SOC staff in scope from the HR system and build a sample; per person,
@@ -37836,7 +37835,7 @@ cards:
   - A single value, a single quarter - that is rarely enough. Read the trend alongside.
   next_chain: 'From this follows: close the control and rule gaps per detection source, strengthen the reporting
     paths, and remeasure the effect in the following period.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull all confirmed policy violations of the period from GRC/ISMS, the audit findings, and the incident
@@ -37951,7 +37950,7 @@ cards:
   - As long as trend and data confidence are missing, the value is a snapshot, not steering.
   next_chain: 'The follow-up measures: sharpen the sample program, train the classification discipline, work the
     audit findings, and follow up the remediation of open requirements with an owner and date.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull the register of the applicable regulatory requirements from GRC/ISMS and build a sample; per
@@ -37960,7 +37959,7 @@ cards:
     without a valid proof as Red independently of the rate.
 - id: TPR-001
   name: Critical Supplier Inventory Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Third-Party & ICT Supply Chain
@@ -38102,7 +38101,7 @@ cards:
   next_chain: Without the supplier denominator, supply-chain risk is not steerable.
 - id: TPR-002
   name: Supplier Control Evidence Freshness
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Third-Party & ICT Supply Chain
@@ -38263,7 +38262,7 @@ cards:
   next_chain: Third-party risk needs proofs, not self-disclosures.
 - id: TPR-003
   name: Supplier Residual Risk within Appetite
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Third-Party & ICT Supply Chain
@@ -38391,7 +38390,7 @@ cards:
   next_chain: Lifts TPRM from questionnaire administration to risk decision.
 - id: TPR-004
   name: Contractual Security Clause Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Third-Party & ICT Supply Chain
@@ -38537,7 +38536,7 @@ cards:
   next_chain: Without the contract lever, supplier security remains wishful thinking.
 - id: TPR-005
   name: Supplier Incident Notification SLA Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Third-Party & ICT Supply Chain
@@ -38675,7 +38674,7 @@ cards:
   next_chain: A supplier incident without a communication path automatically becomes a company incident.
 - id: TPR-006
   name: Fourth-Party Concentration Risk
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Third-Party & ICT Supply Chain
@@ -38818,7 +38817,7 @@ cards:
   next_chain: Systemic risk often arises at the same few platforms.
 - id: TPR-007
   name: Supplier Exit / Portability Test Success
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Third-Party & ICT Supply Chain
@@ -38958,7 +38957,7 @@ cards:
   next_chain: Prevents supplier lock-in as a resilience risk.
 - id: TPR-008
   name: Critical Supplier Telemetry / Assurance Feed Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Third-Party & ICT Supply Chain
@@ -39098,7 +39097,7 @@ cards:
   next_chain: Outsourcing must not outsource visibility.
 - id: TPR-009
   name: MSP/MSSP Privileged Access Control Coverage
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Third-Party & ICT Supply Chain
@@ -39245,7 +39244,7 @@ cards:
     in the next cycle against the IAM/PAM/session logs.
 - id: TPR-010
   name: Supplier Remediation SLA Compliance
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Third-Party & ICT Supply Chain
@@ -39380,7 +39379,7 @@ cards:
     residual risk, or sharpen the contracts/SLAs; validate the closure in the next cycle per a retest and evidence.
 - id: TPR-011
   name: ICT Third-Party Register / DORA Register-of-Information Completeness
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Third-Party & ICT Supply Chain
@@ -39528,7 +39527,7 @@ cards:
     next cycle against the five sources.
 - id: TPR-012
   name: Critical ICT Provider Concentration Risk Index
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Third-Party & ICT Supply Chain
@@ -39673,7 +39672,7 @@ cards:
     the board review; check the effect in the next quarter against the baseline.
 - id: DET-016
   name: Threat-Intel-to-Detection Conversion Rate
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Threat Intelligence & Detection Engineering
@@ -39930,7 +39929,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: From this follow detection adjustments, the switching-off of feeds that cannot be operationalized,
     or an adjustment of the risk statement towards the management.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of the TI items rated as actionable from the TIP/threat intel platform (threat_id, observed_at,
@@ -40054,7 +40053,7 @@ cards:
   - Only trend and data confidence turn the numeric value into a basis for steering.
   next_chain: From this follow a recalibration of the assessment methodology, a versioned adjustment of the tolerance
     classes, or an adjustment of the risk statement towards the management.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of the assessments with an observable outcome from the risk register/GRC (scenario_id,
@@ -40179,7 +40178,7 @@ cards:
     relevance_to_asset_base, stakeholder_distribution, or action_conversion_rate), readjust the sources and distribution
     circles accordingly, and transfer open intel insights into detection, response, or risk decisions; check the
     effect in the following period.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull the subscores threat_report_freshness, relevance_to_asset_base, stakeholder_distribution, and
@@ -40302,7 +40301,7 @@ cards:
   next_chain: 'The follow-up reactions: reanalyze and classify unidentified validated vectors, sharpen the identification
     and classification rules on the miss patterns, and transfer the results into the detection coverage; check the
     effect in the following period.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull the denominator list of all validated used/simulated attack vectors in the reporting period and
@@ -40429,7 +40428,7 @@ cards:
   next_chain: 'The follow-up reactions: analyze the cases without an interruption before the objective attainment
     per phase, sharpen the detection and response controls of the affected phases, and close the gaps in the kill-chain/ATT&CK
     mapping; check the effect in the following period.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull the denominator list of all analyzed attacks/scenarios in the reporting period from the TIP/SIEM
@@ -40553,7 +40552,7 @@ cards:
   next_chain: 'From this follow portfolio decisions on the feed stock: terminate or replace unused or non-operationalizable
     feeds, bring missing quality ratings up to date, implement prioritized feeds into use cases and detection rules,
     and adjust the risk statement towards the management.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull the denominator list of the relevant available feeds in scope from the threat intel platform/TIP.
@@ -40677,7 +40676,7 @@ cards:
   - Only trend and data confidence turn the numeric value into a basis for steering.
   next_chain: From this follow the escalation and re-planning of overdue risk mitigation plans, the proof of the
     risk reduction via the before/after measurement, and an adjustment of the risk statement towards the management.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull the denominator list of all risk mitigation plans due in the reporting period from the risk
@@ -40831,7 +40830,7 @@ cards:
   next_chain: 'From this follow the prioritization and escalation of the risk treatment: enforce the treatment start
     for long-open, highly weighted risks, address the blockers in the ticketing, escalate SLA and appetite exceedances,
     and adjust the risk statement towards the management.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull a sample of identified risks in scope from the risk register/GRC; reconcile risk_identified_at,
@@ -40954,7 +40953,7 @@ cards:
   - Without trend, scope, and data confidence, the number is a mere display - not a statement.
   next_chain: From this follow misforecast analyses, updated business dependencies and BIA assumptions, a versioned
     recalibrated tolerance definition, and an adjustment of the risk statement towards the management.
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull the denominator list of all impact forecasts with an observed outcome in the reporting period
@@ -41105,7 +41104,7 @@ cards:
   - Without accompanying context (trend, scope, data quality), the number is reporting ornament.
   next_chain: 'From this follow adjustments of the prioritization logic: sharpen the rules with recall misses of
     KEV/Critical, reduce the false-high prioritizations, and adjust the risk statement towards the management.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull the list of the highly prioritized vulnerabilities in the reporting period from the vulnerability
@@ -41116,7 +41115,7 @@ cards:
     the deviation from the reported value only rounding, and denominator = 0 must be reported as n/a.
 - id: VM-002
   name: Vulnerability Scan Freshness SLA
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Vulnerability Management
@@ -41264,7 +41263,7 @@ cards:
     their rescan verification and data confidence depend directly on the vulnerability view being fresh and authenticated.'
 - id: VM-001
   name: Patch / Update Success Rate
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   card_version: 0.9.1
   release_status: review_candidate
   domain: Vulnerability Management
@@ -41580,7 +41579,7 @@ cards:
     the asset/patch owner. Action: patch or mitigate time-limited the findings with the highest contributions (open_hours
     times the weighting factors) prioritized and substantiate the effect per a rescan; document non-fixable cases
     with a risk acceptance including an expiry date.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: 'Pull a sample of findings from the vulnerability scanner and recalculate the open_hours: for closed
@@ -41738,7 +41737,7 @@ cards:
     days). The responsible: the asset/patch owner. Action: per open KEV combination within the emergency window,
     apply the patch or activate a compensating control and substantiate the effectiveness per a rescan; document
     non-closable cases with a risk acceptance including an expiry date and owner.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull the open findings with the kev_flag from the vulnerability scanner and reconcile the cve_id of
@@ -41755,7 +41754,7 @@ cards:
   lag_type: leading
   priority: P0
   mvp: MVP-1
-  card_version: 0.9.1
+  card_version: 0.9.2
   status: normative_candidate
   scope: In-scope objects of the Vulnerability Management domain; local scope changes must be documented and versioned
   unit: Points (risk-weighted backlog score, unbounded sum)
@@ -41784,9 +41783,7 @@ cards:
     * 4 (the criticality) * 1.0 (internet-facing) = 3.6. Finding B: 0.5 * 2 * 0.5 = 0.5. Finding C: 0.1 * 3 * 0.25
     = 0.075. Result = 3.6 + 0.5 + 0.075 = 4.175 points. Every contribution remains traceable via the lineage to
     the raw record.'
-  target_thresholds: 'Target: a sinking trend versus the immediate prior period; high EPSS prioritized; Amber: a
-    rise >20% versus the prior period; Red: a rise >50% versus the prior period or a high-EPSS finding (epss_score
-    >= 0.5) above the remediation SLA of its risk tier'
+  target_thresholds: "Target: a decrease versus the comparable immediate prior period; Amber: an unchanged value or an increase >0% and <=50%; Red: an increase >50%, or an in-scope high-EPSS finding (epss_score >= 0.5) overdue against its risk-tier SLA. Red overrides the trend band. With prior value = 0, current value = 0 is unchanged (Amber); a positive current value is Red. Missing or incompatible baselines make the trend provisional."
   numerator_denominator: Not applicable as a simple quotient. Value = the sum of weighted individual records; the
     weights and weighting scale are part of the formula.
   frequency: Daily/weekly operationally, monthly for the management view
@@ -41877,7 +41874,7 @@ cards:
     operational review. The responsible: the asset/patch owner. Action: pull the findings with the highest contributions
     (EPSS_score * asset_criticality * exposure) out of the backlog, patch or mitigate them prioritized, and substantiate
     the effect per a rescan; document non-fixable cases with a time-limited risk acceptance.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of open findings from the vulnerability scanner; reconcile the epss_score against the
@@ -41892,7 +41889,7 @@ cards:
   lag_type: leading
   priority: P0
   mvp: MVP-1
-  card_version: 0.9.1
+  card_version: 0.9.2
   status: normative_candidate
   scope: In-scope objects of the Vulnerability Management domain; local scope changes must be documented and versioned
   unit: Percent (%)
@@ -41945,6 +41942,7 @@ cards:
   - due_at
   - detected_at
   - remediated_at
+  - mitigated_at
   - validation_status
   - owner_id
   - period_start
@@ -42008,7 +42006,7 @@ cards:
     operational review. The responsible: the asset/patch owner. Action: patch or mitigate the overdue and in-period
     due internet-facing Criticals prioritized and substantiate the treatment per a rescan (the validation_status);
     per SLA breaker, document the cause, owner, and date.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Rebuild the denominator independently: pull all internet-exposed Critical findings due in the reporting
@@ -42150,7 +42148,7 @@ cards:
     Time window: the next daily/weekly operational review. The responsible: the asset/patch owner. Action: eliminate
     the bottlenecks of the slowest cases - widen the patch windows, provide pre-approved mitigations, or correct
     the owner assignment - and check the effect on the P50/P90 of the following period.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: Pull a sample of completed cases and reconcile finding_detected_at against the scanner raw record
@@ -42275,7 +42273,7 @@ cards:
     CISO. Time window: the next weekly to monthly review. The responsible: the platform/asset owner. Action: close
     the recurrence clusters (the same cve_id + asset_id) cause-related - harden the golden image/baseline, fix the
     configuration drift, correct incomplete patching - and substantiate the permanent closure per a rescan.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Key Performance Indicator (KPI)
   audit_test: 'Rebuild the denominator: pull all vulnerabilities from the vulnerability scanner whose 90-day observation
@@ -42291,7 +42289,7 @@ cards:
   lag_type: leading
   priority: P1
   mvp: MVP-2
-  card_version: 0.9.1
+  card_version: 0.9.2
   status: normative_candidate
   scope: In-scope objects of the Vulnerability Management domain; local scope changes must be documented and versioned
   unit: Duration (hours/days)
@@ -42327,8 +42325,7 @@ cards:
     (sorted ascending, n = 5). The P50 rank = ceil(0.5 * 5) = 3 -> the P50 = 10 days; the P90 rank = ceil(0.9 *
     5) = 5 -> the P90 = 30 days. None of the five exceptions has exceeded its exception_expires_at (all overdue_days
     = 0) -> the target reached: no expired exceptions.'
-  target_thresholds: 'Target: no expired exceptions (overdue_days = 0 for all open exceptions); Amber: expired with
-    an overdueness <30d; Red: an overdueness >30d or an expired exception on a Critical finding'
+  target_thresholds: "Target: no overdue open exceptions; Amber: at least one overdue exception, maximum overdue_days <30, and no expired exception on a Critical finding; Red: maximum overdue_days >=30 or any expired exception on a Critical finding. Red overrides Amber. Overdue days use the documented as-of date."
   numerator_denominator: Not to be understood as a classic quotient. The case base = all patch exceptions open at
     the as-of date; reported are the P50/median and P90 of the age (age_days) as well as the count and overdueness
     of expired exceptions.
@@ -42417,7 +42414,7 @@ cards:
     the CISO. Time window: the next weekly to monthly review. The responsible: the exception owner. Action: reassess
     expired exceptions and extend them justified with a versioned new expiry date or close them through a patch/mitigation;
     substantiate the closure per a rescan, the Critical cases first.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Risk Indicator (KRI)
   audit_test: Pull a sample of open patch exceptions from the ITSM patch tickets and check exception_created_at
@@ -42548,7 +42545,7 @@ cards:
     responsible: the vulnerability manager. Action: catch up on the rescan/agent validation for findings marked
     as remediated without a proof, reopen findings without a validation proof, and anchor the validation step (an
     automatic rescan after the ticket closure) bindingly in the remediation workflow.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: Pull a sample from the findings marked as remediated in the reporting period (record_id, asset_id,
@@ -42690,7 +42687,7 @@ cards:
     implement compensating controls, confirm their effectiveness, and document them per evidence_ref in GRC/ISMS
     or the risk register; where no compensation is possible, a time-limited risk acceptance with an owner and date
     or an escalation to the asset owner.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Control Indicator (KCI)
   audit_test: 'Pull a sample of non-patchable high-risk findings from the vulnerability scanner and per case check
@@ -42822,7 +42819,7 @@ cards:
     the CISO. Time window: an action plan with an owner and date by the next monthly report. The responsible: the
     vulnerability manager. Action: provide the scan credentials, prioritize the agent rollout, and close uncovered
     asset classes with an owner and date.'
-  osms_version: 0.9.1
+  osms_version: 0.9.2
   release_status: review_candidate
   type_label: Confidence Metric
   audit_test: 'Pull a sample of assets from the VM scope (the CMDB/asset inventory). Per asset, check in the vulnerability

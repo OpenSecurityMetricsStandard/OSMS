@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+recipes/out/
+release/
+validation-report.json
+issue-preview/
+publish-worktree/
+github-import-result.json
+github-import-result.json.tmp
+github-import.lock
