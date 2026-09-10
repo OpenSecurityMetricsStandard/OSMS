@@ -1,5 +1,15 @@
 # Apply and review this candidate
 
+The audit branch has been published through the GitHub connector. Use the current
+branch/PR and its recorded commit links. Earlier handoff bundles contain different
+commit metadata; do not use them to overwrite the published branch. Details:
+[GITHUB_IMPORT.md](GITHUB_IMPORT.md#published-commit-identity).
+
+For a GitHub handoff that preserves the remediation commit SHA, prefer the Git
+bundle/importer described in [GITHUB_IMPORT.md](GITHUB_IMPORT.md). The patch route
+below remains useful for inspection or manual adaptation, but creates a different
+commit when the recipient commits the applied changes.
+
 The supplied handoff contains a complete source archive, a patch against the audited
 base commit, the change register and local verification logs. Nothing was pushed.
 

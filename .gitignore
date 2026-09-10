@@ -4,3 +4,8 @@ __pycache__/
 recipes/out/
 release/
 validation-report.json
+issue-preview/
+publish-worktree/
+github-import-result.json
+github-import-result.json.tmp
+github-import.lock

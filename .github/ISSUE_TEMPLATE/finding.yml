@@ -1,14 +1,20 @@
-name: Review Finding (OSMS 0.9)
-description: Report a finding against the OSMS 0.9 public review candidate
+name: Review Finding (OSMS)
+description: Record a reproducible finding, its disposition and implementation evidence
 title: "[Finding] "
 labels: ["finding", "triage"]
 body:
   - type: input
+    id: finding_id
+    attributes:
+      label: Audit Finding ID
+      description: Stable ID within the named audit; GitHub assigns a separate issue number.
+      placeholder: "2026-09-10 / F-01 (leave empty for a new finding)"
+  - type: input
     id: card_id
     attributes:
       label: Card ID(s)
-      description: e.g. OSMS-DR-014 — leave empty for cross-cutting findings
-      placeholder: OSMS-XX-000
+      description: Use catalog IDs; leave empty for cross-cutting findings.
+      placeholder: "STD-001, STD-001a, SOC-002, HRM-004"
   - type: dropdown
     id: category
     attributes:
@@ -50,8 +56,49 @@ body:
     id: proposal
     attributes:
       label: Proposed change (optional)
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Observable results, including boundary and invalid-input cases where applicable.
+    validations:
+      required: true
+  - type: input
+    id: baseline
+    attributes:
+      label: Audited baseline
+      description: Full commit SHA or immutable source link; distinguish the observed defect from later work.
+    validations:
+      required: true
+  - type: dropdown
+    id: implementation_status
+    attributes:
+      label: Implementation status
+      options:
+        - Open
+        - Partial
+        - Proposal implemented - decision pending
+        - Implemented - verification pending
+        - Verified - disposition recorded below
+    validations:
+      required: true
+  - type: textarea
+    id: fix_commit
+    attributes:
+      label: Fix commit(s)
+      description: Full SHA or commit URL; identify partial fixes and proposals. Leave empty until available.
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification and remaining work
+      description: Tested commit, test evidence, environment, result, remaining criteria and verifier.
+  - type: textarea
+    id: disposition
+    attributes:
+      label: Review disposition
+      description: Record the authorized decision, rationale, person and date before closure. Implementation alone is not board acceptance.
   - type: input
     id: version
     attributes:
       label: OSMS version
-      value: "0.9.0"
+      value: "0.9.1 working draft (specify card version if different)"

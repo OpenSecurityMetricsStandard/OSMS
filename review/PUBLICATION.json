@@ -1,0 +1,16 @@
+{
+  "publication_date": "2026-09-10",
+  "repository": "OpenSecurityMetricsStandard/OSMS",
+  "branch": "audit/remediation-2026-09-10",
+  "audited_base": "747cd28fb0b6728ebadbe6c477722d166b5b40b5",
+  "source_remediation_commit": "828621e44864fd76fbbf195d50d8b7ccfb795d0c",
+  "published_remediation_commit": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+  "identical_remediation_tree": "c89de48f3240053ecd869c1e56c79c1f335af4ca",
+  "source_tracking_commit": "ba81cd39ace96eea2954306e43f8c5c130d030fb",
+  "tracking_changes_on_publication": [
+    "Replace issue evidence references with the published remediation SHA",
+    "Record source-to-published commit provenance and obsolete bundle warning"
+  ],
+  "board_approval": false,
+  "website_workstream": "F-28: Claude; website commit and deployment evidence pending"
+}

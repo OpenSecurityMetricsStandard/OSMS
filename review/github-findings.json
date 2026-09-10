@@ -1,0 +1,1685 @@
+{
+  "schema_version": 1,
+  "repository": "OpenSecurityMetricsStandard/OSMS",
+  "audit_id": "2026-09-10",
+  "version": "0.9.1",
+  "base_commit": "747cd28fb0b6728ebadbe6c477722d166b5b40b5",
+  "branch": "audit/remediation-2026-09-10",
+  "remediation_commit": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+  "severity_policy": {
+    "Hoch": "critical",
+    "Mittel": "major",
+    "Niedrig": "minor"
+  },
+  "severity_note": "Proposed translation of audit risk to existing review priorities; requires maintainer triage, is not CVSS and does not record board acceptance.",
+  "known_card_ids": [
+    "AI-001",
+    "AI-002",
+    "AI-003",
+    "AI-004",
+    "AI-005",
+    "AI-006",
+    "AI-007",
+    "MET-001",
+    "MET-002",
+    "MET-003",
+    "MET-004",
+    "MET-005",
+    "MET-006",
+    "MET-007",
+    "AIM-001",
+    "AIM-002",
+    "AIM-003",
+    "AIM-004",
+    "AIM-005",
+    "AIM-006",
+    "AIM-007",
+    "AIM-008",
+    "AIM-009",
+    "AIM-010",
+    "AIM-011",
+    "AIM-012",
+    "APP-001",
+    "APP-002",
+    "APP-003",
+    "APP-004",
+    "APP-005",
+    "APP-006",
+    "APP-007",
+    "APP-008",
+    "APP-009",
+    "APP-010",
+    "APP-011",
+    "APP-012",
+    "APP-013",
+    "APP-014",
+    "APP-015",
+    "AST-001",
+    "AST-002",
+    "AST-003",
+    "AST-004",
+    "AST-005",
+    "AST-006",
+    "AST-007",
+    "AST-008",
+    "AST-009",
+    "AST-010",
+    "STD-023",
+    "STD-024",
+    "STD-025",
+    "STD-026",
+    "STD-027",
+    "STD-028",
+    "STD-029",
+    "STD-030",
+    "STD-031",
+    "STD-032",
+    "STD-043",
+    "STD-044",
+    "STD-045",
+    "STD-046",
+    "STD-047",
+    "STD-048",
+    "STD-049",
+    "STD-050",
+    "STD-051",
+    "STD-052",
+    "RES-011",
+    "CRY-001",
+    "DAT-011",
+    "DAT-001",
+    "DAT-002",
+    "DAT-003",
+    "DAT-004",
+    "DAT-005",
+    "DAT-006",
+    "DAT-007",
+    "DAT-008",
+    "DAT-009",
+    "DAT-010",
+    "DET-001",
+    "DET-002",
+    "DET-003",
+    "DET-004",
+    "DET-005",
+    "DET-006",
+    "DET-007",
+    "DET-008",
+    "DET-009",
+    "DET-010",
+    "DET-011",
+    "DET-012",
+    "DET-013",
+    "DET-014",
+    "DET-015",
+    "STD-001",
+    "STD-001a",
+    "STD-001b",
+    "STD-002",
+    "STD-002a",
+    "STD-003",
+    "STD-003a",
+    "STD-004",
+    "STD-005",
+    "STD-006",
+    "STD-006a",
+    "STD-007",
+    "STD-008",
+    "STD-009",
+    "STD-010",
+    "STD-011",
+    "STD-012",
+    "EXP-001",
+    "STD-053",
+    "STD-054",
+    "STD-055",
+    "STD-056",
+    "STD-057",
+    "STD-058",
+    "STD-059",
+    "STD-060",
+    "STD-061",
+    "STD-062",
+    "STD-083",
+    "HRM-001",
+    "HRM-002",
+    "HRM-003",
+    "HRM-004",
+    "HRM-005",
+    "HRM-006",
+    "HRM-007",
+    "HRM-008",
+    "HRM-009",
+    "HRM-010",
+    "IDN-001",
+    "STD-033",
+    "STD-034",
+    "STD-035",
+    "STD-036",
+    "STD-037",
+    "STD-038",
+    "STD-039",
+    "STD-040",
+    "STD-041",
+    "STD-042",
+    "REG-001",
+    "STD-073",
+    "STD-074",
+    "STD-075",
+    "STD-076",
+    "STD-077",
+    "STD-078",
+    "STD-079",
+    "STD-080",
+    "STD-081",
+    "STD-082",
+    "NET-001",
+    "NET-002",
+    "NET-003",
+    "NET-004",
+    "NET-005",
+    "NET-006",
+    "NET-007",
+    "NET-008",
+    "NET-009",
+    "NET-010",
+    "TPR-013",
+    "OT-001",
+    "PRI-001",
+    "STD-063",
+    "STD-064",
+    "STD-065",
+    "STD-066",
+    "STD-067",
+    "STD-068",
+    "STD-069",
+    "STD-070",
+    "STD-071",
+    "STD-072",
+    "RES-001",
+    "RES-002",
+    "RES-003",
+    "RES-004",
+    "RES-005",
+    "RES-006",
+    "RES-007",
+    "RES-008",
+    "RES-009",
+    "RES-010",
+    "CFG-001",
+    "CFG-002",
+    "CFG-003",
+    "CFG-004",
+    "CFG-005",
+    "END-001",
+    "END-002",
+    "END-003",
+    "END-004",
+    "END-005",
+    "LOG-001",
+    "LOG-002",
+    "LOG-003",
+    "LOG-004",
+    "LOG-005",
+    "LOG-006",
+    "LOG-007",
+    "LOG-008",
+    "LOG-009",
+    "LOG-010",
+    "LOG-011",
+    "LOG-012",
+    "LOG-013",
+    "LOG-014",
+    "LOG-015",
+    "LOG-016",
+    "VAL-001",
+    "TLPT-001",
+    "SOC-046",
+    "SOC-047",
+    "SOC-048",
+    "SOC-049",
+    "SOC-050",
+    "SOC-051",
+    "SOC-052",
+    "SOC-053",
+    "SOC-054",
+    "SOC-055",
+    "SOC-001",
+    "SOC-002",
+    "SOC-003",
+    "SOC-004",
+    "SOC-005",
+    "SOC-006",
+    "SOC-007",
+    "SOC-008",
+    "SOC-009",
+    "SOC-010",
+    "SOC-011",
+    "SOC-012",
+    "SOC-013",
+    "SOC-014",
+    "SOC-015",
+    "SOC-016",
+    "SOC-017",
+    "SOC-018",
+    "SOC-019",
+    "SOC-020",
+    "SOC-021",
+    "SOC-022",
+    "SOC-023",
+    "SOC-024",
+    "SOC-025",
+    "SOC-026",
+    "SOC-027",
+    "SOC-028",
+    "SOC-029",
+    "SOC-030",
+    "SOC-031",
+    "SOC-032",
+    "SOC-033",
+    "SOC-034",
+    "SOC-035",
+    "SOC-056",
+    "SOC-057",
+    "SOC-058",
+    "SOC-059",
+    "SOC-060",
+    "SOC-061",
+    "SOC-062",
+    "SOC-063",
+    "SOC-064",
+    "SOC-065",
+    "SOC-066",
+    "SOC-067",
+    "SOC-068",
+    "SOC-069",
+    "SOC-070",
+    "SOC-081",
+    "SOC-036",
+    "SOC-037",
+    "SOC-038",
+    "SOC-039",
+    "SOC-040",
+    "SOC-041",
+    "SOC-042",
+    "SOC-043",
+    "SOC-044",
+    "SOC-045",
+    "TPR-001",
+    "TPR-002",
+    "TPR-003",
+    "TPR-004",
+    "TPR-005",
+    "TPR-006",
+    "TPR-007",
+    "TPR-008",
+    "TPR-009",
+    "TPR-010",
+    "TPR-011",
+    "TPR-012",
+    "DET-016",
+    "SOC-071",
+    "SOC-072",
+    "SOC-073",
+    "SOC-074",
+    "SOC-075",
+    "SOC-076",
+    "SOC-077",
+    "SOC-078",
+    "SOC-079",
+    "SOC-080",
+    "VM-002",
+    "VM-001",
+    "STD-013",
+    "STD-014",
+    "STD-015",
+    "STD-016",
+    "STD-017",
+    "STD-018",
+    "STD-019",
+    "STD-020",
+    "STD-021",
+    "STD-022"
+  ],
+  "findings": [
+    {
+      "id": "F-01",
+      "title": "Rechenfamilien nach mathematischer Bedeutung trennen",
+      "severity": "critical",
+      "phase": "B – Board-Entscheidung",
+      "kind": "Nachgewiesener Widerspruch",
+      "area": "Formelvertrag",
+      "cards": [
+        "HRM-004",
+        "STD-024",
+        "STD-005",
+        "SOC-063"
+      ],
+      "observation": "Der gemeinsame Ratio-/Datenbankvertrag verlangt eine Teilmenge im Zähler. HRM-004 erlaubt ausdrücklich 256 Meldungen / 80 Fehlversuche = 3,2; SOC-063 vergleicht zwei Kapazitätssummen und darf über 100 % liegen. STD-024 ist als Count klassifiziert, berechnet aber 12 / 30 = 0,4 pro Tag. STD-005 heißt Unit Cost, misst jedoch Risikoreduktion je Kosteneinheit.",
+      "impact": "Eine technisch gültige Karte wird mit dem falschen Operator ausgeführt oder durch eine unpassende Datenbankbedingung zurückgewiesen. Das betrifft die Architektur und weitere Karten derselben Familien.",
+      "action": "Proportion, allgemeiner Quotient, gewichteter Quotient und Ereignisrate explizit unterscheiden. Skalierungsfaktor, Einheiten, Aggregator und zulässige Wertebereiche strukturiert hinterlegen; die Teilmengenregel nur für echte Anteile verwenden.",
+      "acceptance": "HRM-004 ergibt 3,2 ohne Teilmengenfehler; SOC-063 akzeptiert 120 %; STD-024 ergibt 0,4/Tag; STD-005 ergibt 0,3 Scorepunkte/Personentag. Schema, Engine und Rezepte verwenden denselben Vertrag.",
+      "files": [
+        "catalog/osms-catalog.yaml",
+        "reference/star_schema.sql",
+        "recipes/gen_recipes.py"
+      ],
+      "tests": "unscaled_ratio_hrm004",
+      "owner": "Methodik + Engineering",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/star_schema.sql",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/gen_recipes.py"
+      ],
+      "audit_severity": "Hoch",
+      "category": "formula",
+      "implementation_status": "partial",
+      "implementation_note": "Allgemeine Quotienten von Anteilen abgegrenzt; HRM-004 unskaliert und >1 geprüft. Vollständige Methodenprofile fehlen.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-02",
+      "title": "Referenz-Engine führt kartenspezifische Formeln nicht aus",
+      "severity": "critical",
+      "phase": "A – vor Board bearbeiten",
+      "kind": "Reproduziert",
+      "area": "Referenzimplementierung",
+      "cards": [
+        "HRM-004",
+        "STD-074",
+        "STD-001a",
+        "STD-005"
+      ],
+      "observation": "Der Dispatch nach calculation_type genügt nicht: Die RatioStrategy multipliziert immer mit 100, Delta summiert, Penalty übernimmt Delta ohne Cap und UnitCost summiert Kosten je Anzahl. Gegenproben ergeben bei HRM-004 85 statt 0,85, bei STD-074 −3 statt des Mittelwerts −1 und bei STD-001a 45 statt des Caps 25. Duration verwendet generisch Stunden und Median.",
+      "impact": "Die Referenz kann korrekt nach Karte erzeugte Werte als falsch zurückweisen. Umgekehrt können Demo und Implementierung miteinander übereinstimmen, obwohl beide einen anderen Vertrag als die Karte verwenden.",
+      "action": "Bis zur Korrektur den Umfang der Referenz präzise begrenzen. Danach pro Karte einen ausführbaren Rechenplan oder eine vollständige parametrisierte Strategie verwenden; Einheiten, Cap, Vorzeichen, Mittelwert und Fallbasis einbeziehen.",
+      "acceptance": "Die genannten Gegenproben bestehen gegen unabhängig aus der Karte abgeleitete Sollwerte. Die Demo für STD-001 bildet den tatsächlichen Rollup ab; generische Typabdeckung wird nicht als Formelkonformität ausgewiesen.",
+      "files": [
+        "reference/drill_engine.py",
+        "reference/seed_reference_data.sql",
+        "catalog/osms-catalog.yaml"
+      ],
+      "tests": "unscaled_ratio_hrm004; delta_mean_std074; penalty_cap_std001a",
+      "owner": "Engineering",
+      "depends": "F-01",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/drill_engine.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/seed_reference_data.sql",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml"
+      ],
+      "audit_severity": "Hoch",
+      "category": "implementation",
+      "implementation_status": "partial",
+      "implementation_note": "STD-005, STD-074, Einheitenumrechnung und Penalty-Caps korrigiert; die Engine behauptet keine vollständige Kartenkonformität.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-03",
+      "title": "Median und Perzentilmethode pro Ausgabe verbindlich machen",
+      "severity": "critical",
+      "phase": "A – vor Board bearbeiten",
+      "kind": "Reproduziert / Quellenvergleich",
+      "area": "Statistik",
+      "cards": [
+        "SOC-002",
+        "APP-010",
+        "CFG-002",
+        "SOC-078",
+        "STD-055"
+      ],
+      "observation": "SOC-002 verlangt für gerade Fallzahlen den Mittelwert der beiden mittleren Werte; das PostgreSQL-Rezept nutzt percentile_disc(0.5). Für [2, 10, 20, 30] ist das Ergebnis 10 statt 15. Andere Karten legen P50 ausdrücklich als Nearest Rank fest, etwa CFG-002 und SOC-078. Beide Definitionen können beabsichtigt sein, sind aber nicht austauschbar.",
+      "impact": "Enginewechsel oder generische Medianfunktionen ändern Ergebnisse und gegebenenfalls Ampeln. Ein ungerades Fünferbeispiel entdeckt diesen Fehler nicht.",
+      "action": "Pro benannter Ausgabe eine estimator_id definieren, beispielsweise median_even_average oder nearest_rank. PostgreSQL-P50 korrigieren; alle Dialekte mit geraden Fallzahlen, Duplikaten und kleinen Stichproben prüfen. Näherungsverfahren separat kennzeichnen.",
+      "acceptance": "SOC-002 liefert bei vier Werten 15 h. CFG-002 reproduziert sein eigenes Nearest-Rank-Beispiel mit 9 Tagen. Jeder veröffentlichte Dialekt hält die jeweilige Methode und festgelegte Toleranz ein.",
+      "files": [
+        "recipes/curated/soc-002.json",
+        "catalog/osms-catalog.yaml",
+        "reference/drill_engine.py"
+      ],
+      "tests": "mttd_pg_median_operator",
+      "owner": "Methodik + Engineering",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/curated/soc-002.json",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/drill_engine.py"
+      ],
+      "audit_severity": "Hoch",
+      "category": "formula",
+      "implementation_status": "partial",
+      "implementation_note": "SOC-002-Median/P90 präzisiert; unvollständige Dauerrezepte gesperrt. Weitere Ausgabeprofile und reale Fremd-Engines offen.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-04",
+      "title": "MTTD-Rezept verwendet die falsche Fallbasis",
+      "severity": "critical",
+      "phase": "A – vor Board bearbeiten",
+      "kind": "Reproduziert",
+      "area": "Zeitlogik",
+      "cards": [
+        "SOC-002"
+      ],
+      "observation": "Die Karte wählt bis period_end bestätigte Incidents mit detected_at in der Berichtsperiode. Die kuratierten Rezepte filtern auf occurred_at und prüfen confirmed_at nicht. Im Zweifallbeispiel wird ein im Juni entdeckter Mai-Incident mit 2 h ausgeschlossen und ein erst im Juli entdeckter Juni-Incident mit 48 h eingeschlossen. Ein unbestätigter Fall wird ebenfalls gezählt.",
+      "impact": "Die monatliche Kennzahl beschreibt eine andere Kohorte als der Standard. Späte Erkennung kann aus dem vorgesehenen Berichtszeitraum verschwinden; historische Berichte sind nicht zuverlässig reproduzierbar.",
+      "action": "In allen SOC-002-Dialekten auf detected_at filtern und den Bestätigungsstand zum Stichtag prüfen. Intervallgrenzen und Nachmelderegel dokumentieren. Die supplementary severity-weighted Ausgabe gemäß Karte ergänzen oder den bewusst eingeschränkten Rezeptumfang ausweisen.",
+      "acceptance": "Die Gegenprobe ergibt genau einen gültigen Fall und 2 h. Unbestätigte oder erst nach dem Stichtag bestätigte Fälle beeinflussen den eingefrorenen Wert nicht. Anfang/Ende, Zeitzonen und verspätete Bestätigung besitzen Fixtures.",
+      "files": [
+        "catalog/osms-catalog.yaml",
+        "recipes/curated/soc-002.json",
+        "recipes/xlsx_dialect.py"
+      ],
+      "tests": "mttd_period_anchor; mttd_unconfirmed",
+      "owner": "Engineering",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/curated/soc-002.json",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/xlsx_dialect.py"
+      ],
+      "audit_severity": "Hoch",
+      "category": "formula",
+      "implementation_status": "partial",
+      "implementation_note": "MTTD-Fallbasis, Bestätigung und Severity-Gewichte in SQL/Python/Excel korrigiert. ES|QL gesperrt; DAX liefert weiterhin nur die dokumentierte P90-Teilimplementierung.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-05",
+      "title": "SLA-Rezept bildet validierte Mitigation nicht ab",
+      "severity": "critical",
+      "phase": "A – vor Board bearbeiten",
+      "kind": "Reproduziert",
+      "area": "Falllogik",
+      "cards": [
+        "STD-016"
+      ],
+      "observation": "STD-016 zählt fristgerecht behobene oder mitigierte Findings mit Validierung. Das kuratierte Rezept zählt ausschließlich remediated_at <= due_at; ein Mitigationsfeld oder eine verbindliche Adapterregel ist nicht definiert. Ein rechtzeitig validiert mitigierter Fall ohne Remediation ergibt im Python-Rezept 0 % statt 100 %.",
+      "impact": "Zulässige Behandlungserfolge werden unterzählt. Verschiedene Implementierungen können denselben Datenbestand unterschiedlich bewerten, obwohl sie denselben Rezeptstatus verwenden.",
+      "action": "Eine kanonische Behandlungsevidenz mit treatment_type, Wirksamkeits-/Validierungsstatus und wirksamem Behandlungszeitpunkt festlegen. Remediation und Mitigation explizit abbilden; eine bloße Umbenennung ohne semantischen Vertrag vermeiden.",
+      "acceptance": "Je ein fristgerecht behobener, fristgerecht mitigierter, verspäteter, unvalidierter und wiedereröffneter Fall wird korrekt klassifiziert. Der einzelne validiert mitigierte Fall ergibt 100 %.",
+      "files": [
+        "catalog/osms-catalog.yaml",
+        "recipes/curated/std-016.json",
+        "recipes/curated/curated_assumptions.json"
+      ],
+      "tests": "sla_validated_mitigation",
+      "owner": "Vulnerability-Methodik + Engineering",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/curated/std-016.json",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/curated/curated_assumptions.json"
+      ],
+      "audit_severity": "Hoch",
+      "category": "formula",
+      "implementation_status": "verification-pending",
+      "implementation_note": "Mitigation als zusätzlicher nullable Eingang; fristgerechte Behandlung alternativ geprüft, leere Datumswerte zählen nicht. Adaptermigration und echte DAX/SPL/ES-Ausführung bleiben Anwendungspflichten.",
+      "fix_commit": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "candidate_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-06",
+      "title": "Composite-Rezepte akzeptieren fehlende Werte und negative Gewichte",
+      "severity": "critical",
+      "phase": "A – vor Board bearbeiten",
+      "kind": "Reproduziert",
+      "area": "Eingangsvalidierung",
+      "cards": [
+        "STD-069",
+        "STD-068",
+        "STD-075"
+      ],
+      "observation": "Die generierte Composite-Vorlage prüft Anzahl, IDs, Min/Max und Gewichtssumme. Pandas überspringt NaN bei Aggregationen. Bei STD-069 führt ein fehlender Subscore deshalb zu 60 statt n/a. Gewichte −1 und 2 mit Summe 1 werden akzeptiert und erzeugen in der Gegenprobe −100 für einen 0–100-Score.",
+      "impact": "Eine formal vollständige Komponentenliste kann einen unvollständigen oder außerhalb des Wertebereichs liegenden Managementscore erzeugen. Das widerspricht dem eigenen Umgang mit fehlenden Inputs.",
+      "action": "Vor jeder Aggregation Nichtleere, numerischen Typ, Endlichkeit, Wertebereiche und nichtnegative Gewichte prüfen. Gewichtssatz und Version gegen das gültige Profil abgleichen; zusätzliche unbekannte Komponenten explizit behandeln.",
+      "acceptance": "NaN, NULL, Infinity, negative Gewichte, doppelte/fehlende IDs und unbekannte Gewichtsversionen werden in jedem Dialekt abgewiesen oder als begründetes n/a markiert. Die Gegenproben erzeugen keinen numerischen Score.",
+      "files": [
+        "recipes/gen_recipes.py",
+        "catalog/osms-catalog.yaml"
+      ],
+      "tests": "composite_nan_subscore; composite_negative_weights",
+      "owner": "Engineering",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/gen_recipes.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml"
+      ],
+      "audit_severity": "Hoch",
+      "category": "implementation",
+      "implementation_status": "partial",
+      "implementation_note": "NULL/NaN/Inf, negative Gewichte, IDs und Excel-Zelltypen abgesichert. Vollständige Profil-/Versionsbindung sowie Fremd-Engine-Gegenproben fehlen.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-07",
+      "title": "DSPS-Penalty-Gates prüfen nicht die Identität beider Abzüge",
+      "severity": "critical",
+      "phase": "A – vor Board bearbeiten",
+      "kind": "Reproduziert",
+      "area": "Rollup",
+      "cards": [
+        "STD-001",
+        "STD-001a",
+        "STD-001b"
+      ],
+      "observation": "Das konkrete STD-001-Rezept verlangt zwei Penalty-Zeilen, jedoch nicht je eine STD-001a und STD-001b. Zwei STD-001a-Zeilen ergeben einen Score von 60 trotz fehlender STD-001b. Negative Penalties erhöhen in der Gegenprobe einen Basisscore 80 auf 100. Der Helper-Vertrag nennt Caps 25 bzw. 15; diese Vorbedingungen werden hier nicht verifiziert.",
+      "impact": "Fehlende oder fehlerhafte Abzüge können einen plausiblen oder sogar besseren Boardscore erzeugen. Eine reine Anzahlkontrolle schützt den Rollup nicht.",
+      "action": "Genau eine Penalty pro erwarteter ID verlangen; Werte müssen endlich und im Helper-Bereich liegen. Scope, Periode, Card-Version und gültiges Gewichtungsprofil aller Inputs binden; abgelehnte Inputs mit Grund ausgeben.",
+      "acceptance": "Doppelte Penalty-ID, fehlender Helper, negative Werte und Überschreitung des Helper-Caps liefern keinen freigegebenen Score. Der vollständige gültige Beispielsatz bleibt unverändert reproduzierbar.",
+      "files": [
+        "recipes/gen_recipes.py",
+        "catalog/osms-catalog.yaml"
+      ],
+      "tests": "dsps_duplicate_penalty; dsps_negative_penalties",
+      "owner": "Engineering",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/gen_recipes.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml"
+      ],
+      "audit_severity": "Hoch",
+      "category": "hierarchy",
+      "implementation_status": "partial",
+      "implementation_note": "Beide Penalty-IDs, Duplikate, fehlende Werte und Caps geprüft. Perioden-, Normalisierungs- und Versionsbindung bleibt offen.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-08",
+      "title": "Datenbank erlaubt Grün bei unbekannter Confidence und n/a",
+      "severity": "critical",
+      "phase": "A – vor Board bearbeiten",
+      "kind": "Reproduziert",
+      "area": "Gültigkeitsstatus",
+      "cards": [],
+      "observation": "Im Referenzschema ist data_confidence nullable. Die Bedingung gegen Grün unter 70 weist SQL-NULL nicht zurück. Die Gegenproben speichern sowohl rag=green mit Confidence NULL als auch is_na=true, value_numeric=NULL und rag=green. Ein negativer Nenner wird ebenfalls akzeptiert.",
+      "impact": "Genau die Fälle, für die OSMS eine vorsichtige Bewertung verlangt, können als Grün gespeichert und von nachgelagerten Berichten übernommen werden.",
+      "action": "Einen expliziten Statusvertrag für valid, provisional, unavailable und not_applicable definieren. Grün setzt gültigen Wert, bekannte ausreichende Confidence und bestandene Hard Gates voraus. Operations-/Board-Kontext mit Schwellen 70/85 ausdrücklich berücksichtigen.",
+      "acceptance": "NULL-Confidence, n/a, negative unzulässige Basis und gebrochene Hard Gates können kein Grün erzeugen. Boundary-Tests für 69,99/70 sowie 84,99/85 sind getrennt vom fachlichen RAG vorhanden.",
+      "files": [
+        "reference/star_schema.sql",
+        "catalog/osms-catalog.yaml"
+      ],
+      "tests": "green_null_confidence; na_green; negative_denominator",
+      "owner": "Engineering + Methodik",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/star_schema.sql",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml"
+      ],
+      "audit_severity": "Hoch",
+      "category": "data-confidence",
+      "implementation_status": "verification-pending",
+      "implementation_note": "SQL blockiert Green bei unbekannter Confidence, n/a, provisorischem Zustand und unter 70/85; negative Nenner werden abgewiesen. Für bestehende Datenbanken ist eine Migration nötig.",
+      "fix_commit": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "candidate_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-09",
+      "title": "Confidence-Produktion benötigt numerische, nicht kompensierbare Regeln",
+      "severity": "critical",
+      "phase": "B – Board-Entscheidung",
+      "kind": "Spezifikationslücke",
+      "area": "Datenqualität",
+      "cards": [
+        "STD-011"
+      ],
+      "observation": "STD-011 legt fünf Gewichte fest und fordert 0–100-Subscores. Die Produktionsregeln beschreiben jedoch überwiegend Eigenschaften wie aktuelle Quelle oder rekonzilierbare Einzelwerte, ohne eine vollständige numerische Abbildung. Ein gewichteter Mittelwert kann zudem eine vollständig fehlende Vertrauensdimension kompensieren: Reconciliation=0 bei sonst 100 ergibt 85.",
+      "impact": "Zwei Implementierer können dieselbe Datenlage unterschiedlich bewerten. Ein hoher Gesamtscore ist weder ein statistisches Konfidenzniveau noch automatisch ein Nachweis belastbarer Evidenz.",
+      "action": "Für jede Dimension Rohmaß, Nenner, Stichtag, SLA, Abbildungsfunktion und n/a-Regel festlegen. Unverzichtbare Nachweise als nicht kompensierbare Gültigkeitsgates vor die Gewichtung setzen. Den Score als Datenqualitätsindex bezeichnen und von Stichprobenunsicherheit trennen.",
+      "acceptance": "Zwei unabhängige Berechner erhalten für fünf gemeinsame Rohdatensätze identische Dimensionen und Gesamtwerte. Ein vollständig fehlender obligatorischer Evidenznachweis wird nicht durch andere Dimensionen auf Board-Grün gehoben.",
+      "files": [
+        "catalog/osms-catalog.yaml",
+        "reference/star_schema.sql"
+      ],
+      "tests": "",
+      "owner": "Data Governance + Methodik",
+      "depends": "F-08",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/star_schema.sql"
+      ],
+      "audit_severity": "Hoch",
+      "category": "data-confidence",
+      "implementation_status": "open",
+      "implementation_note": "Konkrete numerische Confidence-Profile und nicht kompensierbare Gates werden nicht erfunden; Entscheidungsvorlage vorhanden.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-10",
+      "title": "Reconciliation prüft gespeicherte Beiträge statt unabhängiger Ableitung",
+      "severity": "critical",
+      "phase": "A – vor Board bearbeiten",
+      "kind": "Reproduziert",
+      "area": "Auditierbarkeit",
+      "cards": [
+        "STD-001",
+        "AI-001"
+      ],
+      "observation": "CompositeStrategy summiert gespeicherte contribution-Werte. Änderungen an weight oder am Kindwert bleiben unentdeckt, wenn contribution unverändert bleibt. Bei Ratio-Evidence bleiben fehlende evidence_ref/source_key sowie abweichende Karte oder Scope trotz identischer Flags unbemerkt; reconcile meldet weiterhin ok=true.",
+      "impact": "Summengleichheit wird mit Nachweisführung verwechselt. Ein veralteter oder falsch zugeordneter Beitrag kann arithmetisch konsistent und trotzdem inhaltlich falsch sein.",
+      "action": "Beiträge aus versionierten Kindwerten, Gewichtungsprofilen und Rohbelegen unabhängig neu ableiten. Kardinalität, Herkunft, Scope, Periode und Versionsbezug prüfen. Fachliche Konformität und arithmetische Abstimmung als separate Prüfergebnisse ausgeben.",
+      "acceptance": "Änderungen an Gewicht, Kindwert, Quellenbezug, Scope und Card-Version werden erkannt, auch wenn die gespeicherte Beitragssumme gleich bleibt. Ein Aggregat ohne obligatorischen Beleg wird nicht als vollständig rekonziliert bezeichnet.",
+      "files": [
+        "reference/drill_engine.py",
+        "reference/star_schema.sql"
+      ],
+      "tests": "component_weight_tamper; child_value_tamper; missing_evidence; evidence_wrong_scope_card",
+      "owner": "Engineering + Audit",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/drill_engine.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/star_schema.sql"
+      ],
+      "audit_severity": "Hoch",
+      "category": "evidence",
+      "implementation_status": "partial",
+      "implementation_note": "Gewicht × Eingang wird neu berechnet; Cache-, Kindwert-, Scope- und Evidenzabweichungen werden erkannt. Authentizität und Normalisierungsnachweis offen.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-11",
+      "title": "SQL-Reconciliation meldet falsche Fehler und übersieht fehlende Evidenz",
+      "severity": "critical",
+      "phase": "C – vor 1.0 abschließen",
+      "kind": "Reproduziert",
+      "area": "Datenmodell",
+      "cards": [
+        "STD-006",
+        "AI-001"
+      ],
+      "observation": "vw_recon_component vergleicht jede Beitragssumme direkt mit dem Elternwert. Für das gewichtete Mittel STD-006 stehen im Demo 290 Summe und 72,5 korrekter Mittelwert gegenüber; die View meldet MISMATCH. Die Inner Joins entfernen Aggregate ohne Beleg vollständig aus den Reconciliation-Views. Die Ratio/Count-View prüft zudem nicht den berechneten Endwert.",
+      "impact": "Korrekte Kennzahlen erzeugen Fehlalarme, während fehlende Nachweise aus der Fehlerliste verschwinden. Ein leeres Ergebnis ist dadurch kein Beleg für Fehlerfreiheit.",
+      "action": "Reconciliation nach Rechenvertrag dispatchen; Aggregatbasis per Left Join erhalten. MISSING_EVIDENCE, INVALID_INPUT, VALUE_MISMATCH und OK unterscheiden. Endwert sowie Basisgrößen prüfen.",
+      "acceptance": "STD-006 wird mit 290/4=72,5 als korrekt erkannt. Nach Löschen aller Belege bleibt das Aggregat als MISSING_EVIDENCE sichtbar. Ein veränderter Endwert bei gleichen Zähler-/Nennerwerten wird erkannt.",
+      "files": [
+        "reference/star_schema.sql",
+        "reference/seed_reference_data.sql"
+      ],
+      "tests": "weighted_average_sql_view; missing_evidence_recon_view",
+      "owner": "Data Engineering",
+      "depends": "F-01; F-10",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/star_schema.sql",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/seed_reference_data.sql"
+      ],
+      "audit_severity": "Hoch",
+      "category": "implementation",
+      "implementation_status": "partial",
+      "implementation_note": "Gewichteter Mittelwert und fehlende Evidenz korrigiert; allgemeine Ratios geben ADAPTER_REQUIRED statt eines falschen OK. Vollständige typisierte Reconciliation offen.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-12",
+      "title": "Scope- und Versionsbindung bei Drill und Ranking schließen",
+      "severity": "critical",
+      "phase": "C – vor 1.0 abschließen",
+      "kind": "Reproduziert / Codebefund",
+      "area": "Historisierung",
+      "cards": [
+        "STD-003"
+      ],
+      "observation": "RankingStrategy berücksichtigt den übergebenen Scope nicht: Für DOES-NOT-EXIST liefert sie die drei Demo-Unternehmen/Services. Ihre Reconciliation vergleicht eine sortierte Ergebnisliste mit ihrer Sortierung. value_row anderer Strategien verlangt is_current und kann dadurch historische Werte älterer Kartenversionen nicht mehr auflösen. vw_kpi_current gruppiert nach card_key und damit je Version.",
+      "impact": "Berichte können scopefremde Ranglisten zeigen; ein späterer Versionswechsel erschwert die Wiederholung historischer Auswertungen. Das ist eine Konsistenzlücke der Referenz, kein Nachweis eines produktiven Datenlecks.",
+      "action": "Alle Abfragen an Scope, Berichtsperiode und konkrete Auswertungsversion binden. Historischen Abruf und aktuellen fachlichen Kartenstand getrennt modellieren. Rankings aus den zugrunde liegenden Risikowerten mit deterministischer Tie-Break-Regel nachrechnen.",
+      "acceptance": "Unbekannter Scope liefert keine Daten. Zwei Scopes und zwei Kartenversionen vermischen sich nicht. Ein historischer Bericht bleibt nach Deaktivierung seiner Kartenversion identisch abrufbar.",
+      "files": [
+        "reference/drill_engine.py",
+        "reference/star_schema.sql"
+      ],
+      "tests": "ranking_scope",
+      "owner": "Data Engineering",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/drill_engine.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/star_schema.sql"
+      ],
+      "audit_severity": "Hoch",
+      "category": "evidence",
+      "implementation_status": "partial",
+      "implementation_note": "Exakte Katalogversion und Scope gebunden, Current-View korrigiert. Ranking bestätigt keine tautologische Selbstsortierung mehr; echtes Ranking-Modell fehlt.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-13",
+      "title": "Rechentoleranz nach Einheit und Operator festlegen",
+      "severity": "major",
+      "phase": "C – vor 1.0 abschließen",
+      "kind": "Reproduziert",
+      "area": "Numerische Zuverlässigkeit",
+      "cards": [
+        "AI-003"
+      ],
+      "observation": "Die Engine verwendet für alle numerischen Typen dieselbe absolute Toleranz 0,5, kommentiert als Toleranz für 0–100-Scores. Ein Count von 4,4 wird gegen vier Belege als korrekt bestätigt. Dieselbe Toleranz wird auf Beträge, Quotienten und Zeitwerte angewendet.",
+      "impact": "Materielle Fehler bei kleinen Raten oder diskreten Größen können verschwinden; große Beträge können unnötige Rundungsfehler auslösen. Die Aussage exakt ist ohne Einheit und Rundungsstufe nicht prüfbar.",
+      "action": "Für Counts exakte Ganzzahlgleichheit verlangen. Für andere Ausgaben absolute/relative Toleranzen, numerische Präzision und Anzeige-Rundung getrennt versionieren. Nicht bereits gerundete Anzeigen als Primärwert rekonzilieren.",
+      "acceptance": "4,4 gegen Count 4 wird abgewiesen. Je ein Grenztest für Prozentpunkte, Stunden, Euro und unskalierte Quotienten weist akzeptierte und nicht akzeptierte Abweichungen nach.",
+      "files": [
+        "reference/drill_engine.py",
+        "reference/star_schema.sql"
+      ],
+      "tests": "small_count_error",
+      "owner": "Methodik + Engineering",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/drill_engine.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/star_schema.sql"
+      ],
+      "audit_severity": "Mittel",
+      "category": "formula",
+      "implementation_status": "partial",
+      "implementation_note": "Count wird exakt, Rohwertarithmetik enger geprüft. Vollständige Toleranzprofile pro Einheit/Ausgabe noch offen.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-14",
+      "title": "Semantische Validatorversprechen durch echte Prüfungen ersetzen",
+      "severity": "critical",
+      "phase": "A – vor Board bearbeiten",
+      "kind": "Reproduziert",
+      "area": "Validierung",
+      "cards": [],
+      "observation": "Sieben absichtlich fehlerhafte Katalogmutationen bestehen Validator, JSON Schema und formula_audit: Selbstreferenz, Division durch null, falsches Composite-Beispiel, widersprüchliche Schwellen, Grün unter Confidence-Grenzen, Leerzeichen-Owner sowie ein falsches Ratio-Beispiel mit passender Nebenrechnung. Die fehlende Referenz p(ZZZ-999) wird dagegen vom formula_audit erkannt. Die README verspricht weitergehende Semantikprüfungen.",
+      "impact": "Ein grüner CI-Lauf wird leicht als fachliche Freigabe gelesen, obwohl wesentliche Regeln nur textuell oder mit Regex-Heuristiken geprüft werden.",
+      "action": "Prüfumfang in der README sofort präzisieren. Abhängigkeitsgraph, strukturierte Operatoren, Grenzpartitionen, Nonblank-Strings und maschinenlesbare Beispiele mit expliziten Sollwerten einführen. Die Negativproben als Regressionstests aufnehmen.",
+      "acceptance": "Jede Mutation löst einen spezifischen Fehler mit Karten-ID und Regel aus. Tatsächliche Referenzzyklen werden erkannt; ein bloßer Kartenname links einer Zuweisung wird nicht als Zyklus fehlklassifiziert.",
+      "files": [
+        "tools/osms_validate.py",
+        "tools/formula_audit.py",
+        "schema/osms-card.schema.json",
+        "README.md"
+      ],
+      "tests": "mutant_*",
+      "owner": "Engineering",
+      "depends": "F-01; F-18; F-20",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/tools/osms_validate.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/tools/formula_audit.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/schema/osms-card.schema.json",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/README.md"
+      ],
+      "audit_severity": "Hoch",
+      "category": "implementation",
+      "implementation_status": "partial",
+      "implementation_note": "Zyklen, Selbstbezüge, Literaldivision durch null, ausgewählte Composite-Beispiele und Leertext-Owner geprüft; überzogene Prüfaussagen korrigiert. Kein Vollparser für alle Formeln.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-15",
+      "title": "Testabdeckung als Konformitätsmatrix statt Gesamt-PASS ausweisen",
+      "severity": "critical",
+      "phase": "C – vor 1.0 abschließen",
+      "kind": "Nachgewiesene Abdeckungsgrenze",
+      "area": "Tests",
+      "cards": [],
+      "observation": "Alle vorhandenen lokalen Gates bestehen. Die breite 327/327-Prüfung prüft Strategie/Lineage, die 277/277-Rezeptläufe arbeiten auf leeren Inputs. Das universelle Zahlen-Fixture-Gate umfasst 14 Karten, entsprechend 4,3 % des Katalogs. Weitere typbezogene Selbstfixtures sind vorhanden, ersetzen jedoch keine unabhängige Prüfung jeder Karte und ihrer Gates.",
+      "impact": "Strukturelle Breite und mathematische Testtiefe werden vermischt. Erfolgreiche Tests mit Beispielen, die aus denselben Mustern wie der Generator stammen, können gemeinsame Fehlannahmen bestätigen.",
+      "action": "Pro Karte und Dialekt ausweisen: Schema, Formellogik, nichtleeres Sollbeispiel, Grenzfälle, ungültige Inputs, Scope/Periode, Evidenz und Hard Gates. Sollwerte unabhängig aus dem normativen Vertrag herleiten. Numerische Universal-Fixtures und Selbstfixtures getrennt zählen.",
+      "acceptance": "Jede als konform freigegebene Implementierung besitzt positive und negative kartenspezifische Fälle. Der Bericht zeigt 14/327 Universal-Fixture-Karten, bis zusätzliche Belege existieren; keine Gleichsetzung von Strategy-Coverage und Formelabdeckung.",
+      "files": [
+        "recipes/gates.py",
+        "recipes/gen_recipes.py",
+        "reference/drill_engine.py",
+        ".github/workflows/recipes-ci.yml"
+      ],
+      "tests": "",
+      "owner": "Test Engineering + Fachreviewer",
+      "depends": "F-14",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/gates.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/gen_recipes.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/drill_engine.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/.github/workflows/recipes-ci.yml"
+      ],
+      "audit_severity": "Hoch",
+      "category": "implementation",
+      "implementation_status": "partial",
+      "implementation_note": "Unabhängige Regressionen und ehrliche Populationszahlen ergänzt; acht numerische Kandidatenfixtures separat von sechs zurückgestellten Template-Beispielen. Vollständige Konformitätsmatrix fehlt.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-16",
+      "title": "Ausführbare Skeletons dürfen keine plausiblen Standardwerte liefern",
+      "severity": "critical",
+      "phase": "A – vor Board bearbeiten",
+      "kind": "Reproduziert",
+      "area": "Recipe-Sicherheit",
+      "cards": [],
+      "observation": "259 Rezepte sind korrekt als generated_skeleton markiert. Ihre Platzhalter sind dennoch ausführbar: TRUE-Population und TRUE-Zähler ergeben für eine beliebige AI-001-Zeile 100 %. Die Delta-Vorlage ergibt sogar bei leerer Basis 0. Die Kennzeichnung und Mapping-Hinweise sind vorhanden, verhindern aber die versehentliche Nutzung unveränderter Vorlagen nicht.",
+      "impact": "Ein Nutzer kann eine noch nicht implementierte Kennzahl als vollständige Kontrolle oder als fehlende Veränderung interpretieren.",
+      "action": "Unaufgelöste Pflicht-Mappings müssen vor Ausführung blockieren oder einen expliziten Status UNIMPLEMENTED liefern. Concrete nur vergeben, wenn Periodenanker, Fallauswahl, Einheiten und Gates vollständig sind; aktuelle Duration-Vorlagen enthalten noch Perioden-Hooks.",
+      "acceptance": "Ein unveränderter Skeleton liefert niemals einen fachlichen Zahlenwert. Erst ein validiertes Mapping kann den Status wechseln; ein Test mit falscher Periode wird von konkreten Rezepten ausgeschlossen.",
+      "files": [
+        "recipes/gen_recipes.py",
+        "recipes/README.md"
+      ],
+      "tests": "unmapped_ratio_skeleton; unmapped_delta_empty",
+      "owner": "Engineering",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/gen_recipes.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/README.md"
+      ],
+      "audit_severity": "Hoch",
+      "category": "implementation",
+      "implementation_status": "verification-pending",
+      "implementation_note": "Unfertige Rezepte geben keine plausiblen KPI-Werte aus; Vorlagen bleiben zum Implementieren erhalten.",
+      "fix_commit": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "candidate_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-17",
+      "title": "Release und Rezeptveröffentlichung an nachgewiesene Gates binden",
+      "severity": "critical",
+      "phase": "A – vor Board bearbeiten",
+      "kind": "Codebefund",
+      "area": "Release Governance",
+      "cards": [],
+      "observation": "Der Tag-Release führt Katalogvalidator und JSON Schema aus, aber nicht Formel-, Drill-, Readiness- oder Rezept-Gates und prüft keinen Boardentscheid. Recipe CI existiert einschließlich ES|QL/Excel und optional Splunk; der Generator setzt Status und Dialekte jedoch ohne Einlesen der konkreten Engine-Berichte. Recipe CI wird bei Push/Dispatch, nicht ausdrücklich bei Pull Requests ausgelöst.",
+      "impact": "Ein Tag oder generiertes Bundle kann einen weitergehenden Reifegrad ausweisen, als durch die am selben Commit belegten Prüfungen abgesichert ist.",
+      "action": "Einen wiederverwendbaren Freigabejob definieren, der Pflichtprüfungen und dokumentierte Boardfreigabe an Commit/Bundle-Hash bindet. Verifikationsstatus je Karte, Dialekt, Engine-Version und Fixture-Satz aus signierten oder unveränderlich referenzierten Testergebnissen ableiten.",
+      "acceptance": "Ein absichtlich fehlgeschlagener Pflichtcheck verhindert einen Freigabe-Release. Ein nicht ausgeführter optionaler Engine-Test wird als ungeprüft ausgewiesen. Die Veröffentlichung enthält denselben Commit und dieselben Inhalts-Hashes wie die Nachweise.",
+      "files": [
+        ".github/workflows/release.yml",
+        ".github/workflows/recipes-ci.yml",
+        "recipes/gen_recipes.py",
+        "recipes/README.md"
+      ],
+      "tests": "",
+      "owner": "Release Maintainer",
+      "depends": "F-14; F-15; F-26",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/.github/workflows/release.yml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/.github/workflows/recipes-ci.yml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/gen_recipes.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/recipes/README.md"
+      ],
+      "audit_severity": "Hoch",
+      "category": "implementation",
+      "implementation_status": "partial",
+      "implementation_note": "PR- und Tag-Prüfungen erweitert, Draft-Release-Sperre eingebaut. Stabile Promotion verlangt eine noch zu implementierende Board-/Engine-Evidenzfreigabe.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-18",
+      "title": "Ampelregeln lückenlos, disjunkt und priorisiert definieren",
+      "severity": "critical",
+      "phase": "A – vor Board bearbeiten",
+      "kind": "Quellenvergleich",
+      "area": "Entscheidungslogik",
+      "cards": [
+        "STD-055",
+        "STD-019",
+        "STD-012",
+        "STD-015",
+        "SOC-063",
+        "STD-005"
+      ],
+      "observation": "STD-055 lässt exakt 30 Tage überfällige nichtkritische Akzeptanzen offen (<30 Amber, >30 Red). STD-012 definiert keinen eindeutigen Status für exakt Plan oder weniger als 10 % Planunterschreitung. STD-015 lässt stabile Werte bzw. Anstiege bis 20 % offen. SOC-063 nennt 90 und 110 zugleich in benachbarten Bändern. Bei STD-005 ist ein negativer Quotient nicht zugeordnet.",
+      "impact": "Zwei Implementierer können unterschiedliche Ampeln erzeugen. Vergleiche gegen eine Null-Baseline oder mehrere gleichzeitig zutreffende Gates sind ohne Prioritätsregel ebenfalls uneindeutig.",
+      "action": "Schwellen als maschinenlesbare Intervalle mit offenen/geschlossenen Grenzen modellieren. Vorrang von Hard Gates, Confidence und fachlichen Bändern definieren; Baseline=0, fehlende Vergleichsperiode und negative zulässige Werte ausdrücklich behandeln.",
+      "acceptance": "Für jeden zulässigen Zahlenwert gilt genau ein fachliches Band oder ein expliziter Sonderstatus. Grenzwerte sowie epsilon darunter/darüber werden getestet; kein Gate-Verstoß wird von einem günstigeren Band überstimmt.",
+      "files": [
+        "catalog/osms-catalog.yaml",
+        "schema/osms-card.schema.json"
+      ],
+      "tests": "",
+      "owner": "Methodik",
+      "depends": "F-08",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/schema/osms-card.schema.json"
+      ],
+      "audit_severity": "Hoch",
+      "category": "decision-chain",
+      "implementation_status": "decision-pending",
+      "implementation_note": "Sechs Karten erhalten lückenlose Entwurfsgrenzen und ausführbare Grenzwertprofile; bewusst zur fachlichen Bewertung, nicht als Boardbeschluss.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "proposal"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-19",
+      "title": "Posture-Normalisierung global nachvollziehbar machen",
+      "severity": "critical",
+      "phase": "B – Board-Entscheidung",
+      "kind": "Spezifikationslücke",
+      "area": "Scoremethodik",
+      "cards": [
+        "STD-001",
+        "HRM-001",
+        "STD-003a"
+      ],
+      "observation": "STD-001 setzt p(card)-Werte auf 0–100 voraus und berücksichtigt Richtung bereits im Input. Ein vollständiges gemeinsames Profil für alle verwendeten Rohgrößen ist nicht definiert. HRM-001 besitzt bereits eine lineare Schwellen-Normalisierung; diese ist ein guter Ansatz, löst jedoch nicht die Abbildung von Bandzielen, kontextabhängigen Counts, mehreren Perzentilen oder Hard Gates für alle DSPS-Kinder.",
+      "impact": "Verschiedene plausible Normalisierungen erzeugen bei identischen Rohwerten unterschiedliche DSPS-Scores und Trendbrüche. Tuning kann einen Score nachträglich günstiger machen.",
+      "action": "Versionierte Scoring-Profile mit Input-Ausgabe-ID, Richtung, Ankern, Clamping, Sonderfällen und Gate-Propagation definieren. Tunable Gewichte vor der Periode festlegen; Sensitivität und Doppelzählungsrisiken im Board entscheiden.",
+      "acceptance": "Ein Rohdatensatz der 14 DSPS-Blätter wird von zwei unabhängigen Implementierungen zu identischen Blatt-, Säulen- und Gesamtwerten transformiert. Bandziele, Nullbreite der Anker und fehlende Pflichtkinder sind vollständig spezifiziert.",
+      "files": [
+        "catalog/osms-catalog.yaml",
+        "schema/FIELD_CONVENTIONS.md"
+      ],
+      "tests": "",
+      "owner": "Methodik + Review Board",
+      "depends": "F-01; F-18",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/schema/FIELD_CONVENTIONS.md"
+      ],
+      "audit_severity": "Hoch",
+      "category": "formula",
+      "implementation_status": "open",
+      "implementation_note": "Normierungsfunktionen und eingefrorene Gewichtsprofile müssen pro Kind/Ausgabe festgelegt werden.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-20",
+      "title": "Feldnamen und Mehrfachausgaben zu ausführbaren Datenverträgen ergänzen",
+      "severity": "critical",
+      "phase": "B – Board-Entscheidung",
+      "kind": "Spezifikationslücke",
+      "area": "Schema",
+      "cards": [],
+      "observation": "Der Katalog enthält 1.070 unterschiedliche minimum_data_fields. Die Liste ist wertvoll, beschreibt aber überwiegend Feldnamen, nicht überall Typ, Nullbarkeit, zulässige Werte, Schlüssel und Eventsemantik. Einige Karten liefern mehrere Werte mit unterschiedlichen Rollen, etwa VAL-001 zwei Quoten, SOC-078 gewichtete Exposition plus Perzentile und STD-003a Index plus Board-Count. Ein einzelnes value_numeric bildet das nicht verlustfrei ab.",
+      "impact": "Adapter müssen wesentliche Semantik selbst ergänzen. Ein gültiger JSONB-Payload oder ein einzelner Ergebniswert beweist keine Übereinstimmung mit der Karte.",
+      "action": "Wiederverwendbare Felddefinitionen und kartenspezifische Input-Schemas schaffen. Benannte Outputs mit Einheit, Rolle, Estimator, Gültigkeitsstatus und Gate-Bezug modellieren. Varianten als versionierte Profile definieren, ohne jede Karte zwangsläufig aufzuteilen.",
+      "acceptance": "VAL-001 und SOC-078 lassen sich einschließlich Teil-n/a und Gesamtrating ohne Freitext-Sonderlogik austauschen. Falsche Datentypen, unbekannte Enums und fehlende obligatorische Zeit-/Belegfelder werden vor Berechnung erkannt.",
+      "files": [
+        "schema/osms-card.schema.json",
+        "reference/star_schema.sql",
+        "catalog/osms-catalog.yaml"
+      ],
+      "tests": "",
+      "owner": "Data Architecture + Methodik",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/schema/osms-card.schema.json",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/star_schema.sql",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml"
+      ],
+      "audit_severity": "Hoch",
+      "category": "card-contract",
+      "implementation_status": "partial",
+      "implementation_note": "Ausführungsvertrag, Zustände und zusätzliche Behandlungsspalte dokumentiert; vollständige typisierte Ein-/Ausgaben aller 327 Karten fehlen.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-21",
+      "title": "Lineage-Anforderungen und offene Referenzrubriken vollständig bereitstellen",
+      "severity": "major",
+      "phase": "C – vor 1.0 abschließen",
+      "kind": "Code-/Dokumentationsbefund",
+      "area": "Auditierbarkeit",
+      "cards": [],
+      "observation": "Lineage ist im Katalog durchgängig vorhanden. Die Engine kennt jedoch nur sieben feste Achsen und fällt bei unbekannten Achsen still auf period zurück. Die Coverage-Prüfung weist keine fachliche Ausführbarkeit jeder Achse nach. Zwölf Karten verweisen auf Rubriken in Part I; weitere Verweise nennen Part II, während das Buch ausdrücklich außerhalb der offenen Lizenzen liegt.",
+      "impact": "Ein Prüfer kann eine angezeigte Achse mit einer anderen Gruppierung verwechseln. Für referenzierte Bewertungsrubriken muss er erkennen können, ob die notwendigen Definitionen im offenen Standard selbst vollständig verfügbar sind.",
+      "action": "Achsen mit stabilen IDs und unterstützten Feldern registrieren; unbekannte Achsen ausdrücklich ablehnen. Alle für normative Berechnungen notwendigen Rubriken eigenständig im offenen Paket bereitstellen und versioniert verlinken. Das Buch kann die Erläuterung ergänzen.",
+      "acceptance": "Jede freigegebene Drill-Achse besitzt einen ausführbaren Test. Eine unbekannte Achse führt nicht zu einer anderen stillen Gruppierung. Alle zwölf Part-I-Verweise sind aufgelöst oder als rein informativ klassifiziert.",
+      "files": [
+        "reference/drill_engine.py",
+        "catalog/osms-catalog.yaml",
+        "NOTICE"
+      ],
+      "tests": "",
+      "owner": "Methodik + Dokumentation",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/drill_engine.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/NOTICE"
+      ],
+      "audit_severity": "Mittel",
+      "category": "evidence",
+      "implementation_status": "partial",
+      "implementation_note": "Unbekannte Drill-Achsen lösen Fehler aus. Vollständige Achsenregistrierung, Pfadtiefe und offene Rubriken bleiben offen.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-22",
+      "title": "Messgröße und Kennzahlname auf dieselbe Aussage begrenzen",
+      "severity": "major",
+      "phase": "B – Board-Entscheidung",
+      "kind": "Fachlicher Befund",
+      "area": "Konstruktvalidität",
+      "cards": [
+        "SOC-023",
+        "AIM-011",
+        "SOC-072"
+      ],
+      "observation": "SOC-023 teilt False-Positive-Alerts durch geprüfte Alerts. Das ist der Fehlalarmanteil im geprüften Alertbestand, nicht die klassische False-Positive-Rate FP/(FP+TN) einer Klassifikation. AIM-011 teilt erkannte Angriffsversuche durch alle AI-Inputs und misst damit nicht die Erkennungswahrscheinlichkeit unter tatsächlichen Angriffen. SOC-072 misst den Trefferanteil innerhalb einer Toleranz, keine allgemeine probabilistische Kalibrierung.",
+      "impact": "Die Rechnungen können korrekt sein und trotzdem zu weitreichende Managementaussagen nahelegen. Ein geringerer Anteil erkannter Angriffe kann beispielsweise weniger Angriffe oder schlechtere Erkennung bedeuten.",
+      "action": "Namen, Managementfrage und Interpretation präzisieren. Für Detection-Efficacy einen bekannten Angriffstestbestand mit TP/FN verwenden; für Fehlalarmanteile die Triagelabels und den selektierten Alertbestand offenlegen. Risikokalibrierung als eigenes Messziel behandeln.",
+      "acceptance": "Jede Karte nennt genau die Aussage, die aus ihrer Fallbasis folgt. Beispiele unterscheiden Alarmanteil, Fehlalarmrate und Sensitivität; kein Schwellenwert wird als Wirksamkeitsbeweis für ein anderes Konstrukt verwendet.",
+      "files": [
+        "catalog/osms-catalog.yaml"
+      ],
+      "tests": "",
+      "owner": "Methodik + Fachreviewer",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml"
+      ],
+      "audit_severity": "Mittel",
+      "category": "card-contract",
+      "implementation_status": "open",
+      "implementation_note": "Konstrukt-/Namensentscheidungen für SOC-023, AIM-011 und SOC-072 dokumentiert; kein stiller Definitionswechsel.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-23",
+      "title": "Stichprobenunsicherheit und Selektionsbias separat ausweisen",
+      "severity": "major",
+      "phase": "B – Board-Entscheidung",
+      "kind": "Verbesserungsvorschlag",
+      "area": "Zuverlässigkeit",
+      "cards": [
+        "HRM-004",
+        "SOC-002",
+        "SOC-072"
+      ],
+      "observation": "Der Katalog enthält viele sinnvolle Hinweise zu Datenbasis, Trend und Gaming. Ein einheitlicher Vertrag für geringe Fallzahlen, Beobachtungsfenster und statistische Unsicherheit fehlt jedoch. Reine Quoten behandeln 1/1 und 1.000/1.000 numerisch gleich. SOC-072 schließt noch nicht beobachtbare Outcomes aus; das kann eine ausgewählte, zeitverzögerte Kohorte sein.",
+      "impact": "Kleine Stichproben oder veränderte Kampagnen-/Fallzusammensetzung können RAG-Wechsel erzeugen, die keine belastbare Leistungsänderung zeigen. Der Data-Confidence-Score allein löst das nicht.",
+      "action": "Pro geeigneter Kennzahl n, Exposition, Kohorte und zulässige Mindestbasis festlegen. Stichprobenintervalle nur bei passendem Stichprobenmodell ergänzen; Vollerhebungen nicht pauschal mit einem Binomialintervall versehen. Offene Fälle und Beobachtungsverzug getrennt ausweisen.",
+      "acceptance": "1/1 erhält eine andere Evidenzaussage als 1.000/1.000. Nachmeldungen, Kampagnenwechsel und noch offene Outcomes sind sichtbar; Pilotdaten belegen Stabilität unter plausiblen Änderungen der Fallzusammensetzung.",
+      "files": [
+        "catalog/osms-catalog.yaml"
+      ],
+      "tests": "",
+      "owner": "Statistik + Fachreviewer",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml"
+      ],
+      "audit_severity": "Mittel",
+      "category": "data-confidence",
+      "implementation_status": "open",
+      "implementation_note": "Stichproben-/Selektionsunsicherheit separat vorgesehen; keine pauschalen Intervalle oder erfundenen Pilotdaten.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-24",
+      "title": "Verteilungs- und Risikomodelle operational spezifizieren",
+      "severity": "major",
+      "phase": "B – Board-Entscheidung",
+      "kind": "Spezifikationslücke",
+      "area": "Risikomodell",
+      "cards": [
+        "STD-002",
+        "STD-002a",
+        "STD-056"
+      ],
+      "observation": "STD-002a fordert bereits mindestens 100.000 Iterationen, Seed, P50/Mean/P90 und Überschreitungswahrscheinlichkeit. Das ist positiv. LEF×LM allein legt aber weder Jahresereignisprozess noch Szenarioabhängigkeiten und Verteilungsparameter vollständig fest. Derselbe Seed garantiert ohne PRNG-/Softwarevertrag keine bitidentischen Ergebnisse. Bei STD-056 ist zu klären, ob residual_risk kompensierende Kontrollen bereits berücksichtigt, bevor ein weiterer Gap-Faktor wirkt.",
+      "impact": "Verschiedene zulässige Modelle liefern andere Risikoschwänze. Eine doppelte Berücksichtigung von Kontrollen oder eine unklare ±2%-Toleranz bei sehr kleinen Wahrscheinlichkeiten kann Sicherheit überzeichnen.",
+      "action": "Ein versioniertes Modellprofil für Ereigniszahl, Verlusthöhen, Abhängigkeiten, Aggregation, Seed/PRNG, Engine und Einheiten definieren. Erwartungswert und Verlustverteilung unterscheiden. Bei STD-056 die Bedeutung vor/nach Kontrollen ausdrücklich entscheiden; ordinales Scoring als Index ausweisen.",
+      "acceptance": "Ein veröffentlichtes synthetisches Szenarioset lässt sich mit dem festgelegten Profil reproduzieren. Nullereignis-, korrelierte und schwere Tail-Szenarien sind getestet. Relative/absolute Toleranzen und Kontrollanrechnung sind eindeutig.",
+      "files": [
+        "catalog/osms-catalog.yaml"
+      ],
+      "tests": "",
+      "owner": "Risk Methodik + Statistik",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml"
+      ],
+      "audit_severity": "Mittel",
+      "category": "formula",
+      "implementation_status": "open",
+      "implementation_note": "Risikomodellprofile und mögliche Doppelzählung STD-056 benötigen methodische Entscheidung.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-25",
+      "title": "Review-KPI-Skript an das eigene Review-Verfahren angleichen",
+      "severity": "critical",
+      "phase": "A – vor Board bearbeiten",
+      "kind": "Reproduziert / Codebefund",
+      "area": "Review-Metriken",
+      "cards": [],
+      "observation": "Der Standardregex sucht OSMS-… statt IDs wie STD-001 und SOC-002. Eine Testmeldung mit beiden IDs ergibt 0 % Kartenabdeckung. decision:pending wird als abgeschlossene Entscheidung gezählt. K-01 zählt Issue-Autoren, nicht auch Kommentarautoren; K-06 misst die erste Severity-Markierung in Kalendertagen statt vollständiger Kategorie+Severity-Triage in Arbeitstagen. K-09 wird nicht berechnet.",
+      "impact": "Das Review kann sich anhand seiner eigenen Kennzahlen zu früh oder zu spät als vollständig darstellen. Gerade vor dem Board sind diese Zahlen eine Steuerungsgrundlage.",
+      "action": "IDs aus dem geladenen Katalog erkennen; finale Decision-Labels explizit erlauben. Kommentaraktivität, externe Einreichungen, vollständige Triagezeit und Arbeitstage korrekt zählen. Manuelle Quorumdaten samt Quelle integrieren; API-Limits/Paginierung sichtbar machen.",
+      "acceptance": "Die Testmeldung ergibt zwei berührte Karten und null finale Entscheidungen. Ein reiner Kommentar zählt für K-01. Wochenenden und zeitversetzte Labels werden korrekt verarbeitet; K-09 besitzt einen nachvollziehbaren Nachweis.",
+      "files": [
+        "tools/review_kpis.py",
+        "REVIEW_PROCESS.md"
+      ],
+      "tests": "review_kpi_ids_and_decisions",
+      "owner": "Review Coordinator + Engineering",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/tools/review_kpis.py",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/REVIEW_PROCESS.md"
+      ],
+      "audit_severity": "Hoch",
+      "category": "implementation",
+      "implementation_status": "partial",
+      "implementation_note": "GitHub-IDs, Kommentare, Entscheidungen, vollständige Pagination, Werktage und K-09-Evidenz verbessert. Personen-Aliase, Nicht-GitHub-Importe und Charterdefinition benötigen zusätzliche Daten.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-26",
+      "title": "Boardfreigabe als nachvollziehbare Entscheidung definieren",
+      "severity": "major",
+      "phase": "B – Board-Entscheidung",
+      "kind": "Dokumentationslücke",
+      "area": "Governance",
+      "cards": [],
+      "observation": "REVIEW_PROCESS.md nennt Quorum und Entscheidungslabels, enthält aber keinen vollständigen Charter-/Entscheidungsvertrag im geprüften Paket. Die Go/no-go-Formulierung verbindet K-01, K-02 und K-09 mit and; unklar bleibt, ob schon ein verfehltes Pflichtgate die Freigabe blockiert. Eine reine Anzahl Findings oder Review-Touches belegt noch keine fachliche Prüftiefe.",
+      "impact": "Quorum, Befangenheit, aufgeschobene wesentliche Befunde und die Reichweite eines Boardbeschlusses können unterschiedlich interpretiert werden. Fehlende öffentliche Unterlagen beweisen nicht, dass intern kein Verfahren existiert.",
+      "action": "Vorhandene interne Regeln in ein freigegebenes Reviewpaket überführen: Mandat, Mitglieder, Interessenkonflikte, Quorum, Abstimmung, Entscheidungsklassen und Wiedereröffnung. Für Pflichtgates eine Wahrheitstabelle festlegen; angenommene Risiken mit Begründung, Owner und Frist dokumentieren.",
+      "acceptance": "Ein Dritter kann für den Freigabe-Commit erkennen, wer welche Befunde mit welchem Ergebnis entschieden hat. Ein einzelnes verletztes Pflichtgate hat die ausdrücklich beschlossene Konsequenz; deferred zählt nicht automatisch als behoben.",
+      "files": [
+        "REVIEW_PROCESS.md",
+        ".github/ISSUE_TEMPLATE/finding.yml"
+      ],
+      "tests": "",
+      "owner": "Review Board Chair",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/REVIEW_PROCESS.md",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/.github/ISSUE_TEMPLATE/finding.yml"
+      ],
+      "audit_severity": "Mittel",
+      "category": "board-relevance",
+      "implementation_status": "open",
+      "implementation_note": "Board im Aufbau; Kandidatenbaseline, Zeitplan, Charter und Gate-Kombination müssen übernommen werden. Keine Freigabe simuliert.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-27",
+      "title": "Framework-Mappings als begründete Beziehungen pflegen",
+      "severity": "major",
+      "phase": "B – Board-Entscheidung",
+      "kind": "Abgrenzungs- und Pflegebedarf",
+      "area": "Normenbezug",
+      "cards": [],
+      "observation": "framework_mapping ist überall vorhanden; 83 Karten nennen ISO/IEC 27004:2016. Ein Verweis allein dokumentiert jedoch weder die genaue Beziehung noch einen Nachweis vollständiger Konformität. Der nicht öffentliche ISO-Entwurf 27004 wurde für dieses Audit nicht verwendet.",
+      "impact": "Ein informatives Mapping kann als Normerfüllung missverstanden werden. Änderungen eines Frameworks lassen sich ohne Editions- und Beziehungsmetadaten schwer gezielt nachziehen.",
+      "action": "Edition, Abschnitt, Beziehungstyp, Begründung und verantwortlichen Review pro Mapping ergänzen. Eigenständige OSMS-Lücken zuerst beheben; den späteren ISO-Abgleich mit zulässigen öffentlichen Informationen und autorisierten eigenen Prüfergebnissen getrennt dokumentieren.",
+      "acceptance": "Jedes freigegebene Mapping hat eine nachvollziehbare Begründung und Edition. Der Bericht unterscheidet unterstützt, teilweise abgedeckt und nicht bewertet. Keine Aussage über Übereinstimmung mit dem unveröffentlichten Entwurf ohne zulässige Prüfung.",
+      "files": [
+        "catalog/osms-catalog.yaml",
+        "schema/osms-card.schema.json"
+      ],
+      "tests": "",
+      "owner": "Framework Reviewer",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/schema/osms-card.schema.json"
+      ],
+      "audit_severity": "Mittel",
+      "category": "card-contract",
+      "implementation_status": "open",
+      "implementation_note": "Edition/Beziehung/Begründung der Framework-Mappings bleiben Aufgabe; keine Behauptung von ISO-Konformität.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-28",
+      "title": "Website-Schema und GitHub-Vertrag eindeutig versionieren",
+      "severity": "major",
+      "phase": "C – vor 1.0 abschließen",
+      "kind": "Publikationsabweichung",
+      "area": "Website",
+      "cards": [],
+      "observation": "GitHub ist hier maßgeblich und enthält alle 47 Pflichtfelder. Das öffentlich verlinkte Website-Schema unter /schema/0.9/ verwendet einen anderen, kleineren verschachtelten Vertrag mit 14 Pflichtfeldern, unter anderem abweichenden Typen für formula und data_confidence. Beide verwenden denselben Schema-Identifier. Der Website-Katalog bildet bewusst noch nicht alle Felder ab.",
+      "impact": "Implementierer können je nach Einstieg unterschiedliche Datenformate für vermeintlich dieselbe Version verwenden. Fehlende Website-Felder sind ausdrücklich kein fehlender Inhalt im GitHub-Katalog.",
+      "action": "Websiteansicht aus dem kanonischen Schema generieren oder als reduzierte Ansicht markieren. Abweichende Austauschformate benötigen eigene IDs und Migration. Quell-Commit, vollständiger Download und synchronisierte Versionsanzeige sollten an jeder Katalogansicht sichtbar sein.",
+      "acceptance": "Gleiche Schema-ID bedeutet identische Bytes bzw. denselben versionierten Vertrag. Eine CI-Prüfung erkennt Drift zwischen veröffentlichtem Schema und Repository; die Website verlinkt den vollständigen 47-Feld-Vertrag.",
+      "files": [
+        "schema/osms-card.schema.json",
+        "README.md"
+      ],
+      "tests": "",
+      "owner": "Web Maintainer",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/schema/osms-card.schema.json",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/README.md"
+      ],
+      "audit_severity": "Mittel",
+      "category": "implementation",
+      "implementation_status": "partial",
+      "implementation_note": "Alle Kartenfelder im Website-Export; eigene Schema-ID für den Draft. Live-Webseite und separates Frontend sind nicht aktualisiert. Die Website-Umsetzung übernimmt laut Auftrag Claude. Website-Commit, Abgleich aller 47 Kartenfelder und Deployment-Nachweis stehen noch aus.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "Website: Claude; OSMS export/schema: repository remediation",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-29",
+      "title": "Auswertungsversion und Freigabepaket vollständig historisieren",
+      "severity": "major",
+      "phase": "C – vor 1.0 abschließen",
+      "kind": "Code-/Dokumentationsbefund",
+      "area": "Versionierung",
+      "cards": [],
+      "observation": "Karten enthalten Versions- und Trendbruchregeln; 319 Karten stehen auf 0.9.1 und acht auf 0.9.0, was allein kein Fehler ist. Das Releasepaket enthält Katalog/Schema/Dokumentation, aber keine Referenz- und Rezeptimplementierung. Die Einzeldatei-Manifestliste erfasst YAML/JSON aus catalog/schema, nicht alle enthaltenen Markdown-/Lizenzdateien; der ZIP-Hash schützt dagegen das gesamte Archiv.",
+      "impact": "Ein Katalogstand ist eingefroren, aber die genaue Kombination aus Daten, Scoring-Profil, Code und Engines einer Auswertung bleibt ohne zusätzlichen Auswertungsmanifest schwer wiederholbar.",
+      "action": "Pro Bericht Kataloghash, Card-/Profilversion, Daten-Snapshot, Codehash, Engineversion, Parameter, Stichtag und Ergebnisgates referenzieren. Ein vollständiges Paketmanifest ergänzen und notwendige Implementierung separat unveränderlich referenzieren. Änderungen mit Migration und Trendbruchbeispiel dokumentieren.",
+      "acceptance": "Ein historischer Bericht lässt sich aus seinen Manifestangaben unabhängig wiederherstellen. Alle ausgelieferten Dateien sind vollständig aufgelistet; gemischte Kartenversionen sind erklärt, ohne sie pauschal als Fehler zu markieren.",
+      "files": [
+        "tools/make_checksums.sh",
+        "catalog/osms-catalog.yaml",
+        "reference/star_schema.sql"
+      ],
+      "tests": "",
+      "owner": "Release Maintainer + Data Governance",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/tools/make_checksums.sh",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/reference/star_schema.sql"
+      ],
+      "audit_severity": "Mittel",
+      "category": "evidence",
+      "implementation_status": "partial",
+      "implementation_note": "Quellarchiv mit vollständigem Einzeldateimanifest und Kataloghash im Rezeptbundle. Vollständiges Auswertungsmanifest mit Daten-/Profil-/Engine-Nachweisen bleibt offen.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-30",
+      "title": "Formale Dokumentations- und Lizenzgrenzen konsolidieren",
+      "severity": "minor",
+      "phase": "D – redaktionelle Pflege",
+      "kind": "Dokumentationsbefund",
+      "area": "Formalia",
+      "cards": [],
+      "observation": "Das Repository enthält neben kanonischen Dokumenten Einfügefragmente wie README_LICENSING_SECTION.md und REVIEW_PROCESS_KPI_SECTION.md. Ein Fragment nennt OWNER/REPO und einen Validatoraufruf, der nicht dem aktuellen CLI-Vertrag entspricht. NOTICE benennt tools/ und schema/ ausdrücklich für MIT, neuere Codebereiche reference/ und recipes/ sollten ebenso eindeutig zugeordnet werden.",
+      "impact": "Leser können auf veraltete Anleitungen oder unklare Paketgrenzen stoßen. Es geht um Dokumentationsklarheit; eine abschließende rechtliche Lizenzbewertung ist nicht Bestandteil dieses technischen Audits.",
+      "action": "Einfügefragmente entfernen oder als historische Vorlage kennzeichnen. Alle Code-/Inhaltsbereiche ausdrücklich in einer Asset-Lizenzmatrix zuordnen, vorhandene Lizenztexte beibehalten und Links/CLI-Beispiele automatisch prüfen. Normative Anforderungen, Beispiele und Implementierungen erkennbar trennen.",
+      "acceptance": "Eine neue Person kann ausschließlich mit den kanonischen Anleitungen validieren. Kein publiziertes Beispiel enthält Platzhalter für den echten Repositorypfad; jeder ausgelieferte Bereich ist in der Lizenzmatrix benannt.",
+      "files": [
+        "README_LICENSING_SECTION.md",
+        "REVIEW_PROCESS_KPI_SECTION.md",
+        "NOTICE",
+        "README.md"
+      ],
+      "tests": "",
+      "owner": "Dokumentation + Maintainer",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/README_LICENSING_SECTION.md",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/REVIEW_PROCESS_KPI_SECTION.md",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/NOTICE",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/README.md"
+      ],
+      "audit_severity": "Niedrig",
+      "category": "language",
+      "implementation_status": "partial",
+      "implementation_note": "Dokumentation, historische Termine und Validatorversprechen bereinigt. Endgültige Rechte-/Lizenzmatrix für alle Bestandteile noch zu bestätigen.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-31",
+      "title": "Abhängigkeiten und Testumgebung reproduzierbar festlegen",
+      "severity": "major",
+      "phase": "C – vor 1.0 abschließen",
+      "kind": "Codebefund",
+      "area": "Build-Zuverlässigkeit",
+      "cards": [],
+      "observation": "CI installiert Python-Pakete und den KQL-Analyzer ohne feste Paketversionen. GitHub Actions werden über bewegliche Versions-Tags referenziert. Teilweise sind echte Engines konkret versioniert, was positiv ist; die Kombination aller Prüfkomponenten ist jedoch nicht vollständig festgehalten.",
+      "impact": "Derselbe Katalog-Commit kann später mit veränderten Parsern, Berechnungsbibliotheken oder Engines andere Ergebnisse liefern. Ein grüner historischer Lauf ist ohne Umgebung nur eingeschränkt wiederholbar.",
+      "action": "Getestete Abhängigkeiten mit Hashes/Lockdateien fixieren, Action-Referenzen auf unveränderliche Commits binden und Engine-/Toolversionen in den Testbericht schreiben. Updates kontrolliert gegen die Konformitätsmatrix prüfen; keinen Freeze auf ungetestete neuere Versionen umstellen.",
+      "acceptance": "Ein sauberer Neuaufbau derselben Umgebung liefert dieselben Sollwerte. Ein Dependency-Update erzeugt einen nachvollziehbaren Diff der Testergebnisse; Testberichte enthalten alle relevanten Versionsangaben.",
+      "files": [
+        ".github/workflows/validate.yml",
+        ".github/workflows/recipes-ci.yml",
+        ".github/workflows/release.yml"
+      ],
+      "tests": "",
+      "owner": "CI Maintainer",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/.github/workflows/validate.yml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/.github/workflows/recipes-ci.yml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/.github/workflows/release.yml"
+      ],
+      "audit_severity": "Mittel",
+      "category": "implementation",
+      "implementation_status": "partial",
+      "implementation_note": "Direkte Python-Abhängigkeiten und Kusto-Paketversion fixiert. Transitive Locks, Action-SHAs und vollständige Engine-Matrix offen.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    },
+    {
+      "id": "F-32",
+      "title": "Board-Review nach Risiko und Prüftiefe organisieren",
+      "severity": "minor",
+      "phase": "B – Board-Entscheidung",
+      "kind": "Verbesserungsvorschlag",
+      "area": "Reviewplanung",
+      "cards": [],
+      "observation": "146 von 327 Karten sind als P0 markiert. Ein Review-Touch je Karte ist für diese Breite ein schwacher Abschlussnachweis. Die eigene Prüftiefe sollte daher zusätzlich nach rechnerischem Risiko und Entscheidungsauswirkung gesteuert werden; der Kalender im Reviewdokument nennt inzwischen vergangene Zieltermine.",
+      "impact": "Unter Zeitdruck entstehen viele oberflächliche Berührungen, während komplexe Rollups und ungewöhnliche Rechenfamilien nicht unabhängig nachgerechnet werden. Alte Termine können den tatsächlichen Reviewstand verschleiern.",
+      "action": "Die P0-Einstufung fachlich beibehalten oder bewusst überprüfen, aber zusätzlich Prüfklassen vergeben. Zuerst DSPS/Confidence, nichtstandardisierte Quotienten, Duration-Kohorten und Risiko-/Outcome-Modelle mit zwei unabhängigen Reviewern bearbeiten. Termine und tatsächlichen Status aktualisieren.",
+      "acceptance": "Das Boardpaket nennt pro Hochrisikokarte Reviewer, Prüfumfang, Testfälle und offene Entscheidungen. Review-Coverage und fachliche Konformität bleiben getrennte Kennzahlen; ein geänderter Zeitplan ist mit Gründen dokumentiert.",
+      "files": [
+        "catalog/osms-catalog.yaml",
+        "REVIEW_PROCESS.md"
+      ],
+      "tests": "",
+      "owner": "Review Coordinator",
+      "depends": "",
+      "sources": [
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/catalog/osms-catalog.yaml",
+        "https://github.com/OpenSecurityMetricsStandard/OSMS/blob/747cd28fb0b6728ebadbe6c477722d166b5b40b5/REVIEW_PROCESS.md"
+      ],
+      "audit_severity": "Niedrig",
+      "category": "board-relevance",
+      "implementation_status": "open",
+      "implementation_note": "Risiko- und Prüftiefenplanung benötigt tatsächliche Board-Mitglieder; keine Zuordnungen oder Termine erfunden.",
+      "fix_commit": null,
+      "commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ],
+      "verification_status": "pending",
+      "review_decision": null,
+      "workstream": "OSMS repository",
+      "website_fix_commit": null
+    }
+  ]
+}

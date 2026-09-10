@@ -198,7 +198,7 @@
       "title": "Website-Schema und GitHub-Vertrag eindeutig versionieren",
       "original_severity": "Mittel",
       "status": "Teilweise",
-      "change_or_remaining_work": "Alle Kartenfelder im Website-Export; eigene Schema-ID für den Draft. Live-Webseite und separates Frontend sind nicht aktualisiert."
+      "change_or_remaining_work": "Alle Kartenfelder im Website-Export; eigene Schema-ID für den Draft. Claude übernimmt die Website-Umsetzung; Website-Fix-Commit, vollständiger Feldabgleich und Deployment-Nachweis stehen noch aus."
     },
     {
       "id": "F-29",
