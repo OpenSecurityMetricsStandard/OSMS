@@ -1,13 +1,16 @@
-# Method decisions proposed for the review candidate
+# Method decisions for the OSMS 0.9.2 maintainer draft
 
 Status: maintainer working draft; not a Review Board decision or a 1.0 approval.
 Development may continue before the board starts. At review start, select a named
 candidate commit and publish subsequent semantic changes with a change log and a
 new card version. Do not silently replace the material reviewers are evaluating.
 
-## Boundary decisions included in card 0.9.2-draft
+## Maintainer boundary decisions included in card 0.9.2
 
-These are explicit candidate choices where the previous prose had gaps or overlap.
+These choices are adopted for the 0.9.2 maintainer draft under the maintainer
+development authority in REVIEW_PROCESS.md. They resolve gaps and overlaps in the
+previous prose. They can be revised through versioned changes before or during
+later board review; that later review is not a prerequisite for using this draft.
 The executable boundary profiles are in `reference/thresholds.py`; their regression
 oracles exercise the exact boundaries independently of the catalog text.
 

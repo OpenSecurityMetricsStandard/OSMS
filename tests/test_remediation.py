@@ -95,7 +95,7 @@ class RecipeRegressionTests(unittest.TestCase):
 
     def test_mitigation_or_remediation_and_missing_dates(self):
         base = dict(record_id='r1',severity='critical',internet_facing=True,scope_id='prod',due_at='2026-06-20',remediated_at=None,mitigated_at='2026-06-19',validation_status='validated')
-        for changes, expected in [({},100), ({'mitigated_at':None},0), ({'mitigated_at':'2026-06-21'},0), ({'validation_status':'open'},0), ({'remediated_at':'2026-06-18','mitigated_at':None},100), ({'mitigated_at':'2026-06-20'},100)]:
+        for changes, expected in [({},100), ({'mitigated_at':None},0), ({'mitigated_at':'2026-06-21'},0), ({'validation_status':'open'},0), ({'validation_status':'reopened'},0), ({'remediated_at':'2026-06-18','mitigated_at':None},100), ({'mitigated_at':'2026-06-20'},100)]:
             with self.subTest(changes=changes):
                 data = dataframe([{**base,**changes}],['due_at','remediated_at','mitigated_at'])
                 self.assertEqual(compute_python('STD-016',data),expected)
@@ -243,6 +243,13 @@ class ReferenceRegressionTests(unittest.TestCase):
                 self.db.execute('UPDATE fact_kpi_value SET '+change+' WHERE value_id=1')
         self.db.execute("UPDATE fact_kpi_value SET data_confidence=85,rag='green',validity_status='valid',reporting_context='board' WHERE value_id=1")
 
+    def test_database_green_confidence_boundaries(self):
+        for context, threshold in [('operational',70), ('board',85)]:
+            with self.subTest(context=context):
+                with self.assertRaises(sqlite3.IntegrityError):
+                    self.db.execute("UPDATE fact_kpi_value SET data_confidence=?,rag='green',validity_status='valid',reporting_context=? WHERE value_id=1", (threshold-0.01,context))
+                self.db.execute("UPDATE fact_kpi_value SET data_confidence=?,rag='green',validity_status='valid',reporting_context=? WHERE value_id=1", (threshold,context))
+
     def test_views_keep_missing_evidence_and_recompute_weighted_average(self):
         self.assertEqual(self.db.execute('SELECT recon_status FROM vw_recon_component WHERE value_id=8').fetchone()[0],'ARITHMETIC_OK')
         self.db.execute('DELETE FROM fact_evidence_item WHERE value_id=1')
@@ -328,10 +335,24 @@ class ReleaseAndExportRegressionTests(unittest.TestCase):
 
     def test_candidate_release_guard(self):
         guard=module('release_guard','tools/release_guard.py')
-        catalog={'version':'0.9.1','release_phase':'working_draft'}
-        guard.validate('v0.9.1-draft',catalog)
-        for tag in ['v0.9.1','v0.9.10','v0.9.2-draft']:
+        catalog={'version':'0.9.2','release_phase':'working_draft'}
+        guard.validate('v0.9.2',catalog)
+        guard.validate('v0.9.2-draft.1',catalog)
+        for tag in ['v0.9.1','v0.9.20','v0.9.2-', 'v0.9.2-draft/unsafe']:
             with self.assertRaises(ValueError):guard.validate(tag,catalog)
+        with self.assertRaises(ValueError):guard.validate('v0.9.2',{'version':'0.9.2'})
+        for version in ['1.0.0', '2.0.0']:
+            with self.assertRaises(ValueError):guard.validate('v'+version,{'version':version,'release_phase':'review_candidate'})
+
+    def test_release_and_recipe_version_identity(self):
+        catalog=yaml.safe_load((ROOT/'catalog/osms-catalog.yaml').read_text())
+        recipes=json.loads((Path(temporary.name)/'recipes.json').read_text())
+        self.assertEqual(recipes['source_catalog'], 'catalog/osms-catalog.yaml')
+        self.assertEqual(recipes['source_catalog_version'],catalog['version'])
+        self.assertEqual({c['osms_version'] for c in catalog['cards']},{catalog['version']})
+        by_id={c['id']:c for c in catalog['cards']}
+        for card_id, recipe in recipes['recipes'].items():
+            self.assertEqual(recipe['card_version'],by_id[card_id]['card_version'],card_id)
 
     def test_seed_versions_match_catalog(self):
         catalog=drill.Catalog(ROOT/'catalog/osms-catalog.yaml')

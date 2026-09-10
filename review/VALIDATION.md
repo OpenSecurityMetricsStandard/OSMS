@@ -66,3 +66,34 @@ per-engine conformance remains open; see F-15/F-17 in `REMEDIATION.md`.
 The archive manifest records every included source file. The generated recipe
 bundle records its catalog hash; the handoff package also includes the actual
 fixture/recipe hashes and logs. This is technical evidence, not a vote or approval.
+
+## Supplement — OSMS 0.9.2 maintainer preparation, 2026-09-10
+
+The section above is the original local audit record. Publication and further
+verification have since occurred. Source history is preserved in PR #2; the
+0.9.2 preparation commit and final CI links are recorded in that PR and the live
+finding dispositions. Verifier: Codex (automated checks and source inspection),
+working under Nico Wiegand's maintainer instruction. This is a maintainer technical
+verification, not an independent Review Board review.
+
+The correction head `bd8fc0314a21ffa9e3228f79dbdac8562db4ab70` passed
+[Catalog CI](https://github.com/OpenSecurityMetricsStandard/OSMS/actions/runs/34468512947)
+and [Recipe CI](https://github.com/OpenSecurityMetricsStandard/OSMS/actions/runs/34468513016).
+The latter includes successful Splunk 9.4/10.2, Elasticsearch 8.17.4 and LibreOffice
+jobs. These runs supersede the earlier lack of live-engine execution only for the
+fixtures and empty/blocked cases that those jobs actually executed.
+
+The 0.9.2 source passes 47 local regression tests on Python 3.12 with
+`requirements-checks.txt`. Additional checks cover reopened/invalidated SLA cases,
+exact database confidence boundaries 69.99/70 and 84.99/85, permitted plain 0.x
+tags, rejected version mismatches and catalog/recipe/card-version identity.
+All 327 cards pass the JSON schema and lossless export checks. The catalog validator
+reports zero errors and the same four warnings; the formula audit reports zero
+findings, the readiness gate passes and the reference demo detects deliberate
+tampering. Recipe gates pass with eight numeric fixtures and 277 empty/blocked
+snippets per SQL/Python dialect. Generation remains distinct from verification.
+
+No new DAX, PostgreSQL, native Kusto, Microsoft Excel or Google Sheets runtime
+certification is asserted. Current 0.9.2 PR CI must pass before merging; its
+checks identify the exact tested commit. Complete engine/card conformance,
+website deployment and the remaining method questions remain tracked separately.

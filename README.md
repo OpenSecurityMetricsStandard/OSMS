@@ -70,8 +70,10 @@ separately. See [execution contracts](recipes/CONTRACTS.md) and the
 
 ## Review (v0.9.x)
 
-This branch is a remediation working draft based on 0.9.1. The board is still
-being assembled; a new review baseline and timetable must be explicitly set.
+The current source version is **OSMS 0.9.2 — maintainer draft**, developed from
+0.9.1. The maintainer may correct, merge and release 0.x versions while the board
+is being assembled. See the [0.9.2 change record](review/RELEASE_0.9.2.md).
+At formal board review start, select an immutable baseline and a new timetable.
 The earlier July/August dates are historical planning, not evidence of a completed
 review. See [REVIEW_PROCESS.md](REVIEW_PROCESS.md) and the
 [candidate method decisions](review/METHOD_DECISIONS.md). Submit findings as

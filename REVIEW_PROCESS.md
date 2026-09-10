@@ -10,6 +10,29 @@ account required.
 within five working days; Review Board decisions are recorded as
 `decision:*` labels on the issue.
 
+## Maintainer development before formal board review
+
+While the Review Board is being assembled, the maintainer may correct the
+standard, adopt documented method choices for a 0.x draft, merge verified changes,
+close resolved findings and publish new 0.x versions. None of these actions
+requires a Review Board vote. A plain version tag such as `v0.9.2` is permitted;
+the catalog keeps its explicit draft phase and the GitHub release is a public
+prerelease titled "Maintainer draft". A published draft is available to readers;
+it is not an unpublished GitHub release draft.
+
+Close a finding when its acceptance criteria are met and its fix commit, test
+evidence, verifier, responsible maintainer, date and disposition are recorded.
+Automated verification must be identified as such. Use `status:verified` and
+`maintainer:accepted` for that disposition. Keep `decision:*` for the later formal
+board process so maintainer closure does not inflate the board decision KPI.
+Incomplete criteria remain open with specific remaining work; the absence of a
+board is not itself a technical blocker.
+
+At formal review start, identify an immutable candidate version and commit, then
+adopt the charter, timetable and review gates. Subsequent changes remain possible
+with versioned change records. The board/quorum/freeze gates below concern that
+formal process and stable 1.0 promotion, not ordinary 0.x development releases.
+
 ## Review KPIs — we measure our own review
 
 OSMS is a metrics standard, so its public review is itself governed by OSMS-style

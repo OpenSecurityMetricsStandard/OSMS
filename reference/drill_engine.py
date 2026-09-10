@@ -6,7 +6,7 @@ Traverses reference drill mechanics and checks selected arithmetic and reference
 identity invariants. It is not a complete evaluator of all per-card contracts;
 see recipes/CONTRACTS.md for adapter and assurance limitations.
 
-Aligned to catalog v0.9.1 (327 cards, 13 calculation types) and to
+Aligned to catalog v0.9.2 (327 cards, 13 calculation types) and to
 reference/star_schema.sql. The catalog is data, the engine is fixed:
 13 strategies - one per calculation type - grouped into 6 drill mechanics.
 

@@ -1,6 +1,6 @@
 # Recipe execution contracts — remediation candidate
 
-This branch is a working draft based on OSMS 0.9.1. Generation does not verify a
+This is the OSMS 0.9.2 maintainer draft, developed from OSMS 0.9.1. Generation does not verify a
 recipe. The numeric fixture count is a subset of the 327 cards; empty execution,
 a parser check and a positive arithmetic example are different forms of evidence.
 
@@ -41,10 +41,14 @@ outputs as outstanding. KQL rejects truncated percentile arrays. ES|QL is blocke
 `VALUES` deduplicates durations, so it cannot preserve the percentile population.
 A real engine test of a multiset-safe replacement is still required.
 
-**STD-016, card 0.9.2-draft:** add nullable `mitigated_at` to the minimum input
+**STD-016, card 0.9.2:** add nullable `mitigated_at` to the minimum input
 contract. Count a finding once when either treatment date is on/before due and
 `validation_status` is validated in the period-end snapshot. The validation must
-substantiate that treatment; a ticket closure alone is insufficient. Both dates
+substantiate that treatment; a ticket closure alone is insufficient. A reopened
+finding whose treatment validation is no longer effective must have a nonvalidated
+period-end status (for example `reopened`); retained historical validation must not
+be passed as current validation. Such a row remains in the due-date cohort and
+contributes zero to the numerator. Both dates
 missing never counts, including in Excel and DAX. This is an adapter migration:
 existing loaders must supply `mitigated_at`, with null when no mitigation exists.
 The other 47 card fields remain intact; this is one additional input column,
@@ -53,7 +57,8 @@ not a new top-level card field.
 **STD-068/069/075:** Python/SQL validate exactly the expected component IDs,
 finite 0–100 scores and finite nonnegative weights summing to one. Excel checks
 individual IDs and numeric cells. Candidate SPL/KQL/ES|QL guards were updated but
-need execution on those engines; ES|QL distinct cardinality is not an exact
+have positive-fixture execution evidence in the supplementary validation record;
+comprehensive adversarial engine coverage remains open; ES|QL distinct cardinality is not an exact
 identity proof. Weight/profile version binding remains an adapter requirement.
 
 **STD-001:** require each penalty ID exactly once; reject negative, missing or

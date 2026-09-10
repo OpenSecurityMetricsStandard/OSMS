@@ -31,7 +31,10 @@ must not be applied to overwrite the published audit branch. For provenance, see
 | Review disposition | Separate authorized decision, rationale, person and date |
 
 F-05, F-08 and F-16 have an implementation candidate at
-`06fa2b5d837602cdba89d07dafba1f027d76b1a2`; they remain open pending verification.
+`06fa2b5d837602cdba89d07dafba1f027d76b1a2`; their initial import status was open pending verification.
+Live GitHub dispositions and `review/RELEASE_0.9.2.md` record subsequent verification.
+The import JSON and original validation log are historical snapshots, not a
+requirement to keep a verified issue open or wait for the Review Board.
 Other code changes are partial fixes or proposals. Documentation of an unresolved
 method/governance question is explicitly marked as context rather than a fix.
 No `decision:*` label is assigned by the importer.

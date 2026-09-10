@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://opensecuritymetrics.org/schema/0.9.2-draft/osms-card.schema.json",
-  "title": "OSMS Metric Card Contract (production structure)",
+  "$id": "https://opensecuritymetrics.org/schema/0.9.2/osms-card.schema.json",
+  "title": "OSMS 0.9.2 Metric Card Contract (maintainer draft)",
   "description": "Open Security Metrics Standard (OSMS) v0.9 — calibrated 2026-07-04 against osms-catalog.yaml (flat card structure, 47 contract fields). Enums mirror catalog/taxonomy.yaml plus the calculation types declared in the catalog header. Licensed CC BY 4.0; schema file itself MIT.",
   "type": "object",
   "required": [

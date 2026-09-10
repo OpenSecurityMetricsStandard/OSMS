@@ -96,9 +96,9 @@ body:
     id: disposition
     attributes:
       label: Review disposition
-      description: Record the authorized decision, rationale, person and date before closure. Implementation alone is not board acceptance.
+      description: Record the authorized decision, rationale, person and date before closure. During pre-board development the maintainer may close verified findings; a board vote is not required. Identify automated verification explicitly.
   - type: input
     id: version
     attributes:
       label: OSMS version
-      value: "0.9.1 working draft (specify card version if different)"
+      value: "0.9.2 maintainer draft (specify card version if different)"

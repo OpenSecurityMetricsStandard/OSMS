@@ -1,6 +1,6 @@
 {
   "card": "STD-016",
-  "card_version": "0.9.2-draft",
+  "card_version": "0.9.2",
   "recipe_version": "0.3.0-draft",
   "snippets": {
     "gsql": "-- STD-016 · generated from the card contract · non-normative\nWITH denominator AS (\n  SELECT record_id FROM findings\n  WHERE severity = 'critical'\n    AND internet_facing = TRUE\n    AND due_at >= :period_start AND due_at < :period_end\n    AND scope_id = :scope_id\n),\nnumerator AS (\n  SELECT f.record_id\n  FROM findings f JOIN denominator USING (record_id)\n  WHERE (f.remediated_at <= f.due_at OR f.mitigated_at <= f.due_at)\n    AND f.validation_status = 'validated'\n)\nSELECT CASE\n  WHEN (SELECT COUNT(*) FROM denominator) = 0 THEN NULL\n  ELSE 100.0 * (SELECT COUNT(*) FROM numerator)\n             / (SELECT COUNT(*) FROM denominator)\nEND AS sla_compliance_pct;",

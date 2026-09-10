@@ -17,7 +17,7 @@ from pathlib import Path
 
 def build(tag, out):
     if not re.fullmatch(r'v[0-9][A-Za-z0-9.+-]*',tag):
-        raise ValueError('Tag must be a filename-safe version such as v0.9.1-draft')
+        raise ValueError('Tag must be a filename-safe version such as v0.9.2')
     root=Path(__file__).resolve().parents[1]
     files=subprocess.check_output(['git','ls-files','-z'],cwd=root).decode().split('\0')
     payload={p:(root/p).read_bytes() for p in sorted(files) if p and (root/p).is_file()}

@@ -11,7 +11,7 @@ below remains useful for inspection or manual adaptation, but creates a differen
 commit when the recipient commits the applied changes.
 
 The supplied handoff contains a complete source archive, a patch against the audited
-base commit, the change register and local verification logs. Nothing was pushed.
+base commit, the change register and local verification logs. This describes the original local handoff; publication has since occurred through PR #2.
 
 For an existing clone, start from a clean checkout of the audited base:
 
@@ -37,4 +37,4 @@ Update consumers for `curated_candidate`, mapping-required sentinels and the new
 SQL reconciliation status names. The website needs a separate integration/deployment.
 
 The stable 1.x release guard must be replaced by the adopted board/evidence gate
-before stable promotion. It does not block continued local draft development.
+before stable promotion. It does not block maintainer merges, verified finding closure or 0.x draft releases.

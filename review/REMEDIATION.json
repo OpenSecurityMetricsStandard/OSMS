@@ -36,8 +36,8 @@
       "id": "F-05",
       "title": "SLA-Rezept bildet validierte Mitigation nicht ab",
       "original_severity": "Hoch",
-      "status": "Implementiert",
-      "change_or_remaining_work": "Mitigation als zusätzlicher nullable Eingang; fristgerechte Behandlung alternativ geprüft, leere Datumswerte zählen nicht. Adaptermigration und echte DAX/SPL/ES-Ausführung bleiben Anwendungspflichten."
+      "status": "Verifiziert – Maintainer-Entwurf",
+      "change_or_remaining_work": "Behandlung durch fristgerechte Remediation oder validierte Mitigation geprüft, einschließlich fehlender Daten, unvalidierter und wiedereröffneter Fälle. Adaptermigration und vollständige Engine-Konformität bleiben Anwendungspflichten."
     },
     {
       "id": "F-06",
@@ -57,8 +57,8 @@
       "id": "F-08",
       "title": "Datenbank erlaubt Grün bei unbekannter Confidence und n/a",
       "original_severity": "Hoch",
-      "status": "Implementiert",
-      "change_or_remaining_work": "SQL blockiert Green bei unbekannter Confidence, n/a, provisorischem Zustand und unter 70/85; negative Nenner werden abgewiesen. Für bestehende Datenbanken ist eine Migration nötig."
+      "status": "Verifiziert – Maintainer-Entwurf",
+      "change_or_remaining_work": "SQL blockiert Green bei unbekannter Confidence, n/a, provisorischem Zustand und unter 70/85; exakte Grenzen 69,99/70 sowie 84,99/85 geprüft, negative Nenner abgewiesen."
     },
     {
       "id": "F-09",
@@ -113,22 +113,22 @@
       "id": "F-16",
       "title": "Ausführbare Skeletons dürfen keine plausiblen Standardwerte liefern",
       "original_severity": "Hoch",
-      "status": "Implementiert",
-      "change_or_remaining_work": "Unfertige Rezepte geben keine plausiblen KPI-Werte aus; Vorlagen bleiben zum Implementieren erhalten."
+      "status": "Teilweise",
+      "change_or_remaining_work": "Unveränderte Skeletons sind gegen plausible Zahlenwerte gesperrt und geprüft. Vollständige Perioden-/Mappingvalidierung der konkreten Rezepte aus dem erweiterten Abnahmekriterium bleibt offen (F-04/F-07/F-20)."
     },
     {
       "id": "F-17",
       "title": "Release und Rezeptveröffentlichung an nachgewiesene Gates binden",
       "original_severity": "Hoch",
       "status": "Teilweise",
-      "change_or_remaining_work": "PR- und Tag-Prüfungen erweitert, Draft-Release-Sperre eingebaut. Stabile Promotion verlangt eine noch zu implementierende Board-/Engine-Evidenzfreigabe."
+      "change_or_remaining_work": "PR-/Tag-Prüfungen, vollständiges Release-Paket und explizite Maintainer-Draft-Kennzeichnung umgesetzt. Normale 0.x-Tags zulässig; stabile 1.0-Promotion und vollständige Engine-Evidenz bleiben getrennte Restarbeit."
     },
     {
       "id": "F-18",
       "title": "Ampelregeln lückenlos, disjunkt und priorisiert definieren",
       "original_severity": "Hoch",
-      "status": "Entscheidungsvorschlag implementiert",
-      "change_or_remaining_work": "Sechs Karten erhalten lückenlose Entwurfsgrenzen und ausführbare Grenzwertprofile; bewusst zur fachlichen Bewertung, nicht als Boardbeschluss."
+      "status": "Verifiziert – Maintainer-Entwurf",
+      "change_or_remaining_work": "Die sechs Grenzwertprofile sind für 0.9.2 als Maintainer-Entscheidungen übernommen und durch Grenzwert-/Override-Tests geprüft. Spätere fachliche Weiterentwicklung bleibt möglich."
     },
     {
       "id": "F-19",
@@ -228,5 +228,7 @@
       "status": "Offen – Governance",
       "change_or_remaining_work": "Risiko- und Prüftiefenplanung benötigt tatsächliche Board-Mitglieder; keine Zuordnungen oder Termine erfunden."
     }
-  ]
+  ],
+  "current_version": "0.9.2",
+  "dispositions_ref": "review/RELEASE_0.9.2.md"
 }

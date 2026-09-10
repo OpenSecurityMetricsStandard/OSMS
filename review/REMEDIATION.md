@@ -1,7 +1,8 @@
 # OSMS – Änderungen nach dem Audit vom 10.09.2026
 
 Umgesetzt auf dem Arbeitsbranch `audit/remediation-2026-09-10`, ausgehend von
-`747cd28fb0b6728ebadbe6c477722d166b5b40b5`. Dies ist ein prüfbarer Entwurf; er wurde weder auf GitHub gepusht noch veröffentlicht.
+`747cd28fb0b6728ebadbe6c477722d166b5b40b5`. Die Änderungen sind über PR #2 auf GitHub nachverfolgbar. Der aktuelle Quellstand ist
+OSMS 0.9.2 als Maintainer-Entwurf; der Release-Status ist auf der GitHub-Release-Seite dokumentiert.
 
 Die Arbeit behebt bestätigte technische Fehler und setzt ausgewählte fachliche Grenzwertvorschläge konkret um. Sie schließt nicht pauschal alle 32 Auditbefunde. Insbesondere Confidence-Produktion, Normalisierung, Risikomodelle, Governance und vollständige Konformität aller 327 Karten bleiben offen.
 
@@ -16,7 +17,7 @@ Die Arbeit behebt bestätigte technische Fehler und setzt ausgewählte fachliche
 
 ## Versions- und Übernahmehinweise
 
-Katalogbasis bleibt 0.9.1, `release_phase` ist `working_draft`. Die sieben geänderten Karten STD-005/012/015/019/055, SOC-063 und STD-016 tragen `card_version: 0.9.2-draft`. Sechs davon enthalten bewusst vorgeschlagene Grenzwertentscheidungen; STD-016 ergänzt `mitigated_at`. Bestehende Loader und Datenbanken benötigen die dokumentierten Adapter-/Schemaanpassungen. Das neue Schema-URI ist eine Kandidatenkennung, keine Behauptung einer bereits erreichbaren Webveröffentlichung.
+Der Katalog trägt Version 0.9.2, `release_phase` bleibt `working_draft`. Die sieben geänderten Karten STD-005/012/015/019/055, SOC-063 und STD-016 tragen `card_version: 0.9.2`. Unveränderte Karten behalten ihre eigene Kartenversion 0.9.1. Sechs davon enthalten bewusst vorgeschlagene Grenzwertentscheidungen; STD-016 ergänzt `mitigated_at`. Bestehende Loader und Datenbanken benötigen die dokumentierten Adapter-/Schemaanpassungen. Das neue Schema-URI ist eine Kandidatenkennung, keine Behauptung einer bereits erreichbaren Webveröffentlichung.
 
 Status- und API-Änderungen: `curated_candidate` ersetzt die ungeprüfte Aussage `curated_verified`; Mapping-Fehler sind explizit; SQL-Reconciliation verwendet differenzierte Zustände statt eines universellen OK. Das lokale Release-Werkzeug baut ein Quellarchiv und veröffentlicht nichts. Die automatische stabile 1.x-Promotion bleibt bis zu einer übernommenen Freigaberegel gesperrt.
 
@@ -26,7 +27,9 @@ Die ausführbaren Regressionen liegen in `tests/test_remediation.py`. Ergebnisse
 
 ## Alle Auditbefunde
 
-„Implementiert“ bezeichnet die konkrete technische Korrektur im beschriebenen Umfang; es ersetzt weder eine Anwendungsprüfung noch einen unabhängigen Board-Review.
+„Implementiert“ bezeichnet die konkrete technische Korrektur im beschriebenen Umfang; die prüfbare Abnahme erfolgt während der Vorbereitungsphase durch den Maintainer.
+Ein Board-Votum ist dafür nicht erforderlich. Die aktuelle Disposition steht im
+[0.9.2-Änderungsnachweis](RELEASE_0.9.2.md) und im jeweiligen GitHub-Issue.
 
 | ID | Befund | Stand und Restarbeit |
 |---|---|---|
@@ -34,10 +37,10 @@ Die ausführbaren Regressionen liegen in `tests/test_remediation.py`. Ergebnisse
 | F-02 | Referenz-Engine führt kartenspezifische Formeln nicht aus | **Teilweise**: STD-005, STD-074, Einheitenumrechnung und Penalty-Caps korrigiert; die Engine behauptet keine vollständige Kartenkonformität. |
 | F-03 | Median und Perzentilmethode pro Ausgabe verbindlich machen | **Teilweise**: SOC-002-Median/P90 präzisiert; unvollständige Dauerrezepte gesperrt. Weitere Ausgabeprofile und reale Fremd-Engines offen. |
 | F-04 | MTTD-Rezept verwendet die falsche Fallbasis | **Teilweise**: MTTD-Fallbasis, Bestätigung und Severity-Gewichte in SQL/Python/Excel korrigiert. ES|QL gesperrt; DAX liefert weiterhin nur die dokumentierte P90-Teilimplementierung. |
-| F-05 | SLA-Rezept bildet validierte Mitigation nicht ab | **Implementiert**: Mitigation als zusätzlicher nullable Eingang; fristgerechte Behandlung alternativ geprüft, leere Datumswerte zählen nicht. Adaptermigration und echte DAX/SPL/ES-Ausführung bleiben Anwendungspflichten. |
+| F-05 | SLA-Rezept bildet validierte Mitigation nicht ab | **Verifiziert – Maintainer-Entwurf**: Behandlung durch fristgerechte Remediation oder validierte Mitigation geprüft, einschließlich fehlender Daten, unvalidierter und wiedereröffneter Fälle. Adaptermigration und vollständige Engine-Konformität bleiben Anwendungspflichten. |
 | F-06 | Composite-Rezepte akzeptieren fehlende Werte und negative Gewichte | **Teilweise**: NULL/NaN/Inf, negative Gewichte, IDs und Excel-Zelltypen abgesichert. Vollständige Profil-/Versionsbindung sowie Fremd-Engine-Gegenproben fehlen. |
 | F-07 | DSPS-Penalty-Gates prüfen nicht die Identität beider Abzüge | **Teilweise**: Beide Penalty-IDs, Duplikate, fehlende Werte und Caps geprüft. Perioden-, Normalisierungs- und Versionsbindung bleibt offen. |
-| F-08 | Datenbank erlaubt Grün bei unbekannter Confidence und n/a | **Implementiert**: SQL blockiert Green bei unbekannter Confidence, n/a, provisorischem Zustand und unter 70/85; negative Nenner werden abgewiesen. Für bestehende Datenbanken ist eine Migration nötig. |
+| F-08 | Datenbank erlaubt Grün bei unbekannter Confidence und n/a | **Verifiziert – Maintainer-Entwurf**: SQL blockiert Green bei unbekannter Confidence, n/a, provisorischem Zustand und unter 70/85; exakte Grenzen 69,99/70 sowie 84,99/85 geprüft, negative Nenner abgewiesen. |
 | F-09 | Confidence-Produktion benötigt numerische, nicht kompensierbare Regeln | **Offen – Fachentscheidung**: Konkrete numerische Confidence-Profile und nicht kompensierbare Gates werden nicht erfunden; Entscheidungsvorlage vorhanden. |
 | F-10 | Reconciliation prüft gespeicherte Beiträge statt unabhängiger Ableitung | **Teilweise**: Gewicht × Eingang wird neu berechnet; Cache-, Kindwert-, Scope- und Evidenzabweichungen werden erkannt. Authentizität und Normalisierungsnachweis offen. |
 | F-11 | SQL-Reconciliation meldet falsche Fehler und übersieht fehlende Evidenz | **Teilweise**: Gewichteter Mittelwert und fehlende Evidenz korrigiert; allgemeine Ratios geben ADAPTER_REQUIRED statt eines falschen OK. Vollständige typisierte Reconciliation offen. |
@@ -45,9 +48,9 @@ Die ausführbaren Regressionen liegen in `tests/test_remediation.py`. Ergebnisse
 | F-13 | Rechentoleranz nach Einheit und Operator festlegen | **Teilweise**: Count wird exakt, Rohwertarithmetik enger geprüft. Vollständige Toleranzprofile pro Einheit/Ausgabe noch offen. |
 | F-14 | Semantische Validatorversprechen durch echte Prüfungen ersetzen | **Teilweise**: Zyklen, Selbstbezüge, Literaldivision durch null, ausgewählte Composite-Beispiele und Leertext-Owner geprüft; überzogene Prüfaussagen korrigiert. Kein Vollparser für alle Formeln. |
 | F-15 | Testabdeckung als Konformitätsmatrix statt Gesamt-PASS ausweisen | **Teilweise**: Unabhängige Regressionen und ehrliche Populationszahlen ergänzt; acht numerische Kandidatenfixtures separat von sechs zurückgestellten Template-Beispielen. Vollständige Konformitätsmatrix fehlt. |
-| F-16 | Ausführbare Skeletons dürfen keine plausiblen Standardwerte liefern | **Implementiert**: Unfertige Rezepte geben keine plausiblen KPI-Werte aus; Vorlagen bleiben zum Implementieren erhalten. |
-| F-17 | Release und Rezeptveröffentlichung an nachgewiesene Gates binden | **Teilweise**: PR- und Tag-Prüfungen erweitert, Draft-Release-Sperre eingebaut. Stabile Promotion verlangt eine noch zu implementierende Board-/Engine-Evidenzfreigabe. |
-| F-18 | Ampelregeln lückenlos, disjunkt und priorisiert definieren | **Entscheidungsvorschlag implementiert**: Sechs Karten erhalten lückenlose Entwurfsgrenzen und ausführbare Grenzwertprofile; bewusst zur fachlichen Bewertung, nicht als Boardbeschluss. |
+| F-16 | Ausführbare Skeletons dürfen keine plausiblen Standardwerte liefern | **Teilweise**: Unveränderte Skeletons sind gegen plausible Zahlenwerte gesperrt und geprüft. Vollständige Perioden-/Mappingvalidierung der konkreten Rezepte aus dem erweiterten Abnahmekriterium bleibt offen (F-04/F-07/F-20). |
+| F-17 | Release und Rezeptveröffentlichung an nachgewiesene Gates binden | **Teilweise**: PR-/Tag-Prüfungen, vollständiges Release-Paket und explizite Maintainer-Draft-Kennzeichnung umgesetzt. Normale 0.x-Tags zulässig; stabile 1.0-Promotion und vollständige Engine-Evidenz bleiben getrennte Restarbeit. |
+| F-18 | Ampelregeln lückenlos, disjunkt und priorisiert definieren | **Verifiziert – Maintainer-Entwurf**: Die sechs Grenzwertprofile sind für 0.9.2 als Maintainer-Entscheidungen übernommen und durch Grenzwert-/Override-Tests geprüft. Spätere fachliche Weiterentwicklung bleibt möglich. |
 | F-19 | Posture-Normalisierung global nachvollziehbar machen | **Offen – Fachentscheidung**: Normierungsfunktionen und eingefrorene Gewichtsprofile müssen pro Kind/Ausgabe festgelegt werden. |
 | F-20 | Feldnamen und Mehrfachausgaben zu ausführbaren Datenverträgen ergänzen | **Teilweise**: Ausführungsvertrag, Zustände und zusätzliche Behandlungsspalte dokumentiert; vollständige typisierte Ein-/Ausgaben aller 327 Karten fehlen. |
 | F-21 | Lineage-Anforderungen und offene Referenzrubriken vollständig bereitstellen | **Teilweise**: Unbekannte Drill-Achsen lösen Fehler aus. Vollständige Achsenregistrierung, Pfadtiefe und offene Rubriken bleiben offen. |

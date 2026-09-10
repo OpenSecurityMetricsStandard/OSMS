@@ -24,6 +24,7 @@ KEEP = ["id","name","card_version","domain","type_label","calculation_type","uni
         "target_thresholds","minimum_data_fields","data_sources","numerator_denominator","threshold_mode"]
 
 cards = yaml.safe_load(open(os.path.join(REPO, "catalog/osms-catalog.yaml"), "rb"))
+catalog_version = str(cards["version"]) if isinstance(cards, dict) else str(cards[0]["osms_version"])
 cards = cards["cards"] if isinstance(cards, dict) and "cards" in cards else cards
 
 def human(v):  # snake_case variable -> readable phrase
@@ -350,6 +351,8 @@ for c in cards:
     cid, mech = c["id"], MECH[c["calculation_type"]]
     entry = {"mechanic": mech, "card_version": str(c["card_version"])}
     if cid in CURATED:
+        if str(CURATED[cid]['card_version']) != str(c['card_version']):
+            raise ValueError(f'{cid}: curated recipe and catalog card versions differ')
         entry.update(status="curated_candidate", recipe_version=CURATED[cid]["recipe_version"],
                      dialects=CURATED[cid]["snippets"], assumptions=CURATED_ASSUM[cid])
         ex = ratio_example(c["calculation_example"]) if mech == "ratio" else duration_example(c["calculation_example"])
@@ -726,12 +729,14 @@ _byid = {c["id"]: c for c in cards}
 for _cid, _fn in SPECIALS.items():
     recipes[_cid] = _fn(_byid[_cid])
     recipes[_cid]["mechanic"] = MECH[_byid[_cid]["calculation_type"]]
+    recipes[_cid]["card_version"] = str(_byid[_cid]["card_version"])
     stats[recipes[_cid]["status"]] = stats.get(recipes[_cid]["status"], 0) + 1
     stats["pending"] -= 1
 
 slim = [{**c, "mechanic": MECH[c["calculation_type"]]} for c in cards]
 cat_js = json.dumps(slim, ensure_ascii=False, separators=(",", ":"))
-rec_js = json.dumps({"bundle_version": "0.5.0", "source_catalog": "osms-catalog.yaml v0.9.1",
+rec_js = json.dumps({"bundle_version": "0.5.0", "source_catalog": "catalog/osms-catalog.yaml",
+                     "source_catalog_version": catalog_version,
                      "recipes": recipes}, ensure_ascii=False, separators=(",", ":"))
 open(f"{OUT}/catalog.json", "w").write(cat_js)
 open(f"{OUT}/recipes.json", "w").write(rec_js)
@@ -1087,6 +1092,7 @@ if True:  # engine dialects: always built; published since CI run #5 (green on E
     print("Final implementation status:", {status: sum(r.get("status") == status for r in recipes.values()) for status in sorted({r.get("status") for r in recipes.values()})})
     # Re-Serialisierung: injizierte Engine-Dialekte in die Bundle-Artefakte schreiben
     rec_js = json.dumps({"bundle_version": "0.6.0-draft", "source_catalog": "catalog/osms-catalog.yaml",
+                         "source_catalog_version": catalog_version,
                          "source_catalog_sha256": hashlib.sha256(open(os.path.join(REPO, 'catalog/osms-catalog.yaml'), 'rb').read()).hexdigest(),
                          "recipes": recipes}, ensure_ascii=False, separators=(",", ":"))
     open(f"{OUT}/recipes.json", "w").write(rec_js)
