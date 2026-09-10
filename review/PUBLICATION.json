@@ -12,5 +12,5 @@
     "Record source-to-published commit provenance and obsolete bundle warning"
   ],
   "board_approval": false,
-  "website_workstream": "F-28: Claude; website commit and deployment evidence pending"
+  "website_workstream": "F-28: handled externally; website commit and deployment evidence pending"
 }

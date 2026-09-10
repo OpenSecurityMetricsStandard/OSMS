@@ -37,7 +37,7 @@ success. Existing loaders/databases require the migrations described in
 [CONTRACTS.md](../recipes/CONTRACTS.md).
 
 The schema URI identifies 0.9.2. Its bytes are in `schema/osms-card.schema.json`;
-website availability is not inferred from the URI. Claude's website work remains
+website availability is not inferred from the URI. The website work is handled externally and remains
 tracked separately as [F-28 / #29](https://github.com/OpenSecurityMetricsStandard/OSMS/issues/29).
 
 ## Finding dispositions

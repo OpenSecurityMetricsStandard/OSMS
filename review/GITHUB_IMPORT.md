@@ -39,7 +39,7 @@ Other code changes are partial fixes or proposals. Documentation of an unresolve
 method/governance question is explicitly marked as context rather than a fix.
 No `decision:*` label is assigned by the importer.
 
-F-28 records Claude's website responsibility without inventing a GitHub username.
+F-28 records that website implementation is handled externally.
 The repository export/schema is a partial fix. Add the actual website commit URL,
 47-field comparison and deployment evidence when available; if the frontend lives
 in another repository, use a full cross-repository URL.

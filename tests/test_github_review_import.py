@@ -146,7 +146,7 @@ class ImportTests(unittest.TestCase):
         self.assertIsNone(f['website_fix_commit'])
         self.assertIsNone(f['fix_commit'])
         text = M.render_issue(self.data, f)
-        self.assertIn('Claude', text)
+        self.assertIn('Die Website-Umsetzung wird extern bearbeitet.', text)
         self.assertIn('Teilfix', text)
         self.assertIn('47 Kartenfelder', text)
 

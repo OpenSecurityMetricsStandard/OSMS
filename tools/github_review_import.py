@@ -87,8 +87,8 @@ def validate_manifest(data):
         if candidates and f['implementation_status'] != 'verification-pending':
             raise ValueError(f"Partial/open finding cannot claim a full fix: {f['id']}")
     website = next(f for f in findings if f['id'] == 'F-28')
-    if website['website_fix_commit'] is not None or 'Claude' not in website['workstream']:
-        raise ValueError('Website work is assigned to Claude; its commit is not yet known')
+    if website['website_fix_commit'] is not None or 'external' not in website['workstream']:
+        raise ValueError('Website work is handled externally; its commit is not yet known')
 
 
 def marker(data, finding):
@@ -112,7 +112,7 @@ def render_issue(data, f):
     cards = ', '.join(f['cards']) or 'Übergreifend; keine einzelne Karte'
     website = ''
     if f['id'] == 'F-28':
-        website = '\n### Website-Nachweis\n\nWebsite-Umsetzung: Claude (keine GitHub-Assignee-Zuordnung ohne Login).\n\n- [ ] Website-Fix-Commit/PR ergänzen, bei separatem Repository mit vollständiger URL.\n- [ ] Alle 47 Kartenfelder des Exports mit der Website abgleichen.\n- [ ] Sichtbare Katalog-/Schema-Version und Deployment-Nachweis ergänzen.\n'
+        website = '\n### Website-Nachweis\n\nDie Website-Umsetzung wird extern bearbeitet.\n\n- [ ] Website-Fix-Commit/PR ergänzen, bei separatem Repository mit vollständiger URL.\n- [ ] Alle 47 Kartenfelder des Exports mit der Website abgleichen.\n- [ ] Sichtbare Katalog-/Schema-Version und Deployment-Nachweis ergänzen.\n'
     return f"""{marker(data, f)}
 ### Audit Finding ID
 
@@ -296,7 +296,7 @@ severity labels are proposed triage. No board approval is claimed.
 Remediation commit: {data['remediation_commit']}
 Audited base: {data['base_commit']}
 
-F-28: Claude handles the website. This PR supplies the repository export/schema
+F-28: Website implementation is handled externally. This PR supplies the repository export/schema
 part; the website commit and deployment evidence must be recorded separately.
 
 Local remediation evidence and limitations: `review/VALIDATION.md`.

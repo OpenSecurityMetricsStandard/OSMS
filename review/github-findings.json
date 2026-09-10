@@ -1504,7 +1504,7 @@
       "audit_severity": "Mittel",
       "category": "implementation",
       "implementation_status": "partial",
-      "implementation_note": "Alle Kartenfelder im Website-Export; eigene Schema-ID für den Draft. Live-Webseite und separates Frontend sind nicht aktualisiert. Die Website-Umsetzung übernimmt laut Auftrag Claude. Website-Commit, Abgleich aller 47 Kartenfelder und Deployment-Nachweis stehen noch aus.",
+      "implementation_note": "Alle Kartenfelder im Website-Export; eigene Schema-ID für den Draft. Live-Webseite und separates Frontend sind nicht aktualisiert. Die Website-Umsetzung wird extern bearbeitet. Website-Commit, Abgleich aller 47 Kartenfelder und Deployment-Nachweis stehen noch aus.",
       "fix_commit": null,
       "commit_references": [
         {
@@ -1514,7 +1514,7 @@
       ],
       "verification_status": "pending",
       "review_decision": null,
-      "workstream": "Website: Claude; OSMS export/schema: repository remediation",
+      "workstream": "Website: external handling; OSMS export/schema: repository remediation",
       "website_fix_commit": null
     },
     {
