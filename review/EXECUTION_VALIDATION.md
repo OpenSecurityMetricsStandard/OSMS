@@ -45,7 +45,7 @@ Python (1.548 Fälle) und der KQL-Analyzer (326 Jobs) wurden danach auch auf dem
 aktuellen Kandidatenpaket erfolgreich wiederholt. Native CI-Läufe werden über
 ihre tatsächlichen Berichte bewertet, nicht aus der Generierung abgeleitet.
 
-Aktuelles Kandidatenpaket: `8c7d64a8c1918b3a18a349bce2cdcc54e02968033e519c26b1cccfc2dca20545`.
+Aktuelles Kandidatenpaket: `123f05c9fa31e38fd11db41da487fadd72f2489708a4ee46912c1d4108756dbe`.
 Ausführungsberichte werden nur bei exakt passendem Paket- und Quellhash in die
 Konformitätsmatrix übernommen. Vorherige Berichte werden nicht umetikettiert.
 
@@ -94,3 +94,22 @@ Ausführungsnachweise werden ausschließlich dem tatsächlich geprüften Paket
 zugeordnet. Frühere erfolgreiche Läufe werden nicht auf diese Änderungen
 umetikettiert. Die endgültige Issue-Abnahme verweist auf tatsächliche Fix-Commits
 und ihre CI-Nachweise.
+
+## Native Integrationskorrekturen bestanden
+
+Commit 2d8c85fbf8bbab24a9dc9161de7c7d61ce451617 verwendet die oben genannte
+aktuelle Paketidentität. Auf diesem Stand bestanden PostgreSQL 18.6, Elasticsearch
+8.17.4 mit vollständigem Export und exakter Reduktion sowie Splunk 9.4.15 und
+10.2.7 die 1.548 Fälle der 119 Profile. Die vollständige Katalog-CI mit 94
+Regressionen bestand. Numerische SPL-Ergebnisse werden erst nach der Berechnung
+mit 17 signifikanten Stellen für den Datenaustausch formatiert; die festgelegten
+Toleranzen wurden nicht aufgeweitet.
+
+Recipe CI: https://github.com/OpenSecurityMetricsStandard/OSMS/actions/runs/34516384246
+Katalog-CI: https://github.com/OpenSecurityMetricsStandard/OSMS/actions/runs/34516384094
+
+Der nachgelagerte CI-Matrixjob sammelt die Berichte desselben Laufs und erhält
+getrennte Engine-Versionen auch bei gleichen Dateinamen. Veraltete Berichte
+werden ausgeschlossen, fehlende Engines bleiben ungeprüft und Fehler werden
+nicht durch einen zweiten erfolgreichen Versionslauf überschrieben.
+Die jeweils neueste GitHub-CI entscheidet über die endgültige Commit-Abnahme.

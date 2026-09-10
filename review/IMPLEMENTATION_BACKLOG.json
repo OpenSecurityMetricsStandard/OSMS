@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0-draft",
   "source_catalog_sha256": "fc4e030e95e109b94bd50b30823f04d45edc92ca06ce3aca284b12292d050da7",
-  "profile_bundle_sha256": "8c7d64a8c1918b3a18a349bce2cdcc54e02968033e519c26b1cccfc2dca20545",
+  "profile_bundle_sha256": "123f05c9fa31e38fd11db41da487fadd72f2489708a4ee46912c1d4108756dbe",
   "catalog_cards": 327,
   "cards_without_additional_profiles": 0,
   "prepared_observation_cards": 119,

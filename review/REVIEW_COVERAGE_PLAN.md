@@ -34,8 +34,8 @@ source-adapter, engine-execution and external evidence tasks are recorded in
 [IMPLEMENTATION_BACKLOG.json](IMPLEMENTATION_BACKLOG.json).
 [IMPLEMENTATION_CANDIDATE.json](IMPLEMENTATION_CANDIDATE.json) maps the working
 changes to the existing audit issue numbers, categories, severities and card IDs.
-Its null candidate commit fields are filled only after the actual fixing commits
-exist. It does not direct automatic issue closure.
+Its candidate commit fields identify the published implementation history.
+Actual issue closure and acceptance evidence are recorded in GitHub.
 
 A finding can close when its own acceptance criterion is met and the relevant
 source/evidence is identified. A partial implementation does not close a broader

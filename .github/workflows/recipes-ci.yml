@@ -226,3 +226,30 @@ jobs:
           path: |
             recipes/out/profile-report-postgresql.json
             recipes/out/profile-report-semantic-postgresql*.json
+
+  evidence-matrix:
+    name: Source-bound conformance evidence matrix
+    needs: [gates, esql, excel, spl, postgresql]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-checks.txt -c requirements-checks.lock
+      - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
+      - name: Collect this run's reports without overwriting engine versions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download "$GITHUB_RUN_ID" --repo "$GITHUB_REPOSITORY" --dir execution-evidence
+          python recipes/ci/collect_profile_reports.py --bundle recipes/out --reports execution-evidence
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        if: always()
+        with:
+          name: conformance-matrix
+          path: recipes/out/conformance-matrix.json
