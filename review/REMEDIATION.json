@@ -1,0 +1,232 @@
+{
+  "base_commit": "747cd28fb0b6728ebadbe6c477722d166b5b40b5",
+  "branch": "audit/remediation-2026-09-10",
+  "status": "working_draft",
+  "board_approval": false,
+  "findings": [
+    {
+      "id": "F-01",
+      "title": "Rechenfamilien nach mathematischer Bedeutung trennen",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Allgemeine Quotienten von Anteilen abgegrenzt; HRM-004 unskaliert und >1 geprüft. Vollständige Methodenprofile fehlen."
+    },
+    {
+      "id": "F-02",
+      "title": "Referenz-Engine führt kartenspezifische Formeln nicht aus",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "STD-005, STD-074, Einheitenumrechnung und Penalty-Caps korrigiert; die Engine behauptet keine vollständige Kartenkonformität."
+    },
+    {
+      "id": "F-03",
+      "title": "Median und Perzentilmethode pro Ausgabe verbindlich machen",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "SOC-002-Median/P90 präzisiert; unvollständige Dauerrezepte gesperrt. Weitere Ausgabeprofile und reale Fremd-Engines offen."
+    },
+    {
+      "id": "F-04",
+      "title": "MTTD-Rezept verwendet die falsche Fallbasis",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "MTTD-Fallbasis, Bestätigung und Severity-Gewichte in SQL/Python/Excel korrigiert. ES|QL gesperrt; DAX liefert weiterhin nur die dokumentierte P90-Teilimplementierung."
+    },
+    {
+      "id": "F-05",
+      "title": "SLA-Rezept bildet validierte Mitigation nicht ab",
+      "original_severity": "Hoch",
+      "status": "Implementiert",
+      "change_or_remaining_work": "Mitigation als zusätzlicher nullable Eingang; fristgerechte Behandlung alternativ geprüft, leere Datumswerte zählen nicht. Adaptermigration und echte DAX/SPL/ES-Ausführung bleiben Anwendungspflichten."
+    },
+    {
+      "id": "F-06",
+      "title": "Composite-Rezepte akzeptieren fehlende Werte und negative Gewichte",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "NULL/NaN/Inf, negative Gewichte, IDs und Excel-Zelltypen abgesichert. Vollständige Profil-/Versionsbindung sowie Fremd-Engine-Gegenproben fehlen."
+    },
+    {
+      "id": "F-07",
+      "title": "DSPS-Penalty-Gates prüfen nicht die Identität beider Abzüge",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Beide Penalty-IDs, Duplikate, fehlende Werte und Caps geprüft. Perioden-, Normalisierungs- und Versionsbindung bleibt offen."
+    },
+    {
+      "id": "F-08",
+      "title": "Datenbank erlaubt Grün bei unbekannter Confidence und n/a",
+      "original_severity": "Hoch",
+      "status": "Implementiert",
+      "change_or_remaining_work": "SQL blockiert Green bei unbekannter Confidence, n/a, provisorischem Zustand und unter 70/85; negative Nenner werden abgewiesen. Für bestehende Datenbanken ist eine Migration nötig."
+    },
+    {
+      "id": "F-09",
+      "title": "Confidence-Produktion benötigt numerische, nicht kompensierbare Regeln",
+      "original_severity": "Hoch",
+      "status": "Offen – Fachentscheidung",
+      "change_or_remaining_work": "Konkrete numerische Confidence-Profile und nicht kompensierbare Gates werden nicht erfunden; Entscheidungsvorlage vorhanden."
+    },
+    {
+      "id": "F-10",
+      "title": "Reconciliation prüft gespeicherte Beiträge statt unabhängiger Ableitung",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Gewicht × Eingang wird neu berechnet; Cache-, Kindwert-, Scope- und Evidenzabweichungen werden erkannt. Authentizität und Normalisierungsnachweis offen."
+    },
+    {
+      "id": "F-11",
+      "title": "SQL-Reconciliation meldet falsche Fehler und übersieht fehlende Evidenz",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Gewichteter Mittelwert und fehlende Evidenz korrigiert; allgemeine Ratios geben ADAPTER_REQUIRED statt eines falschen OK. Vollständige typisierte Reconciliation offen."
+    },
+    {
+      "id": "F-12",
+      "title": "Scope- und Versionsbindung bei Drill und Ranking schließen",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Exakte Katalogversion und Scope gebunden, Current-View korrigiert. Ranking bestätigt keine tautologische Selbstsortierung mehr; echtes Ranking-Modell fehlt."
+    },
+    {
+      "id": "F-13",
+      "title": "Rechentoleranz nach Einheit und Operator festlegen",
+      "original_severity": "Mittel",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Count wird exakt, Rohwertarithmetik enger geprüft. Vollständige Toleranzprofile pro Einheit/Ausgabe noch offen."
+    },
+    {
+      "id": "F-14",
+      "title": "Semantische Validatorversprechen durch echte Prüfungen ersetzen",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Zyklen, Selbstbezüge, Literaldivision durch null, ausgewählte Composite-Beispiele und Leertext-Owner geprüft; überzogene Prüfaussagen korrigiert. Kein Vollparser für alle Formeln."
+    },
+    {
+      "id": "F-15",
+      "title": "Testabdeckung als Konformitätsmatrix statt Gesamt-PASS ausweisen",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Unabhängige Regressionen und ehrliche Populationszahlen ergänzt; acht numerische Kandidatenfixtures separat von sechs zurückgestellten Template-Beispielen. Vollständige Konformitätsmatrix fehlt."
+    },
+    {
+      "id": "F-16",
+      "title": "Ausführbare Skeletons dürfen keine plausiblen Standardwerte liefern",
+      "original_severity": "Hoch",
+      "status": "Implementiert",
+      "change_or_remaining_work": "Unfertige Rezepte geben keine plausiblen KPI-Werte aus; Vorlagen bleiben zum Implementieren erhalten."
+    },
+    {
+      "id": "F-17",
+      "title": "Release und Rezeptveröffentlichung an nachgewiesene Gates binden",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "PR- und Tag-Prüfungen erweitert, Draft-Release-Sperre eingebaut. Stabile Promotion verlangt eine noch zu implementierende Board-/Engine-Evidenzfreigabe."
+    },
+    {
+      "id": "F-18",
+      "title": "Ampelregeln lückenlos, disjunkt und priorisiert definieren",
+      "original_severity": "Hoch",
+      "status": "Entscheidungsvorschlag implementiert",
+      "change_or_remaining_work": "Sechs Karten erhalten lückenlose Entwurfsgrenzen und ausführbare Grenzwertprofile; bewusst zur fachlichen Bewertung, nicht als Boardbeschluss."
+    },
+    {
+      "id": "F-19",
+      "title": "Posture-Normalisierung global nachvollziehbar machen",
+      "original_severity": "Hoch",
+      "status": "Offen – Fachentscheidung",
+      "change_or_remaining_work": "Normierungsfunktionen und eingefrorene Gewichtsprofile müssen pro Kind/Ausgabe festgelegt werden."
+    },
+    {
+      "id": "F-20",
+      "title": "Feldnamen und Mehrfachausgaben zu ausführbaren Datenverträgen ergänzen",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Ausführungsvertrag, Zustände und zusätzliche Behandlungsspalte dokumentiert; vollständige typisierte Ein-/Ausgaben aller 327 Karten fehlen."
+    },
+    {
+      "id": "F-21",
+      "title": "Lineage-Anforderungen und offene Referenzrubriken vollständig bereitstellen",
+      "original_severity": "Mittel",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Unbekannte Drill-Achsen lösen Fehler aus. Vollständige Achsenregistrierung, Pfadtiefe und offene Rubriken bleiben offen."
+    },
+    {
+      "id": "F-22",
+      "title": "Messgröße und Kennzahlname auf dieselbe Aussage begrenzen",
+      "original_severity": "Mittel",
+      "status": "Offen – Fachentscheidung",
+      "change_or_remaining_work": "Konstrukt-/Namensentscheidungen für SOC-023, AIM-011 und SOC-072 dokumentiert; kein stiller Definitionswechsel."
+    },
+    {
+      "id": "F-23",
+      "title": "Stichprobenunsicherheit und Selektionsbias separat ausweisen",
+      "original_severity": "Mittel",
+      "status": "Offen – Fachentscheidung",
+      "change_or_remaining_work": "Stichproben-/Selektionsunsicherheit separat vorgesehen; keine pauschalen Intervalle oder erfundenen Pilotdaten."
+    },
+    {
+      "id": "F-24",
+      "title": "Verteilungs- und Risikomodelle operational spezifizieren",
+      "original_severity": "Mittel",
+      "status": "Offen – Fachentscheidung",
+      "change_or_remaining_work": "Risikomodellprofile und mögliche Doppelzählung STD-056 benötigen methodische Entscheidung."
+    },
+    {
+      "id": "F-25",
+      "title": "Review-KPI-Skript an das eigene Review-Verfahren angleichen",
+      "original_severity": "Hoch",
+      "status": "Teilweise",
+      "change_or_remaining_work": "GitHub-IDs, Kommentare, Entscheidungen, vollständige Pagination, Werktage und K-09-Evidenz verbessert. Personen-Aliase, Nicht-GitHub-Importe und Charterdefinition benötigen zusätzliche Daten."
+    },
+    {
+      "id": "F-26",
+      "title": "Boardfreigabe als nachvollziehbare Entscheidung definieren",
+      "original_severity": "Mittel",
+      "status": "Offen – Governance",
+      "change_or_remaining_work": "Board im Aufbau; Kandidatenbaseline, Zeitplan, Charter und Gate-Kombination müssen übernommen werden. Keine Freigabe simuliert."
+    },
+    {
+      "id": "F-27",
+      "title": "Framework-Mappings als begründete Beziehungen pflegen",
+      "original_severity": "Mittel",
+      "status": "Offen – Fachentscheidung",
+      "change_or_remaining_work": "Edition/Beziehung/Begründung der Framework-Mappings bleiben Aufgabe; keine Behauptung von ISO-Konformität."
+    },
+    {
+      "id": "F-28",
+      "title": "Website-Schema und GitHub-Vertrag eindeutig versionieren",
+      "original_severity": "Mittel",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Alle Kartenfelder im Website-Export; eigene Schema-ID für den Draft. Live-Webseite und separates Frontend sind nicht aktualisiert."
+    },
+    {
+      "id": "F-29",
+      "title": "Auswertungsversion und Freigabepaket vollständig historisieren",
+      "original_severity": "Mittel",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Quellarchiv mit vollständigem Einzeldateimanifest und Kataloghash im Rezeptbundle. Vollständiges Auswertungsmanifest mit Daten-/Profil-/Engine-Nachweisen bleibt offen."
+    },
+    {
+      "id": "F-30",
+      "title": "Formale Dokumentations- und Lizenzgrenzen konsolidieren",
+      "original_severity": "Niedrig",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Dokumentation, historische Termine und Validatorversprechen bereinigt. Endgültige Rechte-/Lizenzmatrix für alle Bestandteile noch zu bestätigen."
+    },
+    {
+      "id": "F-31",
+      "title": "Abhängigkeiten und Testumgebung reproduzierbar festlegen",
+      "original_severity": "Mittel",
+      "status": "Teilweise",
+      "change_or_remaining_work": "Direkte Python-Abhängigkeiten und Kusto-Paketversion fixiert. Transitive Locks, Action-SHAs und vollständige Engine-Matrix offen."
+    },
+    {
+      "id": "F-32",
+      "title": "Board-Review nach Risiko und Prüftiefe organisieren",
+      "original_severity": "Niedrig",
+      "status": "Offen – Governance",
+      "change_or_remaining_work": "Risiko- und Prüftiefenplanung benötigt tatsächliche Board-Mitglieder; keine Zuordnungen oder Termine erfunden."
+    }
+  ]
+}

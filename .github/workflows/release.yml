@@ -13,13 +13,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
       - name: Validate catalog before releasing
         run: |
-          pip install pyyaml jsonschema
+          pip install -r requirements-checks.txt
           python tools/osms_validate.py catalog/osms-catalog.yaml \
             --taxonomy catalog/taxonomy.yaml --domains catalog/domains.yaml \
             --expect-count 327 --json release-validation.json
           python -c "import json,yaml,jsonschema; v=jsonschema.Draft202012Validator(json.load(open('schema/osms-card.schema.json'))); d=yaml.safe_load(open('catalog/osms-catalog.yaml',encoding='utf-8')); e=[x.message for c in d['cards'] for x in v.iter_errors(c)]; print('schema errors:',len(e)); raise SystemExit(1 if e else 0)"
+      - name: Candidate release guard and regressions on the tagged source
+        run: |
+          python tools/release_guard.py "${GITHUB_REF_NAME}"
+          python tools/formula_audit.py catalog/osms-catalog.yaml
+          python -m unittest discover -s tests -v
+          python reference/drill_engine.py --coverage
+          python reference/drill_engine.py --demo
+          python tools/readiness/build_readiness_bundle.py --check
+          python recipes/gen_recipes.py --emit-candidates --out recipes/out
+          python recipes/gates.py --bundle recipes/out
       - name: Build bundle + checksums
         run: bash tools/make_checksums.sh "${GITHUB_REF_NAME}"
       - name: Create release or attach assets to existing one

@@ -6,6 +6,13 @@ on:
       - 'catalog/**'
       - 'recipes/**'
       - '.github/workflows/recipes-ci.yml'
+  pull_request:
+    paths:
+      - 'catalog/**'
+      - 'recipes/**'
+      - 'tests/**'
+      - 'requirements-checks.txt'
+      - '.github/workflows/recipes-ci.yml'
   workflow_dispatch:
 
 jobs:
@@ -20,8 +27,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
-      - run: pip install pyyaml duckdb pandas formulas openpyxl
-      - run: npm install @kusto/language-service-next
+      - run: pip install -r requirements-checks.txt
+      - run: npm install @kusto/language-service-next@12.4.1
       - name: Generate recipes and CI candidates
         run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
       - name: Gate battery

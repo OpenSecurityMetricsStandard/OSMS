@@ -1,9 +1,15 @@
 standard: Open Security Metrics Standard
 short_name: OSMS
 version: 0.9.1
-release_phase: release
-release_name: OSMS 0.9.1 English
+release_phase: working_draft
+release_name: OSMS 0.9.1 remediation working draft
 language: en
+remediation:
+  status: working_draft
+  audit_date: 2026-09-10
+  findings_total: 32
+  findings_register: review/REMEDIATION.json
+  board_approved: false
 generated_at: '2026-07-05'
 maintainer: Nico Wiegand
 copyright: © 2026 Nico Wiegand
@@ -21,7 +27,8 @@ counts:
 calculation_types:
 - name: Ratio
   definition: Quotient of a precisely defined numerator and denominator from the same scope, expressed as a percentage
-    or ratio. The numerator is a subset of the denominator; inclusions and exclusions must be named. An empty denominator
+    or ratio. For a proportion, the numerator is a subset of the denominator; general quotients and capacity ratios
+    may exceed 1 or 100%. The card defines both populations, their dimensions and scale. An empty denominator
     yields n/a, never 0.
 - name: Duration
   definition: Time span between a defined start and end point per valid case. At minimum, P50/median and P90 are
@@ -14026,7 +14033,7 @@ cards:
   lag_type: lagging
   priority: P1
   mvp: MVP-2
-  card_version: 0.9.1
+  card_version: 0.9.2-draft
   status: normative_candidate
   scope: In-scope objects of the Executive & Enterprise Risk domain; local scope changes must be documented and
     versioned
@@ -14066,10 +14073,7 @@ cards:
     points (risk_score_or_amount falls in the risk register from 72 to 48, verified via evidence_ref). Result =
     24 / 80 = 0.3 score points of risk reduction per person-day. With denominator = 0, n/a is reported with the
     absolute base.'
-  target_thresholds: 'Target: a quotient > 0 with a stable or rising trend versus the previous period and all top-5
-    investments with a risk reduction verified via evidence_ref; Amber: a quotient > 0 but a falling trend versus
-    the previous period, or data confidence < 85 (uncertain evidence); Red: a quotient = 0 (no verified risk reduction
-    in the reporting period)'
+  target_thresholds: "Target: a quotient > 0 with a stable or rising trend versus the previous period and all top-5 investments with verified risk reduction; Amber: a positive quotient with a falling trend; Red: a quotient <= 0. Missing comparable prior-period evidence makes the trend provisional. Apply the confidence gates before assigning Green."
   numerator_denominator: Verified risk reduction (a score-point delta) / the costs of the action/program (euros
     or person-days) — different dimensions, no subset relationship
   frequency: Weekly to monthly
@@ -15104,7 +15108,7 @@ cards:
   lag_type: lagging
   priority: P1
   mvp: MVP-2
-  card_version: 0.9.1
+  card_version: 0.9.2-draft
   status: normative_candidate
   scope: In-scope objects of the Executive & Enterprise Risk domain; local scope changes must be documented and
     versioned
@@ -15136,9 +15140,7 @@ cards:
     with a weight of 4 and measure_completion 0.6 with a weight of 2. Result = (0.8*4 + 0.6*2) / (4+2) * 100 = 4.4
     / 6 * 100 = 73.3%. With a plan value of 70% for the period, the actual value lies above plan - the target is
     met.'
-  target_thresholds: 'Target: >plan (the actual value above plan_value_pct of the period); Amber: a plan deviation
-    of 10-25%; Red: a plan deviation of >25%. Plan deviation = (plan_value_pct - the actual value) / plan_value_pct
-    * 100; plan_value_pct is the versioned plan value per reporting period.'
+  target_thresholds: "Target: actual value >= plan_value_pct; Amber: a shortfall >0% and <=25%; Red: a shortfall >25%. Shortfall = (plan_value_pct - actual value) / plan_value_pct * 100. The plan is versioned and must be >0 for relative comparison; otherwise report the assessment as not applicable and retain the absolute values."
   numerator_denominator: 'A weighted average: sum(measure_completion_i * weight_i) / sum(weight_i) * 100, with measure_completion
     as a fraction of 0-1. If sum(weight_i)=0, the value is n/a.'
   frequency: Weekly to monthly
@@ -15643,7 +15645,7 @@ cards:
   lag_type: leading
   priority: P0
   mvp: MVP-1
-  card_version: 0.9.1
+  card_version: 0.9.2-draft
   status: normative_candidate
   scope: In-scope objects of the Governance & Compliance domain; local scope changes must be documented and versioned
   unit: Duration (days)
@@ -15675,10 +15677,7 @@ cards:
     2, 4, 10, 20, and 30 days are present. P50/median = 10 days. P90 per the nearest-rank method (rank = ceil of
     0.9 * 5 = 5, i.e. the fifth-smallest value) = 30 days. One of the acceptances is non-critical and expired for
     20 days, and no critical acceptance is expired: status = Amber (an overdue status of <30d).'
-  target_thresholds: 'Target: no expired acceptances, in particular no expired critical acceptances; Amber: at least
-    one expired, non-critical acceptance with an overdue status of <30d; Red: at least one acceptance with an overdue
-    status of >30d or an expired critical acceptance (critical). The RAG assignment is case-based; P50/P90 of the
-    age values are reported supplementarily as a trend quantity.'
+  target_thresholds: "Target: no expired acceptances; Amber: at least one expired non-critical acceptance, maximum overdue_days <30, and no expired critical acceptance; Red: maximum overdue_days >=30 or any expired critical acceptance. Red overrides Amber. P50/P90 of age values are supplementary trend outputs."
   numerator_denominator: Not applicable as a rate. Case base = the open and expired risk acceptances in scope with
     a valid acceptance or expiry date at the as-of date; reported are P50/median and P90 of the age values in days
     and the case-based RAG status.
@@ -35666,7 +35665,7 @@ cards:
   lag_type: lagging
   priority: P2
   mvp: MVP-3
-  card_version: 0.9.1
+  card_version: 0.9.2-draft
   status: normative_candidate
   scope: In-scope objects of the SOC - Operational domain; local scope changes must be documented and versioned
   unit: Percent (%)
@@ -35695,7 +35694,7 @@ cards:
   calculation_example: 'Example: the required capacity hours per the service model = 800, the available SOC capacity
     hours = 760. Result = 760 / 800 * 100 = 95% → in the target band 90-110%. With denominator = 0, n/a is reported
     with the absolute base.'
-  target_thresholds: 'Target: 90-110%; Amber: 75-90% or 110-125%; Red: <75% or >125%'
+  target_thresholds: "Target: 90% <= value <=110%; Amber: 75% <= value <90% or 110% < value <=125%; Red: value <75% or value >125%. Apply confidence and demand-model validity gates before assigning Green."
   numerator_denominator: The available SOC capacity hours / the required capacity hours based on the volume, coverage,
     and SLA
   frequency: Weekly to monthly
@@ -41755,7 +41754,7 @@ cards:
   lag_type: leading
   priority: P0
   mvp: MVP-1
-  card_version: 0.9.1
+  card_version: 0.9.2-draft
   status: normative_candidate
   scope: In-scope objects of the Vulnerability Management domain; local scope changes must be documented and versioned
   unit: Points (risk-weighted backlog score, unbounded sum)
@@ -41784,9 +41783,7 @@ cards:
     * 4 (the criticality) * 1.0 (internet-facing) = 3.6. Finding B: 0.5 * 2 * 0.5 = 0.5. Finding C: 0.1 * 3 * 0.25
     = 0.075. Result = 3.6 + 0.5 + 0.075 = 4.175 points. Every contribution remains traceable via the lineage to
     the raw record.'
-  target_thresholds: 'Target: a sinking trend versus the immediate prior period; high EPSS prioritized; Amber: a
-    rise >20% versus the prior period; Red: a rise >50% versus the prior period or a high-EPSS finding (epss_score
-    >= 0.5) above the remediation SLA of its risk tier'
+  target_thresholds: "Target: a decrease versus the comparable immediate prior period; Amber: an unchanged value or an increase >0% and <=50%; Red: an increase >50%, or an in-scope high-EPSS finding (epss_score >= 0.5) overdue against its risk-tier SLA. Red overrides the trend band. With prior value = 0, current value = 0 is unchanged (Amber); a positive current value is Red. Missing or incompatible baselines make the trend provisional."
   numerator_denominator: Not applicable as a simple quotient. Value = the sum of weighted individual records; the
     weights and weighting scale are part of the formula.
   frequency: Daily/weekly operationally, monthly for the management view
@@ -41892,7 +41889,7 @@ cards:
   lag_type: leading
   priority: P0
   mvp: MVP-1
-  card_version: 0.9.1
+  card_version: 0.9.2-draft
   status: normative_candidate
   scope: In-scope objects of the Vulnerability Management domain; local scope changes must be documented and versioned
   unit: Percent (%)
@@ -41945,6 +41942,7 @@ cards:
   - due_at
   - detected_at
   - remediated_at
+  - mitigated_at
   - validation_status
   - owner_id
   - period_start
@@ -42291,7 +42289,7 @@ cards:
   lag_type: leading
   priority: P1
   mvp: MVP-2
-  card_version: 0.9.1
+  card_version: 0.9.2-draft
   status: normative_candidate
   scope: In-scope objects of the Vulnerability Management domain; local scope changes must be documented and versioned
   unit: Duration (hours/days)
@@ -42327,8 +42325,7 @@ cards:
     (sorted ascending, n = 5). The P50 rank = ceil(0.5 * 5) = 3 -> the P50 = 10 days; the P90 rank = ceil(0.9 *
     5) = 5 -> the P90 = 30 days. None of the five exceptions has exceeded its exception_expires_at (all overdue_days
     = 0) -> the target reached: no expired exceptions.'
-  target_thresholds: 'Target: no expired exceptions (overdue_days = 0 for all open exceptions); Amber: expired with
-    an overdueness <30d; Red: an overdueness >30d or an expired exception on a Critical finding'
+  target_thresholds: "Target: no overdue open exceptions; Amber: at least one overdue exception, maximum overdue_days <30, and no expired exception on a Critical finding; Red: maximum overdue_days >=30 or any expired exception on a Critical finding. Red overrides Amber. Overdue days use the documented as-of date."
   numerator_denominator: Not to be understood as a classic quotient. The case base = all patch exceptions open at
     the as-of date; reported are the P50/median and P90 of the age (age_days) as well as the count and overdueness
     of expired exceptions.

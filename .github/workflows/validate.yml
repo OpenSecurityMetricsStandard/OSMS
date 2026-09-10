@@ -11,13 +11,15 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: pip install pyyaml jsonschema
+      - run: pip install -r requirements-checks.txt
       - name: Validate catalog against OSMS card contract
         run: |
           python tools/osms_validate.py catalog/osms-catalog.yaml \
             --taxonomy catalog/taxonomy.yaml --domains catalog/domains.yaml \
             --expect-count 327 --json validation-report.json
           python -c "import json,yaml,jsonschema; v=jsonschema.Draft202012Validator(json.load(open('schema/osms-card.schema.json'))); d=yaml.safe_load(open('catalog/osms-catalog.yaml',encoding='utf-8')); e=[x.message for c in d['cards'] for x in v.iter_errors(c)]; print('schema errors:',len(e)); raise SystemExit(1 if e else 0)"
+      - name: Independent audit regressions
+        run: python -m unittest discover -s tests -v
       - name: Formula audit (check classes + invariants)
         run: python tools/formula_audit.py catalog/osms-catalog.yaml
       - name: Drill engine coverage & demo (13 calc types)

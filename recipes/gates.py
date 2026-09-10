@@ -85,6 +85,9 @@ for cid, r in B.items():
         params = {k: v for k, v in {"period_start": "2026-06-01", "period_end": "2026-07-01", "scope_id": "prod"}.items() if "$"+k in q}
         row = con.execute(q, params).fetchone()
         sqlrun += 1
+        if r.get("evaluation_status") == "mapping_required":
+            assert row == (None, "mapping_required"), f"unmapped template returned a value: {row}"
+            continue
         if r["mechanic"] in ("ratio", "delta") and row[0] is not None: raise AssertionError(f"fail-closed verletzt: {row}")
         if r["mechanic"] == "duration":
             zeros = sum(1 for v in row if v == 0); nones = sum(1 for v in row if v is None)
@@ -108,6 +111,14 @@ for cid, r in B.items():
         fn = ns.get("compute") or ns.get("mttd") or ns.get("sla_compliance_pct")
         import inspect
         nargs = len(inspect.signature(fn).parameters)
+        if r.get("evaluation_status") == "mapping_required":
+            try:
+                fn(df, "prod")
+            except NotImplementedError as exc:
+                assert "mapping_required" in str(exc)
+                pyrun += 1
+                continue
+            raise AssertionError("unmapped template did not refuse computation")
         res = fn(df, "2026-06-01", "2026-07-01", "prod") if nargs == 4 else fn(df, "prod")
         pyrun += 1
         if r["mechanic"] in ("ratio", "duration") and res is not None: raise AssertionError(f"fail-closed: {res}")
@@ -260,7 +271,7 @@ if os.path.exists(fx_path):
             df = pd.DataFrame(f["rows"])
             for k, ty in f["fields"].items():
                 if ty == "date" and k in df:
-                    df[k] = pd.to_datetime(df[k].astype(str).str.replace("Z", "", regex=False))
+                    df[k] = pd.to_datetime(df[k], utc=True).dt.tz_localize(None)
             ns = {}
             exec(compile(rec["dialects"]["py"], cid, "exec"), ns)
             fn = ns.get("compute") or ns.get("mttd") or ns.get("sla_compliance_pct")

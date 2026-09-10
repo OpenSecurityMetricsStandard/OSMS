@@ -1,0 +1,9 @@
+# Direct dependencies used by the local regression and recipe gates (Python 3.12).
+# Transitive locking and action SHA pinning remain tracked in F31.
+PyYAML==6.0.3
+jsonschema==4.26.0
+duckdb==1.5.5
+pandas==2.2.3
+numpy==2.3.5
+formulas==1.3.4
+openpyxl==3.1.5

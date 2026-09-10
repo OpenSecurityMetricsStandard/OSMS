@@ -1,8 +1,9 @@
 # OSMS Recipe Layer
 
-The catalog defines **what** every metric means (the contract). This layer
-turns each card contract into runnable implementations — the recipes shown in
-the Formula Lab — and proves them by machine before anything is published.
+This is a remediation working draft. The generator produces candidate recipes,
+complete card exports and explicitly blocked templates. It does not prove a
+formula or authorize website publication. See [execution contracts](CONTRACTS.md)
+for implemented corrections, adapter requirements and remaining limitations.
 
 ## Structure
 
@@ -10,36 +11,36 @@ the Formula Lab — and proves them by machine before anything is published.
       gen_recipes.py     generator: catalog -> recipes (all templates inline)
       gates.py           gate battery: lints, DuckDB, CPython, self-fixtures, Excel
       kql_check.js       Microsoft Kusto analyzer over every KQL snippet
-      curated/           hand-verified recipes (source of truth, byte-pinned)
+      curated/           candidate recipes (source of truth, byte-pinned)
       xlsx_dialect.py    Excel range-model dialect: spec, render, workbook, engines
       ci/                engine runners for ES|QL, SPL and Excel (LibreOffice)
       out/               generated output (gitignored; rebuilt on every run)
 
-## Recipe statuses
+## Recipe statuses and evidence
 
-- `curated_verified` — hand-built, machine-recomputed in the pilot run
-- `generated_concrete` — generated from the contract, engine-checked
-- `generated_skeleton` — executable scaffolding; population hooks are
-  deliberate, the generator never guesses a data model
-- `pending` — mechanics not yet covered; the card contract itself is complete
+- `curated_candidate`: manually maintained implementation, awaiting evidence for
+  this exact revision.
+- `generated_concrete`: arithmetic implementation whose full source, period and
+  profile contract must still be assessed; generation is not engine verification.
+- `generated_skeleton`: `mapping_required`; templates remain available separately
+  while executable outputs cannot return a plausible KPI value.
+- `pending`: implementation unavailable.
 
-## Publication rule
-
-A dialect appears on the website only after a machine has verified it.
-Published today: Generic SQL (DuckDB), Python (CPython), KQL (Kusto
-analyzer). SPL and ES|QL exist as **CI candidates** (`ci_candidates.json`)
-and are verified by the `Recipe CI` workflow against real engines; once the
-engine jobs are green on `main`, the dialects are added to the published
-bundle in a release commit.
+`coverage.json` reports the actual card populations and numeric candidate fixture
+count. `template-fixtures.json` preserves examples for incomplete templates.
+The eight retained numeric candidate fixtures are not conformance coverage of all
+327 cards. KQL analyzer success is syntax/type evidence, not a Kusto execution.
+External engine reports must identify versions and exact source/recipe hashes.
+No website deployment or stable-release approval occurs in the generator.
 
 ## The Excel dialect (range model)
 
 One formula = one KPI value over a sheet named `data` (raw rows, header in row 1),
 with scope and period on a `result` sheet. It is limited to the Excel 2007 function
-set (`COUNTIFS`/`SUMIFS`/`SUMPRODUCT`/`SMALL`/`MEDIAN`/`CEILING`/`IF`/`N`) so the same
-formula runs unchanged in Excel, LibreOffice Calc and Google Sheets. Fail-closed uses
+set (`COUNTIFS`/`SUMIFS`/`SUMPRODUCT`/`SMALL`/`MEDIAN`/`CEILING`/`IF`/`N`) for portability. Actual compatibility requires an engine run; Excel and Google Sheets
+have not been executed in this remediation. Fail-closed uses
 `NA()`; percentiles are an explicit nearest rank (`SMALL(range, CEILING(0.9*n,1))`), so
-no interpolating estimator is involved. It is the only dialect verified against **two**
+P50 is the arithmetic median and P90 uses nearest rank. CI includes two
 engines: the pure-Python `formulas` library (gate `[9]`, every push) and LibreOffice
 Calc (the `excel` job). `xlsx_dialect.py` is the single source — the generator renders
 the published snippet from the same spec both engines execute.

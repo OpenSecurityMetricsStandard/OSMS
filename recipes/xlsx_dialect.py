@@ -119,13 +119,36 @@ def _ratio_concrete_std016(cols):
     c = _cmap(cols); r = lambda f: _rng(c[f])
     den = ('COUNTIFS(%s,$B$1,%s,"critical",%s,TRUE,%s,">="&$B$2,%s,"<"&$B$3)'
            % (r("scope_id"), r("severity"), r("internet_facing"), r("due_at"), r("due_at")))
-    num = ('SUMPRODUCT((%s=$B$1)*(%s="critical")*(%s=TRUE)*(%s>=$B$2)*(%s<$B$3)*(%s<=%s)*(%s="validated"))'
+    # Blank dates must not compare as serial zero and count as timely treatment.
+    timely = '(((%s<>"")*(%s<=%s)+(%s<>"")*(%s<=%s))>0)' % (
+        r("remediated_at"), r("remediated_at"), r("due_at"),
+        r("mitigated_at"), r("mitigated_at"), r("due_at"))
+    num = ('SUMPRODUCT((%s=$B$1)*(%s="critical")*(%s=TRUE)*(%s>=$B$2)*(%s<$B$3)*%s*(%s="validated"))'
            % (r("scope_id"), r("severity"), r("internet_facing"), r("due_at"), r("due_at"),
-              r("remediated_at"), r("due_at"), r("validation_status")))
+              timely, r("validation_status")))
     return dict(columns=cols, params=["scope", "ps", "pe"], helpers=[],
                 outputs={"sla_compliance_pct": "=IF(%s=0,NA(),100*%s/%s)" % (den, num, den)},
-                note="Population: in-scope critical internet-facing findings whose due date is in the period; "
-                     "numerator: remediated on or before due and validated. Empty population -> n/a, never 0.")
+                note="Due critical internet-facing findings; remediation OR mitigation on/before due, "
+                     "with validation as of period_end. Both dates missing never counts. Empty population -> n/a.")
+
+
+def _soc002(cols):
+    spec = _duration(cols, "occurred_at", "detected_at", True, True)
+    c = _cmap(cols)
+    a, b, cf, sc = ["$%s{r}" % c[f] for f in ("occurred_at", "detected_at", "confirmed_at", "scope_id")]
+    cond = 'AND(%s=%s,%s<>"",%s<>"",%s>=%s,%s>=%s,%s<%s,%s<>"",%s<=%s,%s>=%s)' % (
+        sc, P1, a, b, b, a, b, P2, b, P3, cf, cf, P3, cf, b)
+    dcol = LETTER(len(cols)+1); wcol = LETTER(len(cols)+2); xcol = LETTER(len(cols)+3)
+    sev = '$%s{r}' % c['severity']
+    spec['helpers'] = [
+        ('d_h', '=IF(%s,(%s-%s)*24,"")' % (cond, b, a)),
+        ('weight', '=IF(ISNUMBER(%s{r}),IF(%s="P1",4,IF(%s="P2",2,1)),"")' % (dcol, sev, sev)),
+        ('weighted_duration', '=IF(ISNUMBER(%s{r}),%s{r}*%s{r},"")' % (dcol, dcol, wcol)),
+    ]
+    spec['outputs']['severity_weighted_avg'] = '=IF(SUM(%s)=0,NA(),SUM(%s)/SUM(%s))' % (_rng(wcol), _rng(xcol), _rng(wcol))
+    spec['note'] += ' Cohort: detected in [period_start, period_end), confirmed by period_end; P1/P2/other weights 4/2/1.'
+    return spec
+
 
 def _ratio_skeleton(cid, cols, hooks):
     c = _cmap(cols)
@@ -189,7 +212,7 @@ def _delta_skeleton(cid, cols, hook):
     return dict(columns=cols, params=["scope"], helpers=[], outputs={"value": f},
                 note="Skeleton: replace 0 with the current-minus-previous period quantity; empty base -> n/a.")
 
-def _composite(cols, k):
+def _composite(cols, k, ids):
     c = _cmap(cols); r = lambda f: _rng(c[f])
     need = {"scope_id", "period_start", "period_end", "weight", "subscore_value"}
     if not (need <= set(c)): return None
@@ -198,7 +221,11 @@ def _composite(cols, k):
     wsum = "SUMPRODUCT(%s*%s)" % (M, r("weight"))
     oob = "SUMPRODUCT(%s*((%s<0)+(%s>100)))" % (M, r("subscore_value"), r("subscore_value"))
     score = "SUMPRODUCT(%s*%s*%s)" % (M, r("weight"), r("subscore_value"))
-    gate = "OR(%s<>%d,ABS(%s-1)>0.001,%s>0)" % (n, k, wsum, oob)
+    identity = ','.join('COUNTIFS(%s,$B$1,%s,$B$2,%s,$B$3,%s,"%s")<>1' % (
+        r('scope_id'), r('period_start'), r('period_end'), r('subscore_id'), ident) for ident in ids)
+    missing = 'SUMPRODUCT(%s*ISNUMBER(%s)*ISNUMBER(%s))<>%d' % (M, r('weight'), r('subscore_value'), k)
+    negative = 'SUMPRODUCT(%s*((%s<0)+(%s>1)))>0' % (M, r('weight'), r('weight'))
+    gate = "OR(%s<>%d,ABS(%s-1)>0.001,%s>0,%s,%s,%s)" % (n, k, wsum, oob, identity, missing, negative)
     return dict(columns=cols, params=["scope", "ps", "pe"], helpers=[],
                 outputs={"value": "=IF(%s,NA(),%s)" % (gate, score)},
                 note="Weighted sum of pre-scored 0-100 subscore rows; gated on component count, weight sum = 1.0 "
@@ -217,7 +244,16 @@ def _std001(cols):
           % (r("scope_id"), r("child_card_id"), r("scope_id"), r("child_card_id")))
     oob = ('SUMPRODUCT((%s=$B$1)*(%s<>"STD-001a")*(%s<>"STD-001b")*((%s<0)+(%s>100)))'
            % (r("scope_id"), r("child_card_id"), r("child_card_id"), r("posture_score"), r("posture_score")))
-    gate = "OR((%s)<>14,(%s)<>2,%s>0)" % (nleaf, pn, oob)
+    expected = [k for k, _ in STD001_W] + ['STD-001a', 'STD-001b']
+    exact = ','.join('COUNTIFS(%s,$B$1,%s,"%s")<>1' % (r('scope_id'), r('child_card_id'), k) for k in expected)
+    checks = ['COUNTIFS(%s,$B$1)<>16' % r('scope_id'), exact, '%s>0' % oob]
+    for ident, cap in [('STD-001a',25),('STD-001b',15)]:
+        mask = '(%s=$B$1)*(%s="%s")' % (r('scope_id'),r('child_card_id'),ident)
+        checks += ['SUMPRODUCT(%s*ISNUMBER(%s))<>1' % (mask,r('penalty_value')),
+                   'SUMPRODUCT(%s*((%s<0)+(%s>%d)))>0' % (mask,r('penalty_value'),r('penalty_value'),cap)]
+    leaf_mask = '(%s=$B$1)*(%s<>"STD-001a")*(%s<>"STD-001b")' % (r('scope_id'), r('child_card_id'), r('child_card_id'))
+    checks.append('SUMPRODUCT(%s*ISNUMBER(%s))<>14' % (leaf_mask, r('posture_score')))
+    gate = 'OR(' + ','.join(checks) + ')'
     return dict(columns=cols, params=["scope"], helpers=[],
                 outputs={"value": "=IF(%s,NA(),MAX(0,MIN(100,(%s)-(%s))))" % (gate, terms, pen)},
                 note="Two-level composite: 14 pre-multiplied leaf weights (sum to 1.0) times posture scores, "
@@ -275,7 +311,7 @@ def _log015(cols):
 # curated flagships with card-specific semantics + the three Stage-3 specials
 _SPECIAL = {
     "STD-016": lambda cols, card, k: _ratio_concrete_std016(cols),
-    "SOC-002": lambda cols, card, k: _duration(cols, "occurred_at", "detected_at", True, True),
+    "SOC-002": lambda cols, card, k: _soc002(cols),
     "STD-001": lambda cols, card, k: _std001(cols),
     "RES-007": lambda cols, card, k: _res007(cols),
     "LOG-015": lambda cols, card, k: _log015(cols),
@@ -307,7 +343,7 @@ def build_spec(card, recipe, comp_k=None):
     if mech == "delta":
         return _delta_skeleton(cid, cols, ((card.get("numerator_denominator") or card.get("formula") or "")[:110]).strip())
     if mech == "component_tree" and comp_k:
-        return _composite(cols, comp_k)
+        return _composite(cols, comp_k, [x.strip() for x in re.search(r"p\(([^)]*)\)\s*=", card["formula"]).group(1).split(",")])
     return None
 
 
@@ -357,8 +393,9 @@ def build_workbook(spec, fixture, path):
     res["A2"] = "period_start"; res["B2"] = _parse_dt(params.get("period_start", "2026-06-01T00:00:00Z"))
     res["A3"] = "period_end"; res["B3"] = _parse_dt(params.get("period_end", "2026-07-01T00:00:00Z"))
     out_rows = {}
+    final_row = max(N, 1) + 1
     for k, (key, form) in enumerate(spec["outputs"].items()):
-        rr = 6 + k; res.cell(rr, 1, key); res.cell(rr, 2, form); out_rows[key] = rr
+        rr = 6 + k; res.cell(rr, 1, key); res.cell(rr, 2, form.replace("$100000", "$" + str(final_row))); out_rows[key] = rr
     wb.move_sheet("result", -(len(wb.sheetnames) - 1))
     wb.save(path)
     return out_rows
