@@ -68,6 +68,22 @@ class SemanticTests(unittest.TestCase):
             self.assertEqual(self.result(cid,c['rows'])['evaluation_status'],'invalid_input')
             self.assertEqual(duckdb_compute(self.plans[cid],c['rows'],c['params'])['evaluation_status'],'invalid_input')
 
+    def test_output_units_and_tolerance_boundaries_are_explicit(self):
+        from ci.semantic_runner import equal
+        for cid,key,value,unit in [('SOC-053','sla_rate',75,'percent'),('SOC-002','p50',15,'hours'),('SOC-032','value',1000,'EUR'),('SOC-064','coefficient_of_variation',.4,'ratio')]:
+            contract=self.plans[cid]['output_contracts'][key]
+            self.assertEqual(contract['unit'],unit)
+            self.assertTrue(equal(value+5e-9,value,contract))
+            self.assertFalse(equal(value+5e-7,value,contract))
+        count=self.plans['AI-003']['output_contracts']['value']
+        self.assertFalse(equal(4.4,4,count));self.assertFalse(equal(4+1e-12,4,count))
+        self.assertFalse(equal(2+1e-12,2,self.plans['VAL-001']['output_contracts']['overall_band']))
+
+    def test_risk_median_and_minimum_reporting_basis(self):
+        result=self.result('STD-002a',self.examples['STD-002a'][0]['rows'])['outputs']
+        self.assertEqual(result['p50_loss'],55)
+        self.assertEqual(result['reporting_eligible'],0)
+
     def test_independent_sql_normalization_and_target_band(self):
         import duckdb
         numeric=['raw_value','red','target','red_low','target_low','target_high','red_high']
@@ -92,6 +108,10 @@ class SemanticTests(unittest.TestCase):
         response={'columns':[{'name':k} for k in cols],'values':[[r.get(k) for k in cols] for r in rows]}
         result=reduce_export(p,count,response,fixture['params'],snapshot_hash='b'*64)
         self.assertEqual(result['result']['outputs']['p50'],16)
+        unverified=reduce_export(p,count,response,{**fixture['params'],'population_complete':False},snapshot_hash='b'*64)
+        self.assertEqual(unverified['result']['evaluation_status'],'population_unverified')
+        self.assertEqual(unverified['export_record_count'],len(rows))
+        self.assertIsNone(unverified['result']['outputs']['p50'])
         for mutation in ['truncate','warn','duplicate_column']:
             bad=copy.deepcopy(response)
             if mutation=='truncate':bad['values'].pop()

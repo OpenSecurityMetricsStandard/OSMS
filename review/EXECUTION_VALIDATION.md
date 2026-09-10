@@ -45,7 +45,7 @@ Python (1.548 Fälle) und der KQL-Analyzer (326 Jobs) wurden danach auch auf dem
 aktuellen Kandidatenpaket erfolgreich wiederholt. Native CI-Läufe werden über
 ihre tatsächlichen Berichte bewertet, nicht aus der Generierung abgeleitet.
 
-Aktuelles Kandidatenpaket: `8a3ed49a5a58a1230b5f55df4fca3e2eb3dd439dfdaba4d93fc0428c2d00d3ed`.
+Aktuelles Kandidatenpaket: `8c7d64a8c1918b3a18a349bce2cdcc54e02968033e519c26b1cccfc2dca20545`.
 Ausführungsberichte werden nur bei exakt passendem Paket- und Quellhash in die
 Konformitätsmatrix übernommen. Vorherige Berichte werden nicht umetikettiert.
 
@@ -72,3 +72,25 @@ F-23 benötigt echte Pilotbelege, F-27 begründete Mappingreviews, F-28 wird nac
 Repository-Übernahme extern bearbeitet. F-26/F-32 betreffen den späteren formalen
 Boardprozess. Diese Abhängigkeiten werden nicht als technische PASS-Ergebnisse
 verbucht. Aktuelle Zuordnung: IMPLEMENTATION_CANDIDATE.json und GitHub-Issues.
+
+## Beobachtete native CI und Folgekorrekturen
+
+Auf Commit 91f4697006dd1c4921b71f6146eb4d1be3a98948 bestanden PostgreSQL 18.6
+alle 3.726 Quotientenfälle und alle 1.548 vorbereiteten Beobachtungsfälle.
+Der LibreOffice-Job desselben Kandidaten bestand ebenfalls. Die lokalen Gates
+und der vollständige Formellauf bestanden in GitHub. Referenz:
+https://github.com/OpenSecurityMetricsStandard/OSMS/actions/runs/34512920228
+
+Der nachfolgende Commit c52c60a07cceb643d66419ceca2fd6f79bfefa69 korrigiert den
+Lineage-Parser für zwei Multipart-Karten; alle 327 Lineages und 50 Achsen werden
+nun erfasst. Die Katalog-CI bestand:
+https://github.com/OpenSecurityMetricsStandard/OSMS/actions/runs/34513923408
+
+Weitere präzise Folgekorrekturen betreffen einen reservierten SPL-Testfeldnamen,
+den Unterschied zwischen ES-Exportzeilenzahl und einer wegen unbekannter
+Grundgesamtheit gesperrten Berechnung, per-output Einheiten/exakte Statuscodes
+sowie STD-002a-Median und dessen 100.000-Ziehungen-Reportingminimum. Aktuelle
+Ausführungsnachweise werden ausschließlich dem tatsächlich geprüften Paket
+zugeordnet. Frühere erfolgreiche Läufe werden nicht auf diese Änderungen
+umetikettiert. Die endgültige Issue-Abnahme verweist auf tatsächliche Fix-Commits
+und ihre CI-Nachweise.

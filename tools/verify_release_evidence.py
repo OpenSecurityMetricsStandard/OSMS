@@ -12,6 +12,9 @@ def evaluate(runs,commit):
     for run in runs:
         path=(run.get('path') or '').split('@')[0]
         if path not in REQUIRED or run.get('head_sha')!=commit:continue
+        # A pull-request run normally checks GitHub's synthetic merge commit,
+        # not head_sha. Release proof must be a push/dispatch of the exact source.
+        if run.get('event') not in ('push','workflow_dispatch'):continue
         if path not in selected or (run['id'],run.get('run_attempt',1))>(selected[path]['id'],selected[path].get('run_attempt',1)):selected[path]=run
     errors=[];pending=[]
     for path in sorted(REQUIRED):
@@ -20,7 +23,7 @@ def evaluate(runs,commit):
         elif run.get('status')!='completed':pending.append(path+': '+str(run.get('status')))
         elif run.get('conclusion')!='success':errors.append(path+': '+str(run.get('conclusion')))
     return {'commit':commit,'ok':not errors and not pending,'errors':errors,'pending':pending,
-            'workflows':[{k:r.get(k) for k in ('id','run_attempt','path','head_sha','status','conclusion','html_url')} for _,r in sorted(selected.items())]}
+            'workflows':[{k:r.get(k) for k in ('id','run_attempt','path','head_sha','event','status','conclusion','html_url')} for _,r in sorted(selected.items())]}
 
 def fetch_runs(repo,commit):
     headers={'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}

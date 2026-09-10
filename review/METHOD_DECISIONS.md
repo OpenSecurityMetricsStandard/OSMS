@@ -68,3 +68,15 @@ not a count. All cards explicitly retain draft lifecycle status.
 
 Current evidence and remaining acceptance requirements are recorded in
 `review/EXECUTION_VALIDATION.md`.
+
+### STD-002a simulation contract
+
+The maintainer candidate defines P50 as the arithmetic median and P90 as nearest
+rank. The annual model sums event severities in joint scenario draws; LEF times
+mean severity states an expectation, not a tail distribution. The synthetic
+benchmark fixes PRNG, software, seed, dependence and residual-loss treatment.
+The prepared-observation profile exposes draw_count and reporting_eligible;
+fewer than 100,000 draws cannot satisfy the reporting minimum. A changed seed
+requires a Monte Carlo uncertainty assessment. Per-output numerical tolerances
+replace a blanket cross-seed reproduction assumption. See the card's versioned
+reproducibility field and reference/RISK_BENCHMARK.md.

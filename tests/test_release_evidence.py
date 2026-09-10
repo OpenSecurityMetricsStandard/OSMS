@@ -5,7 +5,7 @@ SPEC=importlib.util.spec_from_file_location('release_evidence',ROOT/'tools/verif
 M=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(M)
 
 class ReleaseEvidenceTests(unittest.TestCase):
-    def rows(self):return [{'id':i,'path':p,'head_sha':'a'*40,'status':'completed','conclusion':'success','run_attempt':1} for i,p in enumerate(sorted(M.REQUIRED),1)]
+    def rows(self):return [{'id':i,'path':p,'head_sha':'a'*40,'event':'push','status':'completed','conclusion':'success','run_attempt':1} for i,p in enumerate(sorted(M.REQUIRED),1)]
     def test_only_exact_commit_passes(self):
         self.assertTrue(M.evaluate(self.rows(),'a'*40)['ok']);self.assertFalse(M.evaluate(self.rows(),'b'*40)['ok'])
     def test_failure_missing_and_running_block(self):
@@ -15,6 +15,10 @@ class ReleaseEvidenceTests(unittest.TestCase):
             self.assertFalse(M.evaluate(rows,'a'*40)['ok'])
     def test_latest_attempt_is_required(self):
         rows=self.rows();rows.append({**rows[0],'run_attempt':2,'status':'in_progress','conclusion':None})
+        self.assertFalse(M.evaluate(rows,'a'*40)['ok'])
+    def test_pull_request_merge_checks_do_not_prove_release_head(self):
+        rows=self.rows()
+        for row in rows:row['event']='pull_request'
         self.assertFalse(M.evaluate(rows,'a'*40)['ok'])
 
 if __name__=='__main__':unittest.main()

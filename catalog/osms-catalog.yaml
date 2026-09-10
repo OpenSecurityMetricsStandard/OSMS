@@ -13786,9 +13786,10 @@ cards:
   definition: Annualized cyber loss exposure across all assessed prioritized risk scenarios, per the FAIR methodology
     in euros. Reported are at least P50, expected value/mean, P90, and the probability of exceeding the approved
     risk appetite.
-  formula: 'For each scenario, a loss distribution is simulated: LEF = loss event frequency; LM = loss magnitude.
-    Annualized loss exposure = the distribution of LEF * LM across all scenarios. Board values: P50, expected/mean,
-    P90, and P(ALE > risk appetite).'
+  formula: Annual loss is the sum of event severities within each scenario and the same joint annual draw, preserving
+    declared scenario dependencies. LEF denotes expected annual event frequency; LEF times mean loss severity gives
+    scenario expected annual loss under the stated event model, not its tail distribution. Report portfolio P50 (arithmetic
+    median), expected/mean, P90 (nearest rank), and P(annual loss > risk appetite).
   calculation_type: Monetary Risk
   calculation_type_check: Calculates financial exposure, expected value, or distribution.
   calculation_plain: Cyber Risk Exposure (ALE in euros) calculates the financial cyber risk exposure per scenario.
@@ -13848,19 +13849,19 @@ cards:
   - ISO/IEC 27005:2022
   - FAIR (Open Group O-RA)
   - DORA/NIS2 (Risikoquantifizierung).
-  reproducibility: >-
-    LEF and LM per scenario from calibrated FAIR estimates or measurement data; a Monte Carlo or equivalent
-    distribution calculation with a documented assumption basis. Simulation parameters must be documented
-    with versioning: the method, iteration count (at least 100,000 iterations), and random seed or seed
-    procedure, so that the run is exactly repeatable. Reproduction tolerance: with an identical seed, P50,
-    expected/mean, P90, and P(ALE > risk appetite) must match exactly; without seed reuse, a documented
-    tolerance band of ±2% per statistic applies. Each scenario contribution counts exactly once. P50,
-    mean/expected, P90, and P(ALE > risk appetite) must be reported together. Executable
-    prepared-observation contract: recipes/semantic/registry.py and recipes/semantic/specials.py, exported
-    as prepared_observations_v1 in execution-profiles.json. Its typed inputs, row constraints, component
-    outputs and independent examples are versioned with this card. Source adapters must establish the
-    declared population and traceable evidence. Successful calculation alone does not establish data
-    confidence or risk-appetite approval.
+  reproducibility: 'LEF and loss severity per scenario require calibrated, versioned estimates or measurement evidence.
+    Specify the annual event-count process, severity distributions, joint scenario dependence, currency, horizon,
+    control-credit policy, PRNG, seed procedure and exact software versions. Each scenario contribution counts exactly
+    once within a joint annual draw. Report arithmetic-median P50, expected/mean, nearest-rank P90 and P(annual loss
+    > risk appetite) together. At least 100,000 annual draws are required for report eligibility; smaller synthetic
+    fixtures may verify arithmetic but must expose reporting_eligible=0. Repeated same-seed runs require the pinned
+    model/runtime and recorded input/output hashes. A changed seed is a new Monte Carlo realization and needs a documented
+    uncertainty assessment, not an automatic blanket +/-2% reproduction claim. Cross-engine numerical comparison uses
+    the explicit per-output absolute/relative tolerances. The open synthetic reference profile is reference/RISK_BENCHMARK.md.
+    Executable prepared-observation contract: recipes/semantic/registry.py and recipes/semantic/specials.py, exported
+    as prepared_observations_v1 in execution-profiles.json. Typed inputs, output units and independent examples are
+    versioned with this card. Source adapters must establish the complete joint-draw population and traceable evidence.
+    Successful calculation alone does not establish data confidence or risk-appetite approval.'
   drilldown_lineage: 'Archetype: Monetary Risk · Drill axes: period · business unit · criticality · asset class
     · business service · Path: overall value → contribution per component/weight → individual records per component
     → raw record · Evidence: the weighted individual records per component in the risk register (FAIR scenarios).'

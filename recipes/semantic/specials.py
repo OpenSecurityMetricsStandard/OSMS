@@ -184,10 +184,10 @@ def extend(result,cards):
         row_constraints=[O('le',F(a),F(b)) for a,b in pairs.values()],primary_outputs=list(rates),output_units={**{k+'_base':'count' for k in pairs},'overall_band':'0 target, 1 amber, 2 red; null n/a'})
 
     # Each supplied row is one complete joint annual portfolio loss draw.
-    put('STD-002a',{'annual_portfolio_loss':N(),'risk_appetite':N(),'model_profile_version':T(),'joint_scenario_set_hash':T(),'currency':T()},
-        {'p50':A('quantile',F('annual_portfolio_loss'),q=.5),'mean':A('mean',F('annual_portfolio_loss')),'p90':A('quantile',F('annual_portfolio_loss'),q=.9),
+    put('STD-002a',{'annual_portfolio_loss':N(),'risk_appetite':N(),'model_profile_version':T(),'joint_scenario_set_hash':T(),'currency':T(['EUR'])},
+        {'p50':A('median',F('annual_portfolio_loss')),'mean':A('mean',F('annual_portfolio_loss')),'p90':A('quantile',F('annual_portfolio_loss'),q=.9),
          'exceed':count(O('gt',F('annual_portfolio_loss'),F('risk_appetite'))),'n':A('count',1),'appetite_min':A('min',F('risk_appetite')),'appetite_max':A('max',F('risk_appetite'))},
-        {'p50_loss':S('p50'),'mean_loss':S('mean'),'p90_loss':S('p90'),'probability_above_appetite':div(S('exceed'),S('n')),'draw_count':S('n')},
+        {'p50_loss':S('p50'),'mean_loss':S('mean'),'p90_loss':S('p90'),'probability_above_appetite':div(S('exceed'),S('n')),'draw_count':S('n'),'reporting_eligible':choose(O('ge',S('n'),100000),1,0)},
         aggregate_constraints=[O('eq',S('appetite_min'),S('appetite_max'))],output_units={'probability_above_appetite':'probability','draw_count':'count'},
         note='The input is the full joint annual portfolio draw after scenario aggregation. reference/assurance.py supplies the explicit joint-scenario reducer. Model calibration and control-credit evidence are required separately.')
 

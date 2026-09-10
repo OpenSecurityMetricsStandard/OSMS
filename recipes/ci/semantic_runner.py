@@ -37,9 +37,9 @@ def run(profile,case,engine,folder,soffice='soffice'):
                     v=row.get(k)
                     if v is not None and s['type']=='timestamp':v=instant(v).timestamp()
                     if isinstance(v,bool):v=int(v)
-                    terms += ['__fixture_row='+str(i),'null()' if v is None else json.dumps(v)]
+                    terms += ['fixture_row_number='+str(i),'null()' if v is None else json.dumps(v)]
                 values.append(k+'=case('+','.join(terms+['true()','null()'])+')')
-            source='| makeresults count='+str(max(1,len(rows)))+' | streamstats count as __fixture_row | eval '+','.join(values)
+            source='| makeresults count='+str(max(1,len(rows)))+' | streamstats count as fixture_row_number | eval '+','.join(values)
             if not rows:source+=' | where 1=0'
             query=re.sub(r'```.*?```','',profile['dialects']['spl'],flags=re.S)
             query=re.sub(r'(?m)^index=osms_input[^\n]*',lambda _:source,query).strip()
@@ -48,17 +48,13 @@ def run(profile,case,engine,folder,soffice='soffice'):
                 if isinstance(v,bool):v=int(v)
                 query=query.replace('$'+k+'$',json.dumps(v))
             response=native_http('spl','POST','/services/search/jobs',{'search':query,'exec_mode':'oneshot','output_mode':'json','count':'10001'})
-            if any(m.get('type','').upper() in ('ERROR','WARN') for m in response.get('messages',[])):raise ValueError('SPL warning or partial search')
+            if any(m.get('type','').upper() in ('ERROR','WARN','FATAL') for m in response.get('messages',[])):raise ValueError('SPL warning/error: '+json.dumps(response.get('messages'))[:2000])
             result=response.get('results',[])
             if p.get('grouping'):
                 status=result[0].get('evaluation_status') if result else 'not_applicable'
                 services=[{k:(r[k] if k=='business_service_id' else float(r[k])) for k in ['business_service_id','service_risk_raw','service_risk','competition_rank']} for r in result if r.get('business_service_id') and status=='ok']
                 return {'evaluation_status':status,'outputs':{'services':services if status in ('ok','not_applicable') else None,'service_count':len(services) if status in ('ok','not_applicable') else None}}
-            if len(result)!=1:
-                # Diagnostic only: preserve the failure; never substitute a
-                # differently executed query for the advertised implementation.
-                diagnostic=native_http('spl','POST','/services/search/jobs',{'search':query,'exec_mode':'oneshot','output_mode':'json','count':'10'})
-                raise ValueError('Expected one SPL result row: '+json.dumps({'requested':response,'diagnostic_count_10':diagnostic})[:2000])
+            if len(result)!=1:raise ValueError('Expected one SPL result row: '+json.dumps(response)[:2000])
             actual=result[0];return {'evaluation_status':actual.pop('evaluation_status'),'outputs':actual}
         from semantic.esql import reduce_export
         # Only the explicitly selected ES test runner creates disposable fixture

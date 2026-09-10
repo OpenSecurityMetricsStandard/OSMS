@@ -160,7 +160,7 @@ def special_examples(plans,put):
             rows.append(row)
         put(cid,rows,dict(p50=16 if median else 2,p90=30,valid_cases=2,invalid_cases=0))
     put('VAL-001',dict(critical_objects_tested=19,critical_objects_in_universe=20,high_critical_findings_treated_on_time=9,high_critical_findings_due=10,unmanaged_critical_findings=0),dict(scope_coverage_percent=95,remediation_coverage_percent=90,overall_band=2))
-    put('STD-002a',[dict(annual_portfolio_loss=x,risk_appetite=100) for x in [0,10,100,1000]],dict(p50_loss=10,mean_loss=277.5,p90_loss=1000,probability_above_appetite=.25,draw_count=4))
+    put('STD-002a',[dict(annual_portfolio_loss=x,risk_appetite=100) for x in [0,10,100,1000]],dict(p50_loss=55,mean_loss=277.5,p90_loss=1000,probability_above_appetite=.25,draw_count=4,reporting_eligible=0))
     for cid in ['HRM-001','STD-001']:
         row={}
         for f in plans[cid]['inputs']:

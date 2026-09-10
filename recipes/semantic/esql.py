@@ -30,7 +30,13 @@ def reduce_export(plan,count_response,rows_response,params,*,snapshot_hash):
     values=rows_response.get('values')
     if not isinstance(values,list) or len(values)!=n or any(len(r)!=len(columns) for r in values):raise ValueError('Export count/shape mismatch')
     rows=[dict(zip(columns,r)) for r in values]
+    for row in rows:
+        if (row.get('card_id')!=plan['card_id'] or row.get('scope_id')!=params.get('scope_id')
+            or row.get('segment_id')!=params.get('segment_id','all')
+            or any(instant(row.get(k))!=instant(params.get(k)) for k in ('period_start','period_end'))):
+            raise ValueError('Rows do not match the counted reporting population')
     output=compute(plan,rows,params)
-    if output['selected_records']!=n:raise ValueError('Rows do not match the counted reporting population')
-    return {'result':output,'export_snapshot_sha256':snapshot_hash,
+    # Population confidence gates may stop computation before selecting rows.
+    # The export count is verified independently; that gate must remain visible.
+    return {'result':output,'export_record_count':n,'export_snapshot_sha256':snapshot_hash,
             'export_response_sha256':hashlib.sha256(json.dumps(rows_response,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()}

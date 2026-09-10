@@ -98,3 +98,21 @@ The older SQLite mechanics demo remains a structural diagnostic. Its generic
 component sums are not accepted as full card conformance. The CLI demo now also
 executes card-specific DSPS, weighted mean, duration, ranking and multi-part profiles
 with retained input evidence.
+
+## Units and simulation reporting
+
+Every scalar output declares its own unit and numeric type. Counts, rating codes
+and eligibility flags compare exactly. Duration, currency, percentage and
+unscaled ratios have separate unit labels and absolute/relative tolerances.
+Survey outputs identify their variant-specific unit. A diagnostic weight sum
+is a weight quantity, not a score or percentage.
+
+STD-002a distinguishes calculation from reporting eligibility. Its arithmetic
+fixture deliberately contains four joint draws and reports reporting_eligible=0;
+reporting requires at least 100,000 complete joint draws plus the other model,
+source and confidence gates. Python/SQL and suitably provisioned BI/Kusto engines
+can evaluate that population. The default bounded SPL, ES export and Excel
+profiles do not accommodate that reporting population; use a complete frozen
+calculation on a capable engine and retain its evidence. Do not truncate the
+simulation to the platform limit or represent the small fixture as reportable.
+The synthetic benchmark provides four reproducible 100,000-draw scenarios.

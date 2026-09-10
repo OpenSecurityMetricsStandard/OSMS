@@ -209,6 +209,8 @@ def register(cards):
                 output.update(unit='count',absolute_tolerance=0,relative_tolerance=0)
             elif output.get('unit')=='minutes':output['absolute_tolerance']=1e-7
     # Recompute hashes after all explicit supplemental constraints have been added.
+    from .units import apply
+    apply(result)
     rehash(result)
     return result
 

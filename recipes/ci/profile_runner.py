@@ -115,7 +115,7 @@ def run(profile,case,engine,folder,soffice=None):
             if len(body.get('values',[]))!=1:raise ValueError('Expected one native ES|QL result row')
             return dict(zip([c['name'] for c in body['columns']],body['values'][0]))
         body=native_http(engine,'POST','/services/search/jobs',{'search':q,'exec_mode':'oneshot','output_mode':'json','count':'10'})
-        if any(m.get('type','').upper() in ('ERROR','WARN') for m in body.get('messages',[])):raise ValueError('SPL query returned warning/error')
+        if any(m.get('type','').upper() in ('ERROR','WARN','FATAL') for m in body.get('messages',[])):raise ValueError('SPL query returned warning/error: '+json.dumps(body.get('messages'))[:2000])
         results=body.get('results',[])
         if len(results)!=1:raise ValueError('Expected one native SPL result row')
         return results[0]
