@@ -6,8 +6,8 @@ catalog order). Parameters live on a sheet `result` (B1=scope, B2=period start,
 B3=period end). Fail-closed via NA(); percentiles via explicit nearest rank
 (SMALL + CEILING) so no interpolating estimator is involved. Functions are limited
 to the Excel 2007 set (COUNTIFS/SUMIFS/SUMPRODUCT/SMALL/MEDIAN/AVERAGE/COUNT/
-CEILING/MAX/MIN/IF/N) so the same formula runs in Excel, LibreOffice Calc and
-Google Sheets.
+CEILING/MAX/MIN/IF/N) for portability. Compatibility is established only by a report for the actual
+engine/version, not by use of these function names.
 
 This module is the single source of truth: gen_recipes renders the display snippet
 from build_spec, and both gates.py (formulas engine) and excel_runner.py
@@ -46,7 +46,7 @@ def _ascii(s):
 # German (de-DE) Excel localisation: same formula, localised function names, ";" argument
 # separator and "," decimal. Only names that differ from en-US are listed; MEDIAN/MAX/MIN/ABS/N
 # are identical in de-DE. Applied longest-first, before "(" only, with string literals protected.
-_FUNC_DE = [("COUNTIFS", "Z\u00c4HLENWENNS"), ("SUMPRODUCT", "SUMMENPRODUKT"), ("SUMIFS", "SUMMEWENNS"),
+_FUNC_DE = [("ISLOGICAL", "ISTLOG"), ("ISTEXT", "ISTTEXT"), ("COUNTIF", "ZÄHLENWENN"), ("STDEVP", "STABWN"), ("MATCH", "VERGLEICH"), ("LOWER", "KLEIN"), ("LEN", "LÄNGE"), ("INT", "GANZZAHL"), ("SQRT", "WURZEL"), ("SUBSTITUTE", "WECHSELN"), ("EXACT", "IDENTISCH"), ("ISNUMBER", "ISTZAHL"), ("IFERROR", "WENNFEHLER"), ("NOT", "NICHT"), ("TRIM", "GLÄTTEN"), ("COUNTIFS", "Z\u00c4HLENWENNS"), ("SUMPRODUCT", "SUMMENPRODUKT"), ("SUMIFS", "SUMMEWENNS"),
             ("AVERAGE", "MITTELWERT"), ("CEILING", "OBERGRENZE"), ("SMALL", "KKLEINSTE"),
             ("COUNT", "ANZAHL"), ("SUM", "SUMME"), ("IF", "WENN"), ("AND", "UND"), ("OR", "ODER"),
             ("NA", "NV")]
@@ -89,6 +89,7 @@ def to_de_de(formula):
         for en, de in _FUNC_DE:
             seg = re.sub(r"\b" + en + r"(?=\()", de, seg)
         seg = re.sub(r"\bTRUE\b", "WAHR", seg)
+        seg = re.sub(r"\bFALSE\b", "FALSCH", seg)
         seg = seg.replace(",", ";")            # argument separators
         seg = re.sub(r"(?<=\d)\.(?=\d)", ",", seg)   # decimal points
         out.append(seg)
@@ -106,6 +107,7 @@ def _to_en_from_de(formula):
         seg = re.sub(r"(?<=\d),(?=\d)", ".", seg)    # decimals back first
         seg = seg.replace(";", ",")
         seg = re.sub(r"\bWAHR\b", "TRUE", seg)
+        seg = re.sub(r"\bFALSCH\b", "FALSE", seg)
         for de, en in _FUNC_EN:
             seg = re.sub(r"\b" + de + r"(?=\()", en, seg)
         out.append(seg)
@@ -312,6 +314,7 @@ def _log015(cols):
 _SPECIAL = {
     "STD-016": lambda cols, card, k: _ratio_concrete_std016(cols),
     "SOC-002": lambda cols, card, k: _soc002(cols),
+    "SOC-003": lambda cols, card, k: __import__("soc003").excel_spec(cols),
     "STD-001": lambda cols, card, k: _std001(cols),
     "RES-007": lambda cols, card, k: _res007(cols),
     "LOG-015": lambda cols, card, k: _log015(cols),
@@ -350,7 +353,7 @@ def build_spec(card, recipe, comp_k=None):
 # ============ display rendering ============
 def render(cid, spec):
     out = ["' %s \u00b7 Excel recipe (range model) \u00b7 non-normative" % cid]
-    pm = {"scope": "B1 = scope", "ps": "B2 = period start", "pe": "B3 = period end"}
+    pm = {"scope": "B1 = scope", "ps": "B2 = period start", "pe": "B3 = period end", "segment":"B4 = segment", "complete":"B5 = evidenced population complete (TRUE/FALSE)"}
     out.append("' On a sheet named 'result' set the parameters: "
                + "; ".join(pm[p] for p in spec["params"]))
     out.append("' Put raw rows on a sheet named 'data' (header in row 1), columns in this order:")
@@ -359,11 +362,17 @@ def render(cid, spec):
         hcol = LETTER(len(spec["columns"]) + 1 + h)
         out.append("' Helper column %s (paste in %s2 and fill down beside your data):" % (hname, hcol))
         out.append("    " + hform.format(r=2))
+    if spec.get('calculation_cells'):
+        out.append("' On sheet calculation, put these formulas in column B in the stated row:")
+        for i,(key,formula) in enumerate(spec['calculation_cells'].items(),1):out.append("' "+key+' B'+str(i)+': '+formula)
     out.append("' Result cell(s):")
     for key, form in spec["outputs"].items():
         out.append("    %s%s" % (key + ":  " if key != "value" else "", form))
     out.append("' German Excel (de-DE) - same formula, localised names, ';' separator, ',' decimal;")
     out.append("' copy the line after the apostrophe (a saved .xlsx localises automatically on open):")
+    for h, (hname, hform) in enumerate(spec["helpers"]):
+        hcol = LETTER(len(spec["columns"]) + 1 + h)
+        out.append("'   Helper %s (%s2, fill down): %s" % (hname,hcol,to_de_de(hform.format(r=2))))
     for key, form in spec["outputs"].items():
         out.append("'   %s%s" % (key + ":  " if key != "value" else "", to_de_de(form)))
     return "\n".join(out)
@@ -372,7 +381,8 @@ def render(cid, spec):
 # ============ executable workbook build + dual-engine eval (shared by gate & runner) ============
 def _parse_dt(v):
     if isinstance(v, str) and re.match(r"\d{4}-\d{2}-\d{2}T", v):
-        return _dt.datetime.strptime(v, "%Y-%m-%dT%H:%M:%SZ")
+        dt = _dt.datetime.fromisoformat(v.replace("Z", "+00:00"))
+        return dt.astimezone(_dt.timezone.utc).replace(tzinfo=None) if dt.tzinfo else dt
     return v
 
 def build_workbook(spec, fixture, path):
@@ -387,15 +397,21 @@ def build_workbook(spec, fixture, path):
     for h, (hname, hform) in enumerate(spec["helpers"]):
         hc = len(cols) + 1 + h; data.cell(1, hc, hname)
         for i in range(2, max(N, 1) + 2):
-            data.cell(i, hc, hform.format(r=i))
+            data.cell(i, hc, hform.format(r=i).replace("$100000", "$" + str(max(N, 1)+1)))
     params = (fixture or {}).get("params", {})
     res["A1"] = "scope"; res["B1"] = params.get("scope_id", "prod")
     res["A2"] = "period_start"; res["B2"] = _parse_dt(params.get("period_start", "2026-06-01T00:00:00Z"))
     res["A3"] = "period_end"; res["B3"] = _parse_dt(params.get("period_end", "2026-07-01T00:00:00Z"))
+    for cell,(name,default) in spec.get('extra_params',{}).items():
+        res[cell]=params.get(name,default);res['A'+cell[1:]]=name
     out_rows = {}
     final_row = max(N, 1) + 1
     for k, (key, form) in enumerate(spec["outputs"].items()):
-        rr = 6 + k; res.cell(rr, 1, key); res.cell(rr, 2, form.replace("$100000", "$" + str(final_row))); out_rows[key] = rr
+        rr = spec.get('result_start',6) + k; res.cell(rr, 1, key); res.cell(rr, 2, form.replace("$100000", "$" + str(final_row))); out_rows[key] = rr
+    if spec.get('calculation_cells'):
+        calc=wb.create_sheet('calculation')
+        for i,(key,formula) in enumerate(spec['calculation_cells'].items(),1):
+            calc.cell(i,1,key);calc.cell(i,2,formula.replace('$100000','$'+str(final_row)))
     wb.move_sheet("result", -(len(wb.sheetnames) - 1))
     wb.save(path)
     return out_rows

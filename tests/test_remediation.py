@@ -150,6 +150,18 @@ class RecipeRegressionTests(unittest.TestCase):
 
 
 class ReviewRegressionTests(unittest.TestCase):
+    def test_two_touched_cards_are_not_two_decisions_and_board_counts_need_evidence(self):
+        snapshot={'issues':[{'number':1,'title':'STD-001a and SOC-002','body':'','state':'open','user':{'login':'maintainer'},
+            'labels':['finding','cat:formula','severity:major','decision:pending'],
+            'comments_data':[{'user':{'login':'reviewer'},'body':'Examined the two cards'}]}],
+            'comments_complete':True,'events_complete':True}
+        ids={'STD-001a','SOC-002'};result=review.evaluate(snapshot,ids,ids,['maintainer'])
+        self.assertEqual(result['K-01'],1);self.assertEqual(result['K-05']['touched'],2);self.assertEqual(result['K-07']['decided'],0);self.assertIsNone(result['K-09'])
+        board={'charter_ref':'fixture:charter','members':[{'id':'person:1','active':True,'evidence_ref':'fixture:membership'}],
+               'sessions':[{'id':'session:1','status':'held','evidence_ref':'fixture:minutes'}]}
+        self.assertEqual(review.evaluate({**snapshot,'board':board},ids,ids)['K-09']['sessions_held'],1)
+        board['sessions'][0]['evidence_ref']=' '
+        with self.assertRaises(ValueError):review.evaluate({**snapshot,'board':board},ids,ids)
     def test_real_ids_comments_and_final_decisions(self):
         issues=[dict(number=1,title='STD-001a and SOC-002',body='',state='open',user={'login':'maintainer'},labels=['finding','severity:major','cat:formula','decision:pending'],comments_data=[dict(user={'login':'reviewer'},body='Checked')]),
                 dict(number=2,title='HRM-004',body='',state='OPEN',user={'login':'reviewer'},labels=['finding','severity:critical','cat:formula','decision:accepted']),
@@ -305,6 +317,17 @@ class CatalogValidatorRegressionTests(unittest.TestCase):
         cls.formula=module('formula_audit','tools/formula_audit.py')
         cls.cards=yaml.safe_load((ROOT/'catalog/osms-catalog.yaml').read_text())['cards']
 
+    def test_ratio_examples_respect_output_unit(self):
+        rate=copy.deepcopy(next(c for c in self.cards if c['id']=='STD-024'))
+        rate['calculation_example']='30 new exposures / 10 days = 3 per day; change versus baseline +20%.'
+        percentage=copy.deepcopy(next(c for c in self.cards if c['id']=='SOC-023'))
+        percentage['calculation_example']='3 / 4 * 100 = 99%.'
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'examples.yaml';path.write_text(yaml.safe_dump({'cards':[rate,percentage]}))
+            findings=self.formula.audit(path)
+        self.assertFalse(any(cid==rate['id'] and 'ratio example' in text for cid,text in findings))
+        self.assertTrue(any(cid==percentage['id'] and 'ratio example' in text for cid,text in findings))
+
     def test_cycle_zero_denominator_and_wrong_composite_total(self):
         for cid,field,value,expected in [
             ('STD-001','formula','p(STD-001)','cyclic formula dependency'),
@@ -320,6 +343,26 @@ class CatalogValidatorRegressionTests(unittest.TestCase):
 
 
 class ReleaseAndExportRegressionTests(unittest.TestCase):
+    def test_incident_output_contract_includes_fixture_diagnostics(self):
+        bundle=json.loads((Path(temporary.name)/'execution-profiles.json').read_text())
+        contract=bundle['profiles']['SOC-003']['incident_snapshot_v1']['contract']
+        fixture=json.loads((ROOT/'recipes/fixtures/soc003.json').read_text())
+        self.assertTrue(set(fixture['expect'])<=set(contract['outputs']))
+        self.assertTrue(contract['outputs']['open_cases_at_period_end']['nullable'])
+
+    def test_template_capacity_guards_and_source_spec_preservation(self):
+        exporter=module('export_implementation','recipes/export_implementation.py')
+        spec={'columns':['incident_id','scope_id'],'outputs':{'count':'=COUNTA(data!A$2:A$100000)'},'helpers':[]}
+        before=copy.deepcopy(spec)
+        prepared=exporter.template_spec(spec,2)
+        self.assertEqual(spec,before)
+        self.assertIn('data!A$4:B$1048576',prepared['outputs']['template_input_valid'])
+        self.assertIn('result!$B$2<result!$B$3',prepared['outputs']['template_input_valid'])
+        self.assertEqual(next(iter(prepared['outputs'])),'template_input_valid')
+        self.assertIn('IF(result!$B$6=1,',prepared['outputs']['count'])
+        for capacity in (0,-1,100000,True):
+            with self.assertRaises(ValueError):exporter.template_spec(spec,capacity)
+
     def test_full_card_export_and_schema(self):
         import jsonschema
         cards=yaml.safe_load((ROOT/'catalog/osms-catalog.yaml').read_text())['cards']

@@ -132,11 +132,25 @@ def evaluate(snapshot, all_ids, p0_ids, exclude=(), holidays=(), id_pattern=ID_P
                 'percent': 100 * len(touched & population) / len(population) if population else None}
 
     board = snapshot.get('board')
-    quorum = None if board is None else {
-        'sessions_held': len({s['id'] for s in board.get('sessions', []) if s.get('status') == 'held' and s.get('evidence_ref')}),
-        'active_members': len({m['id'] for m in board.get('members', []) if m.get('active') is True and m.get('evidence_ref')}),
-        'charter_ref': board.get('charter_ref'),
-    }
+    quorum = None
+    if board is not None:
+        nonblank=lambda value:isinstance(value,str) and bool(value.strip())
+        if not isinstance(board,dict) or not nonblank(board.get('charter_ref')):
+            raise ValueError('K-09 requires an explicit charter reference')
+        for group in ['members','sessions']:
+            records=board.get(group)
+            if not isinstance(records,list):raise ValueError('K-09 requires '+group+' records')
+            seen=set()
+            for row in records:
+                if not isinstance(row,dict) or not nonblank(row.get('id')) or row['id'] in seen:
+                    raise ValueError('K-09 requires unique stable '+group+' IDs')
+                seen.add(row['id'])
+                if group=='members' and not isinstance(row.get('active'),bool):raise ValueError('K-09 member activity must be explicit')
+                if group=='sessions' and row.get('status') not in ('planned','held','cancelled'):raise ValueError('K-09 session status is unknown')
+                if (row.get('active') is True or row.get('status')=='held') and not nonblank(row.get('evidence_ref')):
+                    raise ValueError('K-09 counted records require evidence references')
+        quorum={'sessions_held':sum(s['status']=='held' for s in board['sessions']),
+                'active_members':sum(m['active'] for m in board['members']),'charter_ref':board['charter_ref']}
     return {
         'method_version': 'review-kpis-0.2', 'snapshot_at': snapshot.get('snapshot_at'),
         'calendar': {'timezone': 'UTC', 'working_days': 'Monday-Friday, 24 hours/day', 'holidays': sorted(holidays)},

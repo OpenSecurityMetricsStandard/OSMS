@@ -1,0 +1,654 @@
+{
+  "schema_version": "1.0.0-draft",
+  "repository": "OpenSecurityMetricsStandard/OSMS",
+  "purpose": "Current implementation and remaining acceptance scope mapped to existing GitHub findings.",
+  "base_commit": "e3fda1c1a78f5052253b28e3626f5f78d13a9ea5",
+  "candidate_version": "0.9.2",
+  "new_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+  "publication_status": "published_candidate",
+  "validation": "review/EXECUTION_VALIDATION.md",
+  "findings": [
+    {
+      "finding_id": "F-01",
+      "issue_number": 1,
+      "category": "formula",
+      "severity": "critical",
+      "card_ids": [
+        "HRM-004",
+        "STD-024",
+        "STD-005",
+        "SOC-063"
+      ],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Rechenfamilien und Einheit/Operator unterscheiden Anteile, unskalierte und signierte Ratios, Kapazität, Ereignisraten und Scoreänderungen. Alle 327 Karten haben gebundene Profile; unabhängige numerische Beispiele prüfen die Ausnahmen.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-02",
+      "issue_number": 3,
+      "category": "implementation",
+      "severity": "critical",
+      "card_ids": [
+        "HRM-004",
+        "STD-074",
+        "STD-001a",
+        "STD-005"
+      ],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "119 zusätzliche kartenspezifische Pläne ergänzen die 207 Quotienten und SOC-003. Der Drill-Demo führt echte STD-001-, STD-006-, SOC-002-, STD-003- und VAL-001-Neuberechnungen mit eingefrorenen Eingängen aus. Die alten mechanischen Strategien behalten ihre begrenzte Aussage.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-03",
+      "issue_number": 4,
+      "category": "formula",
+      "severity": "critical",
+      "card_ids": [
+        "SOC-002",
+        "APP-010",
+        "CFG-002",
+        "SOC-078",
+        "STD-055"
+      ],
+      "local_status": "Implementiert – native Nachweise prüfen",
+      "change_or_remaining_work": "Dauerprofile benennen arithmetischen Median und exakte Nearest-Rank-Tails je Karte. SOC-002 mit vier Werten ergibt 15 h; CFG-002 ergibt 9/22/26 Tage. Einheiten und Gleitkommatoleranzen sind getrennt; native Engineberichte entscheiden die Ausführungsverifikation.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-04",
+      "issue_number": 5,
+      "category": "formula",
+      "severity": "critical",
+      "card_ids": [
+        "SOC-002"
+      ],
+      "local_status": "Implementiert – native Nachweise prüfen",
+      "change_or_remaining_work": "SOC-002 verwendet Detection-Kohorte und Bestätigung bis Periodenende, UTC-normalisierte Uhren, ungültige Paarzahlen und exakten P50/P90. Zusätzliche Profile veröffentlichen alle Ausgaben; Kusto/DAX bleiben ohne native Umgebung als nicht ausgeführt gekennzeichnet.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-05",
+      "issue_number": 6,
+      "category": "formula",
+      "severity": "critical",
+      "card_ids": [
+        "STD-016"
+      ],
+      "local_status": "Bereits geschlossen",
+      "change_or_remaining_work": "Bereits geschlossener Befund; fristgerechte Remediation oder validierte Mitigation einschließlich fehlender, unvalidierter und wiedereröffneter Fälle ist regressionsgeprüft.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "candidate_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-06",
+      "issue_number": 7,
+      "category": "implementation",
+      "severity": "critical",
+      "card_ids": [
+        "STD-069",
+        "STD-068",
+        "STD-075"
+      ],
+      "local_status": "Implementiert – native Nachweise prüfen",
+      "change_or_remaining_work": "Typisierte Composite-Eingänge prüfen Endlichkeit, Wertebereiche, Gewicht-/Profilversionen, erforderliche Felder, Identität und Duplikate. Jedes neue Profil hat Positiv- und Ablehnungsfälle; native Ausführung wird je Engine ausgewiesen.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-07",
+      "issue_number": 8,
+      "category": "hierarchy",
+      "severity": "critical",
+      "card_ids": [
+        "STD-001",
+        "STD-001a",
+        "STD-001b"
+      ],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "STD-001 bindet alle 14 Blattwerte samt Normalisierungs-/Kartenversionen sowie beide Penalties. Fehlende/doppelte Identitäten, ungültige Gewichte, negative Penalties und Cap-Verletzungen sperren die Auswertung.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-08",
+      "issue_number": 9,
+      "category": "data-confidence",
+      "severity": "critical",
+      "card_ids": [],
+      "local_status": "Bereits geschlossen",
+      "change_or_remaining_work": "Bereits geschlossener Befund; unbekannte/zu geringe Confidence und ungültige Basis erlauben kein Green. Exakte operative und Management-Grenzen sind regressionsgeprüft.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "candidate_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-09",
+      "issue_number": 10,
+      "category": "data-confidence",
+      "severity": "critical",
+      "card_ids": [
+        "STD-011"
+      ],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "STD-011 rechnet fünf numerische Pass-/Grundgesamtheitsdimensionen mit festen Gewichten. Fünf unabhängige Beispieldatensätze sowie Pflichtfehler werden in Python und SQL gerechnet; Pflichtfehler sind nicht durch den Gesamtscore kompensierbar.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-10",
+      "issue_number": 11,
+      "category": "evidence",
+      "severity": "critical",
+      "card_ids": [
+        "STD-001",
+        "AI-001"
+      ],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Historische Auswertungsarchive prüfen Profil, Eingänge, Scope, Quelle, Evidenz, Versionen und Ergebnis gegen einen separat aufbewahrten Manifest-Hash. Manipulierte Gewichte werden auch bei weiterhin 72,5 Gesamtscore erkannt.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-11",
+      "issue_number": 12,
+      "category": "implementation",
+      "severity": "critical",
+      "card_ids": [
+        "STD-006",
+        "AI-001"
+      ],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "STD-006 rechnet 290/4=72,5 unabhängig nach. Gelöschte Belegdateien liefern MISSING_EVIDENCE, veränderte Ergebnisse einen Hashfehler. Neue typisierte Auswertungen sind von strukturellen Alt-Strategien getrennt.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-12",
+      "issue_number": 13,
+      "category": "evidence",
+      "severity": "critical",
+      "card_ids": [
+        "STD-003"
+      ],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Report-Identität umfasst Karte, Kartenversion, Scope und Periode. Unbekannter Scope liefert keine Auswertung; ein eingefrorener historischer Report bleibt nach Änderungen des aktuellen Katalogs unverändert. Ranking besitzt vollständige Serviceausgaben.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-13",
+      "issue_number": 14,
+      "category": "formula",
+      "severity": "major",
+      "card_ids": [
+        "AI-003"
+      ],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Alle zusätzlichen Ausgaben besitzen explizite Einheiten und absolute/relative Toleranzen. Zähler und Zustände sind exakt; Minuten berücksichtigen dokumentierte Excel-Zeitstempelpräzision. 4,4 wird nicht als Zähler 4 akzeptiert.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-14",
+      "issue_number": 15,
+      "category": "implementation",
+      "severity": "critical",
+      "card_ids": [],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Validatorregeln werden durch gezielte Mutationen geprüft und ihre Grenzen dokumentiert. Kartenschema, echte Abhängigkeitszyklen, Einheiten/Operatoren und numerische Gleichungen werden geprüft; keine Vollinterpretation freier Formeln behauptet.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-15",
+      "issue_number": 16,
+      "category": "implementation",
+      "severity": "critical",
+      "card_ids": [],
+      "local_status": "Implementiert – native Nachweise prüfen",
+      "change_or_remaining_work": "Die Matrix enthält alle 2.616 Karten-/Dialektkombinationen mit benannten Ausgaben, Stufe und Verifikationsstatus. Nur zum Paket- und Quellhash passende Fallberichte werden übernommen; fehlende native Nachweise bleiben sichtbar.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-16",
+      "issue_number": 17,
+      "category": "implementation",
+      "severity": "critical",
+      "card_ids": [],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Unvollständige Alt-Skeletons liefern mapping_required statt plausibler Kennzahlen. Konkrete Profile prüfen die gebundene Periode, Scope, Eingänge und Versionsidentität; abweichende Perioden werden ausgeschlossen.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "candidate_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-17",
+      "issue_number": 18,
+      "category": "implementation",
+      "severity": "critical",
+      "card_ids": [],
+      "local_status": "Implementiert – native Nachweise prüfen",
+      "change_or_remaining_work": "Release erfordert erfolgreiche Pflichtworkflows exakt des Release-Commits und passende numerische Berichte beider Profilstufen. Fehlende, laufende, fehlgeschlagene oder veraltete Nachweise sperren das Paket; optionale Engines bleiben ausdrücklich gekennzeichnet.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-18",
+      "issue_number": 19,
+      "category": "decision-chain",
+      "severity": "critical",
+      "card_ids": [
+        "STD-055",
+        "STD-019",
+        "STD-012",
+        "STD-015",
+        "SOC-063",
+        "STD-005"
+      ],
+      "local_status": "Bereits geschlossen",
+      "change_or_remaining_work": "Bereits geschlossener Befund; sechs angenommene Grenzwertprofile sind durch disjunkte Grenz-, Nullbasis- und Override-Tests abgesichert.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "proposal"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-19",
+      "issue_number": 20,
+      "category": "formula",
+      "severity": "critical",
+      "card_ids": [
+        "STD-001",
+        "HRM-001",
+        "STD-003a"
+      ],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Richtungs-/Bandnormalisierung ist mit versionierten Ankern, Einheiten und Ausgabeidentität offen implementiert. Python und unabhängiges SQL prüfen bekannte Werte, Nullbreite und Zielband; DSPS rekonstruiert ungleiche 14 Blattwerte und Penalties.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-20",
+      "issue_number": 21,
+      "category": "card-contract",
+      "severity": "critical",
+      "card_ids": [],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Alle 327 Karten haben zusätzliche typisierte Profile. VAL-001 und SOC-078 veröffentlichen Teilgrößen, Basen, n/a und Gesamtbewertung; Zeitanker, Enums, Evidenz und ungültige Zustände sind maschinenlesbar. Individuelle Quellenadapter bleiben gebundenes Anwendungsmapping.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-21",
+      "issue_number": 22,
+      "category": "evidence",
+      "severity": "major",
+      "card_ids": [],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Alle 50 deklarierten Achsen sind explizit zugeordnet; unbekannte Achsen schlagen fehl. Zwölf Guide-Verweise führen zu offenen Rubriken. Die drei langen Lineage-Pfade sind gekürzt und der Katalogvalidator meldet keine Warnung.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-22",
+      "issue_number": 23,
+      "category": "card-contract",
+      "severity": "major",
+      "card_ids": [
+        "SOC-023",
+        "AIM-011",
+        "SOC-072"
+      ],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "SOC-023, AIM-011 und SOC-072 benennen die tatsächlich gemessene Größe. Formeln/Nenner und Grenzen der Interpretation bleiben nachvollziehbar; geänderte Definitionen sind versioniert.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-23",
+      "issue_number": 24,
+      "category": "data-confidence",
+      "severity": "major",
+      "card_ids": [
+        "HRM-004",
+        "SOC-002",
+        "SOC-072"
+      ],
+      "local_status": "Teilfix – externe/fachliche Evidenz offen",
+      "change_or_remaining_work": "Geeignete Stichproben erhalten n, Selektionsnotiz und Wilson-Intervall; 1/1 und 1000/1000 unterscheiden sich. Kohorten/Verzug und offene Outcomes bleiben sichtbar. Echte Pilotbelege zur Stabilität und Fallzusammensetzung fehlen weiterhin.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-24",
+      "issue_number": 25,
+      "category": "formula",
+      "severity": "major",
+      "card_ids": [
+        "STD-002",
+        "STD-002a",
+        "STD-056"
+      ],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Vier veröffentlichte synthetische Compound-Poisson-Profile mit je 100000 Ziehungen legen PCG64, NumPy-Version, Seed, Jahresprozess, Schwere und Abhängigkeit fest. Nullereignisse, geteilte Schocks und schwerer Tail sind regressionsgeprüft; analytische Poisson-Gegenproben und eindeutige Residualverlust-/Toleranzregeln ergänzt.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-25",
+      "issue_number": 26,
+      "category": "implementation",
+      "severity": "critical",
+      "card_ids": [],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Review-KPIs trennen zwei Kartenberührungen von null Entscheidungen und zählen externe Kommentare. K-06 nutzt historische Werktage/Labels; K-09 verlangt echte eindeutige Mitglieder/Sitzungen und nichtleere Charter-/Belegreferenzen. Fehlende Governance ergibt n/a.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-26",
+      "issue_number": 27,
+      "category": "board-relevance",
+      "severity": "major",
+      "card_ids": [],
+      "local_status": "Teilfix – externe/fachliche Evidenz offen",
+      "change_or_remaining_work": "Maintainer-Korrekturen und 0.x-Veröffentlichungen sind vor Boardstart zulässig. Technische Pflichtgates haben eine eindeutige Sperrwirkung. Tatsächliche Board-Charter, Mitglieder und Beschlusskette bleiben spätere Organisationsaufgaben.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-27",
+      "issue_number": 28,
+      "category": "card-contract",
+      "severity": "major",
+      "card_ids": [],
+      "local_status": "Teilfix – externe/fachliche Evidenz offen",
+      "change_or_remaining_work": "1.149 Verweise sind einzeln mit Karten-/Quellversion gebunden und ausdrücklich nicht bewertet. Reviewed-Mappings erfordern Edition, Beziehung, Begründung, Evidenz, Reviewer und Datum; veraltete/unvollständige Datensätze oder Konformitätsbehauptungen schlagen fehl. Fachliche Einzelreviews bleiben offen.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-28",
+      "issue_number": 29,
+      "category": "implementation",
+      "severity": "major",
+      "card_ids": [],
+      "local_status": "Teilfix – externe/fachliche Evidenz offen",
+      "change_or_remaining_work": "Vollständiger Export mit 48 Kartenfeldern und separaten Ausführungsverträgen vorhanden. Extern bearbeitet nach Repository-Aktualisierung; tatsächliches Deployment und vollständiger Feld-/Verhaltensabgleich bleiben offen.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "External",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-29",
+      "issue_number": 30,
+      "category": "evidence",
+      "severity": "major",
+      "card_ids": [],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Historische Manifest-Replays stellen alle eingefrorenen Dateien unabhängig wieder her und erkennen fehlende, zusätzliche oder veränderte Belege. Releasearchive übernehmen die tatsächlichen passenden CI-Nachweise mit vollständigem Dateimanifest.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-30",
+      "issue_number": 31,
+      "category": "language",
+      "severity": "minor",
+      "card_ids": [],
+      "local_status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Kanonische Anleitungen, Source-of-Truth, Lizenzzuordnung und SPDX-Kennungen sind konsolidiert. Reproduktionsbefehle verweisen auf vorhandene Repository-Pfade; Websiteveröffentlichung wird nicht aus Schema-URIs abgeleitet.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-31",
+      "issue_number": 32,
+      "category": "implementation",
+      "severity": "major",
+      "card_ids": [],
+      "local_status": "Implementiert – native Nachweise prüfen",
+      "change_or_remaining_work": "Python-/npm-Locks und feste Action-SHAs sichern die Prüfumgebung. Native Läufe und tatsächliche Engineversionen werden aufgezeichnet; vollständige native Reproduktion und unveränderliche Containerbindung sind gesondert zu prüfen.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "partial_fix"
+        }
+      ]
+    },
+    {
+      "finding_id": "F-32",
+      "issue_number": 33,
+      "category": "board-relevance",
+      "severity": "minor",
+      "card_ids": [],
+      "local_status": "Teilfix – externe/fachliche Evidenz offen",
+      "change_or_remaining_work": "Prüftiefe, Hochrisiko-/P0-Abdeckung, Fachrollen, Testfälle und offene Entscheidungen sind strukturiert vorbereitet. Tatsächliche Boardpersonen, Unabhängigkeit, Zuordnung und Termine bleiben offen; diese sind keine Voraussetzung für Maintainer-Entwicklung.",
+      "candidate_fix_commit": "2d8c85fbf8bbab24a9dc9161de7c7d61ce451617",
+      "automatic_close": false,
+      "workstream": "OSMS repository",
+      "historical_commit_references": [
+        {
+          "sha": "06fa2b5d837602cdba89d07dafba1f027d76b1a2",
+          "role": "context"
+        }
+      ]
+    }
+  ],
+  "commit_evidence_policy": "GitHub issue records identify actual fixing commits and workflow runs; no self-referential or invented commit IDs.",
+  "pull_request": "https://github.com/OpenSecurityMetricsStandard/OSMS/pull/34",
+  "implementation_branch": "audit/complete-card-profiles-2026-09-10"
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0-draft",
+  "source_catalog_sha256": "fc4e030e95e109b94bd50b30823f04d45edc92ca06ce3aca284b12292d050da7",
+  "profile_bundle_sha256": "123f05c9fa31e38fd11db41da487fadd72f2489708a4ee46912c1d4108756dbe",
+  "catalog_cards": 327,
+  "cards_without_additional_profiles": 0,
+  "prepared_observation_cards": 119,
+  "canonical_quotient_cards": 207,
+  "incident_snapshot_cards": 1,
+  "cards": [],
+  "scope": "Calculation profiles cover all 327 cards. Prepared inputs require source population and evidence validation. Generation is not native engine conformance.",
+  "remaining_work": [
+    {
+      "workstream": "native_execution",
+      "detail": "Run the candidate CI and retain its actual engine reports; Kusto and DAX require their native environments; Microsoft Excel execution is separate from formulas and LibreOffice."
+    },
+    {
+      "workstream": "source_adapters",
+      "detail": "Bind each deployment source, inventory, snapshot, identity and completeness evidence to the prepared observation/input contract."
+    },
+    {
+      "workstream": "framework_mapping",
+      "finding_id": "F-27",
+      "detail": "1149 source-bound associations explicitly not assessed until reviewed editions, rationale and evidence are supplied."
+    },
+    {
+      "workstream": "pilot",
+      "finding_id": "F-23",
+      "detail": "Empirical stability, delayed outcomes and case-mix evidence."
+    },
+    {
+      "workstream": "website",
+      "finding_id": "F-28",
+      "detail": "Extern bearbeitet nach Repository-Aktualisierung; deployed version and full field/behavior comparison."
+    },
+    {
+      "workstream": "board_governance",
+      "finding_ids": [
+        "F-26",
+        "F-32"
+      ],
+      "detail": "Actual charter, members, assignments and decision records when the formal Board starts; no prerequisite for maintainer 0.x development."
+    },
+    {
+      "workstream": "simulation_platform_capacity",
+      "finding_id": "F-24",
+      "detail": "STD-002a requires at least 100000 complete draws for reporting. Bounded SPL/ES export/Excel profiles expose reporting_eligible=0 below that basis; use a capable full-population engine and retain its evidence."
+    }
+  ]
+}

@@ -42,7 +42,7 @@ for it:
 
 ```bash
 git clone https://github.com/OpenSecurityMetricsStandard/OSMS && cd OSMS
-pip install pyyaml jsonschema
+pip install -r requirements-checks.txt -c requirements-checks.lock
 python tools/osms_validate.py catalog/osms-catalog.yaml \
   --taxonomy catalog/taxonomy.yaml --domains catalog/domains.yaml \
   --expect-count 327
@@ -54,18 +54,20 @@ formula audit checks references/cycles, literal zero denominators and explicitly
 supported example patterns; it does not prove every free-text formula. The drill
 engine's strategy coverage is not per-card mathematical conformance.
 
-Run the independent audit regressions and recipe gates with pinned direct dependencies:
+Run the independent audit regressions and recipe gates with pinned direct and transitive dependencies:
 
 ```bash
-pip install -r requirements-checks.txt
+pip install -r requirements-checks.txt -c requirements-checks.lock
 python -m unittest discover -s tests -v
 python recipes/gen_recipes.py --emit-candidates --out recipes/out
 python recipes/gates.py --bundle recipes/out
 ```
 
-Incomplete templates fail closed and remain available for implementation. Numeric
-fixture coverage, unresolved methods and external engines not run must be reported
-separately. See [execution contracts](recipes/CONTRACTS.md) and the
+All 327 cards have additional typed calculation profiles across the eight retained
+dialects. Existing incomplete source-adapter templates remain explicitly blocked.
+Calculation-profile coverage, source-adapter validation and actual native engine
+results are reported separately. See [semantic profiles](recipes/SEMANTIC_PROFILES.md)
+and [execution coverage](recipes/EXECUTION_PROFILES.md). See [execution contracts](recipes/CONTRACTS.md) and the
 [remediation record](review/REMEDIATION.md).
 
 ## Review (v0.9.x)

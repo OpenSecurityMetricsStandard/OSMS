@@ -1,0 +1,7 @@
+{
+  "name": "osms-recipe-checks",
+  "private": true,
+  "dependencies": {
+    "@kusto/language-service-next": "12.4.1"
+  }
+}

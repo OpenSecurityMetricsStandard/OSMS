@@ -369,6 +369,15 @@
     "source": {
       "type": "object",
       "description": "Provenance of the card (kind + source_card_version); internal file names are stripped for the public release."
+    },
+    "lifecycle": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "stable",
+        "deprecated"
+      ],
+      "description": "Lifecycle of the controlled definition, independent of implementation coverage. Draft does not assert Board approval."
     }
   }
 }

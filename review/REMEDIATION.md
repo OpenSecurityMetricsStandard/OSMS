@@ -1,69 +1,48 @@
-# OSMS – Änderungen nach dem Audit vom 10.09.2026
+# OSMS Audit-Korrekturen und Restumfang
 
-Umgesetzt auf dem Arbeitsbranch `audit/remediation-2026-09-10`, ausgehend von
-`747cd28fb0b6728ebadbe6c477722d166b5b40b5`. Die Änderungen sind über PR #2 auf GitHub nachverfolgbar. Der aktuelle Quellstand ist
-OSMS 0.9.2 als Maintainer-Entwurf; der Release-Status ist auf der GitHub-Release-Seite dokumentiert.
+Der Kandidat ergänzt den veröffentlichten Stand e3fda1c1a78f5052253b28e3626f5f78d13a9ea5.
+Alle 119 bisher fehlenden zusätzlichen Profile sind implementiert: insgesamt
+327 Karten, acht Dialekte, 2.616 Matrixzeilen. 125 Kartendefinitionen tragen
+Version 0.9.2, 201 behalten 0.9.1 und eine 0.9.0. Alle 48 Quellfelder bleiben erhalten.
 
-Die Arbeit behebt bestätigte technische Fehler und setzt ausgewählte fachliche Grenzwertvorschläge konkret um. Sie schließt nicht pauschal alle 32 Auditbefunde. Insbesondere Confidence-Produktion, Normalisierung, Risikomodelle, Governance und vollständige Konformität aller 327 Karten bleiben offen.
+GitHub führt den tatsächlichen Issue-Lifecycle und die Fix-Commits. Dieser
+Quellstand enthält implementierte Korrekturen und ausdrücklich benannten Restumfang;
+ein generiertes Profil oder synthetischer Test ersetzt keine native Ausführung,
+Quellenvalidierung oder empirische Pilotprüfung. Bereits geschlossen: F-05, F-08, F-18.
 
-## Wesentliche Änderungen
-
-- MTTD nach Detection-Periode und Bestätigung am Stichtag; exakter Median/P90 und Severity-Gewichte.
-- SLA-Behandlung berücksichtigt Remediation oder validierte Mitigation; leere Zeitstempel werden nicht als Erfolg gewertet.
-- Composite- und DSPS-Prüfungen lehnen fehlende Werte, problematische Gewichte und doppelte Penalty-IDs ab.
-- Referenzarithmetik und SQL-Views prüfen Beiträge erneut, behalten fehlende Evidenz sichtbar und unterscheiden begrenzte Arithmetikprüfung von Kartenkonformität.
-- Green setzt einen gültigen Zustand und bekannte ausreichende Confidence voraus; unbekannte Drill-Achsen und unvollständige Rezeptvorlagen liefern kein falsches OK.
-- Review-KPIs, vollständiger Kartenexport, Prüfumgebung, Release-Prüfungen und Dateimanifeste verbessert.
-
-## Versions- und Übernahmehinweise
-
-Der Katalog trägt Version 0.9.2, `release_phase` bleibt `working_draft`. Die sieben geänderten Karten STD-005/012/015/019/055, SOC-063 und STD-016 tragen `card_version: 0.9.2`. Unveränderte Karten behalten ihre eigene Kartenversion 0.9.1. Sechs davon enthalten bewusst vorgeschlagene Grenzwertentscheidungen; STD-016 ergänzt `mitigated_at`. Bestehende Loader und Datenbanken benötigen die dokumentierten Adapter-/Schemaanpassungen. Das neue Schema-URI ist eine Kandidatenkennung, keine Behauptung einer bereits erreichbaren Webveröffentlichung.
-
-Status- und API-Änderungen: `curated_candidate` ersetzt die ungeprüfte Aussage `curated_verified`; Mapping-Fehler sind explizit; SQL-Reconciliation verwendet differenzierte Zustände statt eines universellen OK. Das lokale Release-Werkzeug baut ein Quellarchiv und veröffentlicht nichts. Die automatische stabile 1.x-Promotion bleibt bis zu einer übernommenen Freigaberegel gesperrt.
-
-## Prüfungen
-
-Die ausführbaren Regressionen liegen in `tests/test_remediation.py`. Ergebnisse und konkret nicht ausgeführte Engines stehen in `review/VALIDATION.md`. Die Zahl der Kandidatenfixtures ist von 14 auf acht reduziert: sechs unvollständige Dauer-Templates bleiben mit Beispielen vorhanden, zählen aber nicht mehr als implementierte Karten. Dies ist offengelegte fehlende Abdeckung, keine neu gewonnene Vollkonformität.
-
-## Alle Auditbefunde
-
-„Implementiert“ bezeichnet die konkrete technische Korrektur im beschriebenen Umfang; die prüfbare Abnahme erfolgt während der Vorbereitungsphase durch den Maintainer.
-Ein Board-Votum ist dafür nicht erforderlich. Die aktuelle Disposition steht im
-[0.9.2-Änderungsnachweis](RELEASE_0.9.2.md) und im jeweiligen GitHub-Issue.
-
-| ID | Befund | Stand und Restarbeit |
+| Finding | Stand | Änderung und Abnahmeumfang |
 |---|---|---|
-| F-01 | Rechenfamilien nach mathematischer Bedeutung trennen | **Teilweise**: Allgemeine Quotienten von Anteilen abgegrenzt; HRM-004 unskaliert und >1 geprüft. Vollständige Methodenprofile fehlen. |
-| F-02 | Referenz-Engine führt kartenspezifische Formeln nicht aus | **Teilweise**: STD-005, STD-074, Einheitenumrechnung und Penalty-Caps korrigiert; die Engine behauptet keine vollständige Kartenkonformität. |
-| F-03 | Median und Perzentilmethode pro Ausgabe verbindlich machen | **Teilweise**: SOC-002-Median/P90 präzisiert; unvollständige Dauerrezepte gesperrt. Weitere Ausgabeprofile und reale Fremd-Engines offen. |
-| F-04 | MTTD-Rezept verwendet die falsche Fallbasis | **Teilweise**: MTTD-Fallbasis, Bestätigung und Severity-Gewichte in SQL/Python/Excel korrigiert. ES|QL gesperrt; DAX liefert weiterhin nur die dokumentierte P90-Teilimplementierung. |
-| F-05 | SLA-Rezept bildet validierte Mitigation nicht ab | **Verifiziert – Maintainer-Entwurf**: Behandlung durch fristgerechte Remediation oder validierte Mitigation geprüft, einschließlich fehlender Daten, unvalidierter und wiedereröffneter Fälle. Adaptermigration und vollständige Engine-Konformität bleiben Anwendungspflichten. |
-| F-06 | Composite-Rezepte akzeptieren fehlende Werte und negative Gewichte | **Teilweise**: NULL/NaN/Inf, negative Gewichte, IDs und Excel-Zelltypen abgesichert. Vollständige Profil-/Versionsbindung sowie Fremd-Engine-Gegenproben fehlen. |
-| F-07 | DSPS-Penalty-Gates prüfen nicht die Identität beider Abzüge | **Teilweise**: Beide Penalty-IDs, Duplikate, fehlende Werte und Caps geprüft. Perioden-, Normalisierungs- und Versionsbindung bleibt offen. |
-| F-08 | Datenbank erlaubt Grün bei unbekannter Confidence und n/a | **Verifiziert – Maintainer-Entwurf**: SQL blockiert Green bei unbekannter Confidence, n/a, provisorischem Zustand und unter 70/85; exakte Grenzen 69,99/70 sowie 84,99/85 geprüft, negative Nenner abgewiesen. |
-| F-09 | Confidence-Produktion benötigt numerische, nicht kompensierbare Regeln | **Offen – Fachentscheidung**: Konkrete numerische Confidence-Profile und nicht kompensierbare Gates werden nicht erfunden; Entscheidungsvorlage vorhanden. |
-| F-10 | Reconciliation prüft gespeicherte Beiträge statt unabhängiger Ableitung | **Teilweise**: Gewicht × Eingang wird neu berechnet; Cache-, Kindwert-, Scope- und Evidenzabweichungen werden erkannt. Authentizität und Normalisierungsnachweis offen. |
-| F-11 | SQL-Reconciliation meldet falsche Fehler und übersieht fehlende Evidenz | **Teilweise**: Gewichteter Mittelwert und fehlende Evidenz korrigiert; allgemeine Ratios geben ADAPTER_REQUIRED statt eines falschen OK. Vollständige typisierte Reconciliation offen. |
-| F-12 | Scope- und Versionsbindung bei Drill und Ranking schließen | **Teilweise**: Exakte Katalogversion und Scope gebunden, Current-View korrigiert. Ranking bestätigt keine tautologische Selbstsortierung mehr; echtes Ranking-Modell fehlt. |
-| F-13 | Rechentoleranz nach Einheit und Operator festlegen | **Teilweise**: Count wird exakt, Rohwertarithmetik enger geprüft. Vollständige Toleranzprofile pro Einheit/Ausgabe noch offen. |
-| F-14 | Semantische Validatorversprechen durch echte Prüfungen ersetzen | **Teilweise**: Zyklen, Selbstbezüge, Literaldivision durch null, ausgewählte Composite-Beispiele und Leertext-Owner geprüft; überzogene Prüfaussagen korrigiert. Kein Vollparser für alle Formeln. |
-| F-15 | Testabdeckung als Konformitätsmatrix statt Gesamt-PASS ausweisen | **Teilweise**: Unabhängige Regressionen und ehrliche Populationszahlen ergänzt; acht numerische Kandidatenfixtures separat von sechs zurückgestellten Template-Beispielen. Vollständige Konformitätsmatrix fehlt. |
-| F-16 | Ausführbare Skeletons dürfen keine plausiblen Standardwerte liefern | **Teilweise**: Unveränderte Skeletons sind gegen plausible Zahlenwerte gesperrt und geprüft. Vollständige Perioden-/Mappingvalidierung der konkreten Rezepte aus dem erweiterten Abnahmekriterium bleibt offen (F-04/F-07/F-20). |
-| F-17 | Release und Rezeptveröffentlichung an nachgewiesene Gates binden | **Teilweise**: PR-/Tag-Prüfungen, vollständiges Release-Paket und explizite Maintainer-Draft-Kennzeichnung umgesetzt. Normale 0.x-Tags zulässig; stabile 1.0-Promotion und vollständige Engine-Evidenz bleiben getrennte Restarbeit. |
-| F-18 | Ampelregeln lückenlos, disjunkt und priorisiert definieren | **Verifiziert – Maintainer-Entwurf**: Die sechs Grenzwertprofile sind für 0.9.2 als Maintainer-Entscheidungen übernommen und durch Grenzwert-/Override-Tests geprüft. Spätere fachliche Weiterentwicklung bleibt möglich. |
-| F-19 | Posture-Normalisierung global nachvollziehbar machen | **Offen – Fachentscheidung**: Normierungsfunktionen und eingefrorene Gewichtsprofile müssen pro Kind/Ausgabe festgelegt werden. |
-| F-20 | Feldnamen und Mehrfachausgaben zu ausführbaren Datenverträgen ergänzen | **Teilweise**: Ausführungsvertrag, Zustände und zusätzliche Behandlungsspalte dokumentiert; vollständige typisierte Ein-/Ausgaben aller 327 Karten fehlen. |
-| F-21 | Lineage-Anforderungen und offene Referenzrubriken vollständig bereitstellen | **Teilweise**: Unbekannte Drill-Achsen lösen Fehler aus. Vollständige Achsenregistrierung, Pfadtiefe und offene Rubriken bleiben offen. |
-| F-22 | Messgröße und Kennzahlname auf dieselbe Aussage begrenzen | **Offen – Fachentscheidung**: Konstrukt-/Namensentscheidungen für SOC-023, AIM-011 und SOC-072 dokumentiert; kein stiller Definitionswechsel. |
-| F-23 | Stichprobenunsicherheit und Selektionsbias separat ausweisen | **Offen – Fachentscheidung**: Stichproben-/Selektionsunsicherheit separat vorgesehen; keine pauschalen Intervalle oder erfundenen Pilotdaten. |
-| F-24 | Verteilungs- und Risikomodelle operational spezifizieren | **Offen – Fachentscheidung**: Risikomodellprofile und mögliche Doppelzählung STD-056 benötigen methodische Entscheidung. |
-| F-25 | Review-KPI-Skript an das eigene Review-Verfahren angleichen | **Teilweise**: GitHub-IDs, Kommentare, Entscheidungen, vollständige Pagination, Werktage und K-09-Evidenz verbessert. Personen-Aliase, Nicht-GitHub-Importe und Charterdefinition benötigen zusätzliche Daten. |
-| F-26 | Boardfreigabe als nachvollziehbare Entscheidung definieren | **Offen – Governance**: Board im Aufbau; Kandidatenbaseline, Zeitplan, Charter und Gate-Kombination müssen übernommen werden. Keine Freigabe simuliert. |
-| F-27 | Framework-Mappings als begründete Beziehungen pflegen | **Offen – Fachentscheidung**: Edition/Beziehung/Begründung der Framework-Mappings bleiben Aufgabe; keine Behauptung von ISO-Konformität. |
-| F-28 | Website-Schema und GitHub-Vertrag eindeutig versionieren | **Teilweise**: Alle Kartenfelder im Website-Export; eigene Schema-ID für den Draft. Die Website-Umsetzung wird extern bearbeitet; Website-Fix-Commit, vollständiger Feldabgleich und Deployment-Nachweis stehen noch aus. |
-| F-29 | Auswertungsversion und Freigabepaket vollständig historisieren | **Teilweise**: Quellarchiv mit vollständigem Einzeldateimanifest und Kataloghash im Rezeptbundle. Vollständiges Auswertungsmanifest mit Daten-/Profil-/Engine-Nachweisen bleibt offen. |
-| F-30 | Formale Dokumentations- und Lizenzgrenzen konsolidieren | **Teilweise**: Dokumentation, historische Termine und Validatorversprechen bereinigt. Endgültige Rechte-/Lizenzmatrix für alle Bestandteile noch zu bestätigen. |
-| F-31 | Abhängigkeiten und Testumgebung reproduzierbar festlegen | **Teilweise**: Direkte Python-Abhängigkeiten und Kusto-Paketversion fixiert. Transitive Locks, Action-SHAs und vollständige Engine-Matrix offen. |
-| F-32 | Board-Review nach Risiko und Prüftiefe organisieren | **Offen – Governance**: Risiko- und Prüftiefenplanung benötigt tatsächliche Board-Mitglieder; keine Zuordnungen oder Termine erfunden. |
+| F-01 | Implementiert – Kandidaten-CI ausstehend | Rechenfamilien und Einheit/Operator unterscheiden Anteile, unskalierte und signierte Ratios, Kapazität, Ereignisraten und Scoreänderungen. Alle 327 Karten haben gebundene Profile; unabhängige numerische Beispiele prüfen die Ausnahmen. |
+| F-02 | Implementiert – Kandidaten-CI ausstehend | 119 zusätzliche kartenspezifische Pläne ergänzen die 207 Quotienten und SOC-003. Der Drill-Demo führt echte STD-001-, STD-006-, SOC-002-, STD-003- und VAL-001-Neuberechnungen mit eingefrorenen Eingängen aus. Die alten mechanischen Strategien behalten ihre begrenzte Aussage. |
+| F-03 | Implementiert – native Nachweise prüfen | Dauerprofile benennen arithmetischen Median und exakte Nearest-Rank-Tails je Karte. SOC-002 mit vier Werten ergibt 15 h; CFG-002 ergibt 9/22/26 Tage. Einheiten und Gleitkommatoleranzen sind getrennt; native Engineberichte entscheiden die Ausführungsverifikation. |
+| F-04 | Implementiert – native Nachweise prüfen | SOC-002 verwendet Detection-Kohorte und Bestätigung bis Periodenende, UTC-normalisierte Uhren, ungültige Paarzahlen und exakten P50/P90. Zusätzliche Profile veröffentlichen alle Ausgaben; Kusto/DAX bleiben ohne native Umgebung als nicht ausgeführt gekennzeichnet. |
+| F-05 | Bereits geschlossen | Bereits geschlossener Befund; fristgerechte Remediation oder validierte Mitigation einschließlich fehlender, unvalidierter und wiedereröffneter Fälle ist regressionsgeprüft. |
+| F-06 | Implementiert – native Nachweise prüfen | Typisierte Composite-Eingänge prüfen Endlichkeit, Wertebereiche, Gewicht-/Profilversionen, erforderliche Felder, Identität und Duplikate. Jedes neue Profil hat Positiv- und Ablehnungsfälle; native Ausführung wird je Engine ausgewiesen. |
+| F-07 | Implementiert – Kandidaten-CI ausstehend | STD-001 bindet alle 14 Blattwerte samt Normalisierungs-/Kartenversionen sowie beide Penalties. Fehlende/doppelte Identitäten, ungültige Gewichte, negative Penalties und Cap-Verletzungen sperren die Auswertung. |
+| F-08 | Bereits geschlossen | Bereits geschlossener Befund; unbekannte/zu geringe Confidence und ungültige Basis erlauben kein Green. Exakte operative und Management-Grenzen sind regressionsgeprüft. |
+| F-09 | Implementiert – Kandidaten-CI ausstehend | STD-011 rechnet fünf numerische Pass-/Grundgesamtheitsdimensionen mit festen Gewichten. Fünf unabhängige Beispieldatensätze sowie Pflichtfehler werden in Python und SQL gerechnet; Pflichtfehler sind nicht durch den Gesamtscore kompensierbar. |
+| F-10 | Implementiert – Kandidaten-CI ausstehend | Historische Auswertungsarchive prüfen Profil, Eingänge, Scope, Quelle, Evidenz, Versionen und Ergebnis gegen einen separat aufbewahrten Manifest-Hash. Manipulierte Gewichte werden auch bei weiterhin 72,5 Gesamtscore erkannt. |
+| F-11 | Implementiert – Kandidaten-CI ausstehend | STD-006 rechnet 290/4=72,5 unabhängig nach. Gelöschte Belegdateien liefern MISSING_EVIDENCE, veränderte Ergebnisse einen Hashfehler. Neue typisierte Auswertungen sind von strukturellen Alt-Strategien getrennt. |
+| F-12 | Implementiert – Kandidaten-CI ausstehend | Report-Identität umfasst Karte, Kartenversion, Scope und Periode. Unbekannter Scope liefert keine Auswertung; ein eingefrorener historischer Report bleibt nach Änderungen des aktuellen Katalogs unverändert. Ranking besitzt vollständige Serviceausgaben. |
+| F-13 | Implementiert – Kandidaten-CI ausstehend | Alle zusätzlichen Ausgaben besitzen explizite Einheiten und absolute/relative Toleranzen. Zähler und Zustände sind exakt; Minuten berücksichtigen dokumentierte Excel-Zeitstempelpräzision. 4,4 wird nicht als Zähler 4 akzeptiert. |
+| F-14 | Implementiert – Kandidaten-CI ausstehend | Validatorregeln werden durch gezielte Mutationen geprüft und ihre Grenzen dokumentiert. Kartenschema, echte Abhängigkeitszyklen, Einheiten/Operatoren und numerische Gleichungen werden geprüft; keine Vollinterpretation freier Formeln behauptet. |
+| F-15 | Implementiert – native Nachweise prüfen | Die Matrix enthält alle 2.616 Karten-/Dialektkombinationen mit benannten Ausgaben, Stufe und Verifikationsstatus. Nur zum Paket- und Quellhash passende Fallberichte werden übernommen; fehlende native Nachweise bleiben sichtbar. |
+| F-16 | Implementiert – Kandidaten-CI ausstehend | Unvollständige Alt-Skeletons liefern mapping_required statt plausibler Kennzahlen. Konkrete Profile prüfen die gebundene Periode, Scope, Eingänge und Versionsidentität; abweichende Perioden werden ausgeschlossen. |
+| F-17 | Implementiert – native Nachweise prüfen | Release erfordert erfolgreiche Pflichtworkflows exakt des Release-Commits und passende numerische Berichte beider Profilstufen. Fehlende, laufende, fehlgeschlagene oder veraltete Nachweise sperren das Paket; optionale Engines bleiben ausdrücklich gekennzeichnet. |
+| F-18 | Bereits geschlossen | Bereits geschlossener Befund; sechs angenommene Grenzwertprofile sind durch disjunkte Grenz-, Nullbasis- und Override-Tests abgesichert. |
+| F-19 | Implementiert – Kandidaten-CI ausstehend | Richtungs-/Bandnormalisierung ist mit versionierten Ankern, Einheiten und Ausgabeidentität offen implementiert. Python und unabhängiges SQL prüfen bekannte Werte, Nullbreite und Zielband; DSPS rekonstruiert ungleiche 14 Blattwerte und Penalties. |
+| F-20 | Implementiert – Kandidaten-CI ausstehend | Alle 327 Karten haben zusätzliche typisierte Profile. VAL-001 und SOC-078 veröffentlichen Teilgrößen, Basen, n/a und Gesamtbewertung; Zeitanker, Enums, Evidenz und ungültige Zustände sind maschinenlesbar. Individuelle Quellenadapter bleiben gebundenes Anwendungsmapping. |
+| F-21 | Implementiert – Kandidaten-CI ausstehend | Alle 50 deklarierten Achsen sind explizit zugeordnet; unbekannte Achsen schlagen fehl. Zwölf Guide-Verweise führen zu offenen Rubriken. Die drei langen Lineage-Pfade sind gekürzt und der Katalogvalidator meldet keine Warnung. |
+| F-22 | Implementiert – Kandidaten-CI ausstehend | SOC-023, AIM-011 und SOC-072 benennen die tatsächlich gemessene Größe. Formeln/Nenner und Grenzen der Interpretation bleiben nachvollziehbar; geänderte Definitionen sind versioniert. |
+| F-23 | Teilfix – externe/fachliche Evidenz offen | Geeignete Stichproben erhalten n, Selektionsnotiz und Wilson-Intervall; 1/1 und 1000/1000 unterscheiden sich. Kohorten/Verzug und offene Outcomes bleiben sichtbar. Echte Pilotbelege zur Stabilität und Fallzusammensetzung fehlen weiterhin. |
+| F-24 | Implementiert – Kandidaten-CI ausstehend | Vier veröffentlichte synthetische Compound-Poisson-Profile mit je 100000 Ziehungen legen PCG64, NumPy-Version, Seed, Jahresprozess, Schwere und Abhängigkeit fest. Nullereignisse, geteilte Schocks und schwerer Tail sind regressionsgeprüft; analytische Poisson-Gegenproben und eindeutige Residualverlust-/Toleranzregeln ergänzt. |
+| F-25 | Implementiert – Kandidaten-CI ausstehend | Review-KPIs trennen zwei Kartenberührungen von null Entscheidungen und zählen externe Kommentare. K-06 nutzt historische Werktage/Labels; K-09 verlangt echte eindeutige Mitglieder/Sitzungen und nichtleere Charter-/Belegreferenzen. Fehlende Governance ergibt n/a. |
+| F-26 | Teilfix – externe/fachliche Evidenz offen | Maintainer-Korrekturen und 0.x-Veröffentlichungen sind vor Boardstart zulässig. Technische Pflichtgates haben eine eindeutige Sperrwirkung. Tatsächliche Board-Charter, Mitglieder und Beschlusskette bleiben spätere Organisationsaufgaben. |
+| F-27 | Teilfix – externe/fachliche Evidenz offen | 1.149 Verweise sind einzeln mit Karten-/Quellversion gebunden und ausdrücklich nicht bewertet. Reviewed-Mappings erfordern Edition, Beziehung, Begründung, Evidenz, Reviewer und Datum; veraltete/unvollständige Datensätze oder Konformitätsbehauptungen schlagen fehl. Fachliche Einzelreviews bleiben offen. |
+| F-28 | Teilfix – externe/fachliche Evidenz offen | Vollständiger Export mit 48 Kartenfeldern und separaten Ausführungsverträgen vorhanden. Extern bearbeitet nach Repository-Aktualisierung; tatsächliches Deployment und vollständiger Feld-/Verhaltensabgleich bleiben offen. |
+| F-29 | Implementiert – Kandidaten-CI ausstehend | Historische Manifest-Replays stellen alle eingefrorenen Dateien unabhängig wieder her und erkennen fehlende, zusätzliche oder veränderte Belege. Releasearchive übernehmen die tatsächlichen passenden CI-Nachweise mit vollständigem Dateimanifest. |
+| F-30 | Implementiert – Kandidaten-CI ausstehend | Kanonische Anleitungen, Source-of-Truth, Lizenzzuordnung und SPDX-Kennungen sind konsolidiert. Reproduktionsbefehle verweisen auf vorhandene Repository-Pfade; Websiteveröffentlichung wird nicht aus Schema-URIs abgeleitet. |
+| F-31 | Implementiert – native Nachweise prüfen | Python-/npm-Locks und feste Action-SHAs sichern die Prüfumgebung. Native Läufe und tatsächliche Engineversionen werden aufgezeichnet; vollständige native Reproduktion und unveränderliche Containerbindung sind gesondert zu prüfen. |
+| F-32 | Teilfix – externe/fachliche Evidenz offen | Prüftiefe, Hochrisiko-/P0-Abdeckung, Fachrollen, Testfälle und offene Entscheidungen sind strukturiert vorbereitet. Tatsächliche Boardpersonen, Unabhängigkeit, Zuordnung und Termine bleiben offen; diese sind keine Voraussetzung für Maintainer-Entwicklung. |
 
-Details: [Methodenentscheidungen](METHOD_DECISIONS.md), [Rechenverträge](../recipes/CONTRACTS.md), [Review-KPI-Methode](REVIEW_KPI_METHOD.md).
+Nachweise: [EXECUTION_VALIDATION.md](EXECUTION_VALIDATION.md), [METHOD_DECISIONS.md](METHOD_DECISIONS.md), [IMPLEMENTATION_CANDIDATE.json](IMPLEMENTATION_CANDIDATE.json).

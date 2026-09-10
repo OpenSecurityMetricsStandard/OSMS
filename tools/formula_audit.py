@@ -62,16 +62,22 @@ def audit(path):
             findings.append((cid, "timestamp alternative (x_at/y_at) in formula"))
         if re.search(r"(?<![a-z_])timestamp(?![a-z_])", f):
             findings.append((cid, "bare timestamp used in formula - business event times must use specific *_at/*_timestamp fields"))
+        # Recompute only an explicit numeric equation. Combining arbitrary
+        # numbers from prose can make an incorrect result verify itself
+        # (e.g. the result 99 and scale 100 in "3/4*100 = 99%"). A ratio may
+        # instead be an event rate or an unscaled quotient; an ancillary
+        # percentage in its prose does not change the equation's scale.
         if c["calculation_type"] == "Ratio":
             ex = c["calculation_example"].replace(",", ".")
-            nums = [float(x) for x in re.findall(r"(\d+(?:\.\d+)?)", ex)]
-            pcts = [float(x) for x in re.findall(r"(\d+(?:\.\d+)?)\s*%", ex)]
-            if pcts and len(nums) >= 3:
-                ok = any(abs(100.0 * m / n - p) < 0.06 for p in pcts
-                         for i, n in enumerate(nums) if n > 0
-                         for m in nums[:i] + nums[i + 1:] if m <= n)
-                if not ok:
-                    findings.append((cid, "ratio example does not reproduce the stated %"))
+            number=r'-?\d+(?:\.\d+)?'
+            equation=rf'(?<![\w.])({number})\s*/\s*({number})\s*(?:\*\s*(100(?:\.0+)?))?\s*=\s*({number})\s*(%?)'
+            for match in re.finditer(equation,ex):
+                numerator,denominator,scale,stated,pct=match.groups()
+                factor=float(scale) if scale else 100.0 if pct else 1.0
+                digits=len(stated.split('.')[1]) if '.' in stated else 0
+                tolerance=0.5*10**(-digits)+1e-10
+                if float(denominator)==0 or abs(float(numerator)/float(denominator)*factor-float(stated))>tolerance:
+                    findings.append((cid, 'ratio example does not reproduce the stated numeric equation'))
         for fd in c["minimum_data_fields"]:
             if GERMAN_FIELD.search(fd):
                 findings.append((cid, f"German word used as field name: {fd}"))

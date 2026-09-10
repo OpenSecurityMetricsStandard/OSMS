@@ -2,17 +2,7 @@ name: Recipe CI
 
 on:
   push:
-    paths:
-      - 'catalog/**'
-      - 'recipes/**'
-      - '.github/workflows/recipes-ci.yml'
   pull_request:
-    paths:
-      - 'catalog/**'
-      - 'recipes/**'
-      - 'tests/**'
-      - 'requirements-checks.txt'
-      - '.github/workflows/recipes-ci.yml'
   workflow_dispatch:
 
 jobs:
@@ -20,43 +10,58 @@ jobs:
     name: gates (lints, DuckDB, Python, KQL analyzer)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: '22'
-      - run: pip install -r requirements-checks.txt
-      - run: npm install @kusto/language-service-next@12.4.1
+      - run: pip install -r requirements-checks.txt -c requirements-checks.lock
+      - run: npm ci --prefix recipes
       - name: Generate recipes and CI candidates
         run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
       - name: Gate battery
         run: python recipes/gates.py --bundle recipes/out
       - name: KQL analyzer (all snippets)
         run: node recipes/kql_check.js recipes/out/kql_jobs.json
+      - name: Canonical input profiles (numeric Python and DuckDB; KQL syntax/types)
+        run: |
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine python
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine duckdb
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine formulas --case-ids three_of_four,duplicate,zero_denominator,operand_case,scope_id_case
+          node recipes/kql_check.js recipes/out/profile-kql-jobs.json
+      - name: Prepared observation profiles (all 119 cards)
+        run: |
+          python recipes/ci/semantic_runner.py --bundle recipes/out --engine python
+          python recipes/ci/semantic_runner.py --bundle recipes/out --engine duckdb
+          python recipes/ci/semantic_runner.py --bundle recipes/out --engine formulas
+          python -m unittest discover -s tests -p test_semantic_profiles.py
       - name: Runner logic dry-runs
         run: |
           python recipes/ci/esql_runner.py --out recipes/out --dry-run
           python recipes/ci/spl_runner.py --out recipes/out --dry-run
           python recipes/ci/excel_runner.py --out recipes/out --dry-run
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: always()
         with:
           name: recipes-out
           path: |
             recipes/out/manifest.json
             recipes/out/fixtures.json
+            recipes/out/execution-coverage.json
+            recipes/out/execution-profiles.json
+            recipes/out/profile-report-*.json
 
   esql:
     name: ES|QL engine (Elasticsearch 8.17.4)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - run: pip install pyyaml
+      - run: pip install -r requirements-checks.txt -c requirements-checks.lock
       - name: Kernel setting required by Elasticsearch
         run: sudo sysctl -w vm.max_map_count=262144
       - name: Start Elasticsearch
@@ -65,28 +70,37 @@ jobs:
             -e discovery.type=single-node \
             -e xpack.security.enabled=false \
             -e ES_JAVA_OPTS='-Xms1g -Xmx1g' \
-            docker.elastic.co/elasticsearch/elasticsearch:8.17.4
+            docker.elastic.co/elasticsearch/elasticsearch:8.17.4@sha256:413d8df69823e9f41f6008f025fcbaf31a5849ab9c74894731d7ded65543cd56
       - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
       - name: Fixture and empty-run verification
         run: python recipes/ci/esql_runner.py --out recipes/out --es http://localhost:9200
+      - name: Canonical quotient profiles on native ES|QL
+        run: |
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine esql --case-ids three_of_four --report-suffix positive
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine esql --cards HRM-004,STD-005,STD-073,SOC-023,SOC-063,SOC-065 --report-suffix boundaries
       - name: Elasticsearch logs on failure
         if: failure()
         run: docker logs es 2>&1 | tail -80
-      - uses: actions/upload-artifact@v7
+      - name: Prepared observation profiles through native ES|QL export
+        run: python recipes/ci/semantic_runner.py --bundle recipes/out --engine esql
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: always()
         with:
           name: esql-report
-          path: recipes/out/esql_report.json
+          path: |
+            recipes/out/esql_report.json
+            recipes/out/profile-report-esql*.json
+            recipes/out/profile-report-semantic-esql*.json
 
   excel:
     name: Excel engine (LibreOffice Calc)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - run: pip install pyyaml formulas openpyxl
+      - run: pip install -r requirements-checks.txt -c requirements-checks.lock
       - name: Install LibreOffice (headless)
         run: |
           sudo apt-get update
@@ -94,11 +108,20 @@ jobs:
       - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
       - name: Fixture and empty-run verification (second engine)
         run: python recipes/ci/excel_runner.py --out recipes/out --soffice soffice
-      - uses: actions/upload-artifact@v7
+      - name: Canonical quotient profiles on LibreOffice Calc
+        run: |
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine libreoffice --case-ids three_of_four --report-suffix positive
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine libreoffice --cards HRM-004,STD-005,STD-073,SOC-023,SOC-063,SOC-065 --report-suffix boundaries
+      - name: Prepared observation profiles on LibreOffice Calc
+        run: python recipes/ci/semantic_runner.py --bundle recipes/out --engine libreoffice
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: always()
         with:
           name: excel-report
-          path: recipes/out/excel_report.json
+          path: |
+            recipes/out/excel_report.json
+            recipes/out/profile-report-libreoffice*.json
+            recipes/out/profile-report-semantic-libreoffice*.json
 
   spl:
     # Opt-in: set the repository variable ENABLE_SPL_CI to 'true' AFTER
@@ -114,29 +137,119 @@ jobs:
       matrix:
         include:
           - splunk_version: '9.4'
+            image: 'splunk/splunk:9.4.15@sha256:bdc510b7eccfdb8b986fc4c876bc699d29d48555fe6b0b4dcd1016b8ed91f035'
             sgt_env: ''
           - splunk_version: '10.2'
+            image: 'splunk/splunk:10.2.7@sha256:da47bf2f183fc815f9e36dff3202dd1232bf475c44b2f71b958c54a9a004d6d7'
             sgt_env: "-e SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com"
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - run: pip install pyyaml
+      - run: pip install -r requirements-checks.txt -c requirements-checks.lock
       - name: Start Splunk ${{ matrix.splunk_version }}
+        env:
+          SPLUNK_PASSWORD: ${{ secrets.SPLUNK_CI_PASSWORD }}
         run: |
           docker run -d --name splunk -p 8089:8089 -p 8088:8088 \
             -e SPLUNK_START_ARGS=--accept-license ${{ matrix.sgt_env }} \
-            -e SPLUNK_PASSWORD='${{ secrets.SPLUNK_CI_PASSWORD }}' \
-            splunk/splunk:${{ matrix.splunk_version }}
+            -e SPLUNK_PASSWORD \
+            ${{ matrix.image }}
       - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
       - name: Fixture and empty-parse verification
-        run: python recipes/ci/spl_runner.py --out recipes/out --password '${{ secrets.SPLUNK_CI_PASSWORD }}'
+        env:
+          SPLUNK_PASSWORD: ${{ secrets.SPLUNK_CI_PASSWORD }}
+        run: python recipes/ci/spl_runner.py --out recipes/out --password "$SPLUNK_PASSWORD"
+      - name: Canonical quotient profiles on native SPL
+        env:
+          SPLUNK_PASSWORD: ${{ secrets.SPLUNK_CI_PASSWORD }}
+        run: |
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine spl --case-ids three_of_four --report-suffix positive
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine spl --cards HRM-004,STD-005,STD-073,SOC-023,SOC-063,SOC-065 --report-suffix boundaries
       - name: Splunk logs on failure
         if: failure()
         run: docker logs splunk 2>&1 | tail -120
-      - uses: actions/upload-artifact@v7
+      - name: Prepared observation profiles on native SPL
+        env:
+          SPLUNK_PASSWORD: ${{ secrets.SPLUNK_CI_PASSWORD }}
+        run: |
+          python recipes/ci/semantic_runner.py --bundle recipes/out --engine spl --cards STD-006,STD-001a,STD-003 --positive-only
+          python recipes/ci/semantic_runner.py --bundle recipes/out --engine spl
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: always()
         with:
           name: spl-report-${{ matrix.splunk_version }}
-          path: recipes/out/spl_report.json
+          path: |
+            recipes/out/spl_report.json
+            recipes/out/profile-report-spl*.json
+            recipes/out/profile-report-semantic-spl*.json
+
+  postgresql:
+    name: Native PostgreSQL calculation profiles
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18.6@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280
+        env:
+          POSTGRES_DB: osms_ci
+          POSTGRES_USER: osms_ci
+          POSTGRES_PASSWORD: disposable_ci_only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U osms_ci -d osms_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 12
+    env:
+      PGHOST: localhost
+      PGPORT: '5432'
+      PGDATABASE: osms_ci
+      PGUSER: osms_ci
+      PGPASSWORD: disposable_ci_only
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-checks.txt -c requirements-checks.lock
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends postgresql-client
+      - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
+      - run: python recipes/ci/profile_runner.py --bundle recipes/out --engine postgresql
+      - run: python recipes/ci/semantic_runner.py --bundle recipes/out --engine postgresql
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        if: always()
+        with:
+          name: postgresql-profile-report
+          path: |
+            recipes/out/profile-report-postgresql.json
+            recipes/out/profile-report-semantic-postgresql*.json
+
+  evidence-matrix:
+    name: Source-bound conformance evidence matrix
+    needs: [gates, esql, excel, spl, postgresql]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-checks.txt -c requirements-checks.lock
+      - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
+      - name: Collect this run's reports without overwriting engine versions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download "$GITHUB_RUN_ID" --repo "$GITHUB_REPOSITORY" --dir execution-evidence
+          python recipes/ci/collect_profile_reports.py --bundle recipes/out --reports execution-evidence
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        if: always()
+        with:
+          name: conformance-matrix
+          path: recipes/out/conformance-matrix.json

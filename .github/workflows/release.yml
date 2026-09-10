@@ -13,21 +13,22 @@ concurrency:
   cancel-in-progress: false
 permissions:
   contents: write
+  actions: read
 jobs:
   release:
     runs-on: ubuntu-latest
     env:
       OSMS_RELEASE_TAG: ${{ github.event.release.tag_name || github.ref_name }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           ref: ${{ github.event.release.tag_name || github.ref_name }}
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
       - name: Validate catalog before releasing
         run: |
-          pip install -r requirements-checks.txt
+          pip install -r requirements-checks.txt -c requirements-checks.lock
           python tools/osms_validate.py catalog/osms-catalog.yaml \
             --taxonomy catalog/taxonomy.yaml --domains catalog/domains.yaml \
             --expect-count 327 --json release-validation.json
@@ -42,6 +43,14 @@ jobs:
           python tools/readiness/build_readiness_bundle.py --check
           python recipes/gen_recipes.py --emit-candidates --out recipes/out
           python recipes/gates.py --bundle recipes/out
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine python
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine duckdb
+          python recipes/ci/semantic_runner.py --bundle recipes/out --engine python
+          python recipes/ci/semantic_runner.py --bundle recipes/out --engine duckdb
+      - name: Require successful native CI on the release commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/verify_release_evidence.py --out release/gate-evidence.json --download-artifacts
       - name: Build bundle + checksums
         run: bash tools/make_checksums.sh "$OSMS_RELEASE_TAG"
       - name: Create release or attach assets to existing one
@@ -49,7 +58,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="$OSMS_RELEASE_TAG"
-          ASSETS="release/osms-${TAG}-catalog.zip release/SHA256SUMS.txt release/MANIFEST-SHA256.txt"
+          ASSETS="release/osms-${TAG}-catalog.zip release/SHA256SUMS.txt release/MANIFEST-SHA256.txt release/gate-evidence.json"
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release edit "$TAG" --prerelease --latest=false \
               --title "OSMS ${TAG} - Maintainer draft" \

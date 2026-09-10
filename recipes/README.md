@@ -4,6 +4,14 @@ This is a remediation working draft. The generator produces candidate recipes,
 complete card exports and explicitly blocked templates. It does not prove a
 formula or authorize website publication. See [execution contracts](CONTRACTS.md)
 for implemented corrections, adapter requirements and remaining limitations.
+See [engine support and verification scope](ENGINE_SUPPORT.md) for the current
+runtime evidence, numeric fixture counts and completion priorities.
+
+The additional [execution profiles](EXECUTION_PROFILES.md) provide 207 canonical
+quotient calculators, the SOC-003 incident contract and all 119 remaining cards as
+explicit prepared-observation calculations. Their 2,616-row inventory identifies
+native expressions, exact export/reducer paths and each engine's verification state.
+They are exported separately from raw-source adapters and legacy templates.
 
 ## Structure
 
@@ -28,7 +36,7 @@ for implemented corrections, adapter requirements and remaining limitations.
 
 `coverage.json` reports the actual card populations and numeric candidate fixture
 count. `template-fixtures.json` preserves examples for incomplete templates.
-The eight retained numeric candidate fixtures are not conformance coverage of all
+The nine retained numeric candidate fixtures are not conformance coverage of all
 327 cards. KQL analyzer success is syntax/type evidence, not a Kusto execution.
 External engine reports must identify versions and exact source/recipe hashes.
 No website deployment or stable-release approval occurs in the generator.
@@ -65,17 +73,23 @@ the published snippet from the same spec both engines execute.
   `SPLUNK_CI_PASSWORD` only after verifying the current Splunk Docker image
   license terms for CI use.
 - **excel** — installs headless LibreOffice, rebuilds every Excel workbook from
-  its spec and recomputes it in Calc: the 14 fixtures must match the card
+  its spec and recomputes it in Calc: the nine retained numeric fixtures must match the card
   examples exactly, and every candidate must resolve fail-closed on an empty
   sheet. This is the independent second engine behind gate `[9]`.
 
-## Expected first-run findings (by design)
+## Known verification gaps
 
-The curated SPL/ES|QL duration snippets use engine percentile functions
-(`exactperc90`, `PERCENTILE(...,90)`). The fixtures enforce the card-mandated
-nearest-rank values (SOC-002: P90 = 30 h). If an engine's method differs, the
-job turns red — that is the track doing its job; the fix is an explicit
-nearest-rank construction with a recipe version bump, as already used in the
-generated duration templates.
+The legacy numeric fixture set contains nine cards. The ES|QL scalar runner
+executes seven; SOC-002 remains blocked and SOC-003 uses a separate export/reducer
+protocol for its exact outputs. Median and percentile semantics must
+follow each named card output, including repeated values and even sample sizes.
+Do not infer an implemented duration recipe from a preserved template example.
+
+KQL currently has syntax/type analysis only. PostgreSQL-flavored snippets are
+checked on DuckDB, not native PostgreSQL. The maintained DAX query definitions have no native
+runtime report; SOC-002 and SOC-003 now include their named numeric outputs. Spreadsheet execution uses
+`formulas` and LibreOffice; Microsoft Excel and Google Sheets remain unverified.
+The [engine inventory](ENGINE_SUPPORT.md) records these distinctions and links
+the actual CI execution evidence.
 
 Non-normative. The YAML card is the contract. Catalog CC BY 4.0, code MIT.

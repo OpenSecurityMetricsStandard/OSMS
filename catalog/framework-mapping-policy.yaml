@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: CC-BY-4.0
+policy_version: 1.0.0-draft
+status: maintainer_draft
+source: catalog/osms-catalog.yaml
+existing_mapping_relationship: informative_topic_association
+conformity_claim: false
+rules:
+  - A listed framework reference is an informative association, not proof of conformity or equivalence.
+  - Preserve the cited framework edition; an unspecified edition remains explicitly unresolved.
+  - A reviewed mapping records card ID/version, framework edition and clause/control reference, relationship, rationale and evidence.
+  - Do not infer clause coverage or a requirement from a metric name or an unreviewed keyword match.
+  - Edition changes require a mapping impact review; existing metric measurements do not silently become evidence for the new edition.
+  - Do not reproduce restricted standards text in mapping records.
+reviewed_mapping_fields:
+  - card_id
+  - card_version
+  - framework
+  - edition
+  - reference
+  - relationship
+  - rationale
+  - evidence_ref
+  - review_record_ref
+allowed_reviewed_relationships:
+  - informative_topic_association
+  - supports_measurement_of
+  - partial_support
+  - no_claim
+existing_mapping_review_status: individual_rationales_and_edition_validation_incomplete
+review_register: catalog/framework-mapping-reviews.yaml
+inventory_command: python tools/framework_mappings.py --out framework-mapping-register.json
+unreviewed_relationship: not_assessed
+validation_rules:
+  - Each association is bound to its card version and the SHA-256 of the exact source reference.
+  - Only an explicit review with edition, relationship, rationale, evidence, reviewer and date becomes reviewed.
+  - Stale, duplicate, incomplete or conformity-claiming review records fail validation.
+  - The generated inventory distinguishes stated editions from reviewed editions; absent editions are not inferred.

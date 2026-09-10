@@ -104,3 +104,13 @@ migration for reporting context/validity columns and changed view status values.
   guards both infinity and NaN.
 - [ES|QL aggregation reference](https://www.elastic.co/docs/reference/query-languages/esql/functions-operators/aggregation-functions):
   `VALUES` deduplicates; distinct-count estimates cannot establish exact cardinality.
+
+## Additional execution profiles
+
+[EXECUTION_PROFILES.md](EXECUTION_PROFILES.md) defines the separate canonical-input
+layer, SOC-003 output semantics and its two-stage ES|QL protocol. Numeric profile
+validity is distinct from source-adapter completion and Green eligibility.
+[ASSURANCE_PROFILES.md](../reference/ASSURANCE_PROFILES.md) defines the numerical
+confidence production, noncompensable gates, normalization, DSPS recomputation,
+uncertainty, joint-risk and ranking primitives. Open ordinal rubrics are available
+in [RUBRICS.md](../reference/RUBRICS.md). These are versioned maintainer-draft rules.
