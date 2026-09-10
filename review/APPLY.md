@@ -1,5 +1,11 @@
 # Apply and review this candidate
 
+For the additional implementation candidate based on
+`e3fda1c1a78f5052253b28e3626f5f78d13a9ea5`, use
+[IMPLEMENTATION_APPLY.md](IMPLEMENTATION_APPLY.md) and
+[EXECUTION_VALIDATION.md](EXECUTION_VALIDATION.md). The instructions below describe
+the earlier, already published audit handoff.
+
 The audit branch has been published through the GitHub connector. Use the current
 branch/PR and its recorded commit links. Earlier handoff bundles contain different
 commit metadata; do not use them to overwrite the published branch. Details:

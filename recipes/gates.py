@@ -83,7 +83,13 @@ for cid, r in B.items():
             con.execute(f'CREATE TABLE {t} ({cols})')
         q = code.replace(":period_start", "$period_start").replace(":period_end", "$period_end").replace(":scope_id", "$scope_id")
         params = {k: v for k, v in {"period_start": "2026-06-01", "period_end": "2026-07-01", "scope_id": "prod"}.items() if "$"+k in q}
-        row = con.execute(q, params).fetchone()
+        cur = con.execute(q, params)
+        row = cur.fetchone()
+        if "empty_expect" in r:
+            got = dict(zip([d[0] for d in cur.description], row))
+            assert got == r["empty_expect"], f"empty output contract violated: {got}"
+            sqlrun += 1
+            continue
         sqlrun += 1
         if r.get("evaluation_status") == "mapping_required":
             assert row == (None, "mapping_required"), f"unmapped template returned a value: {row}"
@@ -121,6 +127,9 @@ for cid, r in B.items():
             raise AssertionError("unmapped template did not refuse computation")
         res = fn(df, "2026-06-01", "2026-07-01", "prod") if nargs == 4 else fn(df, "prod")
         pyrun += 1
+        if "empty_expect" in r:
+            assert res == r["empty_expect"], f"empty output contract violated: {res}"
+            continue
         if r["mechanic"] in ("ratio", "duration") and res is not None: raise AssertionError(f"fail-closed: {res}")
         if r["mechanic"] == "count" and res != 0: raise AssertionError(f"count leer: {res}")
     except Exception as e:
@@ -152,10 +161,10 @@ for cid, r in B.items():
 print(f"[4] Duration-Selbstfixtures: {sf_ok}/{sf_n} PASS")
 
 # ---------------- 5) Kuratierte Rezepte byteidentisch zur verifizierten Quelle ----------------
-for f, cid in [(os.path.join(_here, "curated", "std-016.json"), "STD-016"), (os.path.join(_here, "curated", "soc-002.json"), "SOC-002")]:
+for f, cid in [(os.path.join(_here, "curated", "std-016.json"), "STD-016"), (os.path.join(_here, "curated", "soc-002.json"), "SOC-002"), (os.path.join(_here, "curated", "soc-003.json"), "SOC-003")]:
     src = json.load(open(f))["snippets"]
     assert B[cid]["dialects"] == src, f"Kuratiert-Drift {cid}"
-print("[5] Kuratiert byteidentisch: PASS (2/2)")
+print("[5] Kuratiert byteidentisch: PASS (3/3)")
 
 # ---------------- 6) KQL-Analyzer-Batch vorbereiten ----------------
 kql_jobs = []

@@ -1,5 +1,5 @@
 # Direct dependencies used by the local regression and recipe gates (Python 3.12).
-# Transitive locking and action SHA pinning remain tracked in F31.
+# Use requirements-checks.lock for the Linux/Python 3.12 dependency closure.
 PyYAML==6.0.3
 jsonschema==4.26.0
 duckdb==1.5.5

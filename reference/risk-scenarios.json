@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0",
+  "synthetic": true,
+  "profiles": [
+    {
+      "profile_id": "zero",
+      "model_version": "compound-poisson/1",
+      "numpy_version": "2.3.5",
+      "bit_generator": "PCG64",
+      "iterations": 100000,
+      "seed": 27004,
+      "horizon": "year",
+      "currency": "EUR",
+      "control_credit_policy": "residual_losses_no_further_reduction",
+      "dependence": "independent",
+      "risk_appetite_eur": 500000,
+      "scenarios": [
+        {
+          "id": "A",
+          "annual_frequency": 0,
+          "severity": "constant",
+          "scale_eur": 100000
+        },
+        {
+          "id": "B",
+          "annual_frequency": 0,
+          "severity": "constant",
+          "scale_eur": 100000
+        }
+      ],
+      "expected": {
+        "mean": 0.0,
+        "p50": 0.0,
+        "p90": 0.0,
+        "probability_exceeding_appetite": 0.0,
+        "zero_event_draws": 100000,
+        "maximum": 0.0
+      }
+    },
+    {
+      "profile_id": "independent",
+      "model_version": "compound-poisson/1",
+      "numpy_version": "2.3.5",
+      "bit_generator": "PCG64",
+      "iterations": 100000,
+      "seed": 27004,
+      "horizon": "year",
+      "currency": "EUR",
+      "control_credit_policy": "residual_losses_no_further_reduction",
+      "dependence": "independent",
+      "risk_appetite_eur": 500000,
+      "scenarios": [
+        {
+          "id": "A",
+          "annual_frequency": 1,
+          "severity": "constant",
+          "scale_eur": 100000
+        },
+        {
+          "id": "B",
+          "annual_frequency": 1,
+          "severity": "constant",
+          "scale_eur": 100000
+        }
+      ],
+      "expected": {
+        "mean": 200007.0,
+        "p50": 200000.0,
+        "p90": 400000.0,
+        "probability_exceeding_appetite": 0.01612,
+        "zero_event_draws": 13476,
+        "maximum": 1100000.0
+      }
+    },
+    {
+      "profile_id": "correlated",
+      "model_version": "compound-poisson/1",
+      "numpy_version": "2.3.5",
+      "bit_generator": "PCG64",
+      "iterations": 100000,
+      "seed": 27004,
+      "horizon": "year",
+      "currency": "EUR",
+      "control_credit_policy": "residual_losses_no_further_reduction",
+      "dependence": "shared_events_and_severity",
+      "risk_appetite_eur": 500000,
+      "scenarios": [
+        {
+          "id": "A",
+          "annual_frequency": 1,
+          "severity": "constant",
+          "scale_eur": 100000
+        },
+        {
+          "id": "B",
+          "annual_frequency": 1,
+          "severity": "constant",
+          "scale_eur": 100000
+        }
+      ],
+      "expected": {
+        "mean": 199994.0,
+        "p50": 200000.0,
+        "p90": 400000.0,
+        "probability_exceeding_appetite": 0.08103,
+        "zero_event_draws": 36823,
+        "maximum": 1600000.0
+      }
+    },
+    {
+      "profile_id": "heavy_tail",
+      "model_version": "compound-poisson/1",
+      "numpy_version": "2.3.5",
+      "bit_generator": "PCG64",
+      "iterations": 100000,
+      "seed": 27004,
+      "horizon": "year",
+      "currency": "EUR",
+      "control_credit_policy": "residual_losses_no_further_reduction",
+      "dependence": "independent",
+      "risk_appetite_eur": 500000,
+      "scenarios": [
+        {
+          "id": "A",
+          "annual_frequency": 1,
+          "severity": "pareto",
+          "scale_eur": 100000,
+          "shape": 1.2
+        },
+        {
+          "id": "B",
+          "annual_frequency": 1,
+          "severity": "pareto",
+          "scale_eur": 100000,
+          "shape": 1.2
+        }
+      ],
+      "expected": {
+        "mean": 1157233.3833738063,
+        "p50": 414818.2899124771,
+        "p90": 1703599.6488400046,
+        "probability_exceeding_appetite": 0.4331,
+        "zero_event_draws": 13476,
+        "maximum": 4874607226.551013
+      }
+    }
+  ]
+}

@@ -1,0 +1,1082 @@
+{
+  "status": "maintainer_draft",
+  "profile": "prepared_observations_v1",
+  "cards": [
+    {
+      "card_id": "AI-003",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "AIM-003",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "AIM-005",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "AIM-006",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "AIM-007",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "AIM-012",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "APP-005",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "APP-010",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "CFG-002",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "CFG-003",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "CRY-001",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "DAT-005",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "DET-003",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "DET-006",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "DET-008",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "HRM-001",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "HRM-005",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "LOG-005",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "LOG-009",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "LOG-011",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "LOG-015",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "LOG-016",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "MET-007",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "RES-004",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "RES-007",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-001",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-002",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-006",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-009",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-010",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-012",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-020",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-022",
+      "previous_version": "0.9.0",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-025",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-026",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-028",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-029",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-030",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-031",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-032",
+      "previous_version": "0.9.0",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-033",
+      "previous_version": "0.9.0",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-034",
+      "previous_version": "0.9.0",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-035",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-040",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-042",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-047",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-048",
+      "previous_version": "0.9.0",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-050",
+      "previous_version": "0.9.0",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-051",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-053",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-056",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-059",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-064",
+      "previous_version": "0.9.0",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-066",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-067",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-073",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "SOC-078",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility",
+        "target_thresholds"
+      ]
+    },
+    {
+      "card_id": "SOC-080",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-001",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility",
+        "drilldown_lineage"
+      ]
+    },
+    {
+      "card_id": "STD-001a",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-001b",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-002a",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-003",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-003a",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-004",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-006",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-006a",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-008",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility",
+        "drilldown_lineage"
+      ]
+    },
+    {
+      "card_id": "STD-009",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-010",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-011",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-012",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-013",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-014",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-015",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-017",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-019",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-023",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-024",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-025",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-026",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-027",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-029",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-030",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-031",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-032",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-035",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-036",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-038",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-040",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-041",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-042",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-043",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-045",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-046",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-047",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-052",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-055",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-056",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-061",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-064",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-068",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-069",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-070",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-071",
+      "previous_version": "0.9.2",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-074",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-075",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-077",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-078",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "STD-080",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "TPR-001",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "TPR-002",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "TPR-004",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "TPR-005",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "TPR-006",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "TPR-007",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "TPR-008",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "TPR-012",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility"
+      ]
+    },
+    {
+      "card_id": "VAL-001",
+      "previous_version": "0.9.1",
+      "card_version": "0.9.2",
+      "fields": [
+        "card_version",
+        "reproducibility",
+        "special_cases_gates",
+        "drilldown_lineage"
+      ]
+    }
+  ]
+}

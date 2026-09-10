@@ -16,5 +16,15 @@
     "esql": "Candidate implementation. See recipes/CONTRACTS.md for period, input and output requirements. Verification requires this exact recipe hash and an engine report; generation and historical pilot results are not current proof.",
     "dax": "Candidate implementation. See recipes/CONTRACTS.md for period, input and output requirements. Verification requires this exact recipe hash and an engine report; generation and historical pilot results are not current proof.",
     "py": "Candidate implementation. See recipes/CONTRACTS.md for period, input and output requirements. Verification requires this exact recipe hash and an engine report; generation and historical pilot results are not current proof."
+  },
+  "SOC-003": {
+    "py": "UTC incident snapshot; resolved cohort [start,end); MTTR/MTTA/MTTC separately, arithmetic P50 and exact nearest-rank P90, open stock at end, per-output invalid counts. Source completeness and risk-appetite gates remain mandatory. See recipes/CONTRACTS.md.",
+    "gsql": "UTC incident snapshot; resolved cohort [start,end); MTTR/MTTA/MTTC separately, arithmetic P50 and exact nearest-rank P90, open stock at end, per-output invalid counts. Source completeness and risk-appetite gates remain mandatory. See recipes/CONTRACTS.md.",
+    "pg": "UTC incident snapshot; resolved cohort [start,end); MTTR/MTTA/MTTC separately, arithmetic P50 and exact nearest-rank P90, open stock at end, per-output invalid counts. Source completeness and risk-appetite gates remain mandatory. See recipes/CONTRACTS.md.",
+    "kql": "UTC incident snapshot; resolved cohort [start,end); MTTR/MTTA/MTTC separately, arithmetic P50 and exact nearest-rank P90, open stock at end, per-output invalid counts. Source completeness and risk-appetite gates remain mandatory. See recipes/CONTRACTS.md.",
+    "spl": "UTC incident snapshot; resolved cohort [start,end); MTTR/MTTA/MTTC separately, arithmetic P50 and exact nearest-rank P90, open stock at end, per-output invalid counts. Source completeness and risk-appetite gates remain mandatory. See recipes/CONTRACTS.md.",
+    "dax": "UTC incident snapshot; resolved cohort [start,end); MTTR/MTTA/MTTC separately, arithmetic P50 and exact nearest-rank P90, open stock at end, per-output invalid counts. Source completeness and risk-appetite gates remain mandatory. See recipes/CONTRACTS.md.",
+    "xlsx": "UTC incident snapshot; resolved cohort [start,end); MTTR/MTTA/MTTC separately, arithmetic P50 and exact nearest-rank P90, open stock at end, per-output invalid counts. Source completeness and risk-appetite gates remain mandatory. See recipes/CONTRACTS.md.",
+    "esql": "UTC incident snapshot; resolved cohort [start,end); MTTR/MTTA/MTTC separately, arithmetic P50 and exact nearest-rank P90, open stock at end, per-output invalid counts. Source completeness and risk-appetite gates remain mandatory. See recipes/CONTRACTS.md."
   }
 }

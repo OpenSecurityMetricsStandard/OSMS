@@ -54,7 +54,7 @@ MECHANIC = {
 }
 
 CARD_REF = re.compile(r'\b([A-Z]{2,4}-\d{3}[a-z]?)\b')
-LINEAGE_AXES = re.compile(r'Drill axes:\s*([^·]+)')
+LINEAGE_AXES = re.compile(r'Drill axes:\s*(.*?)\s*·\s*Path:', re.S)
 
 # lineage axis -> (SELECT expression, JOIN clause) on fact_evidence_item e
 AXIS_SQL = {
@@ -63,8 +63,7 @@ AXIS_SQL = {
                        "LEFT JOIN dim_org_unit o ON o.org_key = e.org_key"),
     'owner':          ("ow.owner_id",
                        "LEFT JOIN dim_owner ow ON ow.owner_key = e.owner_key"),
-    'criticality':    ("sev.code",
-                       "LEFT JOIN dim_severity sev ON sev.severity_key = e.severity_key"),
+    'criticality':    ("json_extract(e.attributes, '$.criticality')", ""),
     'service/asset':  ("COALESCE(s.name, a.name)",
                        "LEFT JOIN dim_service s ON s.service_key = e.service_key "
                        "LEFT JOIN dim_asset a ON a.asset_key = e.asset_key"),
@@ -73,6 +72,36 @@ AXIS_SQL = {
     'source':         ("src.name",
                        "LEFT JOIN dim_source src ON src.source_key = e.source_key"),
 }
+# Additional declared axes have an explicit canonical field in evidence JSON.
+# The adapter populates it from the card's source data; NULL stays visible as a
+# missing-dimension group. Fields are a fixed whitelist, never caller SQL.
+AXIS_ATTRIBUTES = {
+    'target group':'target_group', 'exposure':'exposure',
+    'detection source':'detection_source', 'cloud provider':'cloud_provider',
+    'data classification':'data_classification', 'approval status':'approval_status',
+    'supplier':'supplier_id', 'identity/account':'identity_account_id',
+    'data class':'data_class', 'channel':'channel', 'cause':'cause',
+    'duration':'duration', 'missed control point':'missed_control_point',
+    'risk class':'risk_class', 'reported KPI':'reported_kpi_id',
+    'subscore component':'subscore_component', 'regime':'regime',
+    'reporting stage':'reporting_stage', 'measure_impact':'measure_impact',
+    'partial metric':'partial_metric', 'sharing community':'sharing_community',
+    'stakeholder group':'stakeholder_group', 'incident class':'incident_class',
+    'feedback source (the incident/exercise/stakeholder)':'feedback_source',
+    'rule/use case':'rule_use_case_id', 'vendor':'vendor', 'cost type':'cost_type',
+    'ATT&CK technique':'attack_technique', 'root cause':'root_cause',
+    'KEV/EPSS':'kev_epss', 'activity category':'activity_category',
+    'shift':'shift', 'escalation level':'escalation_level', 'recipient':'recipient',
+    'reason code':'reason_code', 'SLA':'sla',
+}
+AXIS_SQL.update({axis:("json_extract(e.attributes, '$."+field+"')", '')
+                 for axis,field in AXIS_ATTRIBUTES.items()})
+AXIS_SQL.update({
+    'business service':('s.name','LEFT JOIN dim_service s ON s.service_key=e.service_key'),
+    'asset class':('a.asset_class','LEFT JOIN dim_asset a ON a.asset_key=e.asset_key'),
+    'asset criticality':('a.criticality','LEFT JOIN dim_asset a ON a.asset_key=e.asset_key'),
+    'severity':('sev.code','LEFT JOIN dim_severity sev ON sev.severity_key=e.severity_key'),
+})
 TOL = 1e-8  # raw-value absolute arithmetic tolerance; counts are exact
 
 
@@ -88,7 +117,7 @@ class Card:
         self.unit = raw['unit']
         lineage = raw.get('drilldown_lineage', '') or ''
         m = LINEAGE_AXES.search(lineage)
-        self.axes = [a.strip() for a in m.group(1).split(',')] if m else []
+        self.axes = [a.strip() for a in re.split(r'[,·]', m.group(1)) if a.strip()] if m else []
         # composite-style lineages list their parts instead of axes
         self.child_ids = [c for c in CARD_REF.findall(lineage) if c != self.id]
         self.has_parts = ('Subscore' in lineage or 'Sub-scores' in lineage
@@ -435,6 +464,20 @@ class DrillEngine:
     def reconcile(self, card_id, scope, period_end):
         return self.strategy(card_id).reconcile(scope, period_end)
 
+    def capture_report(self, report_id, card_id, observations, parameters):
+        """Execute a card-specific plan and retain the independent input evidence."""
+        from execution_store import capture
+        from semantic.registry import register
+        plans=register([c.raw for c in self.catalog.cards.values()])
+        if card_id not in plans:
+            raise ValueError('Use the canonical quotient or SOC-003 snapshot profile for this card')
+        return capture(self.con,report_id,plans[card_id],observations,parameters)
+
+    def reconcile_report(self, report_id, manifest_sha256):
+        """Replay a historical receipt independently of current registry activity."""
+        from execution_store import replay
+        return replay(self.con,report_id,manifest_sha256)
+
     def coverage(self):
         ok_strategy = ok_lineage = 0
         problems = []
@@ -569,6 +612,16 @@ def run_demo(engine):
     r = engine.reconcile('STD-001', 'SCOPE-GLOBAL', '2026-07-31')
     print(f"\nTamper test (contribution +7 on STD-001): "
           f"recon={'MISMATCH detected' if not r['ok'] else 'FAILED TO DETECT'}")
+    from execution_store import capture,replay
+    from semantic.registry import register
+    from semantic.cases import examples
+    plans=register([c.raw for c in engine.catalog.cards.values()]);fixtures=examples(plans)
+    print('\nCard-specific calculations with retained input evidence (synthetic):')
+    for cid,key,expected in [('STD-001','value',60),('STD-006','value',72.5),('SOC-002','p50',16),('STD-003','service_count',2),('VAL-001','overall_band',2)]:
+        f=fixtures[cid][0];receipt=capture(engine.con,'demo:'+cid,plans[cid],f['rows'],f['params'])
+        actual=replay(engine.con,receipt['report_id'],receipt['manifest_sha256'])['result']['outputs'][key]
+        print(cid,key,actual,'receipt',receipt['manifest_sha256'])
+        if abs(actual-expected)>1e-8:failures+=1
     return failures == 0 and not r['ok']
 
 def main():

@@ -1,0 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+schema_version: '1.0'
+# Add actual source-bound decisions here. Unlisted associations are not assessed.
+# tools/framework_mappings.py validates identity, edition, rationale and evidence.
+reviews: []

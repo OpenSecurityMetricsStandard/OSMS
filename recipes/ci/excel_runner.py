@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """LibreOffice engine verification for the OSMS Excel (range-model) dialect.
 
-The recipe-CI `gates` job already recomputes the 14 fixtures in the pure-Python
+The recipe-CI `gates` job already recomputes the retained numeric fixtures in the pure-Python
 `formulas` engine (gate [9]). This runner is the independent second engine: it
 rebuilds the same workbooks from the same spec and recomputes them in LibreOffice
-Calc, so a published Excel formula is proven to agree across two engines rather
-than being an artefact of one library.
+Calc, which provides separate evidence for the actual workbook and runtime. Neither
+engine establishes native Microsoft Excel compatibility.
 
 Fixture pass: for every fixture card, load its rows onto the `data` sheet, set the
 parameters on the `result` sheet, convert with LibreOffice, and require the result

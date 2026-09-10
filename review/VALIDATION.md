@@ -1,3 +1,6 @@
+Current additional candidate checks: [EXECUTION_VALIDATION.md](EXECUTION_VALIDATION.md).
+The records below retain their historical source and execution scope.
+
 # Validation record — 2026-09-10
 
 Scope: local remediation working tree based on
@@ -72,7 +75,7 @@ fixture/recipe hashes and logs. This is technical evidence, not a vote or approv
 The section above is the original local audit record. Publication and further
 verification have since occurred. Source history is preserved in PR #2; the
 0.9.2 preparation commit and final CI links are recorded in that PR and the live
-finding dispositions. Verifier: Codex (automated checks and source inspection),
+finding dispositions. Verification method: automated checks and source inspection,
 working under Nico Wiegand's maintainer instruction. This is a maintainer technical
 verification, not an independent Review Board review.
 

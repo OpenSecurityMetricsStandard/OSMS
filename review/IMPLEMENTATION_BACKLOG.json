@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0-draft",
+  "source_catalog_sha256": "fb7c7f42ef024328b32a54f73a16355f86979adb6438ee24d9001f70122d8817",
+  "profile_bundle_sha256": "8a3ed49a5a58a1230b5f55df4fca3e2eb3dd439dfdaba4d93fc0428c2d00d3ed",
+  "catalog_cards": 327,
+  "cards_without_additional_profiles": 0,
+  "prepared_observation_cards": 119,
+  "canonical_quotient_cards": 207,
+  "incident_snapshot_cards": 1,
+  "cards": [],
+  "scope": "Calculation profiles cover all 327 cards. Prepared inputs require source population and evidence validation. Generation is not native engine conformance.",
+  "remaining_work": [
+    {
+      "workstream": "native_execution",
+      "detail": "Run the candidate CI and retain its actual engine reports; Kusto and DAX require their native environments; Microsoft Excel execution is separate from formulas and LibreOffice."
+    },
+    {
+      "workstream": "source_adapters",
+      "detail": "Bind each deployment source, inventory, snapshot, identity and completeness evidence to the prepared observation/input contract."
+    },
+    {
+      "workstream": "framework_mapping",
+      "finding_id": "F-27",
+      "detail": "1149 source-bound associations explicitly not assessed until reviewed editions, rationale and evidence are supplied."
+    },
+    {
+      "workstream": "pilot",
+      "finding_id": "F-23",
+      "detail": "Empirical stability, delayed outcomes and case-mix evidence."
+    },
+    {
+      "workstream": "website",
+      "finding_id": "F-28",
+      "detail": "Extern bearbeitet nach Repository-Aktualisierung; deployed version and full field/behavior comparison."
+    },
+    {
+      "workstream": "board_governance",
+      "finding_ids": [
+        "F-26",
+        "F-32"
+      ],
+      "detail": "Actual charter, members, assignments and decision records when the formal Board starts; no prerequisite for maintainer 0.x development."
+    }
+  ]
+}

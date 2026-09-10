@@ -38,6 +38,8 @@ they cannot establish decisions, coverage or complete denominators.
   That JSON contains `charter_ref`, `members` (`id`, `active`, `evidence_ref`) and
   `sessions` (`id`, `status`, `evidence_ref`). Count distinct active members and held
   sessions with evidence. A count is not an approval or a validation of quorum rules.
+  Empty charter references, ambiguous identities/statuses and missing evidence for
+  counted memberships or sessions reject the supplied Board dataset.
 
 The tool deliberately does not calculate an automatic overall go/no-go. The board
 charter, completeness of sources and the final gate combination remain decisions

@@ -7,11 +7,11 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: "3.12"
-      - run: pip install -r requirements-checks.txt
+      - run: pip install -r requirements-checks.txt -c requirements-checks.lock
       - name: Validate catalog against OSMS card contract
         run: |
           python tools/osms_validate.py catalog/osms-catalog.yaml \
@@ -22,22 +22,29 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Formula audit (check classes + invariants)
         run: python tools/formula_audit.py catalog/osms-catalog.yaml
+      - name: Framework mapping inventory and explicit review validation
+        run: python tools/framework_mappings.py --out framework-mapping-register.json
+      - name: Reproducible synthetic annual-loss benchmark
+        run: python reference/risk_scenarios.py --out risk-benchmark-report.json
       - name: Drill engine coverage & demo (13 calc types)
         run: |
           python reference/drill_engine.py --coverage
           python reference/drill_engine.py --demo
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: always()
         with:
           name: validation-report
-          path: validation-report.json
+          path: |
+            validation-report.json
+            framework-mapping-register.json
+            risk-benchmark-report.json
   readiness-gate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: "3.12"
-      - run: pip install pyyaml
+      - run: pip install -r requirements-checks.txt -c requirements-checks.lock
       - name: Readiness taxonomy gate
         run: python3 tools/readiness/build_readiness_bundle.py --check

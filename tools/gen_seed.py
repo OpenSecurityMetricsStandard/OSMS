@@ -39,7 +39,7 @@ def split_fw(m):
 def main(cat_path, out_path):
     doc = yaml.safe_load(open(cat_path, encoding='utf-8'))
     cards = doc['cards']
-    today = datetime.date.today().isoformat()
+    today = datetime.date.fromisoformat(str((doc.get('remediation') or {}).get('audit_date') or doc['generated_at'])[:10]).isoformat()
     L = [f"-- seed_reference_data.sql  (generated {today} from catalog "
          f"v{doc.get('version')} - {len(cards)} cards; do not edit by hand)",
          "BEGIN;"]

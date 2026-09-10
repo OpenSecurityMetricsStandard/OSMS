@@ -1,6 +1,6 @@
 {
   "base_commit": "747cd28fb0b6728ebadbe6c477722d166b5b40b5",
-  "branch": "audit/remediation-2026-09-10",
+  "branch": "audit/complete-card-profiles-2026-09-10",
   "status": "working_draft",
   "board_approval": false,
   "findings": [
@@ -8,227 +8,229 @@
       "id": "F-01",
       "title": "Rechenfamilien nach mathematischer Bedeutung trennen",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Allgemeine Quotienten von Anteilen abgegrenzt; HRM-004 unskaliert und >1 geprüft. Vollständige Methodenprofile fehlen."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Rechenfamilien und Einheit/Operator unterscheiden Anteile, unskalierte und signierte Ratios, Kapazität, Ereignisraten und Scoreänderungen. Alle 327 Karten haben gebundene Profile; unabhängige numerische Beispiele prüfen die Ausnahmen."
     },
     {
       "id": "F-02",
       "title": "Referenz-Engine führt kartenspezifische Formeln nicht aus",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "STD-005, STD-074, Einheitenumrechnung und Penalty-Caps korrigiert; die Engine behauptet keine vollständige Kartenkonformität."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "119 zusätzliche kartenspezifische Pläne ergänzen die 207 Quotienten und SOC-003. Der Drill-Demo führt echte STD-001-, STD-006-, SOC-002-, STD-003- und VAL-001-Neuberechnungen mit eingefrorenen Eingängen aus. Die alten mechanischen Strategien behalten ihre begrenzte Aussage."
     },
     {
       "id": "F-03",
       "title": "Median und Perzentilmethode pro Ausgabe verbindlich machen",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "SOC-002-Median/P90 präzisiert; unvollständige Dauerrezepte gesperrt. Weitere Ausgabeprofile und reale Fremd-Engines offen."
+      "status": "Implementiert – native Nachweise prüfen",
+      "change_or_remaining_work": "Dauerprofile benennen arithmetischen Median und exakte Nearest-Rank-Tails je Karte. SOC-002 mit vier Werten ergibt 15 h; CFG-002 ergibt 9/22/26 Tage. Einheiten und Gleitkommatoleranzen sind getrennt; native Engineberichte entscheiden die Ausführungsverifikation."
     },
     {
       "id": "F-04",
       "title": "MTTD-Rezept verwendet die falsche Fallbasis",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "MTTD-Fallbasis, Bestätigung und Severity-Gewichte in SQL/Python/Excel korrigiert. ES|QL gesperrt; DAX liefert weiterhin nur die dokumentierte P90-Teilimplementierung."
+      "status": "Implementiert – native Nachweise prüfen",
+      "change_or_remaining_work": "SOC-002 verwendet Detection-Kohorte und Bestätigung bis Periodenende, UTC-normalisierte Uhren, ungültige Paarzahlen und exakten P50/P90. Zusätzliche Profile veröffentlichen alle Ausgaben; Kusto/DAX bleiben ohne native Umgebung als nicht ausgeführt gekennzeichnet."
     },
     {
       "id": "F-05",
       "title": "SLA-Rezept bildet validierte Mitigation nicht ab",
       "original_severity": "Hoch",
-      "status": "Verifiziert – Maintainer-Entwurf",
-      "change_or_remaining_work": "Behandlung durch fristgerechte Remediation oder validierte Mitigation geprüft, einschließlich fehlender Daten, unvalidierter und wiedereröffneter Fälle. Adaptermigration und vollständige Engine-Konformität bleiben Anwendungspflichten."
+      "status": "Bereits geschlossen",
+      "change_or_remaining_work": "Bereits geschlossener Befund; fristgerechte Remediation oder validierte Mitigation einschließlich fehlender, unvalidierter und wiedereröffneter Fälle ist regressionsgeprüft."
     },
     {
       "id": "F-06",
       "title": "Composite-Rezepte akzeptieren fehlende Werte und negative Gewichte",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "NULL/NaN/Inf, negative Gewichte, IDs und Excel-Zelltypen abgesichert. Vollständige Profil-/Versionsbindung sowie Fremd-Engine-Gegenproben fehlen."
+      "status": "Implementiert – native Nachweise prüfen",
+      "change_or_remaining_work": "Typisierte Composite-Eingänge prüfen Endlichkeit, Wertebereiche, Gewicht-/Profilversionen, erforderliche Felder, Identität und Duplikate. Jedes neue Profil hat Positiv- und Ablehnungsfälle; native Ausführung wird je Engine ausgewiesen."
     },
     {
       "id": "F-07",
       "title": "DSPS-Penalty-Gates prüfen nicht die Identität beider Abzüge",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Beide Penalty-IDs, Duplikate, fehlende Werte und Caps geprüft. Perioden-, Normalisierungs- und Versionsbindung bleibt offen."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "STD-001 bindet alle 14 Blattwerte samt Normalisierungs-/Kartenversionen sowie beide Penalties. Fehlende/doppelte Identitäten, ungültige Gewichte, negative Penalties und Cap-Verletzungen sperren die Auswertung."
     },
     {
       "id": "F-08",
       "title": "Datenbank erlaubt Grün bei unbekannter Confidence und n/a",
       "original_severity": "Hoch",
-      "status": "Verifiziert – Maintainer-Entwurf",
-      "change_or_remaining_work": "SQL blockiert Green bei unbekannter Confidence, n/a, provisorischem Zustand und unter 70/85; exakte Grenzen 69,99/70 sowie 84,99/85 geprüft, negative Nenner abgewiesen."
+      "status": "Bereits geschlossen",
+      "change_or_remaining_work": "Bereits geschlossener Befund; unbekannte/zu geringe Confidence und ungültige Basis erlauben kein Green. Exakte operative und Management-Grenzen sind regressionsgeprüft."
     },
     {
       "id": "F-09",
       "title": "Confidence-Produktion benötigt numerische, nicht kompensierbare Regeln",
       "original_severity": "Hoch",
-      "status": "Offen – Fachentscheidung",
-      "change_or_remaining_work": "Konkrete numerische Confidence-Profile und nicht kompensierbare Gates werden nicht erfunden; Entscheidungsvorlage vorhanden."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "STD-011 rechnet fünf numerische Pass-/Grundgesamtheitsdimensionen mit festen Gewichten. Fünf unabhängige Beispieldatensätze sowie Pflichtfehler werden in Python und SQL gerechnet; Pflichtfehler sind nicht durch den Gesamtscore kompensierbar."
     },
     {
       "id": "F-10",
       "title": "Reconciliation prüft gespeicherte Beiträge statt unabhängiger Ableitung",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Gewicht × Eingang wird neu berechnet; Cache-, Kindwert-, Scope- und Evidenzabweichungen werden erkannt. Authentizität und Normalisierungsnachweis offen."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Historische Auswertungsarchive prüfen Profil, Eingänge, Scope, Quelle, Evidenz, Versionen und Ergebnis gegen einen separat aufbewahrten Manifest-Hash. Manipulierte Gewichte werden auch bei weiterhin 72,5 Gesamtscore erkannt."
     },
     {
       "id": "F-11",
       "title": "SQL-Reconciliation meldet falsche Fehler und übersieht fehlende Evidenz",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Gewichteter Mittelwert und fehlende Evidenz korrigiert; allgemeine Ratios geben ADAPTER_REQUIRED statt eines falschen OK. Vollständige typisierte Reconciliation offen."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "STD-006 rechnet 290/4=72,5 unabhängig nach. Gelöschte Belegdateien liefern MISSING_EVIDENCE, veränderte Ergebnisse einen Hashfehler. Neue typisierte Auswertungen sind von strukturellen Alt-Strategien getrennt."
     },
     {
       "id": "F-12",
       "title": "Scope- und Versionsbindung bei Drill und Ranking schließen",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Exakte Katalogversion und Scope gebunden, Current-View korrigiert. Ranking bestätigt keine tautologische Selbstsortierung mehr; echtes Ranking-Modell fehlt."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Report-Identität umfasst Karte, Kartenversion, Scope und Periode. Unbekannter Scope liefert keine Auswertung; ein eingefrorener historischer Report bleibt nach Änderungen des aktuellen Katalogs unverändert. Ranking besitzt vollständige Serviceausgaben."
     },
     {
       "id": "F-13",
       "title": "Rechentoleranz nach Einheit und Operator festlegen",
       "original_severity": "Mittel",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Count wird exakt, Rohwertarithmetik enger geprüft. Vollständige Toleranzprofile pro Einheit/Ausgabe noch offen."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Alle zusätzlichen Ausgaben besitzen explizite Einheiten und absolute/relative Toleranzen. Zähler und Zustände sind exakt; Minuten berücksichtigen dokumentierte Excel-Zeitstempelpräzision. 4,4 wird nicht als Zähler 4 akzeptiert."
     },
     {
       "id": "F-14",
       "title": "Semantische Validatorversprechen durch echte Prüfungen ersetzen",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Zyklen, Selbstbezüge, Literaldivision durch null, ausgewählte Composite-Beispiele und Leertext-Owner geprüft; überzogene Prüfaussagen korrigiert. Kein Vollparser für alle Formeln."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Validatorregeln werden durch gezielte Mutationen geprüft und ihre Grenzen dokumentiert. Kartenschema, echte Abhängigkeitszyklen, Einheiten/Operatoren und numerische Gleichungen werden geprüft; keine Vollinterpretation freier Formeln behauptet."
     },
     {
       "id": "F-15",
       "title": "Testabdeckung als Konformitätsmatrix statt Gesamt-PASS ausweisen",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Unabhängige Regressionen und ehrliche Populationszahlen ergänzt; acht numerische Kandidatenfixtures separat von sechs zurückgestellten Template-Beispielen. Vollständige Konformitätsmatrix fehlt."
+      "status": "Implementiert – native Nachweise prüfen",
+      "change_or_remaining_work": "Die Matrix enthält alle 2.616 Karten-/Dialektkombinationen mit benannten Ausgaben, Stufe und Verifikationsstatus. Nur zum Paket- und Quellhash passende Fallberichte werden übernommen; fehlende native Nachweise bleiben sichtbar."
     },
     {
       "id": "F-16",
       "title": "Ausführbare Skeletons dürfen keine plausiblen Standardwerte liefern",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Unveränderte Skeletons sind gegen plausible Zahlenwerte gesperrt und geprüft. Vollständige Perioden-/Mappingvalidierung der konkreten Rezepte aus dem erweiterten Abnahmekriterium bleibt offen (F-04/F-07/F-20)."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Unvollständige Alt-Skeletons liefern mapping_required statt plausibler Kennzahlen. Konkrete Profile prüfen die gebundene Periode, Scope, Eingänge und Versionsidentität; abweichende Perioden werden ausgeschlossen."
     },
     {
       "id": "F-17",
       "title": "Release und Rezeptveröffentlichung an nachgewiesene Gates binden",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "PR-/Tag-Prüfungen, vollständiges Release-Paket und explizite Maintainer-Draft-Kennzeichnung umgesetzt. Normale 0.x-Tags zulässig; stabile 1.0-Promotion und vollständige Engine-Evidenz bleiben getrennte Restarbeit."
+      "status": "Implementiert – native Nachweise prüfen",
+      "change_or_remaining_work": "Release erfordert erfolgreiche Pflichtworkflows exakt des Release-Commits und passende numerische Berichte beider Profilstufen. Fehlende, laufende, fehlgeschlagene oder veraltete Nachweise sperren das Paket; optionale Engines bleiben ausdrücklich gekennzeichnet."
     },
     {
       "id": "F-18",
       "title": "Ampelregeln lückenlos, disjunkt und priorisiert definieren",
       "original_severity": "Hoch",
-      "status": "Verifiziert – Maintainer-Entwurf",
-      "change_or_remaining_work": "Die sechs Grenzwertprofile sind für 0.9.2 als Maintainer-Entscheidungen übernommen und durch Grenzwert-/Override-Tests geprüft. Spätere fachliche Weiterentwicklung bleibt möglich."
+      "status": "Bereits geschlossen",
+      "change_or_remaining_work": "Bereits geschlossener Befund; sechs angenommene Grenzwertprofile sind durch disjunkte Grenz-, Nullbasis- und Override-Tests abgesichert."
     },
     {
       "id": "F-19",
       "title": "Posture-Normalisierung global nachvollziehbar machen",
       "original_severity": "Hoch",
-      "status": "Offen – Fachentscheidung",
-      "change_or_remaining_work": "Normierungsfunktionen und eingefrorene Gewichtsprofile müssen pro Kind/Ausgabe festgelegt werden."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Richtungs-/Bandnormalisierung ist mit versionierten Ankern, Einheiten und Ausgabeidentität offen implementiert. Python und unabhängiges SQL prüfen bekannte Werte, Nullbreite und Zielband; DSPS rekonstruiert ungleiche 14 Blattwerte und Penalties."
     },
     {
       "id": "F-20",
       "title": "Feldnamen und Mehrfachausgaben zu ausführbaren Datenverträgen ergänzen",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Ausführungsvertrag, Zustände und zusätzliche Behandlungsspalte dokumentiert; vollständige typisierte Ein-/Ausgaben aller 327 Karten fehlen."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Alle 327 Karten haben zusätzliche typisierte Profile. VAL-001 und SOC-078 veröffentlichen Teilgrößen, Basen, n/a und Gesamtbewertung; Zeitanker, Enums, Evidenz und ungültige Zustände sind maschinenlesbar. Individuelle Quellenadapter bleiben gebundenes Anwendungsmapping."
     },
     {
       "id": "F-21",
       "title": "Lineage-Anforderungen und offene Referenzrubriken vollständig bereitstellen",
       "original_severity": "Mittel",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Unbekannte Drill-Achsen lösen Fehler aus. Vollständige Achsenregistrierung, Pfadtiefe und offene Rubriken bleiben offen."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Alle 47 deklarierten Achsen sind explizit zugeordnet; unbekannte Achsen schlagen fehl. Zwölf Guide-Verweise führen zu offenen Rubriken. Die drei langen Lineage-Pfade sind gekürzt und der Katalogvalidator meldet keine Warnung."
     },
     {
       "id": "F-22",
       "title": "Messgröße und Kennzahlname auf dieselbe Aussage begrenzen",
       "original_severity": "Mittel",
-      "status": "Offen – Fachentscheidung",
-      "change_or_remaining_work": "Konstrukt-/Namensentscheidungen für SOC-023, AIM-011 und SOC-072 dokumentiert; kein stiller Definitionswechsel."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "SOC-023, AIM-011 und SOC-072 benennen die tatsächlich gemessene Größe. Formeln/Nenner und Grenzen der Interpretation bleiben nachvollziehbar; geänderte Definitionen sind versioniert."
     },
     {
       "id": "F-23",
       "title": "Stichprobenunsicherheit und Selektionsbias separat ausweisen",
       "original_severity": "Mittel",
-      "status": "Offen – Fachentscheidung",
-      "change_or_remaining_work": "Stichproben-/Selektionsunsicherheit separat vorgesehen; keine pauschalen Intervalle oder erfundenen Pilotdaten."
+      "status": "Teilfix – externe/fachliche Evidenz offen",
+      "change_or_remaining_work": "Geeignete Stichproben erhalten n, Selektionsnotiz und Wilson-Intervall; 1/1 und 1000/1000 unterscheiden sich. Kohorten/Verzug und offene Outcomes bleiben sichtbar. Echte Pilotbelege zur Stabilität und Fallzusammensetzung fehlen weiterhin."
     },
     {
       "id": "F-24",
       "title": "Verteilungs- und Risikomodelle operational spezifizieren",
       "original_severity": "Mittel",
-      "status": "Offen – Fachentscheidung",
-      "change_or_remaining_work": "Risikomodellprofile und mögliche Doppelzählung STD-056 benötigen methodische Entscheidung."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Vier veröffentlichte synthetische Compound-Poisson-Profile mit je 100000 Ziehungen legen PCG64, NumPy-Version, Seed, Jahresprozess, Schwere und Abhängigkeit fest. Nullereignisse, geteilte Schocks und schwerer Tail sind regressionsgeprüft; analytische Poisson-Gegenproben und eindeutige Residualverlust-/Toleranzregeln ergänzt."
     },
     {
       "id": "F-25",
       "title": "Review-KPI-Skript an das eigene Review-Verfahren angleichen",
       "original_severity": "Hoch",
-      "status": "Teilweise",
-      "change_or_remaining_work": "GitHub-IDs, Kommentare, Entscheidungen, vollständige Pagination, Werktage und K-09-Evidenz verbessert. Personen-Aliase, Nicht-GitHub-Importe und Charterdefinition benötigen zusätzliche Daten."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Review-KPIs trennen zwei Kartenberührungen von null Entscheidungen und zählen externe Kommentare. K-06 nutzt historische Werktage/Labels; K-09 verlangt echte eindeutige Mitglieder/Sitzungen und nichtleere Charter-/Belegreferenzen. Fehlende Governance ergibt n/a."
     },
     {
       "id": "F-26",
       "title": "Boardfreigabe als nachvollziehbare Entscheidung definieren",
       "original_severity": "Mittel",
-      "status": "Offen – Governance",
-      "change_or_remaining_work": "Board im Aufbau; Kandidatenbaseline, Zeitplan, Charter und Gate-Kombination müssen übernommen werden. Keine Freigabe simuliert."
+      "status": "Teilfix – externe/fachliche Evidenz offen",
+      "change_or_remaining_work": "Maintainer-Korrekturen und 0.x-Veröffentlichungen sind vor Boardstart zulässig. Technische Pflichtgates haben eine eindeutige Sperrwirkung. Tatsächliche Board-Charter, Mitglieder und Beschlusskette bleiben spätere Organisationsaufgaben."
     },
     {
       "id": "F-27",
       "title": "Framework-Mappings als begründete Beziehungen pflegen",
       "original_severity": "Mittel",
-      "status": "Offen – Fachentscheidung",
-      "change_or_remaining_work": "Edition/Beziehung/Begründung der Framework-Mappings bleiben Aufgabe; keine Behauptung von ISO-Konformität."
+      "status": "Teilfix – externe/fachliche Evidenz offen",
+      "change_or_remaining_work": "1.149 Verweise sind einzeln mit Karten-/Quellversion gebunden und ausdrücklich nicht bewertet. Reviewed-Mappings erfordern Edition, Beziehung, Begründung, Evidenz, Reviewer und Datum; veraltete/unvollständige Datensätze oder Konformitätsbehauptungen schlagen fehl. Fachliche Einzelreviews bleiben offen."
     },
     {
       "id": "F-28",
       "title": "Website-Schema und GitHub-Vertrag eindeutig versionieren",
       "original_severity": "Mittel",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Alle Kartenfelder im Website-Export; eigene Schema-ID für den Draft. Die Website-Umsetzung wird extern bearbeitet; Website-Fix-Commit, vollständiger Feldabgleich und Deployment-Nachweis stehen noch aus."
+      "status": "Teilfix – externe/fachliche Evidenz offen",
+      "change_or_remaining_work": "Vollständiger Export mit 48 Kartenfeldern und separaten Ausführungsverträgen vorhanden. Extern bearbeitet nach Repository-Aktualisierung; tatsächliches Deployment und vollständiger Feld-/Verhaltensabgleich bleiben offen."
     },
     {
       "id": "F-29",
       "title": "Auswertungsversion und Freigabepaket vollständig historisieren",
       "original_severity": "Mittel",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Quellarchiv mit vollständigem Einzeldateimanifest und Kataloghash im Rezeptbundle. Vollständiges Auswertungsmanifest mit Daten-/Profil-/Engine-Nachweisen bleibt offen."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Historische Manifest-Replays stellen alle eingefrorenen Dateien unabhängig wieder her und erkennen fehlende, zusätzliche oder veränderte Belege. Releasearchive übernehmen die tatsächlichen passenden CI-Nachweise mit vollständigem Dateimanifest."
     },
     {
       "id": "F-30",
       "title": "Formale Dokumentations- und Lizenzgrenzen konsolidieren",
       "original_severity": "Niedrig",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Dokumentation, historische Termine und Validatorversprechen bereinigt. Endgültige Rechte-/Lizenzmatrix für alle Bestandteile noch zu bestätigen."
+      "status": "Implementiert – Kandidaten-CI ausstehend",
+      "change_or_remaining_work": "Kanonische Anleitungen, Source-of-Truth, Lizenzzuordnung und SPDX-Kennungen sind konsolidiert. Reproduktionsbefehle verweisen auf vorhandene Repository-Pfade; Websiteveröffentlichung wird nicht aus Schema-URIs abgeleitet."
     },
     {
       "id": "F-31",
       "title": "Abhängigkeiten und Testumgebung reproduzierbar festlegen",
       "original_severity": "Mittel",
-      "status": "Teilweise",
-      "change_or_remaining_work": "Direkte Python-Abhängigkeiten und Kusto-Paketversion fixiert. Transitive Locks, Action-SHAs und vollständige Engine-Matrix offen."
+      "status": "Implementiert – native Nachweise prüfen",
+      "change_or_remaining_work": "Python-/npm-Locks und feste Action-SHAs sichern die Prüfumgebung. Native Läufe und tatsächliche Engineversionen werden aufgezeichnet; vollständige native Reproduktion und unveränderliche Containerbindung sind gesondert zu prüfen."
     },
     {
       "id": "F-32",
       "title": "Board-Review nach Risiko und Prüftiefe organisieren",
       "original_severity": "Niedrig",
-      "status": "Offen – Governance",
-      "change_or_remaining_work": "Risiko- und Prüftiefenplanung benötigt tatsächliche Board-Mitglieder; keine Zuordnungen oder Termine erfunden."
+      "status": "Teilfix – externe/fachliche Evidenz offen",
+      "change_or_remaining_work": "Prüftiefe, Hochrisiko-/P0-Abdeckung, Fachrollen, Testfälle und offene Entscheidungen sind strukturiert vorbereitet. Tatsächliche Boardpersonen, Unabhängigkeit, Zuordnung und Termine bleiben offen; diese sind keine Voraussetzung für Maintainer-Entwicklung."
     }
   ],
   "current_version": "0.9.2",
-  "dispositions_ref": "review/RELEASE_0.9.2.md"
+  "dispositions_ref": "review/RELEASE_0.9.2.md",
+  "additional_work_baseline": "e3fda1c1a78f5052253b28e3626f5f78d13a9ea5",
+  "additional_work_report": "review/EXECUTION_VALIDATION.md"
 }

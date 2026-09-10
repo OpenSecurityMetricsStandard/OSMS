@@ -21,6 +21,8 @@ oracles exercise the exact boundaries independently of the catalog text.
 | STD-012 | Meeting plan is Green; any positive shortfall up to 25% is Amber | Fills the 0–10% shortfall and plan-equality gaps |
 | STD-015 | Flat through +50% is Amber; >50% or high-EPSS/SLA override is Red | Resolves missing small changes and overlapping Red/Amber; flat is not improvement |
 | STD-005 | Zero or negative verified return is Red; missing comparable trend/evidence is provisional | Covers negative values and prevents unsupported Green |
+| VAL-001 | Applicable scope <95% is Amber; applicable remediation <100% is Red; unmanaged critical findings override n/a | Makes the previously incomplete worst-of rule executable without inventing an 85% boundary |
+| SOC-078 | Noncritical SLA breach is Amber through 150%; >125% triggers early escalation; >150% or critical appetite breach is Red | Closes the gap between SLA and the former +25% wording; critical internet exposure is bounded by the lower of SLA and 72 h |
 
 Relative comparisons require an explicit zero-baseline rule. STD-012 with plan<=0
 has no relative assessment; STD-015 with a zero baseline treats zero as unchanged
@@ -28,37 +30,41 @@ and a positive value as Red. These are policy choices, not externally mandated
 ISO limits. A threshold/profile change creates a visible trend break. Evaluate raw
 values; display rounding must not move a value into another band.
 
-## Decisions still required
+## Additional candidate methods
 
-1. **Confidence production:** define evidence-based dimension scoring, mandatory
-   noncompensable validity gates, aggregation and minimum source/sample basis.
-   Keep data quality separate from statistical uncertainty. No arbitrary numeric
-   confidence rubric has been inserted into all 327 cards.
-2. **Normalization and composites:** version each child's direction, bounds,
-   normalization curve, output selection, missing-data treatment and weight set.
-   Preserve both raw and normalized values. Fix weights before the reporting period.
-3. **Typed contracts:** publish per-card input types, units, primary keys,
-   nullability, population/time anchors, outputs and numerical methods. A schema
-   presence check is not this contract. Multi-output cards require distinct named
-   results, not one ambiguous scalar.
-4. **Statistical/risk profiles:** select estimators per output, selection/censoring
-   treatment, uncertainty methods, Monte Carlo generator and dependency/horizon
-   assumptions. Review possible double-counting in STD-056 before changing it;
-   the audit did not establish that the model is definitely wrong.
-5. **Terminology:** decide whether SOC-023 measures false-alarm share or classical
-   false-positive rate; distinguish AIM-011 attack prevalence/detection coverage
-   from sensitivity and SOC-072 tolerance hits from calibration.
-6. **Governance:** adopt the charter, member/COI rules, quorum, decision classes and
-   freeze rule. No member identity, session, approval or date is fabricated here.
-   Suggested freeze rule: every mandatory gate must pass; missing evidence leaves
-   that gate unresolved. Reviewer counts alone do not establish review quality.
-7. **Framework mappings:** bind the edition, relationship and rationale. Current
-   ISO/IEC 27004 references are informative mappings, not conformity claims.
-   No restricted ISO/DIN draft has been uploaded or incorporated in this work.
-8. **Publication:** update the separate website from the complete GitHub-derived
-   export, preserve schema identities and publish a versioned compatibility note.
-   The new candidate `$id` does not claim that its URL is already deployed.
+STD-011 now defines numeric confidence profile `dq-checks/1`: five evidence-backed
+check pass fractions, fixed weights, mandatory dimensions and noncompensable gates.
+STD-003 now states stable competition ranks and the complete all-zero population
+boundary. Both changed definitions advance to card version 0.9.2.
 
-Each card should remain reviewable without a private book: where a normative
-rubric currently depends on a guide reference, publish an original open rubric or
-mark the calculation incomplete. Do not reproduce restricted source material.
+`reference/assurance.py` implements those methods plus fixed-anchor normalization,
+independent weighted contributions and DSPS reconstruction, design-limited Wilson
+intervals and aggregation of complete joint annual-loss draws. The open ordinal
+rubrics are in `reference/RUBRICS.md`; 12 cards now resolve their guide references
+inside this repository. Numeric anchors, source registers and empirical model
+parameters remain explicit application inputs, not inferred sample defaults.
+
+SOC-023, AIM-011 and SOC-072 retain their formulas and denominators with names and
+interpretation limits matching what is measured. STD-024 is an event rate per day,
+not a count. All cards explicitly retain draft lifecycle status.
+
+## Work still requiring implementation or real evidence
+
+1. Validate application source adapters against the complete calculation layer:
+   207 canonical quotient cards, 119 prepared-observation cards and SOC-003.
+   Calculation coverage does not establish source completeness or authenticity.
+2. Supply versioned source/check registers and risk-appetite anchors in applications;
+   verify all native engine implementations against the frozen profile/input set.
+3. Calibrate risk models and evaluate sampling, selection/censoring and control-credit
+   assumptions with real evidence. The pilot remains a separate empirical activity.
+4. Adopt actual Board membership, conflict rules, quorum and decision records when
+   that review body is established. Maintainer 0.x development continues meanwhile.
+5. Complete individual framework mapping editions, relationships, rationale and
+   evidence under `catalog/framework-mapping-policy.yaml`.
+6. Validate source-dimension population; the three long lineage paths now fit the
+   four-node path convention without removing their axes or evidence requirements.
+7. Update the externally handled website after repository integration and verify its
+   full schema, field, output-status and execution-profile behavior.
+
+Current evidence and remaining acceptance requirements are recorded in
+`review/EXECUTION_VALIDATION.md`.

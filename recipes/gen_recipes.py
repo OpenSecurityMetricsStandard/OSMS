@@ -331,9 +331,14 @@ COMP_ASSUM = {
 
 # ---------------- curated overrides (verified in the MVP run) ----------------
 CURATED = {}
-for f in [os.path.join(_here, "curated", "std-016.json"), os.path.join(_here, "curated", "soc-002.json")]:
+for f in [os.path.join(_here, "curated", "std-016.json"), os.path.join(_here, "curated", "soc-002.json"), os.path.join(_here, "curated", "soc-003.json")]:
     d = json.load(open(f))
     CURATED[d["card"]] = d
+
+sys.path.insert(0, _here)
+import soc003 as _soc003
+_soc003_card = next(c for c in cards if c['id']=='SOC-003')
+assert all(CURATED['SOC-003']['snippets'][k]==v for k,v in _soc003.snippets(_soc003_card['minimum_data_fields']).items()), 'SOC-003 maintained source and curated export differ'
 
 CURATED_ASSUM = json.load(open(os.path.join(_here, "curated", "curated_assumptions.json")))
 
@@ -1049,6 +1054,8 @@ if True:  # engine dialects: always built; published since CI run #5 (green on E
                                "note": "Run gates on this exact source and recipe hash; generation is not verification."}
         if cid in CURATED:
             rec["verification"].update(CURATED[cid].get("verification", {}))
+            if "empty_expect" in CURATED[cid]:
+                rec["empty_expect"] = CURATED[cid]["empty_expect"]
         for lang in dialects:
             rec.setdefault("assumptions", {})[lang] = "Candidate implementation; no engine verification is implied. See recipes/CONTRACTS.md and the versioned card."
         incomplete = rec.get("status") == "generated_skeleton" or (rec.get("mechanic") == "duration" and cid not in CURATED)
@@ -1074,6 +1081,7 @@ if True:  # engine dialects: always built; published since CI run #5 (green on E
             for lang in ("spl", "esql"):
                 cand[cid][lang] = dialects[lang]
             cand[cid]["status"] = rec["status"]
+    fixtures.append(json.load(open(os.path.join(_here, "fixtures", "soc003.json"))))
     # Preserve arithmetic examples of incomplete templates separately. They
     # cannot count as conformance evidence for an implemented metric.
     template_fixtures = [f for f in fixtures if recipes[f["card"]].get("evaluation_status") == "mapping_required"]
@@ -1090,6 +1098,8 @@ if True:  # engine dialects: always built; published since CI run #5 (green on E
         json.dump({"candidates": excel_cand}, open(f"{OUT}/excel_candidates.json", "w"), ensure_ascii=False, indent=0)
     print(f"Engine candidates generated: {len(cand)} Karten x SPL+ES|QL | Fixtures: {len(fixtures)} | Lints: PASS")
     print("Final implementation status:", {status: sum(r.get("status") == status for r in recipes.values()) for status in sorted({r.get("status") for r in recipes.values()})})
+    from portable.export import build as build_execution_profiles
+    build_execution_profiles(cards, recipes, REPO, OUT)
     # Re-Serialisierung: injizierte Engine-Dialekte in die Bundle-Artefakte schreiben
     rec_js = json.dumps({"bundle_version": "0.6.0-draft", "source_catalog": "catalog/osms-catalog.yaml",
                          "source_catalog_version": catalog_version,
@@ -1097,6 +1107,6 @@ if True:  # engine dialects: always built; published since CI run #5 (green on E
                          "recipes": recipes}, ensure_ascii=False, separators=(",", ":"))
     open(f"{OUT}/recipes.json", "w").write(rec_js)
     man = {os.path.basename(p): hashlib.sha256(open(p, "rb").read()).hexdigest()
-           for p in [f"{OUT}/catalog.json", f"{OUT}/recipes.json"]}
+           for p in [f"{OUT}/catalog.json", f"{OUT}/recipes.json", f"{OUT}/execution-profiles.json", f"{OUT}/execution-coverage.json"]}
     open(f"{OUT}/manifest.json", "w").write(json.dumps(man, indent=1))
     print("Größen final: recipes %.2f MB | Manifest final:" % (len(rec_js)/1e6), man)

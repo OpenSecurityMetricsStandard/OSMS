@@ -21,6 +21,12 @@ def build(tag, out):
     root=Path(__file__).resolve().parents[1]
     files=subprocess.check_output(['git','ls-files','-z'],cwd=root).decode().split('\0')
     payload={p:(root/p).read_bytes() for p in sorted(files) if p and (root/p).is_file()}
+    # CI evidence is an explicit release input, including optional-engine status.
+    # Every included generated evidence file is covered by the same manifest.
+    if (out/'gate-evidence.json').is_file():payload['release-evidence/gate-evidence.json']=(out/'gate-evidence.json').read_bytes()
+    if (out/'engine-evidence').is_dir():
+        for file in sorted((out/'engine-evidence').rglob('*')):
+            if file.is_file():payload['release-evidence/'+str(file.relative_to(out))]=file.read_bytes()
     manifest=''.join(hashlib.sha256(data).hexdigest()+'  '+name+'\n' for name,data in payload.items())
     epoch=int(os.environ.get('SOURCE_DATE_EPOCH') or subprocess.check_output(['git','show','-s','--format=%ct','HEAD'],cwd=root))
     timestamp=datetime.fromtimestamp(max(epoch,315532800),timezone.utc).timetuple()[:6]
@@ -29,7 +35,7 @@ def build(tag, out):
     with zipfile.ZipFile(archive,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as target:
         for name,data in {**payload,'MANIFEST-SHA256.txt':manifest.encode()}.items():
             info=zipfile.ZipInfo(name,timestamp);info.compress_type=zipfile.ZIP_DEFLATED
-            mode = 0o100755 if name in payload and (root/name).stat().st_mode & 0o111 else 0o100644
+            mode = 0o100755 if (root/name).is_file() and (root/name).stat().st_mode & 0o111 else 0o100644
             info.external_attr=(mode<<16)
             target.writestr(info,data)
     (out/'MANIFEST-SHA256.txt').write_text(manifest)
