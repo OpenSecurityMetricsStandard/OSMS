@@ -16,8 +16,9 @@ Usage:
       --hec http://localhost:8088 --password $SPLUNK_PASSWORD
   python3 recipes/ci/spl_runner.py --out recipes/out --dry-run
 """
-import json, re, os, sys, time, argparse, ssl, datetime as dt
+import json, re, os, sys, time, argparse, ssl
 import urllib.request, urllib.error, urllib.parse
+from spl_fixture import epoch, rows_for_spl
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--out", default="recipes/out")
@@ -32,9 +33,6 @@ A = ap.parse_args()
 CAND = json.load(open(os.path.join(A.out, "ci_candidates.json")))
 FIX = json.load(open(os.path.join(A.out, "fixtures.json")))
 CTX = ssl.create_default_context(); CTX.check_hostname = False; CTX.verify_mode = ssl.CERT_NONE
-
-def epoch(iso):
-    return int(dt.datetime.strptime(iso, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=dt.timezone.utc).timestamp())
 
 def adapt(search, fixture=None):
     s = search
@@ -56,15 +54,6 @@ def st_for(fixture):
 
 def ix_for(fixture):
     return (fixture.get("tables") or {}).get("spl_index") or "osms"
-
-def rows_for_spl(fixture):
-    out = []
-    for r in fixture["rows"]:
-        row = {}
-        for k, v in r.items():
-            row[k] = epoch(v) if fixture["fields"].get(k) == "date" else v
-        out.append(row)
-    return out
 
 def mgmt(method, path, data=None):
     body = urllib.parse.urlencode(data).encode() if data is not None else None
