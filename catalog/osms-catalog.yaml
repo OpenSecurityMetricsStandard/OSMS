@@ -12704,7 +12704,7 @@ cards:
 - id: DET-012
   name: Corrective Action Closure Effectiveness
   osms_version: 0.9.2
-  card_version: 0.9.1
+  card_version: 0.9.2
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
   type_label: Outcome Metric
@@ -12803,7 +12803,7 @@ cards:
   - root_cause_id
   - lookback_window
   framework_mapping:
-  - NIST CSF 2.0 ID.IM/RS.IM
+  - NIST CSF 2.0 ID.IM
   - CIS Controls 17/18
   audit_test: Check the action closure against technical re-tests; the same root cause in the lookback as a failure.
   reproducibility: 'Production rule: Corrective Action Closure Effectiveness is calculated from the defined data
@@ -12972,7 +12972,7 @@ cards:
 - id: DET-014
   name: Repeat Incident Root Cause Recurrence
   osms_version: 0.9.2
-  card_version: 0.9.1
+  card_version: 0.9.2
   release_status: review_candidate
   domain: Detection Engineering & Response Quality
   type_label: Risk Indicator (KRI)
@@ -13054,7 +13054,7 @@ cards:
   - root_cause_taxonomy_id
   - remediation_validation_status
   framework_mapping:
-  - NIST CSF 2.0 ID.IM/RS.IM
+  - NIST CSF 2.0 ID.IM
   - CIS Controls 17
   audit_test: Check the root-cause taxonomy for repetition; inspect the action status and validation.
   reproducibility: 'Production rule: Repeat Incident Root Cause Recurrence is calculated from the defined data sources,
@@ -15595,7 +15595,7 @@ cards:
 - id: EXP-001
   name: CTEM Attack-Path & Lateral-Movement Exposure Coverage
   osms_version: 0.9.2
-  card_version: 0.9.1
+  card_version: 0.9.2
   release_status: review_candidate
   domain: Exposure Management / CTEM
   type_label: Risk Indicator (KRI)
@@ -15712,7 +15712,7 @@ cards:
   - owner_id
   - timestamp
   framework_mapping:
-  - NIST CSF 2.0 ID.RA/DE.CM/PR.AC
+  - NIST CSF 2.0 ID.RA/DE.CM/PR.AA
   - CIS Controls 1/4/6/7/13
   - MITRE ATT&CK
   audit_test: Track the top attack paths to crown jewels/tier-0; validate the choke points, remediation tickets,
@@ -24469,7 +24469,7 @@ cards:
 - id: RES-002
   name: End-to-End Service Recovery Test Depth
   osms_version: 0.9.2
-  card_version: 0.9.1
+  card_version: 0.9.2
   release_status: review_candidate
   domain: Resilience, Crisis & Recovery
   type_label: Control Indicator (KCI)
@@ -24554,7 +24554,7 @@ cards:
   - business_acceptance_status
   framework_mapping:
   - CIS Controls 11
-  - NIST CSF 2.0 RC.RP/RC.RP
+  - NIST CSF 2.0 RC.RP
   - DORA EIOPA
   - ENISA NIS2 Guidance
   audit_test: 'Check the test reports: the scope, restore point, auth, network, data integrity, user acceptance,

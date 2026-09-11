@@ -4,6 +4,13 @@ OSMS definitions and principles in this repository are authoritative. An engine
 profile implements named card outputs; it does not redefine their formula, cohort,
 units, estimator, risk-appetite thresholds or missing-data rules.
 
+The pre-board candidate adds native Kusto functional CI for all 327 profiles and
+optional native Excel/DAX adapters. See [current pre-board scope](../review/PREBOARD_READINESS.md)
+and [desktop verification](NATIVE_DESKTOP_VERIFICATION.md). Compatibility depends
+on matching actual reports, never on the historical inventory below. The bounded
+SPL/ES export and spreadsheet profiles cannot carry STD-002a's 100,000-draw reporting
+minimum; complete Python/SQL populations are the tested route for that workload.
+
 ## Historical inventory before the additional profiles
 
 This inventory describes the source at

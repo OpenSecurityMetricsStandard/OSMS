@@ -6,6 +6,19 @@ from pathlib import Path
 import yaml
 ROOT=Path(__file__).resolve().parents[1]
 
+def validate_identifiers(reference):
+    """Validate explicitly versioned identifiers, never infer relationship support."""
+    if 'NIST CSF 2.0' not in reference:
+        return {'status':'not_checked','category_ids':[]}
+    registry=yaml.safe_load((ROOT/'catalog/framework-identifiers.yaml').read_text(encoding='utf-8'))
+    spec=registry['frameworks']['nist_csf_2_0']
+    identifiers=re.findall(r'\b(?:GV|ID|PR|DE|RS|RC)\.[A-Z]{2}\b',reference)
+    unknown=set(identifiers)-set(spec['category_ids'])
+    if unknown:raise ValueError('Unknown CSF 2.0 categories: '+', '.join(sorted(unknown)))
+    if len(identifiers)!=len(set(identifiers)):raise ValueError('Duplicate CSF category in one association')
+    return {'status':'category_ids_checked' if identifiers else 'function_level_only',
+            'category_ids':identifiers,'source':spec['source'],'locator':spec['locator']}
+
 def inventory(cards,reviews):
     entries={}
     for card in cards:
@@ -17,7 +30,8 @@ def inventory(cards,reviews):
                 'source_reference':reference,'source_reference_sha256':hashlib.sha256(reference.encode()).hexdigest(),
                 'edition_stated':next((g for g in edition.groups() if g),None) if edition else None,
                 'relationship':'not_assessed','review_status':'unreviewed','rationale':None,'evidence_ref':None,
-                'reviewer':None,'decision_date':None,'conformity_claim':False}
+                'reviewer':None,'decision_date':None,'conformity_claim':False,
+                'identifier_validation':validate_identifiers(reference)}
     seen=set()
     for review in reviews:
         key=review.get('mapping_id')

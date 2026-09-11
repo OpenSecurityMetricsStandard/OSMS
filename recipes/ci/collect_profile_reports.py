@@ -6,7 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 
-DIALECT={'python':'py','duckdb':'gsql','postgresql':'pg','formulas':'xlsx','libreoffice':'xlsx','spl':'spl','esql':'esql'}
+DIALECT={'python':'py','duckdb':'gsql','postgresql':'pg','formulas':'xlsx','libreoffice':'xlsx','excel':'xlsx','kusto':'kql','dax':'dax','spl':'spl','esql':'esql'}
 
 
 def collect(folder, report_folder=None):

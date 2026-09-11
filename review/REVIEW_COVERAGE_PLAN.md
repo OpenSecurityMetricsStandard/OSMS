@@ -4,6 +4,11 @@ This is a technical review plan. Member identities, assignments, quorum votes an
 meeting dates are recorded when they exist. They are not prerequisites for the
 maintainer to correct or release an identified 0.x draft.
 
+[Pre-board dossiers and verification](PREBOARD_READINESS.md) provide the executable
+327-card review packet and per-association mapping material. The
+[charter proposal](BOARD_CHARTER_PROPOSAL.md) is ready for actual adoption; it is not
+a record of an adopted charter or a completed review.
+
 Review a named source commit and its validation artifacts. Evaluate semantic
 changes against the previous named definition and retain any trend-break decision.
 Subsequent changes remain possible and receive a new identified review revision.

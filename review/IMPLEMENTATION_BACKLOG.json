@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0-draft",
-  "source_catalog_sha256": "fc4e030e95e109b94bd50b30823f04d45edc92ca06ce3aca284b12292d050da7",
-  "profile_bundle_sha256": "123f05c9fa31e38fd11db41da487fadd72f2489708a4ee46912c1d4108756dbe",
+  "source_catalog_sha256": "1b128973da1db2d71c9381e504eb9a328902fd2a7efae2491438a97aa453fe2c",
+  "profile_bundle_sha256": "f89438ca0e81b80721a3612a7820eb8876b9110d8c6c4b6cd6f1072cba3de917",
   "catalog_cards": 327,
   "cards_without_additional_profiles": 0,
   "prepared_observation_cards": 119,
@@ -12,7 +12,7 @@
   "remaining_work": [
     {
       "workstream": "native_execution",
-      "detail": "Run the candidate CI and retain its actual engine reports; Kusto and DAX require their native environments; Microsoft Excel execution is separate from formulas and LibreOffice."
+      "detail": "Native Kusto is integrated in CI. Retain the final candidate reports; Microsoft Excel and DAX still require their native environments. Request generation is not execution evidence."
     },
     {
       "workstream": "source_adapters",
@@ -21,7 +21,7 @@
     {
       "workstream": "framework_mapping",
       "finding_id": "F-27",
-      "detail": "1149 source-bound associations explicitly not assessed until reviewed editions, rationale and evidence are supplied."
+      "detail": "1149 per-association review records with card-specific context are prepared; invalid NIST CSF 2.0 category references are corrected. Edition-specific relationship rationale and evidence remain unassessed."
     },
     {
       "workstream": "pilot",
@@ -44,7 +44,7 @@
     {
       "workstream": "simulation_platform_capacity",
       "finding_id": "F-24",
-      "detail": "STD-002a requires at least 100000 complete draws for reporting. Bounded SPL/ES export/Excel profiles expose reporting_eligible=0 below that basis; use a capable full-population engine and retain its evidence."
+      "detail": "Full 99999/100000/100001 draw populations are checked in Python and DuckDB. Reporting starts at 100000. Bounded SPL/ES export/Excel profiles cannot meet that reporting basis; route the complete population to a capable engine."
     }
   ]
 }

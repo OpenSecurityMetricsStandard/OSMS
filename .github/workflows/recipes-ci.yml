@@ -29,7 +29,7 @@ jobs:
         run: |
           python recipes/ci/profile_runner.py --bundle recipes/out --engine python
           python recipes/ci/profile_runner.py --bundle recipes/out --engine duckdb
-          python recipes/ci/profile_runner.py --bundle recipes/out --engine formulas --case-ids three_of_four,duplicate,zero_denominator,operand_case,scope_id_case
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine formulas
           node recipes/kql_check.js recipes/out/profile-kql-jobs.json
       - name: Prepared observation profiles (all 119 cards)
         run: |
@@ -76,8 +76,7 @@ jobs:
         run: python recipes/ci/esql_runner.py --out recipes/out --es http://localhost:9200
       - name: Canonical quotient profiles on native ES|QL
         run: |
-          python recipes/ci/profile_runner.py --bundle recipes/out --engine esql --case-ids three_of_four --report-suffix positive
-          python recipes/ci/profile_runner.py --bundle recipes/out --engine esql --cards HRM-004,STD-005,STD-073,SOC-023,SOC-063,SOC-065 --report-suffix boundaries
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine esql
       - name: Elasticsearch logs on failure
         if: failure()
         run: docker logs es 2>&1 | tail -80
@@ -93,8 +92,12 @@ jobs:
             recipes/out/profile-report-semantic-esql*.json
 
   excel:
-    name: Excel engine (LibreOffice Calc)
+    name: LibreOffice Calc partition ${{ matrix.shard }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
@@ -107,17 +110,17 @@ jobs:
           sudo apt-get install -y --no-install-recommends libreoffice-calc
       - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
       - name: Fixture and empty-run verification (second engine)
+        if: matrix.shard == 0
         run: python recipes/ci/excel_runner.py --out recipes/out --soffice soffice
       - name: Canonical quotient profiles on LibreOffice Calc
         run: |
-          python recipes/ci/profile_runner.py --bundle recipes/out --engine libreoffice --case-ids three_of_four --report-suffix positive
-          python recipes/ci/profile_runner.py --bundle recipes/out --engine libreoffice --cards HRM-004,STD-005,STD-073,SOC-023,SOC-063,SOC-065 --report-suffix boundaries
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine libreoffice --shard ${{ matrix.shard }}/4
       - name: Prepared observation profiles on LibreOffice Calc
-        run: python recipes/ci/semantic_runner.py --bundle recipes/out --engine libreoffice
+        run: python recipes/ci/semantic_runner.py --bundle recipes/out --engine libreoffice --shard ${{ matrix.shard }}/4
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: always()
         with:
-          name: excel-report
+          name: excel-report-${{ matrix.shard }}
           path: |
             recipes/out/excel_report.json
             recipes/out/profile-report-libreoffice*.json
@@ -165,8 +168,7 @@ jobs:
         env:
           SPLUNK_PASSWORD: ${{ secrets.SPLUNK_CI_PASSWORD }}
         run: |
-          python recipes/ci/profile_runner.py --bundle recipes/out --engine spl --case-ids three_of_four --report-suffix positive
-          python recipes/ci/profile_runner.py --bundle recipes/out --engine spl --cards HRM-004,STD-005,STD-073,SOC-023,SOC-063,SOC-065 --report-suffix boundaries
+          python recipes/ci/profile_runner.py --bundle recipes/out --engine spl
       - name: Splunk logs on failure
         if: failure()
         run: docker logs splunk 2>&1 | tail -120
@@ -227,9 +229,36 @@ jobs:
             recipes/out/profile-report-postgresql.json
             recipes/out/profile-report-semantic-postgresql*.json
 
+  kusto:
+    name: Native Kusto functional conformance
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      OSMS_KUSTO_IMAGE_DIGEST: sha256:5da012eb632c3713f78015af15b5a0b5ca420e319cd09e30b828fd8321017a48
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-checks.txt -c requirements-checks.lock
+      - name: Start disposable loopback query engine
+        run: |
+          docker run -d --name kusto --memory 4g -p 127.0.0.1:8080:8080 -e ACCEPT_EULA=Y "mcr.microsoft.com/azuredataexplorer/kustainer-linux@$OSMS_KUSTO_IMAGE_DIGEST"
+          python recipes/ci/wait_kusto.py
+      - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
+      - run: python recipes/ci/kusto_runner.py --bundle recipes/out
+      - name: Engine diagnostics
+        if: failure()
+        run: docker logs kusto --tail 100
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: kusto-profile-report
+          path: recipes/out/profile-report-kusto.json
+
   evidence-matrix:
     name: Source-bound conformance evidence matrix
-    needs: [gates, esql, excel, spl, postgresql]
+    needs: [gates, esql, excel, spl, postgresql, kusto]
     if: always()
     runs-on: ubuntu-latest
     permissions:
@@ -248,6 +277,12 @@ jobs:
         run: |
           gh run download "$GITHUB_RUN_ID" --repo "$GITHUB_REPOSITORY" --dir execution-evidence
           python recipes/ci/collect_profile_reports.py --bundle recipes/out --reports execution-evidence
+      - name: Assemble source-bound per-card review dossiers
+        run: python tools/build_board_packet.py --bundle recipes/out --out recipes/out/board-packet
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: preboard-review-packet
+          path: recipes/out/board-packet.zip
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: always()
         with:

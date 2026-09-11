@@ -25,7 +25,9 @@ def contract(card):
     kind = KINDS.get(card['id'],'proportion')
     if kind == 'proportion' and not m.group(3):
         raise ValueError('Unclassified unscaled quotient: '+card['id'])
-    definition = {k:card[k] for k in ('formula','reproducibility','special_cases_gates','unit','card_version')}
+    definition = {k:card[k] for k in ('formula','reproducibility','special_cases_gates','unit','card_version',
+        'numerator_denominator','scope','direction','minimum_data_fields','data_confidence',
+        'confidence_production_rule','target_thresholds','decision_chain','version_break_rule')}
     digest=hashlib.sha256(json.dumps(definition,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
     return {'card_id':card['id'],'card_version':card['card_version'],'profile_version':'1.0.0-draft',
             'contract_hash':digest,'kind':kind,'numerator_min':-1e15 if card['id'] in ('STD-005','STD-076','STD-073') else 0,'scale':100 if m.group(3) else 1,
