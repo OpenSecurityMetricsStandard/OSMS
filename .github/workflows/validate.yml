@@ -29,7 +29,9 @@ jobs:
       - name: Formula audit (check classes + invariants)
         run: python tools/formula_audit.py catalog/osms-catalog.yaml
       - name: Framework mapping inventory and explicit review validation
-        run: python tools/framework_mappings.py --out framework-mapping-register.json
+        run: |
+          python tools/framework_mappings.py --require-triaged --out framework-mapping-register.json
+          python tools/build_mapping_report.py --check
       - name: Reproducible synthetic annual-loss benchmark
         run: python reference/risk_scenarios.py --out risk-benchmark-report.json
       - name: Drill engine coverage & demo (13 calc types)

@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: CC-BY-4.0
-schema_version: '1.0'
-# Add actual source-bound decisions here. Unlisted associations are not assessed.
-# tools/framework_mappings.py validates identity, edition, rationale and evidence.
+schema_version: '2.0'
+# Actual review decisions only. Desk assessments do not populate this register.
+# Bind the exact assessment hash, card/reference hashes, reviewer/date/rationale,
+# decision (approve/reject) and the actual OSMS issue/PR review_record_ref.
 reviews: []

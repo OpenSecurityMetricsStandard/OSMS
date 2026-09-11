@@ -82,7 +82,7 @@ checks are reducer tests, separately identified from native ES execution.
 | F-06 / #7 | Every composite output has an oracle; gate/weight mutations | Microsoft Excel and DAX native composite/gate reports |
 | F-23 / #24 | Synthetic sensitivity, capacity, population and replay tests | Actual pilot observations, stability, lagged outcomes and case-mix assessment |
 | F-26 / #27 | Proposed charter and candidate-specific decision templates | Actual adoption, members, timetable and applicable review gates |
-| F-27 / #28 | Identifier corrections and 1,149 per-association review records | Edition-specific relationship rationale and source evidence; associations remain not assessed |
+| F-27 / #28 | 1,149 triaged associations; 762 source-bound desk assessments and strict review binding | 387 remaining substantive assessments plus actual reviewer decisions; see [F-27 assessment](framework/F27_ASSESSMENT.md) |
 | F-28 / #29 | Full export and `tools/verify_website_contract.py` | Externally handled deployment, retained artifacts, version match and actual browser behavior |
 | F-32 / #33 | 327 dossiers and expertise/priority coverage plan | Actual independent reviewer assignments, conflict checks and recorded review coverage |
 

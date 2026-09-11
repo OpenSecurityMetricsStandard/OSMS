@@ -6,6 +6,11 @@ from pathlib import Path
 from .ratios import generate, DIALECTS
 
 
+def write_json(path,value,**options):
+    """The profile bundle has the same UTF-8/LF bytes on Windows and Linux."""
+    Path(path).write_bytes((json.dumps(value,**options)+'\n').encode('utf-8'))
+
+
 def build(cards, recipes, root, out):
     import soc003
     import esql_exact
@@ -40,11 +45,11 @@ def build(cards, recipes, root, out):
     hashes={}
     for group in ['recipes/portable/*.py','recipes/semantic/*.py','recipes/gen_recipes.py','recipes/curated/*.json','recipes/fixtures/*.json','recipes/soc003.py','recipes/esql_exact.py','recipes/dax_profiles.py','recipes/ci/*.py','recipes/ci/*.ps1','recipes/export_implementation.py','recipes/xlsx_dialect.py','reference/assurance.py','reference/execution_store.py','catalog/osms-catalog.yaml','catalog/principles.yaml','reference/RUBRICS.md','reference/ASSURANCE_PROFILES.md','recipes/EXECUTION_PROFILES.md']:
         for p in sorted(Path(root).glob(group)):
-            hashes[str(p.relative_to(root))]=hashlib.sha256(p.read_bytes()).hexdigest()
+            hashes[p.relative_to(root).as_posix()]=hashlib.sha256(p.read_bytes()).hexdigest()
     payload={'schema_version':'1.0.0-draft','source_files_sha256':hashes,
              'stage_notice':'Calculation profiles are not raw-source adapters, approval decisions, or evidence of native engine execution.',
              'profiles':profiles}
-    Path(out,'execution-profiles.json').write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':'))+'\n')
+    write_json(Path(out,'execution-profiles.json'),payload,ensure_ascii=False,separators=(',',':'))
     matrix=[]
     for c in cards:
         cid=c['id'];ps=profiles.get(cid,{})
@@ -69,6 +74,6 @@ def build(cards, recipes, root, out):
     for cid,p in semantic.items():
         schema=','.join(k+':'+{'number':'real','timestamp':'datetime','string':'string','boolean':'bool'}[s['type']] for k,s in p['plan']['inputs'].items())
         jobs.append({'id':cid,'q':'let osms_input=datatable('+schema+')[ ];\n'+p['dialects']['kql']})
-    Path(out,'profile-kql-jobs.json').write_text(json.dumps(jobs)+'\n')
-    Path(out,'execution-coverage.json').write_text(json.dumps(coverage,indent=2)+'\n')
+    write_json(Path(out,'profile-kql-jobs.json'),jobs)
+    write_json(Path(out,'execution-coverage.json'),coverage,indent=2)
     return payload

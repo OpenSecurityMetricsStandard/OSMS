@@ -1,5 +1,28 @@
 # Native Microsoft Excel and DAX verification
 
+For the F-03/F-06 acceptance scope, the checked wrapper runs the eight finding
+cards and verifies every expected case/output before reporting success:
+
+```powershell
+./recipes/ci/run_desktop_acceptance.ps1 -Engine excel -Scope audit-critical
+./recipes/ci/run_desktop_acceptance.ps1 -Engine dax -Scope audit-critical -Server localhost:PORT -TomAssembly PATH_TO_TABULAR_DLL -AdomdAssembly PATH_TO_ADOMD_DLL
+```
+
+Use `-Scope all` for all 327 profiles. This requires an actual Windows host with
+the licensed products and pinned Python dependencies already installed. No native
+Excel or DAX execution is claimed by providing these commands. The wrapper stops
+on engine or acceptance failure. Preserve the original reports before another run.
+
+The platform-independent planning command below emits an explicitly unexecuted
+fixture manifest. The verification command checks exact source/fixture hashes,
+case/output completeness, duplicates, timestamps, status and actual output values;
+an incomplete, stale, aborted or emulated report fails.
+
+```sh
+python tools/desktop_acceptance.py --plan-only --scope all --out desktop-case-manifest.json
+python tools/desktop_acceptance.py --engine excel --scope audit-critical --report recipes/out/profile-report-desktop-excel.json --out desktop-acceptance.json
+```
+
 These optional test adapters require installed native products. They have no
 simulator fallback. Their presence is not a passing runtime report. Use a disposable
 local Analysis Services test instance with permission to create/delete test models;
@@ -38,6 +61,13 @@ The model builder uses [DAX table constructors](https://learn.microsoft.com/en-u
 for typed fixture expressions and [TOM calculated-table columns](https://learn.microsoft.com/en-us/dotnet/api/microsoft.analysisservices.tabular.calculatedtablecolumn)
 for the model schema. Timestamp precision and missing-data behavior must pass the
 actual output tolerances; an adapter must not round them into an apparent pass.
+
+Use a fresh checkout that honors the repository's LF attributes. The Windows
+wrapper enables Python UTF-8 mode; when invoking the generator manually on Windows,
+use `python -X utf8 recipes/gen_recipes.py --emit-candidates --out recipes/out`.
+Source paths in the profile bundle use forward slashes and its JSON bytes use
+UTF-8/LF on both platforms. A checkout with changed source bytes is intentionally
+rejected, rather than weakening the source-hash comparison.
 
 Website artifact comparison is separate. After external deployment, retain its
 catalog, schema, execution profiles and a JSON attestation with `source_commit`,

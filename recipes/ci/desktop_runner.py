@@ -3,6 +3,7 @@
 """Run independent fixtures in installed Excel or disposable local DAX models."""
 import argparse
 import copy
+from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
@@ -18,6 +19,21 @@ from semantic.model import instant
 from semantic_runner import equal
 from incident_cases import cases as incident_cases
 import xlsx_dialect as xl
+
+
+def fixture_hash(case):
+    return hashlib.sha256(json.dumps(case,sort_keys=True,separators=(',', ':'),ensure_ascii=False).encode()).hexdigest()
+
+
+def expected_cases(bundle, wanted=None):
+    """Enumerate the independent fixtures; do not execute a desktop engine."""
+    for cid in sorted(wanted if wanted is not None else bundle['profiles']):
+        ps=bundle['profiles'][cid];semantic='prepared_observations_v1' in ps
+        pid='incident_snapshot_v1' if cid=='SOC-003' else 'prepared_observations_v1' if semantic else 'canonical_quotient_v1'
+        p=ps[pid]
+        fixtures=incident_cases() if cid=='SOC-003' else [c for f in p['fixtures'] for c in boundaries(p['plan'],f)] if semantic else cases(p['contract'])
+        for case in fixtures:
+            yield cid,pid,p,case,semantic
 
 
 def literal(v,kind):
@@ -117,29 +133,30 @@ def main():
     wanted=set(a.cards.split(',')) if a.cards else set(bundle['profiles'])
     if wanted-set(bundle['profiles']):ap.error('Unknown card')
     report={'engine':a.engine,'stage':'typed_calculation_profiles','profile_bundle_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),
-            'source_files_sha256':bundle['source_files_sha256'],'requested_subset':a.cards,'cases':[],'engine_version':None,'aborted':False}
+            'source_files_sha256':bundle['source_files_sha256'],'requested_subset':a.cards,'cases':[],'engine_version':None,'aborted':False,
+            'started_at':datetime.now(timezone.utc).isoformat(),'execution_kind':'native_desktop'}
+    root=Path(__file__).resolve().parents[2]
+    for name,expected_hash in bundle['source_files_sha256'].items():
+        if hashlib.sha256((root/name).read_bytes()).hexdigest()!=expected_hash:
+            ap.error('Stale source bundle: '+name)
     with tempfile.TemporaryDirectory(prefix='osms-desktop-') as d:
-        for cid in sorted(wanted):
-            ps=bundle['profiles'][cid];semantic='prepared_observations_v1' in ps
-            pid='incident_snapshot_v1' if cid=='SOC-003' else 'prepared_observations_v1' if semantic else 'canonical_quotient_v1';p=ps[pid]
-            fixtures=incident_cases() if cid=='SOC-003' else [c for f in p['fixtures'] for c in boundaries(p['plan'],f)] if semantic else cases(p['contract'])
-            for c in fixtures:
-                expected=c['expected'] if semantic else c['expect'];name=c['name'] if semantic else c['case_id']
-                row={'card_id':cid,'case_id':name,'profile_id':pid,'outputs':list(expected),'status':'fail'}
-                try:
-                    actual,version=execute(p,c,a.engine,Path(d),a,semantic);report['engine_version']=version
-                    contracts=p['plan']['output_contracts'] if semantic else p['contract']['outputs']
-                    errors=[k for k,v in expected.items() if k not in actual or not equal(actual[k],v,contracts.get(k))]
-                    if c.get('status') and a.engine=='dax' and actual.get('evaluation_status')!=c['status']:errors.append('evaluation_status')
-                    row.update(status='fail' if errors else 'pass',failed_outputs=errors,actual=actual)
-                except Exception as exc:
-                    row['error']=type(exc).__name__+': '+str(exc)
-                    if isinstance(exc,subprocess.CalledProcessError):row['error']+=' '+str(exc.stderr)[:2000]
-                    report['aborted']=True
-                report['cases'].append(row)
-                if row['status']=='fail':print(cid,name,row.get('error',row.get('failed_outputs')),flush=True)
-                if report['aborted']:break
+        for cid,pid,p,c,semantic in expected_cases(bundle,wanted):
+            expected=c['expected'] if semantic else c['expect'];name=c['name'] if semantic else c['case_id']
+            row={'card_id':cid,'case_id':name,'profile_id':pid,'fixture_sha256':fixture_hash(c),'outputs':list(expected),'status':'fail'}
+            try:
+                actual,version=execute(p,c,a.engine,Path(d),a,semantic);report['engine_version']=version
+                contracts=p['plan']['output_contracts'] if semantic else p['contract']['outputs']
+                errors=[k for k,v in expected.items() if k not in actual or not equal(actual[k],v,contracts.get(k))]
+                if c.get('status') and a.engine=='dax' and actual.get('evaluation_status')!=c['status']:errors.append('evaluation_status')
+                row.update(status='fail' if errors else 'pass',failed_outputs=errors,actual=actual)
+            except Exception as exc:
+                row['error']=type(exc).__name__+': '+str(exc)
+                if isinstance(exc,subprocess.CalledProcessError):row['error']+=' '+str(exc.stderr)[:2000]
+                report['aborted']=True
+            report['cases'].append(row)
+            if row['status']=='fail':print(cid,name,row.get('error',row.get('failed_outputs')),flush=True)
             if report['aborted']:break
+    report['completed_at']=datetime.now(timezone.utc).isoformat()
     report['passed']=sum(r['status']=='pass' for r in report['cases']);report['failed']=len(report['cases'])-report['passed']
     Path(a.bundle,'profile-report-desktop-'+a.engine+'.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
     print(report['passed'],'passed;',report['failed'],'failed')
