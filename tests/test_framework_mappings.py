@@ -7,7 +7,7 @@ import unittest
 
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
-from framework_mappings import assessment_hash, digest, inventory, repository_inventory, validate_identifiers
+from framework_mappings import assessment_hash, cited_elements, digest, inventory, repository_inventory, validate_identifiers
 
 
 class FrameworkMappingTests(unittest.TestCase):
@@ -109,6 +109,21 @@ class FrameworkMappingTests(unittest.TestCase):
         for ref in ('PR.AA-99','PR.AA-05x','PR.X','XX','PR.AA/PR.AA','RS.IM','PR.AC'):
             with self.subTest(ref=ref),self.assertRaises(ValueError):validate_identifiers('NIST CSF 2.0 '+ref)
 
+    def test_compound_ai_and_algorithm_citations_are_not_silently_reduced(self):
+        self.assertEqual(cited_elements('NIST AI RMF','NIST AI RMF: Govern, Map, Measure'),
+                         ['GOVERN','MAP','MEASURE'])
+        self.assertEqual(cited_elements('OWASP SAMM','OWASP SAMM Verification'),['Verification'])
+        self.assertEqual(cited_elements('NIST PQC','NIST PQC FIPS 203/204/205'),['FIPS-203','FIPS-204','FIPS-205'])
+        for tail in ('Measure, Magage','Govern, Govern','Measure.X','Unknown'):
+            with self.subTest(tail=tail),self.assertRaises(ValueError):cited_elements('NIST AI RMF','NIST AI RMF: '+tail)
+
+    def test_replacement_proposal_must_exist_and_stay_outside_original_citation(self):
+        for proposed in (['PR.XX'],['PR.AA'],['PR.DS','PR.DS'],'PR.DS'):
+            with self.subTest(proposed=proposed),self.assertRaises(ValueError):
+                self.run_inventory({**self.assessment,'proposed_elements_outside_citation':proposed})
+        a={**self.assessment,'proposed_elements_outside_citation':['PR.DS']}
+        self.assertEqual(self.run_inventory(a)['mappings'][0]['supported_elements'],['PR.AA'])
+
     def test_repository_counterexamples_and_approval_state(self):
         r=repository_inventory()
         self.assertEqual(r['mapping_count'],1149)
@@ -125,5 +140,17 @@ class FrameworkMappingTests(unittest.TestCase):
         self.assertEqual(scoped['supported_elements'],['AU-9'])
         self.assertEqual(scoped['unsupported_elements'],['AU-10','AU-11'])
         self.assertEqual(scoped['relationship'],'partial_support')
+        trace=rows['AIM-008','NIST AI RMF: Govern, Map, Measure']
+        self.assertEqual(trace['unsupported_elements'],['GOVERN','MAP'])
+        self.assertEqual(trace['supported_elements'],['MEASURE.2.8','MEASURE.2.9'])
+        attack=rows['AIM-011','NIST AI RMF: Manage']
+        self.assertEqual(attack['relationship'],'no_claim')
+        self.assertEqual(attack['proposed_elements_outside_citation'],['MEASURE.2.7'])
+        samm=rows['APP-004','OWASP SAMM Verification']
+        self.assertEqual(samm['edition'],'2.2.0')
+        self.assertEqual(samm['cited_elements'],['Verification'])
+        self.assertEqual(samm['supported_elements'],['Verification.Security-Testing'])
+        pqc=rows['CRY-001','NIST PQC FIPS 203/204/205']
+        self.assertEqual(pqc['unsupported_elements'],['FIPS-203','FIPS-204','FIPS-205'])
 
 if __name__=='__main__':unittest.main()

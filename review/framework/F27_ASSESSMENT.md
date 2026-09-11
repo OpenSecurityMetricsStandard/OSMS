@@ -1,6 +1,6 @@
 # F-27 — Framework relationship assessment, 2026-09-11
 
-All 1,149 source associations have a bound assessment record or an explicit unresolved requirement. **725 have desk assessments; 424 remain not assessed. No human review or approval is recorded. F-27 remains open.**
+All 1,149 source associations have a bound assessment record or an explicit unresolved requirement. **762 have desk assessments; 387 remain not assessed. No human review or approval is recorded. F-27 remains open.**
 
 This is a relationship review candidate. It does not grant a framework certification, legal conformity, publisher endorsement or Board approval. The original catalog strings are preserved; proposed narrowing and replacement are recorded separately for review.
 
@@ -8,10 +8,10 @@ This is a relationship review candidate. It does not grant a framework certifica
 
 | Relationship | Records | Meaning |
 |---|---:|---|
-| `informative_topic_association` | 101 | Publication context only; no clause-level claim. |
-| `no_claim` | 48 | Proposed withdrawal or reassignment of this measurement relationship. |
-| `not_assessed` | 424 | Edition, evidence or substantive examination still outstanding. |
-| `partial_support` | 321 | Only a narrower facet or part of the compound reference is supported. |
+| `informative_topic_association` | 105 | Publication context only; no clause-level claim. |
+| `no_claim` | 52 | Proposed withdrawal or reassignment of this measurement relationship. |
+| `not_assessed` | 387 | Edition, evidence or substantive examination still outstanding. |
+| `partial_support` | 350 | Only a narrower facet or part of the compound reference is supported. |
 | `supports_measurement_of` | 255 | The specific observation supports measurement within the cited element; no whole-element attainment. |
 
 ## Sources and scope
@@ -21,14 +21,25 @@ The desk assessments use the following published primary sources. Edition choice
 | Source | Assessment scope | Records |
 |---|---|---:|
 | [CIS Controls 8.1](https://www.cisecurity.org/controls/cis-controls-list) | Individually numbered Controls 1-18; v8.1 publisher page | 215 |
+| [FAIR 2.0.1](https://publications.opengroup.org/c20a) | Open FAIR Risk Analysis (O-RA) Version 2.0.1, November 2021; public publication scope | 1 |
 | [ISO/IEC 27004 2016](https://www.iso.org/standard/64120.html) | Public Abstract and General information (edition 2, December 2016) | 83 |
+| [MITRE ATLAS 2026.08](https://raw.githubusercontent.com/mitre-atlas/atlas-data/41d4f5ca4112f0e492ffaa3ebff07dc80a75afa5/dist/v6/ATLAS-2026.08.yaml) | ATLAS 2026.08, technique AML.T0051 (LLM Prompt Injection) | 1 |
+| [NIST SP 800-111 2007](https://csrc.nist.gov/pubs/sp/800/111/final) | Publication abstract; November 2007 | 1 |
+| [NIST SP 800-115 2008](https://csrc.nist.gov/pubs/sp/800/115/final) | Publication abstract; September 2008 | 1 |
 | [NIST SP 800-207 2020](https://csrc.nist.gov/pubs/sp/800/207/final) | Publication abstract; August 2020 | 1 |
 | [NIST SP 800-50 1](https://csrc.nist.gov/pubs/sp/800/50/r1/final) | Publication abstract; September 2024 | 3 |
 | [NIST SP 800-53 5](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf) | Chapter 3, individually identified controls; September 2020 including December 10, 2020 updates | 36 |
 | [NIST SP 800-61 3](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf) | Section 3, Tables 2 and 3, CSF category rows | 43 |
 | [NIST SP 800-82 3](https://csrc.nist.gov/pubs/sp/800/82/r3/final) | Publication abstract; September 2023 | 1 |
 | [NIST SP 800-92 2006](https://csrc.nist.gov/pubs/sp/800/92/final) | Publication abstract; September 2006 | 13 |
+| [NIST AI RMF 1.0](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/) | AI RMF 1.0 (2023), section 5: function tables and individually numbered outcomes | 10 |
 | [NIST CSF 2.0](https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf) | Appendix A, printed pages 15-23; section 4 for informative relationships | 324 |
+| [NIST PQC 2024](https://csrc.nist.gov/pubs/fips/203/final) | Final FIPS 203, 204 and 205; August 13, 2024; public algorithm scopes | 1 |
+| [NIST Privacy Framework 1.0](https://www.nist.gov/privacy-framework/privacy-framework) | Privacy Framework Version 1.0 (January 2020), public publication scope | 1 |
+| [OpenSSF Scorecard pinned revision](https://raw.githubusercontent.com/ossf/scorecard/09a80e3f20a6412cff5aecf1ca124c139e51f86a/docs/checks.md) | Pinned check documentation: Vulnerabilities, Branch-Protection, Code-Review, Signed-Releases, Token-Permissions and Maintained | 5 |
+| [OWASP Top 10 for LLM Applications 2025](https://genai.owasp.org/llm-top-10/) | 2025 edition, LLM01: Prompt Injection | 1 |
+| [OWASP SAMM 2.2.0](https://github.com/owaspsamm/core/releases/tag/v2.2.0) | Version 2.2.0: security practice descriptions, pinned source files | 14 |
+| [OWASP secrets management pinned revision](https://raw.githubusercontent.com/OWASP/CheatSheetSeries/fcd8b68435a268ecaa1a4729c5ac68bb5fb08cc7/cheatsheets/Secrets_Management_Cheat_Sheet.md) | Secrets Management Cheat Sheet, sections 2.3, 2.6 and 2.7; pinned source revision | 1 |
 | [SLSA 1.2](https://slsa.dev/spec/v1.2/) | Version 1.2, Build and Source tracks | 6 |
 
 The ISO/IEC 27004:2016 entries are limited to the publisher’s public abstract. Its reference to an older ISO/IEC 27001 edition does not establish correspondence to ISO/IEC 27001:2022. Neither unseen clause text nor an unpublished successor has been evaluated.
@@ -44,7 +55,9 @@ The ISO/IEC 27004:2016 entries are limited to the publisher’s public abstract.
 | APP-006 | SLSA | SBOM presence does not establish build provenance. No SLSA measurement claim retained in this candidate. |
 | APP-013 / APP-014 | SLSA | Package health and runtime drift do not establish Source/Build track requirements. |
 
-All 48 no-claim dispositions below are proposals, not approved catalog removals. Lack of a direct measurement relationship does not mean the topic can never be relevant in an organization. Broad indirect relationships must be justified rather than inherited from a bundle.
+Additional assessments narrow OWASP SAMM to versioned practices and distinguish AI risk observations from benefits and treatment. CRY-001 migration readiness does not establish implementation of the three cited cryptographic algorithms. The FAIR entry is limited to the public scope of a historical, superseded publication; full method equivalence remains unproven.
+
+All 52 no-claim dispositions below are proposals, not approved catalog removals. Lack of a direct measurement relationship does not mean the topic can never be relevant in an organization. Broad indirect relationships must be justified rather than inherited from a bundle.
 
 ## Outstanding substantive work
 
@@ -52,9 +65,9 @@ All 48 no-claim dispositions below are proposals, not approved catalog removals.
 |---|---:|---|
 | `applicable_legal_or_guidance_scope_required` | 115 | Exact instrument/publication, applicable article/section and entity/activity scope; compare unmeasured obligations too. A regulator name is not an article reference. |
 | `authorized_clause_evidence_required` | 180 | Authorized comparison of the exact published standard/part and clause. A bibliographic page cannot substantiate Annex A or other unseen requirements. |
-| `edition_and_element_review_required` | 44 | Remaining primary-text assessment with selected edition, measured element and limits. This is still repository work; no claim that the user must supply all of it. |
+| `edition_and_element_review_required` | 13 | Remaining primary-text assessment with selected edition, measured element and limits. This is still repository work; no claim that the user must supply all of it. |
 | `identifiable_source_required` | 7 | Identifiable authorized publication or versioned local policy/contract locator; retain only necessary public information. |
-| `versioned_object_or_dataset_required` | 78 | Pinned techniques, data components, check IDs, model/data version and applicability to the card observation. Dataset use must be distinguished from framework coverage. |
+| `versioned_object_or_dataset_required` | 72 | Pinned techniques, data components, check IDs, model/data version and applicability to the card observation. Dataset use must be distinguished from framework coverage. |
 
 Each outstanding entry includes its card ID/version, source and card hashes, definition context, explicit blocker and next action in [framework-mapping-assessments.yaml](../../catalog/framework-mapping-assessments.yaml). Missing edition or clause work is not converted to approval by generating this report.
 
@@ -83,7 +96,10 @@ Catalog baseline: `432ab0c3207b2a7693ac7ec7581d47db3567d46d`. Catalog SHA-256: `
 | Card | Existing reference | Proposed elements outside the citation |
 |---|---|---|
 | MET-006 | CIS Controls 18 | No replacement asserted |
+| AIM-011 | NIST AI RMF: Manage | MEASURE.2.7 |
+| AIM-012 | NIST AI RMF: Measure | MAP.3.1 |
 | APP-006 | SLSA | No replacement asserted |
+| APP-010 | OpenSSF Scorecard | No replacement asserted |
 | APP-013 | SLSA | No replacement asserted |
 | APP-014 | SLSA | No replacement asserted |
 | STD-032 | NIST CSF 2.0: GV | ID.AM |
@@ -95,6 +111,7 @@ Catalog baseline: `432ab0c3207b2a7693ac7ec7581d47db3567d46d`. Catalog SHA-256: `
 | STD-052 | NIST CSF 2.0: RS, RC | ID.RA, PR.AA |
 | STD-052 | CIS Controls v8.1: 17 | 6 |
 | STD-052 | CIS Controls v8.1: 1, 2, 3, 4 | 6 |
+| CRY-001 | NIST PQC FIPS 203/204/205 | No replacement asserted |
 | DET-015 | CIS Control 8 | 13 |
 | STD-001a | NIST CSF 2.0: DE/RS | ID.RA |
 | STD-034 | NIST CSF 2.0: DE, RS | PR.AA |
@@ -133,4 +150,4 @@ Catalog baseline: `432ab0c3207b2a7693ac7ec7581d47db3567d46d`. Catalog SHA-256: `
 
 ## Observed local verification
 
-Python 3.12.14; pinned repository test dependencies. The complete regression suite passed **122 tests**. Both command-line gates were exercised: `--require-triaged` returned 0; `--require-reviewed` returned 1 as required while actual reviews are absent. The board packet contains all 327 dossiers and the assessed mapping records, with zero structural errors. These automated results do not constitute a human mapping approval.
+Python 3.12.14; pinned repository test dependencies. The complete regression suite passed **124 tests**. The final additional source records were also checked by the 16 focused mapping tests. Both command-line gates were exercised: `--require-triaged` returned 0; `--require-reviewed` returned 1 as required while actual reviews are absent. The board packet contains all 327 dossiers and the assessed mapping records, with zero structural errors. These automated results do not constitute a human mapping approval.

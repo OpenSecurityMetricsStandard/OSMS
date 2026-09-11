@@ -84,6 +84,16 @@ def cited_elements(framework, reference):
         return re.findall(r'\d+', tail)
     if framework == 'NIST SP 800-53':
         return re.findall(r'\b[A-Z]{2}(?:-\d+)?\b', reference.split('800-53', 1)[1])
+    if framework == 'NIST AI RMF':
+        tail = reference.split(':', 1)[1].strip() if ':' in reference else ''
+        tokens = [t.upper() for t in re.split(r'[,/\s]+', tail)] if tail else []
+        if set(tokens)-{'GOVERN', 'MAP', 'MEASURE', 'MANAGE'} or len(tokens) != len(set(tokens)):
+            raise ValueError('Unknown or duplicate AI RMF function citation')
+        return tokens
+    if framework == 'OWASP SAMM' and re.search(r'\bVerification\b', reference):
+        return ['Verification']
+    if framework == 'NIST PQC':
+        return ['FIPS-'+n for n in re.findall(r'\d+', reference)]
     return []
 
 
@@ -161,6 +171,12 @@ def inventory(cards, reviews, assessments=None, sources=None):
                 raise ValueError('Cited elements changed or omitted')
             def within(element, parent):
                 return element == parent or element.startswith(parent+'.') or element.startswith(parent+'-')
+            proposed = record.get('proposed_elements_outside_citation', [])
+            if (not isinstance(proposed, list) or len(proposed) != len(set(proposed))
+                    or set(proposed)-set(required)
+                    or set(proposed) & set(record['supported_elements'])
+                    or any(any(within(e, p) for p in cited) for e in proposed)):
+                raise ValueError('Invalid replacement element outside the original citation')
             if cited:
                 if any(not any(within(e, p) for p in cited) for e in record['supported_elements']):
                     raise ValueError('Proposed replacement cannot masquerade as the original citation')

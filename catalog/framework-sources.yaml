@@ -187,3 +187,274 @@ sources:
       build-provenance: https://slsa.dev/spec/v1.2/build-requirements#provenance-generation
       artifact-verification: https://slsa.dev/spec/v1.2/verifying-artifacts
       source-change-controls: https://slsa.dev/spec/v1.2/source-requirements
+  owasp_samm_2_2_0:
+    framework: OWASP SAMM
+    edition: 2.2.0
+    url: https://github.com/owaspsamm/core/releases/tag/v2.2.0
+    locator: 'Version 2.2.0: security practice descriptions, pinned source files'
+    evidence_scope: Practice-level observation only. Local element labels identify
+      the function and practice; canonical practice GUIDs and immutable files are
+      recorded. Activity streams, quality criteria and maturity levels are not established.
+    element_ids:
+    - Design.Secure-Architecture
+    - Design.Security-Requirements
+    - Design.Threat-Assessment
+    - Governance.Education-Guidance
+    - Governance.Policy-Compliance
+    - Governance.Strategy-Metrics
+    - Implementation.Defect-Management
+    - Implementation.Secure-Build
+    - Implementation.Secure-Deployment
+    - Operations.Environment-Management
+    - Operations.Incident-Management
+    - Operations.Operational-Management
+    - Verification.Architecture-Assessment
+    - Verification.Requirements-Testing
+    - Verification.Security-Testing
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    source_commit: 21352e0fc79a6764abcd83a008690e32d2d5a3fe
+    element_metadata:
+      Design.Secure-Architecture:
+        name: Secure Architecture
+        canonical_guid: 4753e55e943c4d418303bf90d599c6b1
+        path: model/security_practices/D-Secure-Architecture.yml
+        git_blob_sha: bdbf61dc755110e875a36ca9a5cc40c11de7d678
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/D-Secure-Architecture.yml
+      Design.Security-Requirements:
+        name: Security Requirements
+        canonical_guid: 5702908efca4499e87a0239f32920d9b
+        path: model/security_practices/D-Security-Requirements.yml
+        git_blob_sha: 90acc356abbb9123fc086346283da4f1a8fbd315
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/D-Security-Requirements.yml
+      Design.Threat-Assessment:
+        name: Threat Assessment
+        canonical_guid: f9269aebfe2c4d5b9293ba42a40a93ac
+        path: model/security_practices/D-Threat-Assessment.yml
+        git_blob_sha: 9e7ef2a9cec41a0b9daec52699429b00ec0b73ad
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/D-Threat-Assessment.yml
+      Governance.Education-Guidance:
+        name: Education and Guidance
+        canonical_guid: 483a0a1b78264cafbc470ce72d557332
+        path: model/security_practices/G-Education-Guidance.yml
+        git_blob_sha: 6d585f5e14ac6c3c7a9ab7538c677d0346d5c56a
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/G-Education-Guidance.yml
+      Governance.Policy-Compliance:
+        name: Policy and Compliance
+        canonical_guid: be9e7ddb98b84abe8b9e185b979ccf60
+        path: model/security_practices/G-Policy-Compliance.yml
+        git_blob_sha: 2b9d689abf8e5b04d6eb7cb8466b142fe95bd280
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/G-Policy-Compliance.yml
+      Governance.Strategy-Metrics:
+        name: Strategy and Metrics
+        canonical_guid: 32b3bdd85d3a4d53827960004f9d1c7e
+        path: model/security_practices/G-Strategy-Metrics.yml
+        git_blob_sha: 2179c94d8d65ca6c0e6c9324f8144a087b05a0b9
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/G-Strategy-Metrics.yml
+      Implementation.Defect-Management:
+        name: Defect Management
+        canonical_guid: e17d573510904f65a1fe6040b56ad0b1
+        path: model/security_practices/I-Defect-Management.yml
+        git_blob_sha: ce2c4fca75354165d3c69d4555b7302011c9386e
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/I-Defect-Management.yml
+      Implementation.Secure-Build:
+        name: Secure Build
+        canonical_guid: b2af112859d34cada6ce4cf44d393b94
+        path: model/security_practices/I-Secure-Build.yml
+        git_blob_sha: d7ee530c995932aaec501ae38373d3c8dee600a6
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/I-Secure-Build.yml
+      Implementation.Secure-Deployment:
+        name: Secure Deployment
+        canonical_guid: 40d7879025144dbbbf34ba8ea82f060d
+        path: model/security_practices/I-Secure-Deployment.yml
+        git_blob_sha: 75d2e0cdfaf85544af379e421603bd7cf61db0d2
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/I-Secure-Deployment.yml
+      Operations.Environment-Management:
+        name: Environment Management
+        canonical_guid: 53a9cd5c2d3643f3b71e4e9d92b811e2
+        path: model/security_practices/O-Environment-Management.yml
+        git_blob_sha: c664155696025779860a58529293e208232618cd
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/O-Environment-Management.yml
+      Operations.Incident-Management:
+        name: Incident Management
+        canonical_guid: c13aa12c13d04362a3ca3385a8c580ee
+        path: model/security_practices/O-Incident-Management.yml
+        git_blob_sha: 6d6a45eb81a970ace03162e2f7489cbc7c6e6912
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/O-Incident-Management.yml
+      Operations.Operational-Management:
+        name: Operational Management
+        canonical_guid: 8f07145b5ea74388b2217895d5e7b5c2
+        path: model/security_practices/O-Operational-Management.yml
+        git_blob_sha: 7bcaf2a4bfa90c5d53ab04e691e304b45047ffa1
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/O-Operational-Management.yml
+      Verification.Architecture-Assessment:
+        name: Architecture Assessment
+        canonical_guid: 53f2da68c37a4ced8d5e767298fba589
+        path: model/security_practices/V-Architecture-Assessment.yml
+        git_blob_sha: e3ca68e83ef566c0d01799de2a1e29feaddf3bc4
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/V-Architecture-Assessment.yml
+      Verification.Requirements-Testing:
+        name: Requirements-driven Testing
+        canonical_guid: 66fb99798fe946e4979a2de98e9d6f8b
+        path: model/security_practices/V-Requirements-Testing.yml
+        git_blob_sha: 9e8ab39465982bc2b56a01ec90dec7ef18079cd9
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/V-Requirements-Testing.yml
+      Verification.Security-Testing:
+        name: Security Testing
+        canonical_guid: bb5488860c124b6e8076b023485023e1
+        path: model/security_practices/V-Security-Testing.yml
+        git_blob_sha: bacd54e4cbdbf5c372b2474cb494c04832299b83
+        url: https://raw.githubusercontent.com/owaspsamm/core/21352e0fc79a6764abcd83a008690e32d2d5a3fe/model/security_practices/V-Security-Testing.yml
+  nist_ai_rmf_1_0:
+    framework: NIST AI RMF
+    edition: '1.0'
+    url: https://airc.nist.gov/airmf-resources/airmf/5-sec-core/
+    locator: 'AI RMF 1.0 (2023), section 5: function tables and individually numbered
+      outcomes'
+    evidence_scope: Individual risk-management observations only; no full function,
+      trustworthiness determination or risk-treatment effectiveness. Element labels
+      normalize the published function name and number with a dot.
+    element_ids:
+    - GOVERN.3.2
+    - MAP.3.1
+    - MAP.3.5
+    - MEASURE.2.3
+    - MEASURE.2.4
+    - MEASURE.2.5
+    - MEASURE.2.7
+    - MEASURE.2.8
+    - MEASURE.2.9
+    - MEASURE.3.1
+    - MEASURE.3.3
+    - MEASURE.4.3
+    - MANAGE.4.1
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    publication_url: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf
+  nist_800_111_scope:
+    framework: NIST SP 800-111
+    edition: '2007'
+    url: https://csrc.nist.gov/pubs/sp/800/111/final
+    locator: Publication abstract; November 2007
+    evidence_scope: Storage encryption topic only; no algorithm or key-management
+      conformity.
+    element_ids:
+    - public_abstract_scope
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  nist_800_115_scope:
+    framework: NIST SP 800-115
+    edition: '2008'
+    url: https://csrc.nist.gov/pubs/sp/800/115/final
+    locator: Publication abstract; September 2008
+    evidence_scope: Technical security testing and findings context only; no full
+      assessment methodology conformity.
+    element_ids:
+    - public_abstract_scope
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  nist_privacy_1_0_scope:
+    framework: NIST Privacy Framework
+    edition: '1.0'
+    url: https://www.nist.gov/privacy-framework/privacy-framework
+    locator: Privacy Framework Version 1.0 (January 2020), public publication scope
+    evidence_scope: Privacy risk-management context only; no outcome-level or legal
+      compliance assertion.
+    element_ids:
+    - public_abstract_scope
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  fair_o_ra_2_0_1_scope:
+    framework: FAIR
+    edition: 2.0.1
+    url: https://publications.opengroup.org/c20a
+    locator: Open FAIR Risk Analysis (O-RA) Version 2.0.1, November 2021; public publication
+      scope
+    evidence_scope: Historical published baseline, marked superseded by C250 on the
+      publisher page. Public risk-analysis scope only; full FAIR method equivalence
+      is not established.
+    element_ids:
+    - public_abstract_scope
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  nist_pqc_2024_scope:
+    framework: NIST PQC
+    edition: '2024'
+    url: https://csrc.nist.gov/pubs/fips/203/final
+    locator: Final FIPS 203, 204 and 205; August 13, 2024; public algorithm scopes
+    evidence_scope: FIPS 203 specifies ML-KEM; FIPS 204 specifies ML-DSA; FIPS 205
+      specifies SLH-DSA. Migration readiness is not an algorithm implementation test.
+      No cryptographic validation or compliance claim.
+    element_ids:
+    - FIPS-203
+    - FIPS-204
+    - FIPS-205
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    element_evidence_urls:
+      FIPS-203: https://csrc.nist.gov/pubs/fips/203/final
+      FIPS-204: https://csrc.nist.gov/pubs/fips/204/final
+      FIPS-205: https://csrc.nist.gov/pubs/fips/205/final
+  owasp_llm_2025:
+    framework: OWASP Top 10 for LLM Applications
+    edition: '2025'
+    url: https://genai.owasp.org/llm-top-10/
+    locator: '2025 edition, LLM01: Prompt Injection'
+    evidence_scope: Observed prompt-injection input load only; neither detection recall
+      nor complete mitigation.
+    element_ids:
+    - LLM01
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    element_evidence_urls:
+      LLM01: https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+  owasp_secrets_pinned:
+    framework: OWASP secrets management
+    edition: git:fcd8b68435a268ecaa1a4729c5ac68bb5fb08cc7
+    url: https://raw.githubusercontent.com/OWASP/CheatSheetSeries/fcd8b68435a268ecaa1a4729c5ac68bb5fb08cc7/cheatsheets/Secrets_Management_Cheat_Sheet.md
+    locator: Secrets Management Cheat Sheet, sections 2.3, 2.6 and 2.7; pinned source
+      revision
+    evidence_scope: Secrets access, auditing and lifecycle facets only. Non-human
+      identities that are not secrets need separate evidence.
+    element_ids:
+    - '2.3'
+    - '2.6'
+    - '2.7'
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    source_commit: fcd8b68435a268ecaa1a4729c5ac68bb5fb08cc7
+  openssf_scorecard_pinned:
+    framework: OpenSSF Scorecard
+    edition: git:09a80e3f20a6412cff5aecf1ca124c139e51f86a
+    url: https://raw.githubusercontent.com/ossf/scorecard/09a80e3f20a6412cff5aecf1ca124c139e51f86a/docs/checks.md
+    locator: 'Pinned check documentation: Vulnerabilities, Branch-Protection, Code-Review,
+      Signed-Releases, Token-Permissions and Maintained'
+    evidence_scope: Selected check facets only. Different populations and scoring
+      rules remain distinct; no actual Scorecard run or equivalent score is claimed.
+    element_ids:
+    - Vulnerabilities
+    - Branch-Protection
+    - Code-Review
+    - Signed-Releases
+    - Token-Permissions
+    - Maintained
+    source_commit: 09a80e3f20a6412cff5aecf1ca124c139e51f86a
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  mitre_atlas_2026_08:
+    framework: MITRE ATLAS
+    edition: '2026.08'
+    url: https://raw.githubusercontent.com/mitre-atlas/atlas-data/41d4f5ca4112f0e492ffaa3ebff07dc80a75afa5/dist/v6/ATLAS-2026.08.yaml
+    locator: ATLAS 2026.08, technique AML.T0051 (LLM Prompt Injection)
+    evidence_scope: Prompt-injection observation only. No complete ATLAS coverage,
+      recall, successful mitigation or resistance to unobserved attacks is established.
+    element_ids:
+    - AML.T0051
+    source_commit: 41d4f5ca4112f0e492ffaa3ebff07dc80a75afa5
+    git_blob_sha: dfd4e180fdca949eb26cb59555d9c346adcd6781
+    element_metadata:
+      AML.T0051:
+        uuid: 6ff098e9-2864-579e-bebb-a0f1c92ec772
+        modified_on: '2026-05-27'
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
