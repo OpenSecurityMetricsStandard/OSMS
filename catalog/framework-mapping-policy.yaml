@@ -1,37 +1,50 @@
 # SPDX-License-Identifier: CC-BY-4.0
-policy_version: 1.0.0-draft
+policy_version: 2.0.0-draft
 status: maintainer_draft
 source: catalog/osms-catalog.yaml
-existing_mapping_relationship: informative_topic_association
 conformity_claim: false
-rules:
-  - A listed framework reference is an informative association, not proof of conformity or equivalence.
-  - Preserve the cited framework edition; an unspecified edition remains explicitly unresolved.
-  - A reviewed mapping records card ID/version, framework edition and clause/control reference, relationship, rationale and evidence.
-  - Do not infer clause coverage or a requirement from a metric name or an unreviewed keyword match.
-  - Edition changes require a mapping impact review; existing metric measurements do not silently become evidence for the new edition.
-  - Do not reproduce restricted standards text in mapping records.
-reviewed_mapping_fields:
-  - card_id
-  - card_version
-  - framework
-  - edition
-  - reference
-  - relationship
-  - rationale
-  - evidence_ref
-  - review_record_ref
+assessment_register: catalog/framework-mapping-assessments.yaml
+review_register: catalog/framework-mapping-reviews.yaml
+source_register: catalog/framework-sources.yaml
+unreviewed_relationship: not_assessed
 allowed_reviewed_relationships:
-  - informative_topic_association
   - supports_measurement_of
   - partial_support
+  - informative_topic_association
   - no_claim
-existing_mapping_review_status: individual_rationales_and_edition_validation_incomplete
-review_register: catalog/framework-mapping-reviews.yaml
-inventory_command: python tools/framework_mappings.py --out framework-mapping-register.json
-unreviewed_relationship: not_assessed
-validation_rules:
-  - Each association is bound to its card version and the SHA-256 of the exact source reference.
-  - Only an explicit review with edition, relationship, rationale, evidence, reviewer and date becomes reviewed.
-  - Stale, duplicate, incomplete or conformity-claiming review records fail validation.
-  - The generated inventory distinguishes stated editions from reviewed editions; absent editions are not inferred.
+relationship_meanings:
+  supports_measurement_of: Supplies the explicitly described observation within the referenced element; never proves attainment of the whole element.
+  partial_support: Only a subset or narrower facet of the cited scope is measured; remaining elements are identified separately.
+  informative_topic_association: Bibliographic context only; no clause-level support or conformity is asserted.
+  no_claim: The proposed assessment does not support retaining this measurement relationship; replacement proposals remain separate.
+  not_assessed: Evidence, exact edition, scope or substantive examination is still missing.
+states:
+  assessed: A source-bound desk assessment exists; human approval remains pending.
+  blocked: A specific unresolved assessment requirement and next action are recorded; no relationship may be claimed.
+  reviewed: A separate actual review decision binds to the exact assessment hash and its OSMS evidence record.
+  approved: An actual review explicitly approves the assessed relationship and edition; this is not Board approval of OSMS or proof of implementation conformity.
+rules:
+  - Keep card source references, stated editions, reviewed baselines and proposed replacements distinguishable.
+  - Bare control numbers are never parsed as editions. A selected baseline records its rationale and requires approval.
+  - Bind every assessment to card ID, card version, complete canonical card content hash, exact reference hash and source metadata hash.
+  - Evaluate compound references separately; explicitly identify unsupported portions. Do not infer relationships from keywords.
+  - Read the card formula, population, decision and audit test together. Observing a ratio does not demonstrate an entire control, function, framework or regulatory obligation.
+  - A source abstract supports bibliographic scope only; it cannot substantiate unseen clause requirements.
+  - Do not reproduce restricted standards text or claim review of an unpublished successor.
+  - Changed cards, source metadata or assessment text invalidate existing dependent decisions.
+  - Never manufacture a reviewer identity, independence, approval, Board decision or realized deployment evidence.
+  - The validator checks record consistency. The linked actual review record establishes who made a decision; string validation cannot authenticate a person.
+reviewed_mapping_fields:
+  - mapping_id
+  - card_id
+  - card_version
+  - source_card_sha256
+  - source_reference_sha256
+  - assessment_sha256
+  - reviewer
+  - decision_date
+  - review_record_ref
+  - decision
+  - rationale
+inventory_command: python tools/framework_mappings.py --require-triaged --out framework-mapping-register.json
+review_completion_gate_command: python tools/framework_mappings.py --require-reviewed --out framework-mapping-register.json

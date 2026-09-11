@@ -1,0 +1,189 @@
+# SPDX-License-Identifier: CC-BY-4.0
+schema_version: '1.0'
+sources:
+  nist_csf_2_0:
+    framework: NIST CSF
+    edition: '2.0'
+    url: https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf
+    locator: Appendix A, printed pages 15-23; section 4 for informative relationships
+    evidence_scope: Published category identifiers and outcome scope; not a control
+      checklist or certification scheme.
+    element_ids: &id001
+    - GV.OC
+    - GV.RM
+    - GV.RR
+    - GV.PO
+    - GV.OV
+    - GV.SC
+    - ID.AM
+    - ID.RA
+    - ID.IM
+    - PR.AA
+    - PR.AT
+    - PR.DS
+    - PR.PS
+    - PR.IR
+    - DE.CM
+    - DE.AE
+    - RS.MA
+    - RS.AN
+    - RS.CO
+    - RS.MI
+    - RC.RP
+    - RC.CO
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  cis_8_1:
+    framework: CIS Controls
+    edition: '8.1'
+    url: https://www.cisecurity.org/controls/cis-controls-list
+    edition_evidence_url: https://www.cisecurity.org/controls/v8-1
+    locator: Individually numbered Controls 1-18; v8.1 publisher page
+    evidence_scope: Control-level topic descriptions only. No individual Safeguard,
+      Implementation Group, benchmark or implementation attainment assessed.
+    element_ids:
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    - '6'
+    - '7'
+    - '8'
+    - '9'
+    - '10'
+    - '11'
+    - '12'
+    - '13'
+    - '14'
+    - '15'
+    - '16'
+    - '17'
+    - '18'
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  iso_27004_2016_scope:
+    framework: ISO/IEC 27004
+    edition: '2016'
+    url: https://www.iso.org/standard/64120.html
+    locator: Public Abstract and General information (edition 2, December 2016)
+    evidence_scope: Public bibliographic scope of information-security measurement
+      and evaluation. No full text, annex, formula, clause conformity or unpublished
+      successor evaluated.
+    element_ids:
+    - public_abstract_scope
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  nist_800_61_r3:
+    framework: NIST SP 800-61
+    edition: '3'
+    url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf
+    locator: Section 3, Tables 2 and 3, CSF category rows
+    evidence_scope: Category-level measurement context in the incident response Community
+      Profile. Does not establish all recommendations, incident readiness or actual
+      outcomes.
+    element_ids: *id001
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  nist_800_53_r5:
+    framework: NIST SP 800-53
+    edition: '5'
+    url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf
+    locator: Chapter 3, individually identified controls; September 2020 including
+      December 10, 2020 updates
+    evidence_scope: Pinned published Rev. 5 PDF; named control facets only. Enhancements,
+      organization-defined parameters, control baselines and subsequent catalog releases
+      are not inherited.
+    element_ids:
+    - AC-2
+    - AC-3
+    - AC-6
+    - AU-11
+    - AU-12
+    - AU-2
+    - AU-3
+    - AU-5
+    - AU-7
+    - AU-8
+    - AU-9
+    - CA-2
+    - CA-7
+    - CM-2
+    - CM-3
+    - CM-6
+    - CM-7
+    - CM-8
+    - IA-2
+    - IR-4
+    - MP-3
+    - PM-5
+    - RA-2
+    - SA-10
+    - SC-12
+    - SC-7
+    - SI-2
+    - SR-11
+    - SR-4
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  nist_800_92_scope:
+    framework: NIST SP 800-92
+    edition: '2006'
+    url: https://csrc.nist.gov/pubs/sp/800/92/final
+    locator: Publication abstract; September 2006
+    evidence_scope: Security log management practices; public scope only, no clause-level
+      equivalence.
+    element_ids:
+    - public_abstract_scope
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  nist_800_50_r1_scope:
+    framework: NIST SP 800-50
+    edition: '1'
+    url: https://csrc.nist.gov/pubs/sp/800/50/r1/final
+    locator: Publication abstract; September 2024
+    evidence_scope: Cybersecurity and privacy learning program evaluation; public
+      scope only, no clause-level equivalence.
+    element_ids:
+    - public_abstract_scope
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  nist_800_207_scope:
+    framework: NIST SP 800-207
+    edition: '2020'
+    url: https://csrc.nist.gov/pubs/sp/800/207/final
+    locator: Publication abstract; August 2020
+    evidence_scope: Resource and identity oriented access architecture; public scope
+      only, no clause-level equivalence.
+    element_ids:
+    - public_abstract_scope
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  nist_800_82_r3_scope:
+    framework: NIST SP 800-82
+    edition: '3'
+    url: https://csrc.nist.gov/pubs/sp/800/82/r3/final
+    locator: Publication abstract; September 2023
+    evidence_scope: Operational technology security context; public scope only, no
+      clause-level equivalence.
+    element_ids:
+    - public_abstract_scope
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+  slsa_1_2:
+    framework: SLSA
+    edition: '1.2'
+    url: https://slsa.dev/spec/v1.2/
+    locator: Version 1.2, Build and Source tracks
+    evidence_scope: Provenance generation, artifact verification and protected source
+      changes are separate facets. No SLSA level is established by a coverage ratio.
+    element_ids:
+    - build-provenance
+    - artifact-verification
+    - source-change-controls
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    element_evidence_urls:
+      build-provenance: https://slsa.dev/spec/v1.2/build-requirements#provenance-generation
+      artifact-verification: https://slsa.dev/spec/v1.2/verifying-artifacts
+      source-change-controls: https://slsa.dev/spec/v1.2/source-requirements

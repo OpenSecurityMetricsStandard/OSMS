@@ -21,7 +21,7 @@
     {
       "workstream": "framework_mapping",
       "finding_id": "F-27",
-      "detail": "1149 per-association review records with card-specific context are prepared; invalid NIST CSF 2.0 category references are corrected. Edition-specific relationship rationale and evidence remain unassessed."
+      "detail": "1149 associations triaged; 725 source-bound desk assessments (including 48 proposed no-claim relationships), 424 substantive assessments still outstanding. Zero actual mapping reviews or approvals. See review/framework/F27_ASSESSMENT.md."
     },
     {
       "workstream": "pilot",

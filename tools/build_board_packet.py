@@ -12,7 +12,7 @@ import yaml
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'recipes'),str(ROOT/'tools')]
-from framework_mappings import inventory
+from framework_mappings import repository_inventory, digest as card_digest
 from portable.cases import cases as ratio_cases
 
 
@@ -64,8 +64,7 @@ def build(bundle_path,out):
     for name,expected in bundle['source_files_sha256'].items():
         if digest((ROOT/name).read_bytes())!=expected:raise ValueError('Stale source bundle: '+name)
     cards=yaml.safe_load((ROOT/'catalog/osms-catalog.yaml').read_text(encoding='utf-8'))['cards']
-    reviews=yaml.safe_load((ROOT/'catalog/framework-mapping-reviews.yaml').read_text(encoding='utf-8'))['reviews']
-    mappings=inventory(cards,reviews);rows=[];errors=[]
+    mappings=repository_inventory();rows=[];errors=[]
     manifest={'bundle_sha256':digest(data),'catalog_sha256':digest((ROOT/'catalog/osms-catalog.yaml').read_bytes()),
               'generation_is_review_approval':False,'cards':rows}
     matrix_path=bundle_path/'conformance-matrix.json'
@@ -76,7 +75,7 @@ def build(bundle_path,out):
         checks=[e for pid,p in profiles.items() for e in inspect_card(card,pid,p)]
         errors.extend(cid+':'+e for e in checks)
         row={'card_id':cid,'card_version':card['card_version'],'priority':card['priority'],
-             'source_card_sha256':digest(json.dumps(card,ensure_ascii=False,sort_keys=True).encode()),
+             'source_card_sha256':card_digest(card),
              'structural_binding_status':'fail' if checks else 'pass','errors':checks,
              'semantic_review_status':'requires_independent_review','reviewer':None,'decision':None,
              'profile_ids':list(profiles),'management_question':card['management_question'],
