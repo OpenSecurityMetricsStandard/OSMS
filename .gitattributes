@@ -5,3 +5,5 @@
 *.yml text eol=lf
 *.json text eol=lf
 *.md text eol=lf
+# Preserve the frozen catalog's existing bytes, including its CRLF line endings.
+catalog/osms-catalog.yaml -text
