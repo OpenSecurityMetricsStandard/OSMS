@@ -134,7 +134,7 @@ def main():
                     row={'card_id':cid,'case_id':c['name'],'outputs':list(c['expected']),'status':'fail'}
                     try:
                         actual=run(p,c,a.engine,folder,a.soffice)
-                        errors=[k for k,v in c['expected'].items() if not equal(actual['outputs'].get(k),v,p['plan']['output_contracts'].get(k))]
+                        errors=[k for k,v in c['expected'].items() if k not in actual['outputs'] or not equal(actual['outputs'][k],v,p['plan']['output_contracts'].get(k))]
                         if c.get('status') and 'evaluation_status' in actual and actual['evaluation_status']!=c['status']:errors.append('evaluation_status')
                         row.update(status='fail' if errors else 'pass',failed_outputs=errors,actual=actual)
                     except Exception as exc:

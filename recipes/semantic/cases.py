@@ -118,6 +118,8 @@ def examples(plans):
         c['expected']={'value':expected};result[cid].append(c)
     missing=set(plans)-set(result)
     if missing:raise ValueError('Missing independent examples: '+str(sorted(missing)))
+    from .output_oracles import supplement
+    supplement(result)
     return result
 
 def special_examples(plans,put):
