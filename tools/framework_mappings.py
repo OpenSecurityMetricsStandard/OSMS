@@ -77,6 +77,39 @@ def assessment_hash(record):
 
 
 def cited_elements(framework, reference):
+    compounds = {'DORA/NIS2': ['DORA', 'NIS2'],
+                 'FIRST EPSS/KEV-Kontext': ['EPSS', 'KEV'],
+                 'OWASP ASVS/SAMM': ['ASVS', 'SAMM']}
+    for prefix, components in compounds.items():
+        if reference.startswith(prefix):
+            if framework != prefix:
+                raise ValueError('A compound reference cannot be reduced to one framework')
+            return components
+    if framework in ('DORA', 'NIS2', 'GDPR', 'EU AI Act'):
+        # Parse the complete article list, including repeated Art. labels and
+        # paragraph/point qualifiers. Explanatory parenthetical prose is not an ID.
+        marker = re.search(r'\b(?:Art\.?|Articles?)\s+(?=\d)', reference)
+        if not marker:
+            return []
+        tail = reference[marker.end():]
+        tail = re.sub(r'\s+\([A-Za-z][^)]{1,}\)\s*$', '', tail)
+        tail = re.sub(r'\b(?:Art\.?|Articles?)\s*', '', tail)
+        parts = re.split(r'\s*(?:/|,|\band\b|\bund\b)\s*', tail)
+        result = []
+        for part in parts:
+            interval = re.fullmatch(r'(\d+)\s*[-–]\s*(\d+)', part.strip())
+            if interval:
+                first, last = map(int, interval.groups())
+                if first >= last or last-first > 20:
+                    raise ValueError('Invalid legal article range')
+                result.extend('Art.'+str(n) for n in range(first, last+1))
+            elif re.fullmatch(r'[1-9]\d*(?:\([1-9]\d*\))?(?:\([a-z]\))?', part.strip()):
+                result.append('Art.'+re.sub(r'\(([^)]+)\)', r'.\1', part.strip()))
+            else:
+                raise ValueError('Unparsed legal article citation: '+part)
+        if len(result) != len(set(result)):
+            raise ValueError('Duplicate legal article citation')
+        return result
     if framework == 'NIST CSF':
         return validate_identifiers(reference)['element_ids']
     if framework == 'CIS Controls':
@@ -152,6 +185,18 @@ def inventory(cards, reviews, assessments=None, sources=None):
                 raise ValueError('Evidence describes a different cited framework')
             if record.get('source_metadata_sha256') != digest(source):
                 raise ValueError('Stale source metadata')
+            for component_id, component_hash in source.get('component_sources_sha256', {}).items():
+                component = (sources or {}).get(component_id)
+                if component is None or digest(component) != component_hash:
+                    raise ValueError('Stale or absent compound source component')
+            if source.get('applicability_required'):
+                require_text(record, 'applicability_limit', 'unmeasured_requirements')
+                if record['relationship'] == 'supports_measurement_of':
+                    raise ValueError('Legal/guidance observations require qualified partial or topic support')
+            if source.get('population_binding_required'):
+                require_text(record, 'population_binding_requirements')
+                if record['population_binding_requirements'] != source.get('population_binding_requirements'):
+                    raise ValueError('Dataset population requirements changed or omitted')
             required = source.get('element_ids', [])
             for name in ('supported_elements', 'unsupported_elements'):
                 if not isinstance(record.get(name), list) or len(record[name]) != len(set(record[name])):
@@ -242,12 +287,15 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', required=True)
     parser.add_argument('--require-triaged', action='store_true')
+    parser.add_argument('--require-assessed', action='store_true')
     parser.add_argument('--require-reviewed', action='store_true')
     args = parser.parse_args()
     report = repository_inventory()
     Path(args.out).write_text(json.dumps(report, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     print('; '.join(f'{report[k]} {k}' for k in ('mapping_count','triaged_count','assessed_count','not_assessed_count','reviewed_count','approved_count')))
     if args.require_triaged and report['triaged_count'] != report['mapping_count']:
+        raise SystemExit(1)
+    if args.require_assessed and report['assessed_count'] != report['mapping_count']:
         raise SystemExit(1)
     if args.require_reviewed and report['reviewed_count'] != report['mapping_count']:
         raise SystemExit(1)

@@ -28,6 +28,8 @@ rules:
   - Bare control numbers are never parsed as editions. A selected baseline records its rationale and requires approval.
   - Bind every assessment to card ID, card version, complete canonical card content hash, exact reference hash and source metadata hash.
   - Evaluate compound references separately; explicitly identify unsupported portions. Do not infer relationships from keywords.
+  - Legal and guidance mappings record applicable entity/role/instrument limits and unmeasured requirements. A selected original instrument is not a current consolidated-law or national-transposition assessment.
+  - Compound source descriptions bind each component source hash. Dataset relationships retain version, time, population, selection and join requirements; model probabilities are not organization-level risk or complete coverage.
   - Read the card formula, population, decision and audit test together. Observing a ratio does not demonstrate an entire control, function, framework or regulatory obligation.
   - A source abstract supports bibliographic scope only; it cannot substantiate unseen clause requirements.
   - Do not reproduce restricted standards text or claim review of an unpublished successor.
@@ -47,4 +49,5 @@ reviewed_mapping_fields:
   - decision
   - rationale
 inventory_command: python tools/framework_mappings.py --require-triaged --out framework-mapping-register.json
+assessment_completion_gate_command: python tools/framework_mappings.py --require-assessed --out framework-mapping-register.json
 review_completion_gate_command: python tools/framework_mappings.py --require-reviewed --out framework-mapping-register.json

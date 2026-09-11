@@ -39,6 +39,39 @@ class FrameworkMappingTests(unittest.TestCase):
         self.assertEqual([x['edition_stated'] for x in r['mappings']],[None,'2.0','2.0'])
         self.assertEqual(r['not_assessed_count'],3)
 
+    def test_legal_citations_preserve_every_article_paragraph_and_point(self):
+        self.assertEqual(cited_elements('NIS2','NIS2 Art. 20(2) and Art. 21(2)(g)'),['Art.20.2','Art.21.2.g'])
+        self.assertEqual(cited_elements('DORA','DORA Regulation (EU) 2022/2554 Articles 26-27'),['Art.26','Art.27'])
+        self.assertEqual(cited_elements('EU AI Act','EU AI Act Art. 13/14 (transparency, human oversight)'),['Art.13','Art.14'])
+        for tail in ('13/13','26-20','13/unknown','13x','0','13(2)(g) ignored'):
+            with self.subTest(tail=tail),self.assertRaises(ValueError):cited_elements('GDPR','GDPR Art. '+tail)
+
+    def test_compound_source_cannot_hide_a_missing_framework(self):
+        self.assertEqual(cited_elements('FIRST EPSS/KEV-Kontext','FIRST EPSS/KEV-Kontext.'),['EPSS','KEV'])
+        for framework,ref in [('DORA','DORA/NIS2'),('FIRST EPSS','FIRST EPSS/KEV-Kontext'),('OWASP ASVS','OWASP ASVS/SAMM')]:
+            with self.subTest(ref=ref),self.assertRaises(ValueError):cited_elements(framework,ref)
+
+    def test_compound_component_and_scope_requirements_are_bound(self):
+        component={'edition':'fixture','url':'https://example.test/original'}
+        s={**self.source,'component_sources_sha256':{'component':digest(component)},'applicability_required':True}
+        a={**self.assessment,'source_metadata_sha256':digest(s),'relationship':'partial_support',
+            'applicability_limit':'Only the synthetic fixture population.','unmeasured_requirements':'All other duties.'}
+        sources={'fixture':s,'component':component}
+        self.assertEqual(self.run_inventory(a,sources=sources)['assessed_count'],1)
+        for mutate in ('component','scope','relationship'):
+            aa=copy.deepcopy(a);ss=copy.deepcopy(sources)
+            if mutate=='component':ss['component']['url']='https://example.test/changed'
+            if mutate=='scope':aa.pop('applicability_limit')
+            if mutate=='relationship':aa['relationship']='supports_measurement_of'
+            with self.subTest(mutate=mutate),self.assertRaises(ValueError):self.run_inventory(aa,sources=ss)
+
+    def test_population_binding_requirements_cannot_be_omitted(self):
+        s={**self.source,'population_binding_required':True,'population_binding_requirements':'Freeze version, time and denominator.'}
+        a={**self.assessment,'source_metadata_sha256':digest(s)}
+        with self.assertRaises(ValueError):self.run_inventory(a,sources={'fixture':s})
+        a['population_binding_requirements']=s['population_binding_requirements']
+        self.assertEqual(self.run_inventory(a,sources={'fixture':s})['assessed_count'],1)
+
     def test_assessment_is_not_approval(self):
         r=self.run_inventory()
         self.assertEqual((r['assessed_count'],r['reviewed_count'],r['approved_count']),(1,0,0))
@@ -152,5 +185,14 @@ class FrameworkMappingTests(unittest.TestCase):
         self.assertEqual(samm['supported_elements'],['Verification.Security-Testing'])
         pqc=rows['CRY-001','NIST PQC FIPS 203/204/205']
         self.assertEqual(pqc['unsupported_elements'],['FIPS-203','FIPS-204','FIPS-205'])
+        self.assertEqual(rows['TPR-011','DORA Articles 28/30']['unsupported_elements'],['Art.30'])
+        self.assertEqual(rows['PRI-001','GDPR Articles 30/33/35']['unsupported_elements'],['Art.33'])
+        self.assertEqual(rows['STD-001a','FIRST EPSS/KEV-Kontext.']['unsupported_elements'],['EPSS'])
+        self.assertEqual(rows['AIM-001','EU AI Act Art. 13/14 (transparency, human oversight)']['relationship'],'no_claim')
+        self.assertEqual(rows['STD-014','FIRST EPSS']['relationship'],'no_claim')
+        # An input or mandatory decision override can be relevant even when the
+        # main formula does not directly contain the source name.
+        for cid in ('SOC-026','STD-013','STD-016'):
+            self.assertEqual(rows[cid,'CISA KEV']['relationship'],'partial_support')
 
 if __name__=='__main__':unittest.main()

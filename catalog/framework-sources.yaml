@@ -6,8 +6,8 @@ sources:
     edition: '2.0'
     url: https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf
     locator: Appendix A, printed pages 15-23; section 4 for informative relationships
-    evidence_scope: Published category identifiers and outcome scope; not a control
-      checklist or certification scheme.
+    evidence_scope: Published category identifiers and outcome scope; not a control checklist or certification
+      scheme.
     element_ids: &id001
     - GV.OC
     - GV.RM
@@ -39,8 +39,8 @@ sources:
     url: https://www.cisecurity.org/controls/cis-controls-list
     edition_evidence_url: https://www.cisecurity.org/controls/v8-1
     locator: Individually numbered Controls 1-18; v8.1 publisher page
-    evidence_scope: Control-level topic descriptions only. No individual Safeguard,
-      Implementation Group, benchmark or implementation attainment assessed.
+    evidence_scope: Control-level topic descriptions only. No individual Safeguard, Implementation Group,
+      benchmark or implementation attainment assessed.
     element_ids:
     - '1'
     - '2'
@@ -67,9 +67,8 @@ sources:
     edition: '2016'
     url: https://www.iso.org/standard/64120.html
     locator: Public Abstract and General information (edition 2, December 2016)
-    evidence_scope: Public bibliographic scope of information-security measurement
-      and evaluation. No full text, annex, formula, clause conformity or unpublished
-      successor evaluated.
+    evidence_scope: Public bibliographic scope of information-security measurement and evaluation. No
+      full text, annex, formula, clause conformity or unpublished successor evaluated.
     element_ids:
     - public_abstract_scope
     accessed_on: '2026-09-11'
@@ -79,9 +78,8 @@ sources:
     edition: '3'
     url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf
     locator: Section 3, Tables 2 and 3, CSF category rows
-    evidence_scope: Category-level measurement context in the incident response Community
-      Profile. Does not establish all recommendations, incident readiness or actual
-      outcomes.
+    evidence_scope: Category-level measurement context in the incident response Community Profile. Does
+      not establish all recommendations, incident readiness or actual outcomes.
     element_ids: *id001
     accessed_on: '2026-09-11'
     publisher_approval_of_osms: false
@@ -89,11 +87,9 @@ sources:
     framework: NIST SP 800-53
     edition: '5'
     url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf
-    locator: Chapter 3, individually identified controls; September 2020 including
-      December 10, 2020 updates
-    evidence_scope: Pinned published Rev. 5 PDF; named control facets only. Enhancements,
-      organization-defined parameters, control baselines and subsequent catalog releases
-      are not inherited.
+    locator: Chapter 3, individually identified controls; September 2020 including December 10, 2020 updates
+    evidence_scope: Pinned published Rev. 5 PDF; named control facets only. Enhancements, organization-defined
+      parameters, control baselines and subsequent catalog releases are not inherited.
     element_ids:
     - AC-2
     - AC-3
@@ -131,8 +127,7 @@ sources:
     edition: '2006'
     url: https://csrc.nist.gov/pubs/sp/800/92/final
     locator: Publication abstract; September 2006
-    evidence_scope: Security log management practices; public scope only, no clause-level
-      equivalence.
+    evidence_scope: Security log management practices; public scope only, no clause-level equivalence.
     element_ids:
     - public_abstract_scope
     accessed_on: '2026-09-11'
@@ -142,8 +137,8 @@ sources:
     edition: '1'
     url: https://csrc.nist.gov/pubs/sp/800/50/r1/final
     locator: Publication abstract; September 2024
-    evidence_scope: Cybersecurity and privacy learning program evaluation; public
-      scope only, no clause-level equivalence.
+    evidence_scope: Cybersecurity and privacy learning program evaluation; public scope only, no clause-level
+      equivalence.
     element_ids:
     - public_abstract_scope
     accessed_on: '2026-09-11'
@@ -153,8 +148,8 @@ sources:
     edition: '2020'
     url: https://csrc.nist.gov/pubs/sp/800/207/final
     locator: Publication abstract; August 2020
-    evidence_scope: Resource and identity oriented access architecture; public scope
-      only, no clause-level equivalence.
+    evidence_scope: Resource and identity oriented access architecture; public scope only, no clause-level
+      equivalence.
     element_ids:
     - public_abstract_scope
     accessed_on: '2026-09-11'
@@ -164,8 +159,7 @@ sources:
     edition: '3'
     url: https://csrc.nist.gov/pubs/sp/800/82/r3/final
     locator: Publication abstract; September 2023
-    evidence_scope: Operational technology security context; public scope only, no
-      clause-level equivalence.
+    evidence_scope: Operational technology security context; public scope only, no clause-level equivalence.
     element_ids:
     - public_abstract_scope
     accessed_on: '2026-09-11'
@@ -175,8 +169,8 @@ sources:
     edition: '1.2'
     url: https://slsa.dev/spec/v1.2/
     locator: Version 1.2, Build and Source tracks
-    evidence_scope: Provenance generation, artifact verification and protected source
-      changes are separate facets. No SLSA level is established by a coverage ratio.
+    evidence_scope: Provenance generation, artifact verification and protected source changes are separate
+      facets. No SLSA level is established by a coverage ratio.
     element_ids:
     - build-provenance
     - artifact-verification
@@ -192,9 +186,9 @@ sources:
     edition: 2.2.0
     url: https://github.com/owaspsamm/core/releases/tag/v2.2.0
     locator: 'Version 2.2.0: security practice descriptions, pinned source files'
-    evidence_scope: Practice-level observation only. Local element labels identify
-      the function and practice; canonical practice GUIDs and immutable files are
-      recorded. Activity streams, quality criteria and maturity levels are not established.
+    evidence_scope: Practice-level observation only. Local element labels identify the function and practice;
+      canonical practice GUIDs and immutable files are recorded. Activity streams, quality criteria and
+      maturity levels are not established.
     element_ids:
     - Design.Secure-Architecture
     - Design.Security-Requirements
@@ -309,11 +303,10 @@ sources:
     framework: NIST AI RMF
     edition: '1.0'
     url: https://airc.nist.gov/airmf-resources/airmf/5-sec-core/
-    locator: 'AI RMF 1.0 (2023), section 5: function tables and individually numbered
-      outcomes'
-    evidence_scope: Individual risk-management observations only; no full function,
-      trustworthiness determination or risk-treatment effectiveness. Element labels
-      normalize the published function name and number with a dot.
+    locator: 'AI RMF 1.0 (2023), section 5: function tables and individually numbered outcomes'
+    evidence_scope: Individual risk-management observations only; no full function, trustworthiness determination
+      or risk-treatment effectiveness. Element labels normalize the published function name and number
+      with a dot.
     element_ids:
     - GOVERN.3.2
     - MAP.3.1
@@ -336,8 +329,7 @@ sources:
     edition: '2007'
     url: https://csrc.nist.gov/pubs/sp/800/111/final
     locator: Publication abstract; November 2007
-    evidence_scope: Storage encryption topic only; no algorithm or key-management
-      conformity.
+    evidence_scope: Storage encryption topic only; no algorithm or key-management conformity.
     element_ids:
     - public_abstract_scope
     accessed_on: '2026-09-11'
@@ -347,8 +339,8 @@ sources:
     edition: '2008'
     url: https://csrc.nist.gov/pubs/sp/800/115/final
     locator: Publication abstract; September 2008
-    evidence_scope: Technical security testing and findings context only; no full
-      assessment methodology conformity.
+    evidence_scope: Technical security testing and findings context only; no full assessment methodology
+      conformity.
     element_ids:
     - public_abstract_scope
     accessed_on: '2026-09-11'
@@ -358,8 +350,7 @@ sources:
     edition: '1.0'
     url: https://www.nist.gov/privacy-framework/privacy-framework
     locator: Privacy Framework Version 1.0 (January 2020), public publication scope
-    evidence_scope: Privacy risk-management context only; no outcome-level or legal
-      compliance assertion.
+    evidence_scope: Privacy risk-management context only; no outcome-level or legal compliance assertion.
     element_ids:
     - public_abstract_scope
     accessed_on: '2026-09-11'
@@ -368,11 +359,9 @@ sources:
     framework: FAIR
     edition: 2.0.1
     url: https://publications.opengroup.org/c20a
-    locator: Open FAIR Risk Analysis (O-RA) Version 2.0.1, November 2021; public publication
-      scope
-    evidence_scope: Historical published baseline, marked superseded by C250 on the
-      publisher page. Public risk-analysis scope only; full FAIR method equivalence
-      is not established.
+    locator: Open FAIR Risk Analysis (O-RA) Version 2.0.1, November 2021; public publication scope
+    evidence_scope: Historical published baseline, marked superseded by C250 on the publisher page. Public
+      risk-analysis scope only; full FAIR method equivalence is not established.
     element_ids:
     - public_abstract_scope
     accessed_on: '2026-09-11'
@@ -382,9 +371,9 @@ sources:
     edition: '2024'
     url: https://csrc.nist.gov/pubs/fips/203/final
     locator: Final FIPS 203, 204 and 205; August 13, 2024; public algorithm scopes
-    evidence_scope: FIPS 203 specifies ML-KEM; FIPS 204 specifies ML-DSA; FIPS 205
-      specifies SLH-DSA. Migration readiness is not an algorithm implementation test.
-      No cryptographic validation or compliance claim.
+    evidence_scope: FIPS 203 specifies ML-KEM; FIPS 204 specifies ML-DSA; FIPS 205 specifies SLH-DSA.
+      Migration readiness is not an algorithm implementation test. No cryptographic validation or compliance
+      claim.
     element_ids:
     - FIPS-203
     - FIPS-204
@@ -400,8 +389,7 @@ sources:
     edition: '2025'
     url: https://genai.owasp.org/llm-top-10/
     locator: '2025 edition, LLM01: Prompt Injection'
-    evidence_scope: Observed prompt-injection input load only; neither detection recall
-      nor complete mitigation.
+    evidence_scope: Observed prompt-injection input load only; neither detection recall nor complete mitigation.
     element_ids:
     - LLM01
     accessed_on: '2026-09-11'
@@ -412,10 +400,9 @@ sources:
     framework: OWASP secrets management
     edition: git:fcd8b68435a268ecaa1a4729c5ac68bb5fb08cc7
     url: https://raw.githubusercontent.com/OWASP/CheatSheetSeries/fcd8b68435a268ecaa1a4729c5ac68bb5fb08cc7/cheatsheets/Secrets_Management_Cheat_Sheet.md
-    locator: Secrets Management Cheat Sheet, sections 2.3, 2.6 and 2.7; pinned source
-      revision
-    evidence_scope: Secrets access, auditing and lifecycle facets only. Non-human
-      identities that are not secrets need separate evidence.
+    locator: Secrets Management Cheat Sheet, sections 2.3, 2.6 and 2.7; pinned source revision
+    evidence_scope: Secrets access, auditing and lifecycle facets only. Non-human identities that are
+      not secrets need separate evidence.
     element_ids:
     - '2.3'
     - '2.6'
@@ -427,10 +414,10 @@ sources:
     framework: OpenSSF Scorecard
     edition: git:09a80e3f20a6412cff5aecf1ca124c139e51f86a
     url: https://raw.githubusercontent.com/ossf/scorecard/09a80e3f20a6412cff5aecf1ca124c139e51f86a/docs/checks.md
-    locator: 'Pinned check documentation: Vulnerabilities, Branch-Protection, Code-Review,
-      Signed-Releases, Token-Permissions and Maintained'
-    evidence_scope: Selected check facets only. Different populations and scoring
-      rules remain distinct; no actual Scorecard run or equivalent score is claimed.
+    locator: 'Pinned check documentation: Vulnerabilities, Branch-Protection, Code-Review, Signed-Releases,
+      Token-Permissions and Maintained'
+    evidence_scope: Selected check facets only. Different populations and scoring rules remain distinct;
+      no actual Scorecard run or equivalent score is claimed.
     element_ids:
     - Vulnerabilities
     - Branch-Protection
@@ -446,8 +433,8 @@ sources:
     edition: '2026.08'
     url: https://raw.githubusercontent.com/mitre-atlas/atlas-data/41d4f5ca4112f0e492ffaa3ebff07dc80a75afa5/dist/v6/ATLAS-2026.08.yaml
     locator: ATLAS 2026.08, technique AML.T0051 (LLM Prompt Injection)
-    evidence_scope: Prompt-injection observation only. No complete ATLAS coverage,
-      recall, successful mitigation or resistance to unobserved attacks is established.
+    evidence_scope: Prompt-injection observation only. No complete ATLAS coverage, recall, successful
+      mitigation or resistance to unobserved attacks is established.
     element_ids:
     - AML.T0051
     source_commit: 41d4f5ca4112f0e492ffaa3ebff07dc80a75afa5
@@ -458,3 +445,401 @@ sources:
         modified_on: '2026-05-27'
     accessed_on: '2026-09-11'
     publisher_approval_of_osms: false
+  eu_dora_2022_oj:
+    framework: DORA
+    edition: 2022/2554 OJ
+    url: https://eur-lex.europa.eu/eli/reg/2022/2554/oj/eng
+    locator: Original Official Journal text; article/paragraph/point IDs use Art.<number>.<paragraph>.<point>
+    evidence_scope: Original Official Journal instrument, selected article facets only. No current consolidated-law,
+      entity applicability, delegated/implementing act or national-transposition conclusion.
+    element_ids:
+    - Art.11.2
+    - Art.11.5
+    - Art.11.6
+    - Art.11.8
+    - Art.12.1
+    - Art.12.2
+    - Art.12.3
+    - Art.12.4
+    - Art.12.6
+    - Art.12.7
+    - Art.13.2
+    - Art.17.2
+    - Art.17.3
+    - Art.19
+    - Art.19.1
+    - Art.19.4
+    - Art.24.5
+    - Art.25.1
+    - Art.26.1
+    - Art.26.2
+    - Art.26.6
+    - Art.27
+    - Art.28.1
+    - Art.28.2
+    - Art.28.3
+    - Art.28.4
+    - Art.28.8
+    - Art.29.1
+    - Art.29.2
+    - Art.30.2
+    - Art.30.3
+    - Art.30.3.b
+    - Art.30.3.e
+    - Art.5.4
+    - Art.6.8.b
+    - Art.8.1
+    - Art.8.3
+    - Art.8.4
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    applicability_required: true
+    applicability_limit: Condition on the financial-entity scope/exclusions in Article 2, proportionality
+      in Article 4, the relevant Chapter II regime and the specific duty. Critical/important functions
+      and supplier/arrangement populations are not interchangeable. Original 2022 instrument; later RTS/ITS
+      must be assessed separately.
+    evidence_fingerprint:
+      method: SHA-256 of whitespace-normalized rendered article body, excluding the article number; not
+        the PDF or norm-file hash
+      articles:
+        '11': 22f65460c7f9deb5f5a1a869c212528d5ad6e3428ff22e4d4c29bc0b8ce90633
+        '12': 51029f989dbdbeb9dd33d3ee7a13b9b86b4b019d29d63d880ca275c27cc6837d
+        '13': fb4368e30d368cb8c244d599f169987b7a4e7efa077bbf014f7110ec237e6719
+        '17': 17eb0ed1794b3331996e0c6cebd9b5006af85f79a5b0086d348fa229e19d8454
+        '19': da8326be2aa6c30ebd2dac83b0388748578831f1e69468fd62093c3b9a869883
+        '2': 3d407c42b50e1783ed4dc214b5c84a0cdf382021e6702e42167641abd13115f9
+        '24': dcb6e976a881306eff886fef26842d0b1993b9b27067b687299addc9a3a4628f
+        '25': 4cfa6d25c87c3a6c095060a413eb26db30ff8a91c9aa1685a489b70109befcf4
+        '26': 57d50fa0931280f262dd2d9fae11aace496cfb367ef667b36ecfc3d6e368f337
+        '27': 421a41bec6fa011ceeb18f90ee479db8cfdcad4d6ea5afc940f1b74a96e7e4e4
+        '28': b1e981cb8b5384f9846dcde11ac9d5bce4b48bdb3e004ae0b6478adbf954b46a
+        '29': c457996df5b46363186a7f7e9ed1186f1b48c1ab19cf51db9bcdf648016cd640
+        '30': 4350089bea43f13dd3dcad862546939066a9caf391a617a77a52ee38f6a21e7d
+        '5': 40137de2b8850648fe6c6e870cf6f40b6bad644eb25fbb41debe82b11856979c
+        '6': 5be11eab97ca56c8f61449b5ef790083b9f4260136578250eb548b4c338fd93f
+        '8': 4a85e1d227f37b63ac03ea54e1257abab9a1fffbb158c8e306090ffbeb5cc050
+  eu_nis2_2022_oj:
+    framework: NIS2
+    edition: 2022/2555 OJ
+    url: https://eur-lex.europa.eu/eli/dir/2022/2555/oj/eng
+    locator: Original Official Journal text; article/paragraph/point IDs use Art.<number>.<paragraph>.<point>
+    evidence_scope: Original Official Journal instrument, selected article facets only. No current consolidated-law,
+      entity applicability, delegated/implementing act or national-transposition conclusion.
+    element_ids:
+    - Art.20.1
+    - Art.20.2
+    - Art.21.1
+    - Art.21.2.a
+    - Art.21.2.b
+    - Art.21.2.c
+    - Art.21.2.d
+    - Art.21.2.f
+    - Art.21.2.g
+    - Art.21.3
+    - Art.21.4
+    - Art.23.4
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    applicability_required: true
+    applicability_limit: Condition on Directive 2022/2555 Articles 2-4, essential/important entity status,
+      applicable national transposition and sector-specific equivalence. This is a comparison to the original
+      Directive, not a country-specific legal determination or an implementing-act assessment.
+    evidence_fingerprint:
+      method: SHA-256 of whitespace-normalized rendered article body, excluding the article number; not
+        the PDF or norm-file hash
+      articles:
+        '2': 8bbc522eec992926a5ca0c98c0881035fe9db8baaa789ae9b1b20d3332f18e93
+        '20': 0501893c5b44832fb9aefb89669069acdda467d0337a8b8273f5cf2649643585
+        '21': f9ba2b8e3337f8688f2e1f2d0c53202c808b23d22e8c3b8c323722a6de679736
+        '23': f7fa021c7a46c19728833ff14f3fc106b8fbd6d34d4be980191258c0e3690cfc
+  eu_gdpr_2016_oj:
+    framework: GDPR
+    edition: 2016/679 OJ
+    url: https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng
+    locator: Original Official Journal text; article/paragraph/point IDs use Art.<number>.<paragraph>.<point>
+    evidence_scope: Original Official Journal instrument, selected article facets only. No current consolidated-law,
+      entity applicability, delegated/implementing act or national-transposition conclusion.
+    element_ids:
+    - Art.30
+    - Art.32.1.a
+    - Art.33
+    - Art.33.1
+    - Art.33.2
+    - Art.33.4
+    - Art.35
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    applicability_required: true
+    applicability_limit: Condition on GDPR Articles 2-3, controller/processor role, the personal-data
+      processing population and the specific risk-dependent duty. Original 2016 text; no individual lawful
+      basis, DPIA outcome, breach-reportability or national-law conclusion.
+    evidence_fingerprint:
+      method: SHA-256 of whitespace-normalized rendered article body, excluding the article number; not
+        the PDF or norm-file hash
+      articles:
+        '2': 2c7473d3682bb257dbf7ef6aff520522bed22bdb51d79e97191386f9062b7c04
+        '30': ef2530f043046a38beae4a734c7953974ca9bf01e39617df5425dd4f0021bcab
+        '32': 4aa1b1ecda84cfcea0a8f18ef4d85a90e4b25d1db9f13ba426dcd2416ca621d9
+        '33': 76d748505dc649cfbf4e856259dbabf70d9ad5cbf8c83986a9c96dbe56ad5e88
+        '35': f5358c262ff48edc3f46b00fb29f419bfeb3c31638d0c9c4588b9929c58bf5db
+  eu_ai_act_2024_oj:
+    framework: EU AI Act
+    edition: 2024/1689 OJ
+    url: https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng
+    locator: Original Official Journal text; article/paragraph/point IDs use Art.<number>.<paragraph>.<point>
+    evidence_scope: Original Official Journal instrument, selected article facets only. No current consolidated-law,
+      entity applicability, delegated/implementing act or national-transposition conclusion.
+    element_ids:
+    - Art.13.1
+    - Art.14.4.d
+    - Art.4
+    - Art.6
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    applicability_required: true
+    applicability_limit: Condition on Regulation 2024/1689 Articles 2 and 6, actual provider/deployer
+      role and the relevant high-risk system classification. Articles 13-14 are not blanket duties for
+      every AI-assisted SOC. The original Article 113 timetable and transitional rules need a separate
+      current applicability check.
+    evidence_fingerprint:
+      method: SHA-256 of whitespace-normalized rendered article body, excluding the article number; not
+        the PDF or norm-file hash
+      articles:
+        '13': 8d555eb43900ddc24bd45faa86b761228d0cb97a050f9a68d3217767c50fe510
+        '14': 48789fa676ccf04f1a2eaa48b2cc90f485a687a84543b0a1b8542cb5e33a312f
+        '2': eb0b0be3f2a37db4c9d03946eb957229140547a4fe7b4cb1464e2774c35e25e5
+        '4': 1665c5b797a9f20a526fefa1127436523842196075c962f48a4ea5b2f309247d
+        '6': 25f3ecbbbbeed9b0d74c51d34b208adb47f16cd1009c33d6cade00f22f14c36a
+  enisa_nis2_2025_1_0:
+    framework: ENISA NIS2 Guidance
+    edition: 2025-06 v1.0
+    url: https://www.enisa.europa.eu/sites/default/files/2025-06/ENISA_Technical_implementation_guidance_on_cybersecurity_risk_management_measures_version_1.0.pdf
+    locator: Printed section numbers; sections 3, 4, 5 and 12
+    evidence_scope: Selected numbered guidance sections; no legal compliance, certification or cross-framework
+      equivalence.
+    element_ids:
+    - 12.2.2
+    - 12.4.1
+    - 12.4.2
+    - 3.1.2
+    - 3.2.1
+    - 3.2.5
+    - 3.4.1
+    - 3.4.2
+    - 3.6.1
+    - 3.6.2
+    - 4.1.2
+    - 4.1.3
+    - 4.1.4
+    - 4.3.2
+    - 5.1.1
+    - 5.1.2.d
+    - 5.1.4
+    - 5.1.4.d
+    - 5.1.6
+    - 5.1.7
+    - '5.2'
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    applicability_required: true
+    applicability_limit: ENISA June 2025 version 1.0 is nonbinding guidance for Implementing Regulation
+      2024/2690. Its enumerated digital-infrastructure/service/provider scope is narrower than all NIS2
+      entities. National authority guidance and the underlying legal text take precedence; examples are
+      not exhaustive or equivalent to other standards.
+    document_sha256: f03186edb047ece269ab9deeb3f0ec6172582ccc577617f0eb79e9bf96a7021b
+  dora_nis2_risk_2022:
+    framework: DORA/NIS2
+    edition: DORA 2022/2554 OJ + NIS2 2022/2555 OJ
+    url: https://eur-lex.europa.eu/eli/reg/2022/2554/oj/eng
+    locator: Individually identified elements listed below
+    evidence_scope: Separate risk-management topics; no legal requirement to use FAIR, Monte Carlo, euros
+      or these loss-distribution estimators.
+    element_ids:
+    - DORA.Art.6.8.b
+    - NIS2.Art.21.2.a
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    applicability_required: true
+    applicability_limit: Condition on the financial-entity scope/exclusions in Article 2, proportionality
+      in Article 4, the relevant Chapter II regime and the specific duty. Critical/important functions
+      and supplier/arrangement populations are not interchangeable. Original 2022 instrument; later RTS/ITS
+      must be assessed separately. Condition on Directive 2022/2555 Articles 2-4, essential/important
+      entity status, applicable national transposition and sector-specific equivalence. This is a comparison
+      to the original Directive, not a country-specific legal determination or an implementing-act assessment.
+    component_sources_sha256:
+      eu_dora_2022_oj: 495ec7994bdf878b6f230ec361b95cc7f004da8661bce1e4a0f73597027b3a03
+      eu_nis2_2022_oj: ab7846184c9abac6e1792d2293478f2c69b758bfd72738682fee1563bdd07525
+  enisa_etl_2025_1_2_scope:
+    framework: ENISA Threat Landscape Guidance
+    edition: 2025 v1.2 (2026-01-09)
+    url: https://www.enisa.europa.eu/publications/enisa-threat-landscape-2025
+    locator: Individually identified elements listed below
+    evidence_scope: Publisher summary of threat trends and incident corpus, not operational AI alert-handling
+      coverage guidance.
+    element_ids:
+    - public_report_scope
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    applicability_required: true
+    applicability_limit: Selected ENISA Threat Landscape 2025 report baseline; the generic catalog label
+      does not identify a normative investigation workflow.
+  tiber_eu_2025:
+    framework: TIBER-EU
+    edition: '2025'
+    url: https://www.ecb.europa.eu/pub/pdf/other/ecb.tiber_eu_framework_2025~b32eff9a10.en.pdf
+    locator: Section 9, Closure phase, printed pages 49-57
+    evidence_scope: Closure phase, printed pages 49-57; reports, replay, purple teaming, remediation planning
+      and attestation remain distinct.
+    element_ids:
+    - '9'
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    applicability_required: true
+    applicability_limit: Condition on actual national/supranational TIBER adoption and authority-approved
+      scope. This framework comparison does not establish DORA TLPT eligibility or an authority attestation.
+  mitre_enterprise_19_2:
+    framework: MITRE ATT&CK
+    edition: '19.2'
+    url: https://raw.githubusercontent.com/mitre-attack/attack-stix-data/6cda5ad8462c79e14fbb872f4e09059b18e0cfc4/enterprise-attack/enterprise-attack-19.2.json
+    locator: 'STIX collection 19.2 and named objects; object-type: labels are local schema locators, not
+      MITRE technique IDs'
+    evidence_scope: Pinned Enterprise ATT&CK STIX 2.1 collection. Collection/object-type associations
+      are taxonomy context, not validated technique/component coverage. Revoked and deprecated objects
+      are not current coverage targets; historical replay needs the historical collection.
+    element_ids:
+    - T1486
+    - T1566
+    - TA0010
+    - object-type:x-mitre-data-component
+    - object-type:x-mitre-detection-strategy
+    - x-mitre-collection--1f5f1533-f617-4ca8-9ab4-6a02367fa019
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    source_commit: 6cda5ad8462c79e14fbb872f4e09059b18e0cfc4
+    document_sha256: dc1639caa5501d720e280cf1cbd8fbe009884a0c9b3e6e9ed9d0c25166c3d8f4
+    element_metadata:
+      x-mitre-collection--1f5f1533-f617-4ca8-9ab4-6a02367fa019:
+        id: x-mitre-collection--1f5f1533-f617-4ca8-9ab4-6a02367fa019
+        type: x-mitre-collection
+        name: Enterprise ATT&CK
+        modified: '2026-08-05T21:33:58.496Z'
+        x_mitre_version: '19.2'
+      T1566:
+        id: attack-pattern--a62a8db3-f23a-4d8f-afd6-9dbc77e7813b
+        type: attack-pattern
+        name: Phishing
+        modified: '2026-05-12T15:12:00.706Z'
+        x_mitre_version: '2.7'
+      T1486:
+        id: attack-pattern--b80d107d-fa0d-4b60-9684-b0433e8bdba0
+        type: attack-pattern
+        name: Data Encrypted for Impact
+        modified: '2026-05-12T15:12:00.709Z'
+        x_mitre_version: '1.5'
+      TA0010:
+        id: x-mitre-tactic--9a4e74ab-5008-408c-84bf-a10dfbc53462
+        type: x-mitre-tactic
+        name: Exfiltration
+        modified: '2025-04-25T14:45:34.933Z'
+        x_mitre_version: '1.0'
+    population_binding_required: true
+    population_binding_requirements: Freeze collection version/hash; list selected active STIX IDs and
+      object versions, platforms, technique/subtechnique granularity and detection/component relations;
+      reconcile the denominator to priority-threat scope; retain executed tests and observed telemetry.
+      Do not infer these from the existence of a mapping.
+  cisa_kev_2026_09_snapshot:
+    framework: CISA KEV
+    edition: git:0a1255a328aa070d311d402b576f397cd2ee6d95
+    url: https://github.com/cisagov/kev-data/blob/0a1255a328aa070d311d402b576f397cd2ee6d95/known_exploited_vulnerabilities.json
+    locator: Catalog header and vulnerabilities[].cveID/dateAdded; publisher JSON schema and README at
+      the same commit
+    evidence_scope: CVE membership in the pinned known-exploited catalog; not asset-specific exploitation
+      probability, exhaustive exploit history or an organization-wide remediation deadline.
+    element_ids:
+    - cveID
+    - dateAdded
+    - dueDate
+    - requiredAction
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    source_commit: 0a1255a328aa070d311d402b576f397cd2ee6d95
+    document_sha256: 30f1fbd6104b59507bbb6ad0ced75c39834fe7bb8962a8f2ef1027d81a996211
+    catalog_version: 2026.09.10
+    released_at: '2026-09-10T19:00:05.1949Z'
+    entry_count: 1705
+    population_binding_required: true
+    population_binding_requirements: Retain catalog commit/version, release timestamp and bytes hash;
+      validate distinct CVE IDs and join cardinality to in-scope asset-CVE pairs; use only knowledge available
+      at the measurement as-of time. CISA dueDate is not automatically the local SLA.
+  first_epss_v2026_06_15:
+    framework: FIRST EPSS
+    edition: v2026.06.15; documentation 2026-09-11
+    url: https://www.first.org/epss/data
+    locator: 'FIRST EPSS Data: model-version history and daily CSV metadata; Using EPSS: probability versus
+      risk'
+    evidence_scope: Daily next-30-day exploitation forecast at CVE/population level. Documentation baseline
+      only; no daily score snapshot is bundled or claimed to have been used in an OSMS calculation.
+    element_ids:
+    - epss
+    - model_version
+    - percentile
+    - score_date
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    using_evidence_url: https://www.first.org/epss/using-epss
+    population_binding_required: true
+    population_binding_requirements: Freeze daily file bytes/hash, score date, model version and CVE universe.
+      Use probability epss, not percentile; prohibit future scores in historical replay; define missing-CVE
+      handling and reconcile asset-CVE joins. Products with ordinal severity/criticality and sums are
+      prioritization indices, not calibrated organizational probability or monetary loss.
+  first_epss_kev_context:
+    framework: FIRST EPSS/KEV-Kontext
+    edition: EPSS v2026.06.15 + pinned KEV 2026-09
+    url: https://www.first.org/epss/using-epss
+    locator: Individually identified elements listed below
+    evidence_scope: Separate forecast and known-exploitation inputs; no equivalence between KEV membership,
+      EPSS probability and confirmed local exploitation.
+    element_ids:
+    - EPSS.epss
+    - KEV.cveID
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    component_sources_sha256:
+      cisa_kev_2026_09_snapshot: dbc26d02de108a74ca31c94ad3536ed62bb6d7b8427a0223a5421a6d2bf0d780
+      first_epss_v2026_06_15: cb1496c6c57d4bf406d80fbae69799bce98ebd06efe6c98f7108cde09d3b1b73
+    population_binding_required: true
+    population_binding_requirements: Retain catalog commit/version, release timestamp and bytes hash;
+      validate distinct CVE IDs and join cardinality to in-scope asset-CVE pairs; use only knowledge available
+      at the measurement as-of time. CISA dueDate is not automatically the local SLA. Freeze daily file
+      bytes/hash, score date, model version and CVE universe. Use probability epss, not percentile; prohibit
+      future scores in historical replay; define missing-CVE handling and reconcile asset-CVE joins. Products
+      with ordinal severity/criticality and sums are prioritization indices, not calibrated organizational
+      probability or monetary loss.
+  owasp_asvs_5_0_0_scope:
+    framework: OWASP ASVS
+    edition: 5.0.0
+    url: https://github.com/OWASP/ASVS/blob/5cf9b032440be53ce345ab3c130fda46ba1ce7a2/5.0/en/0x03-What-is-the-ASVS.md
+    locator: Scope, Application Security Verification Levels, and How to Reference ASVS Requirements
+    evidence_scope: Stable-release introduction and application-security verification scope only; no requirement,
+      verification level or complete penetration-testing program established.
+    element_ids:
+    - application-verification-scope
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    source_commit: 5cf9b032440be53ce345ab3c130fda46ba1ce7a2
+    git_blob_sha: 925ecb33b603de85101e2d907140eba680501e4a
+  owasp_asvs_samm_baselines:
+    framework: OWASP ASVS/SAMM
+    edition: ASVS 5.0.0 + SAMM 2.2.0
+    url: https://github.com/OWASP/ASVS/blob/5cf9b032440be53ce345ab3c130fda46ba1ce7a2/5.0/en/0x03-What-is-the-ASVS.md
+    locator: Individually identified elements listed below
+    evidence_scope: Separate application requirements and software-assurance practices; not interchangeable
+      levels or blanket penetration-test compliance.
+    element_ids:
+    - ASVS.application-verification-scope
+    - SAMM.Verification.Security-Testing
+    accessed_on: '2026-09-11'
+    publisher_approval_of_osms: false
+    component_sources_sha256:
+      owasp_asvs_5_0_0_scope: 4209549d9f4cfd973adbfd151f0464de97e8af5f713f640dbb49efff29444002
+      owasp_samm_2_2_0: 3337e70b282350a5f37b9b7bcfd73bd921f4907882e2467c7737882995003452
