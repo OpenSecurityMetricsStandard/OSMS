@@ -162,9 +162,15 @@ def main():
     ap.add_argument('--cards',help='Optional comma-separated subset, explicitly recorded in report')
     ap.add_argument('--report-suffix',default='',help='Filename suffix for separate positive/boundary reports')
     ap.add_argument('--case-ids',help='Optional comma-separated case subset, explicitly recorded')
+    ap.add_argument('--shard',help='Disjoint card partition I/N, zero-based')
     ap.add_argument('--soffice',default='soffice');a=ap.parse_args()
     source=Path(a.bundle,'execution-profiles.json');bundle=json.loads(source.read_text())
     selected=set(a.cards.split(',')) if a.cards else None
+    if a.shard:
+        from partitions import partition
+        all_ids={cid for cid,ps in bundle['profiles'].items() if 'canonical_quotient_v1' in ps}
+        selected=set(partition(sorted(selected if selected is not None else all_ids),a.shard))
+        a.report_suffix=(a.report_suffix+'-' if a.report_suffix else '')+'shard-'+a.shard.replace('/','-of-')
     profiles={cid:ps['canonical_quotient_v1'] for cid,ps in bundle['profiles'].items() if 'canonical_quotient_v1' in ps and (selected is None or cid in selected)}
     if selected and set(profiles)!=selected:ap.error('Requested card lacks a canonical quotient profile')
     if a.report_suffix and not re.fullmatch(r'[a-z0-9-]+',a.report_suffix):ap.error('Invalid report suffix')

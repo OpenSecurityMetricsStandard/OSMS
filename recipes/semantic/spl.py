@@ -33,7 +33,8 @@ def query(plan):
     p=flatten(plan)
     lines=['''```Prepared osms_input observations. All timestamps are UTC epoch seconds;
 booleans are integer 0/1. Bind literal scope, segment, ps, pe and completeness.
-Reject server warnings/partial searches; this exact profile supports <=10000 rows.```
+Reject server warnings/partial searches; this exact profile supports <=10000 rows.
+The final text transport encodes null as __OSMS_NULL__; decode it as null, never zero.```
 index=osms_input earliest=0 latest=now
 | where card_id='''+lit(p['card_id'])+''' AND scope_id=$scope_id$ AND segment_id=$segment_id$ AND period_start=$period_start$ AND period_end=$period_end$''']
     for k,e in p['derived'].items():
@@ -89,7 +90,7 @@ index=osms_input earliest=0 latest=now
         lines.append('| eval '+k+'=case(evaluation_status="invalid_input" OR evaluation_status="population_unverified" OR evaluation_status="capacity_exceeded",null(),selected_records=0,'+lit(empty)+',true(),'+v+')')
     # Explicit round-trip precision for REST/text transport. Calculation and
     # threshold evaluation above still use the native numeric fields.
-    lines.append('| eval '+','.join(k+'=if(isnull('+k+'),null(),printf("%.17g",'+k+'))' for k in vals))
+    lines.append('| eval '+','.join(k+'=if(isnull('+k+'),"__OSMS_NULL__",printf("%.17g",'+k+'))' for k in vals))
     lines.append('| table '+' '.join([*vals,'evaluation_status','selected_records','invalid_records']))
     return '\n'.join(lines)
 

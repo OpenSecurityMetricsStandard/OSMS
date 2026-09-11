@@ -12,8 +12,11 @@ from semantic.render import literal,typed_schema
 
 def equal(actual,expected,contract=None):
     if expected is None:return actual is None or actual in ('#N/A','')
-    if isinstance(expected,dict):return isinstance(actual,dict) and all(k in actual and equal(actual[k],v) for k,v in expected.items())
-    if isinstance(expected,list):return isinstance(actual,list) and len(actual)==len(expected) and all(equal(a,b) for a,b in zip(actual,expected))
+    if isinstance(expected,dict):return isinstance(actual,dict) and all(k in actual and equal(actual[k],v,(contract or {}).get(k)) for k,v in expected.items())
+    if isinstance(expected,list):
+        spec=(contract or {}).get('items',{})
+        item_contracts={k:({'absolute_tolerance':0,'relative_tolerance':0} if v=='integer' else {}) for k,v in spec.items()}
+        return isinstance(actual,list) and len(actual)==len(expected) and all(equal(a,b,item_contracts) for a,b in zip(actual,expected))
     if isinstance(expected,(int,float)):
         try:
             value=float(actual);c=contract or {}
@@ -55,7 +58,11 @@ def run(profile,case,engine,folder,soffice='soffice'):
                 services=[{k:(r[k] if k=='business_service_id' else float(r[k])) for k in ['business_service_id','service_risk_raw','service_risk','competition_rank']} for r in result if r.get('business_service_id') and status=='ok']
                 return {'evaluation_status':status,'outputs':{'services':services if status in ('ok','not_applicable') else None,'service_count':len(services) if status in ('ok','not_applicable') else None}}
             if len(result)!=1:raise ValueError('Expected one SPL result row: '+json.dumps(response)[:2000])
-            actual=result[0];return {'evaluation_status':actual.pop('evaluation_status'),'outputs':actual}
+            actual=result[0]
+            # SPL JSON omits null fields. Decode the explicit recipe transport
+            # marker while still rejecting genuinely absent declared outputs.
+            actual={k:(None if v=='__OSMS_NULL__' and k in p['outputs'] else v) for k,v in actual.items()}
+            return {'evaluation_status':actual.pop('evaluation_status'),'outputs':actual}
         from semantic.esql import reduce_export
         # Only the explicitly selected ES test runner creates disposable fixture
         # indexes. A random name and successful create are required before cleanup.
@@ -108,13 +115,19 @@ def run(profile,case,engine,folder,soffice='soffice'):
 def main():
     ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--bundle',default='recipes/out')
     ap.add_argument('--engine',choices=['python','duckdb','postgresql','formulas','libreoffice','esql','spl'],required=True)
-    ap.add_argument('--cards');ap.add_argument('--positive-only',action='store_true');ap.add_argument('--soffice',default='soffice');a=ap.parse_args()
+    ap.add_argument('--cards');ap.add_argument('--positive-only',action='store_true');ap.add_argument('--soffice',default='soffice')
+    ap.add_argument('--shard',help='Disjoint card partition I/N, zero-based');a=ap.parse_args()
     source=Path(a.bundle,'execution-profiles.json');bundle=json.loads(source.read_text(encoding='utf-8'))
     profiles={cid:ps['prepared_observations_v1'] for cid,ps in bundle['profiles'].items() if 'prepared_observations_v1' in ps}
     if a.cards:
         wanted=set(a.cards.split(','))
         if wanted-set(profiles):ap.error('Unknown semantic cards')
         profiles={cid:p for cid,p in profiles.items() if cid in wanted}
+    if a.shard:
+        from partitions import partition
+        wanted=set(partition(list(profiles),a.shard))
+        profiles={cid:p for cid,p in profiles.items() if cid in wanted}
+        a.cards=','.join(sorted(wanted))
     if a.engine in ('esql','spl'):
         from profile_runner import native_http
         version=native_http('esql','GET','/')['version']['number'] if a.engine=='esql' else native_http('spl','GET','/services/server/info?output_mode=json')['entry'][0]['content']['version']
@@ -148,6 +161,7 @@ def main():
             if aborted:break
     report['aborted']=aborted;report['passed']=sum(c['status']=='pass' for c in report['cases']);report['failed']=len(report['cases'])-report['passed']
     suffix='positive' if a.positive_only else 'boundaries'
+    if a.shard:suffix+='-shard-'+a.shard.replace('/','-of-')
     Path(a.bundle,'profile-report-semantic-'+a.engine+'-'+suffix+'.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
     print(a.engine,report['passed'],'passed;',report['failed'],'failed; aborted',aborted)
     return int(bool(report['failed'] or aborted))

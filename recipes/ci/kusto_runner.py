@@ -21,6 +21,7 @@ from portable.cases import cases
 from semantic.cases import boundaries
 from semantic.model import instant
 from semantic_runner import equal
+from incident_cases import cases as incident_cases
 
 
 def request(base, query, database=None, management=False):
@@ -66,8 +67,12 @@ def literal(value, kind):
 
 
 def inline(profile, fixture, semantic):
+    incident=profile['contract'].get('input_table')=='incidents'
     contract = profile['plan'] if semantic else profile['contract']
-    if semantic:
+    if incident:
+        inputs={k:{'type':'timestamp' if v=='date' else 'string'} for k,v in fixture['fields'].items()}
+        table='incidents';params=fixture['params']
+    elif semantic:
         inputs = contract['inputs']
         table = 'osms_input'
         params = fixture['params']
@@ -101,17 +106,16 @@ def main():
     version=request(a.url,'.show version',management=True)
     db='osms_'+uuid.uuid4().hex
     request(a.url,'.create database '+db+' persist (@"/kustodata/'+db+'/md", @"/kustodata/'+db+'/data")',management=True)
-    wanted=set(a.cards.split(',')) if a.cards else set(bundle['profiles'])-{'SOC-003'}
-    if wanted-set(bundle['profiles']) or 'SOC-003' in wanted:
-        ap.error('This runner covers canonical and prepared-observation profiles; SOC-003 is separate')
+    wanted=set(a.cards.split(',')) if a.cards else set(bundle['profiles'])
+    if wanted-set(bundle['profiles']):ap.error('Unknown card')
     report={'engine':'kusto','engine_version':json.dumps(version,sort_keys=True),'stage':'typed_calculation_profiles',
             'image_digest':os.environ.get('OSMS_KUSTO_IMAGE_DIGEST'),
             'profile_bundle_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
             'source_files_sha256':bundle['source_files_sha256'],'requested_subset':a.cards,'cases':[]}
     for cid in sorted(wanted):
         ps=bundle['profiles'][cid];semantic='prepared_observations_v1' in ps
-        pid='prepared_observations_v1' if semantic else 'canonical_quotient_v1';p=ps[pid]
-        fixtures=[c for f in p['fixtures'] for c in boundaries(p['plan'],f)] if semantic else cases(p['contract'])
+        pid='incident_snapshot_v1' if cid=='SOC-003' else 'prepared_observations_v1' if semantic else 'canonical_quotient_v1';p=ps[pid]
+        fixtures=incident_cases() if cid=='SOC-003' else [c for f in p['fixtures'] for c in boundaries(p['plan'],f)] if semantic else cases(p['contract'])
         for c in fixtures:
             expected=c['expected'] if semantic else c['expect'];name=c['name'] if semantic else c['case_id']
             row={'card_id':cid,'profile_id':pid,'case_id':name,'outputs':list(expected),'status':'fail'}

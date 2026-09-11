@@ -23,6 +23,7 @@ def build(cards, recipes, root, out):
             'outputs':{n+'_'+key:{'unit':unit,'nullable':nullable,'absolute_tolerance':tol,'relative_tolerance':1e-12 if unit=='hours' else 0} for n in soc003.PAIRS for key,unit,nullable,tol in [('p50_h','hours',True,1e-8),('p90_h','hours',True,1e-8),('mean_h_supplementary','hours',True,1e-8),('valid_cases','count',False,0),('invalid_cases','count',False,0)]},
             'verification':{d:'not_run' for d in DIALECTS},'green_eligibility':'requires_confidence_and_risk_appetite_profiles'},
         'dialects':soc003.snippets(card['minimum_data_fields']),
+        'excel_spec':soc003.excel_spec(card['minimum_data_fields']),
         'esql_protocol':{'execution_mode':'esql_export_python_exact_reducer','queries':esql_exact.queries(),
                         'reducer':'recipes/esql_exact.py','input_requirement':'Same immutable snapshot for count and row queries; reject warnings, partial results and count mismatch. Export row limit 10000; larger inputs require a complete separately materialized export.',
                         'native_percentile_claim':False}}
@@ -37,7 +38,7 @@ def build(cards, recipes, root, out):
                 'artifact':'execution-profiles.json','source_adapter_status':p['contract']['source_adapter_status'],
                 'verification_status':'not_run'} for k,p in ps.items()}
     hashes={}
-    for group in ['recipes/portable/*.py','recipes/semantic/*.py','recipes/gen_recipes.py','recipes/curated/*.json','recipes/fixtures/*.json','recipes/soc003.py','recipes/esql_exact.py','recipes/dax_profiles.py','recipes/ci/profile_runner.py','recipes/ci/semantic_runner.py','recipes/xlsx_dialect.py','reference/assurance.py','reference/execution_store.py','catalog/osms-catalog.yaml','catalog/principles.yaml','reference/RUBRICS.md','reference/ASSURANCE_PROFILES.md','recipes/EXECUTION_PROFILES.md']:
+    for group in ['recipes/portable/*.py','recipes/semantic/*.py','recipes/gen_recipes.py','recipes/curated/*.json','recipes/fixtures/*.json','recipes/soc003.py','recipes/esql_exact.py','recipes/dax_profiles.py','recipes/ci/*.py','recipes/ci/*.ps1','recipes/export_implementation.py','recipes/xlsx_dialect.py','reference/assurance.py','reference/execution_store.py','catalog/osms-catalog.yaml','catalog/principles.yaml','reference/RUBRICS.md','reference/ASSURANCE_PROFILES.md','recipes/EXECUTION_PROFILES.md']:
         for p in sorted(Path(root).glob(group)):
             hashes[str(p.relative_to(root))]=hashlib.sha256(p.read_bytes()).hexdigest()
     payload={'schema_version':'1.0.0-draft','source_files_sha256':hashes,
