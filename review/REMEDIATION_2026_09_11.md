@@ -38,6 +38,11 @@ at the published candidate; older bundle reports must not be relabeled as curren
 Full source-adapter and production/capacity conformity are separate from fixture
 execution. STD-002a retains its stated minimum population and platform limits.
 
+The desktop preparation also fixes cross-platform artifact identity: source
+checkout line endings are fixed, source path keys use forward slashes, profile JSON
+is written as explicit UTF-8/LF bytes, and the Windows wrapper selects UTF-8 mode.
+This prevents platform defaults from silently changing source/profile fingerprints.
+
 The remaining mapping work is explicit: 180 authorized standard-clause comparisons,
 12 CISA ZTMM primary-text assessments, seven unidentified publications/local
 policies, one EBA guidance comparison and one unresolved CTID/Atomic source. The

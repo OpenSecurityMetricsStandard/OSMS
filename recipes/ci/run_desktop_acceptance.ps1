@@ -13,7 +13,7 @@ if ('dax' -in $Engine -and (!$Server -or !(Test-Path -LiteralPath $TomAssembly) 
     throw 'DAX requires an authorized local Analysis Services instance and installed TOM/ADOMD assembly paths'
 }
 function Invoke-CheckedPython([string[]]$Arguments) {
-    & python @Arguments
+    & python -X utf8 @Arguments
     if ($LASTEXITCODE -ne 0) { throw ('Python verification failed: '+$Arguments[0]) }
 }
 Invoke-CheckedPython @('recipes/gen_recipes.py','--emit-candidates','--out','recipes/out')

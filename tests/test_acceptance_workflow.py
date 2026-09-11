@@ -3,6 +3,8 @@
 import copy
 from datetime import date, datetime, timezone
 import pathlib
+import tempfile
+from unittest.mock import patch
 import sys
 import unittest
 import yaml
@@ -10,11 +12,17 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'tools'),str(ROOT/'reference'),str(ROOT/'recipes')]
 from desktop_acceptance import case_plan, verify
 from portable.ratios import generate
+from portable.export import write_json
 from pilot_evaluation import digest, evaluate as pilot_evaluate
 from review_acceptance import evaluate as review_evaluate, GATES
 
 
 class DesktopAcceptance(unittest.TestCase):
+    def test_artifact_encoding_does_not_use_platform_text_defaults(self):
+        with tempfile.TemporaryDirectory() as d, patch.object(pathlib.Path,'write_text',side_effect=AssertionError('platform-dependent text output')):
+            p=pathlib.Path(d)/'profiles.json';write_json(p,{'label':'μ → €'},ensure_ascii=False,indent=2)
+            self.assertEqual(p.read_bytes(),b'{\n  "label": "\xce\xbc \xe2\x86\x92 \xe2\x82\xac"\n}\n')
+
     @classmethod
     def setUpClass(cls):
         card=next(c for c in yaml.safe_load((ROOT/'catalog/osms-catalog.yaml').read_text())['cards'] if c['id']=='AI-001')
