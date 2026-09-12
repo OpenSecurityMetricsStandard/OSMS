@@ -1,0 +1,13 @@
+{
+  "engine": "excel",
+  "scope": "audit-critical",
+  "ok": true,
+  "errors": [],
+  "required_cases": 99,
+  "observed_cases": 99,
+  "required_cards": 8,
+  "profile_bundle_sha256": "e9164dd43862d7a9e50ad6a2e69bf93e3b66f3c0828e76eabb3208c75d6b6327",
+  "board_approval": false,
+  "notice": "Evidence consistency and fixture-output verification only. Retain the original native execution record and actual verifier; this does not authenticate its author or prove production/capacity conformity.",
+  "report_sha256": "43a6f79d09594ceeaa7eda8c573ed79ebc8cde4951f4b893e712eac847986214"
+}

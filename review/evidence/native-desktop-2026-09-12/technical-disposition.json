@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-12",
+  "findings": [
+    "F-03",
+    "F-06"
+  ],
+  "issues": [
+    4,
+    7
+  ],
+  "status": "technical_verification_passed",
+  "source_commit": "68a9a36e8443285a0018466b2846913c9c8ef803",
+  "profile_bundle_sha256": "e9164dd43862d7a9e50ad6a2e69bf93e3b66f3c0828e76eabb3208c75d6b6327",
+  "scope": "audit-critical: eight typed calculation profiles",
+  "rationale": "Native Excel and DAX cases, exact issue examples and nonfinite probes pass; model collation defect is corrected without changing expected outputs.",
+  "executor": "Codex / Alya (automated technical assessment under maintainer request)",
+  "responsible_maintainer": "Nico Wiegand",
+  "independent_human_review": false,
+  "board_approval": false,
+  "evidence_directory": "review/evidence/native-desktop-2026-09-12",
+  "pull_request": "https://github.com/OpenSecurityMetricsStandard/OSMS/pull/37"
+}

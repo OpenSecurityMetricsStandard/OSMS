@@ -1,5 +1,7 @@
 # Native desktop verification - 2026-09-11/12
 
+Latest completed [native Excel/DAX verification and technical disposition](../native-desktop-2026-09-12/README.md). The text below preserves the earlier checkpoint.
+
 ## Native Excel results
 
 Microsoft Excel 16.0.20228 (32-bit) executed the unchanged generated formulas on source commit b19a91e778eaaa61a71a3fd78e72439eec2d707d.

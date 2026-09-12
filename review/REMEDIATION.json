@@ -22,8 +22,30 @@
       "id": "F-03",
       "title": "Median und Perzentilmethode pro Ausgabe verbindlich machen",
       "original_severity": "Hoch",
-      "status": "Implementiert – native Nachweise prüfen",
-      "change_or_remaining_work": "Dauerprofile benennen arithmetischen Median und exakte Nearest-Rank-Tails je Karte. SOC-002 mit vier Werten ergibt 15 h; CFG-002 ergibt 9/22/26 Tage. Einheiten und Gleitkommatoleranzen sind getrennt; native Engineberichte entscheiden die Ausführungsverifikation."
+      "status": "Native Excel-/DAX-Verifikation bestanden",
+      "change_or_remaining_work": "Native Excel-/DAX-Abnahme fuer die acht angeforderten Rechenprofile bestanden; Originalberichte, Quellbindung und technische Disposition: review/evidence/native-desktop-2026-09-12/README.md. Keine unabhaengige menschliche Review- oder Boardfreigabe behauptet.",
+      "native_verification": {
+        "date": "2026-09-12",
+        "findings": [
+          "F-03",
+          "F-06"
+        ],
+        "issues": [
+          4,
+          7
+        ],
+        "status": "technical_verification_passed",
+        "source_commit": "68a9a36e8443285a0018466b2846913c9c8ef803",
+        "profile_bundle_sha256": "e9164dd43862d7a9e50ad6a2e69bf93e3b66f3c0828e76eabb3208c75d6b6327",
+        "scope": "audit-critical: eight typed calculation profiles",
+        "rationale": "Native Excel and DAX cases, exact issue examples and nonfinite probes pass; model collation defect is corrected without changing expected outputs.",
+        "executor": "Codex / Alya (automated technical assessment under maintainer request)",
+        "responsible_maintainer": "Nico Wiegand",
+        "independent_human_review": false,
+        "board_approval": false,
+        "evidence_directory": "review/evidence/native-desktop-2026-09-12",
+        "pull_request": "https://github.com/OpenSecurityMetricsStandard/OSMS/pull/37"
+      }
     },
     {
       "id": "F-04",
@@ -43,8 +65,30 @@
       "id": "F-06",
       "title": "Composite-Rezepte akzeptieren fehlende Werte und negative Gewichte",
       "original_severity": "Hoch",
-      "status": "Implementiert – native Nachweise prüfen",
-      "change_or_remaining_work": "Typisierte Composite-Eingänge prüfen Endlichkeit, Wertebereiche, Gewicht-/Profilversionen, erforderliche Felder, Identität und Duplikate. Jedes neue Profil hat Positiv- und Ablehnungsfälle; native Ausführung wird je Engine ausgewiesen."
+      "status": "Native Excel-/DAX-Verifikation bestanden",
+      "change_or_remaining_work": "Native Excel-/DAX-Abnahme fuer die acht angeforderten Rechenprofile bestanden; Originalberichte, Quellbindung und technische Disposition: review/evidence/native-desktop-2026-09-12/README.md. Keine unabhaengige menschliche Review- oder Boardfreigabe behauptet.",
+      "native_verification": {
+        "date": "2026-09-12",
+        "findings": [
+          "F-03",
+          "F-06"
+        ],
+        "issues": [
+          4,
+          7
+        ],
+        "status": "technical_verification_passed",
+        "source_commit": "68a9a36e8443285a0018466b2846913c9c8ef803",
+        "profile_bundle_sha256": "e9164dd43862d7a9e50ad6a2e69bf93e3b66f3c0828e76eabb3208c75d6b6327",
+        "scope": "audit-critical: eight typed calculation profiles",
+        "rationale": "Native Excel and DAX cases, exact issue examples and nonfinite probes pass; model collation defect is corrected without changing expected outputs.",
+        "executor": "Codex / Alya (automated technical assessment under maintainer request)",
+        "responsible_maintainer": "Nico Wiegand",
+        "independent_human_review": false,
+        "board_approval": false,
+        "evidence_directory": "review/evidence/native-desktop-2026-09-12",
+        "pull_request": "https://github.com/OpenSecurityMetricsStandard/OSMS/pull/37"
+      }
     },
     {
       "id": "F-07",

@@ -256,6 +256,28 @@ jobs:
           name: kusto-profile-report
           path: recipes/out/profile-report-kusto.json
 
+  desktop-evidence:
+    name: Verify recorded native Excel and DAX acceptance
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-checks.txt -c requirements-checks.lock
+      - run: python recipes/gen_recipes.py --emit-candidates --out recipes/out
+      - name: Verify retained native reports from the repository
+        run: |
+          # Linux validates records of actual Windows execution.
+          # Original reports stay in the authorized repository; this job uploads no artifacts.
+          cd review/evidence/native-desktop-2026-09-12
+          sha256sum --check SHA256SUMS.txt
+          cd ../../..
+          python tools/desktop_acceptance.py --bundle recipes/out --scope audit-critical --engine excel --report review/evidence/native-desktop-2026-09-12/profile-report-desktop-excel.json --out recipes/out/recorded-excel-acceptance.json
+          python tools/desktop_acceptance.py --bundle recipes/out --scope audit-critical --engine dax --report review/evidence/native-desktop-2026-09-12/profile-report-desktop-dax.json --out recipes/out/recorded-dax-acceptance.json
+
   evidence-matrix:
     name: Source-bound conformance evidence matrix
     needs: [gates, esql, excel, spl, postgresql, kusto]

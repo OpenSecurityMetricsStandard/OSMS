@@ -78,8 +78,8 @@ checks are reducer tests, separately identified from native ES execution.
 
 | Finding | Prepared here | Remaining acceptance evidence |
 |---|---|---|
-| F-03 / #4 | Independent percentile outputs, invalid cases and native Kusto runner | Microsoft Excel and DAX native reports for the exact candidate and declared outputs |
-| F-06 / #7 | Every composite output has an oracle; gate/weight mutations | Microsoft Excel and DAX native composite/gate reports |
+| F-03 / #4 | [Native Excel and DAX evidence](evidence/native-desktop-2026-09-12/README.md), including strict acceptance and issue examples | Technical calculation-profile verification passed; independent review and board approval remain separate |
+| F-06 / #7 | [Native Excel and DAX evidence](evidence/native-desktop-2026-09-12/README.md), including strict acceptance and issue examples | Technical calculation-profile verification passed; independent review and board approval remain separate |
 | F-23 / #24 | Synthetic sensitivity, capacity, population and replay tests | Actual pilot observations, stability, lagged outcomes and case-mix assessment |
 | F-26 / #27 | Proposed charter and candidate-specific decision templates | Actual adoption, members, timetable and applicable review gates |
 | F-27 / #28 | 1,149 triaged associations; 762 source-bound desk assessments and strict review binding | 387 remaining substantive assessments plus actual reviewer decisions; see [F-27 assessment](framework/F27_ASSESSMENT.md) |

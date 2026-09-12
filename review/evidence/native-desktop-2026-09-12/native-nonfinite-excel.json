@@ -1,0 +1,99 @@
+﻿{
+    "passed":  9,
+    "failed":  0,
+    "completed_at":  "2026-09-12T03:20:23.5812875Z",
+    "kind":  "native_ieee_input_probe",
+    "records":  [
+                    {
+                        "engine_version":  "16.0.20228",
+                        "evaluation_performed":  true,
+                        "input_kind":  "NaN",
+                        "card_id":  "STD-068",
+                        "input_is_nonfinite":  true,
+                        "input_field":  "network_isolation",
+                        "status":  "native_score_blocked",
+                        "actual_output":  "#N/A"
+                    },
+                    {
+                        "engine_version":  "16.0.20228",
+                        "evaluation_performed":  true,
+                        "input_kind":  "PositiveInfinity",
+                        "card_id":  "STD-068",
+                        "input_is_nonfinite":  true,
+                        "input_field":  "network_isolation",
+                        "status":  "native_score_blocked",
+                        "actual_output":  "#N/A"
+                    },
+                    {
+                        "engine_version":  "16.0.20228",
+                        "evaluation_performed":  true,
+                        "input_kind":  "NegativeInfinity",
+                        "card_id":  "STD-068",
+                        "input_is_nonfinite":  true,
+                        "input_field":  "network_isolation",
+                        "status":  "native_score_blocked",
+                        "actual_output":  "#N/A"
+                    },
+                    {
+                        "engine_version":  "16.0.20228",
+                        "evaluation_performed":  true,
+                        "input_kind":  "NaN",
+                        "card_id":  "STD-069",
+                        "input_is_nonfinite":  true,
+                        "input_field":  "exercise_frequency",
+                        "status":  "native_score_blocked",
+                        "actual_output":  "#N/A"
+                    },
+                    {
+                        "engine_version":  "16.0.20228",
+                        "evaluation_performed":  true,
+                        "input_kind":  "PositiveInfinity",
+                        "card_id":  "STD-069",
+                        "input_is_nonfinite":  true,
+                        "input_field":  "exercise_frequency",
+                        "status":  "native_score_blocked",
+                        "actual_output":  "#N/A"
+                    },
+                    {
+                        "engine_version":  "16.0.20228",
+                        "evaluation_performed":  true,
+                        "input_kind":  "NegativeInfinity",
+                        "card_id":  "STD-069",
+                        "input_is_nonfinite":  true,
+                        "input_field":  "exercise_frequency",
+                        "status":  "native_score_blocked",
+                        "actual_output":  "#N/A"
+                    },
+                    {
+                        "engine_version":  "16.0.20228",
+                        "evaluation_performed":  true,
+                        "input_kind":  "NaN",
+                        "card_id":  "STD-075",
+                        "input_is_nonfinite":  true,
+                        "input_field":  "plan_quality",
+                        "status":  "native_score_blocked",
+                        "actual_output":  "#N/A"
+                    },
+                    {
+                        "engine_version":  "16.0.20228",
+                        "evaluation_performed":  true,
+                        "input_kind":  "PositiveInfinity",
+                        "card_id":  "STD-075",
+                        "input_is_nonfinite":  true,
+                        "input_field":  "plan_quality",
+                        "status":  "native_score_blocked",
+                        "actual_output":  "#N/A"
+                    },
+                    {
+                        "engine_version":  "16.0.20228",
+                        "evaluation_performed":  true,
+                        "input_kind":  "NegativeInfinity",
+                        "card_id":  "STD-075",
+                        "input_is_nonfinite":  true,
+                        "input_field":  "plan_quality",
+                        "status":  "native_score_blocked",
+                        "actual_output":  "#N/A"
+                    }
+                ],
+    "engine":  "excel"
+}

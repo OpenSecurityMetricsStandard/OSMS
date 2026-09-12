@@ -1,0 +1,83 @@
+{
+  "source_commit": "68a9a36e8443285a0018466b2846913c9c8ef803",
+  "profile_bundle_sha256": "e9164dd43862d7a9e50ad6a2e69bf93e3b66f3c0828e76eabb3208c75d6b6327",
+  "windows_platform": "Windows-10-10.0.19045-SP0",
+  "python_version": "3.13.7",
+  "excel_version": "16.0.20228",
+  "excel_architecture": "x86",
+  "power_bi_desktop_version": "2.157.1354.0",
+  "power_bi_architecture": "x64",
+  "analysis_services_version": "17.0.83.18",
+  "dax_model_compatibility_level": 1500,
+  "dax_model_culture": "en-US",
+  "dax_model_collation": "Latin1_General_100_BIN2",
+  "execution_via": "Remote Desktop Commander",
+  "executor": "Codex / Alya (automated technical verification)",
+  "responsible_maintainer": "Nico Wiegand",
+  "independent_human_review": false,
+  "board_approval": false,
+  "client_packages": [
+    {
+      "package": "microsoft.analysisservices.adomdclient",
+      "sha256": "94b2455d57447c720e106c7d7d78e3d71ffdb6ad1f44226d5121f3ce9a70b569",
+      "version": "19.117.0"
+    },
+    {
+      "package": "microsoft.analysisservices",
+      "sha256": "6b29b095de1c8562b711094433674ea56c13beb1c707e1749db6860a47c6f2b1",
+      "version": "19.117.0"
+    },
+    {
+      "package": "microsoft.identity.client.broker",
+      "sha256": "0a89367a7346d98ae3069b028894a49add20200a82faca83003dd2cdfb0aef69",
+      "version": "4.83.3"
+    },
+    {
+      "package": "microsoft.identity.client",
+      "sha256": "36f7c1f6d1e90630953efa8a5979f7759f07b6250541ae7073ba80bfbf3f4716",
+      "version": "4.83.3"
+    }
+  ],
+  "client_assemblies": [
+    {
+      "name": "Microsoft.AnalysisServices.AdomdClient.dll",
+      "sha256": "1e75c2fd6b7a4f19ac2b74ba8a584bebb5bb96f1027eaf781b43ccd0508a6b31"
+    },
+    {
+      "name": "Microsoft.AnalysisServices.Core.dll",
+      "sha256": "17ca4906f3c769a6d84ccbf8a8407fa7cce2fc43fa8327a68ea8603ef57f51f9"
+    },
+    {
+      "name": "Microsoft.AnalysisServices.dll",
+      "sha256": "73ce5cdbf709ac8ebda249bdc08c63d4f709154ea1ed49d131ef0bbd0bf9e376"
+    },
+    {
+      "name": "Microsoft.AnalysisServices.SPClient.Interfaces.dll",
+      "sha256": "adebed4b6026f56e080623268799ea0c9bc35577421060ada28d17fd5602c7b0"
+    },
+    {
+      "name": "Microsoft.AnalysisServices.Tabular.dll",
+      "sha256": "9c70658ad631ca43008ac8e55732653781550f3b511fdb3e717f70c00e9f0650"
+    },
+    {
+      "name": "Microsoft.AnalysisServices.Tabular.Json.dll",
+      "sha256": "53cec36e6c6c4b48e491bcc6b782e9e0e824fa46a87382aadff5e2b5fb3a827d"
+    },
+    {
+      "name": "Microsoft.Identity.Client.Broker.dll",
+      "sha256": "d2723c2692c82c1e7efa1ffa474a555fde932480c73225a5c29c5cafc6669d91"
+    },
+    {
+      "name": "Microsoft.Identity.Client.dll",
+      "sha256": "6be2a8472b992c15bebc099a64cedfb4d594f808212c0324f625e7b6f3d00873"
+    }
+  ],
+  "committed_source_bytes_verified": true,
+  "committed_source_files_checked": 49,
+  "power_bi_installer_sha256": "9996c3c015d33e1a05041ee0631727890c75ab66685e268f2c3cd2c7b8cb0209",
+  "final_excel_acceptance": "passed",
+  "final_dax_acceptance": "passed",
+  "scope": "audit-critical: eight F-03/F-06 calculation profiles",
+  "fixture_data": "synthetic",
+  "temporary_dax_databases_remaining_after_run": 0
+}
