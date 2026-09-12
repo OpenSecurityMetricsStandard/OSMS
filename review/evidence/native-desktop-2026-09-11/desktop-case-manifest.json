@@ -1,0 +1,4721 @@
+{
+  "kind": "unexecuted_native_test_plan",
+  "scope": "audit-critical",
+  "profile_bundle_sha256": "c0caa9e3b73b5b93a9865241639c7ff0f67fddae61492229299fd0ef18133900",
+  "native_pass": false,
+  "required_cases": 99,
+  "required_cards": 8,
+  "cases": [
+    {
+      "card_id": "APP-010",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic",
+      "fixture_sha256": "807bc0fb725a987a843f631d4da57ceaf26a44ea75445d235d1ee364c5e4099a",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "p95": 30,
+        "maximum_h": 30,
+        "recurrence_count": 2,
+        "recurrence_trend": 1
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "maximum_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "recurrence_count": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "recurrence_trend": {
+          "unit": "ratio",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "fixture_sha256": "7b6be76365f215b38e8489b468a4a62b841f51388ae7fad7d483cb857cafdd98",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "maximum_h": null,
+        "recurrence_count": null,
+        "recurrence_trend": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "maximum_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "recurrence_count": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "recurrence_trend": {
+          "unit": "ratio",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "fixture_sha256": "8e784d79e83735e05fe92c29de3c3a14b9f1756fb16e07967bb7930d529c8454",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "maximum_h": null,
+        "recurrence_count": null,
+        "recurrence_trend": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "maximum_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "recurrence_count": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "recurrence_trend": {
+          "unit": "ratio",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "fixture_sha256": "90840245365b554a30963759173b3e6a31a740f137c86502ed5974a0daed5291",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "maximum_h": null,
+        "recurrence_count": null,
+        "recurrence_trend": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "maximum_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "recurrence_count": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "recurrence_trend": {
+          "unit": "ratio",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "fixture_sha256": "5dd92aba1f09a9eeacea5181d0cd11b7a6268210ccc4f1c85cee67a2d5e4a1f3",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "maximum_h": null,
+        "recurrence_count": null,
+        "recurrence_trend": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "maximum_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "recurrence_count": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "recurrence_trend": {
+          "unit": "ratio",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "fixture_sha256": "5ac27e4201c0349d3d54aaffea89e48b280751811be27f6af399dd02cd0c9410",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "maximum_h": null,
+        "recurrence_count": null,
+        "recurrence_trend": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "maximum_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "recurrence_count": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "recurrence_trend": {
+          "unit": "ratio",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/population_unverified",
+      "fixture_sha256": "fcdd5dde6683a09fa4aea5768d9292cf6c718a93cd1cd82751381a2f8acd9f52",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "maximum_h": null,
+        "recurrence_count": null,
+        "recurrence_trend": null
+      },
+      "expected_status": "population_unverified",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "maximum_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "recurrence_count": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "recurrence_trend": {
+          "unit": "ratio",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/inverted_period",
+      "fixture_sha256": "fe2dde97b90a79318d94794b18e92c3eb95c37218c883d58b3214d99bfea5438",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "maximum_h": null,
+        "recurrence_count": null,
+        "recurrence_trend": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "maximum_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "recurrence_count": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "recurrence_trend": {
+          "unit": "ratio",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_number_domain",
+      "fixture_sha256": "d206dbba99a18b1bbd49ff4288145dcd6de7cc0809865c925fae3d04ecc29c45",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "maximum_h": null,
+        "recurrence_count": null,
+        "recurrence_trend": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "maximum_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "recurrence_count": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "recurrence_trend": {
+          "unit": "ratio",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_boolean_domain",
+      "fixture_sha256": "4b36896ef988960d6eafd3872fd597acdea48e3cf278d996e044c38d41236bb7",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "maximum_h": null,
+        "recurrence_count": null,
+        "recurrence_trend": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "maximum_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "recurrence_count": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "recurrence_trend": {
+          "unit": "ratio",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "fixture_sha256": "1ab388f5e8c77983d2f58ddebc1e6b692c93abbb89d60626ca04e0e55ab8a7d8",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "p95": 30,
+        "maximum_h": 30,
+        "recurrence_count": 2,
+        "recurrence_trend": 1
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "maximum_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "recurrence_count": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "recurrence_trend": {
+          "unit": "ratio",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "fixture_sha256": "260050e960fe9290c562c33029e9a424fbefbb222c04b8d2fdc7734a88023742",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "p95": 30,
+        "maximum_h": 30,
+        "recurrence_count": 2,
+        "recurrence_trend": 1
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "maximum_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "recurrence_count": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "recurrence_trend": {
+          "unit": "ratio",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "fixture_sha256": "56be71fb56dafc61c177e6623dad7dcdc7b34137e086a1b6d1900b186bb01efc",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "p95": 30,
+        "maximum_h": 30,
+        "recurrence_count": 2,
+        "recurrence_trend": 1
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "maximum_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "recurrence_count": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "recurrence_trend": {
+          "unit": "ratio",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic",
+      "fixture_sha256": "fd64fcc2ebbe6fca21860fc97ff5be9f52b57d8ab794d1d797654e68be8b5c55",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "p95": 30,
+        "tier0_critical_max_days": 30
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "tier0_critical_max_days": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "fixture_sha256": "9a8bd6d11143d9210399748c85b079d9cc6e06400b37d4128ece1601b6af7ff3",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "tier0_critical_max_days": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "tier0_critical_max_days": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "fixture_sha256": "66be2bee0edfc95e78f74b11fc737ca613f14a4cb6e53423def5f2dd11218c0a",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "tier0_critical_max_days": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "tier0_critical_max_days": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "fixture_sha256": "74f3ce40b81472f445ec2a8ae88c2d68d891c037fc5bfbbce92c26cf8fa8de94",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "tier0_critical_max_days": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "tier0_critical_max_days": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "fixture_sha256": "dd838b5d9e51851303d39e7ed8e0f3976744389f35fe90e63b10b8c6b94cf361",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "tier0_critical_max_days": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "tier0_critical_max_days": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "fixture_sha256": "574516822f8d97b423cc50d291c907d6feb20a7ef83cb1b42a9a7f815c457182",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "tier0_critical_max_days": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "tier0_critical_max_days": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/population_unverified",
+      "fixture_sha256": "7c36ddcf081a4a13d4b7eaa6ba15b6b2efb9f67459d77e936befed143fdeb006",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "tier0_critical_max_days": null
+      },
+      "expected_status": "population_unverified",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "tier0_critical_max_days": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/inverted_period",
+      "fixture_sha256": "7ef0ceddb62d6104bb0a3743ad683d39e7c2404f047ccd7499ed16bf2083029b",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "tier0_critical_max_days": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "tier0_critical_max_days": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_boolean_domain",
+      "fixture_sha256": "911703fddbc6d436cfb002a83bcf797e47e7dbb1ab0728b5c511c9a1d1ae089f",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "tier0_critical_max_days": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "tier0_critical_max_days": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_unknown_enum",
+      "fixture_sha256": "d900290f471fc7fc1e24556754bffcae3f4e6bbd1b76b83918b9d574dc1b510d",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "p95": null,
+        "tier0_critical_max_days": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "tier0_critical_max_days": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "fixture_sha256": "42bc1b6707933971ce6cbafb9a309ee24f2bf2faa1563a781083ee80a8ff8b75",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "p95": 30,
+        "tier0_critical_max_days": 30
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "tier0_critical_max_days": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "fixture_sha256": "d5270c95bfbfc261653f9bf3a08d2301eadbffa2dd43d6a8edf74752eafbd03a",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "p95": 30,
+        "tier0_critical_max_days": 30
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "tier0_critical_max_days": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "fixture_sha256": "618f4d27e80d5bc311dc7ba2acfac53805f057567120b1bdb1e3a128252d4f89",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "p95": 30,
+        "tier0_critical_max_days": 30
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "p95": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "tier0_critical_max_days": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic",
+      "fixture_sha256": "93b6225330dc210d4de50c52cc5a9d6378b871f6b12b9afc5978fb4b6b7fbd98",
+      "expected": {
+        "p50": 16,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "mean_h": 16,
+        "severity_weighted_mean_h": 16
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "severity_weighted_mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "fixture_sha256": "e86305873a9bc2ed7e902016422f76f9582c38c4186e0c1a1fddd18adb76448a",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "mean_h": null,
+        "severity_weighted_mean_h": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "severity_weighted_mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "fixture_sha256": "6cb1ed26653d36b58b516382a23deb972fedfde001bdee9a7c876d488994671c",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "mean_h": null,
+        "severity_weighted_mean_h": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "severity_weighted_mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "fixture_sha256": "cb76763c0450f60165bee583ea87fe50338409adec4e703297bddbc592439cbe",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "mean_h": null,
+        "severity_weighted_mean_h": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "severity_weighted_mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "fixture_sha256": "1ffd3e536228ff9c393cb139d747efcabc59ca08d2dd3b28b78f94610602b0be",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "mean_h": null,
+        "severity_weighted_mean_h": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "severity_weighted_mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "fixture_sha256": "15a73734b1f4203d6f7727599d581a7eb644221a0dad5ebdea2d4368f535898b",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "mean_h": null,
+        "severity_weighted_mean_h": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "severity_weighted_mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/population_unverified",
+      "fixture_sha256": "83bcf8f155c90cce63446a26e1144b411df2d72e6be8ce9a71bb2921829daabb",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "mean_h": null,
+        "severity_weighted_mean_h": null
+      },
+      "expected_status": "population_unverified",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "severity_weighted_mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/inverted_period",
+      "fixture_sha256": "1a06babd5efa766ff32d657645ae50e957c318bd4adfb6a44c10828f8774e8c1",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "mean_h": null,
+        "severity_weighted_mean_h": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "severity_weighted_mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "fixture_sha256": "d95f7cee7635724e4f977c14dc6b4b3a8749eb359e52110084b6d5815f3e0b11",
+      "expected": {
+        "p50": 16,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "mean_h": 16,
+        "severity_weighted_mean_h": 16
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "severity_weighted_mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "fixture_sha256": "f9c58fdc9eee8b774122012f57651c11fa15a34b9dc1efb48378c1be96a0140a",
+      "expected": {
+        "p50": 16,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "mean_h": 16,
+        "severity_weighted_mean_h": 16
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "severity_weighted_mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "fixture_sha256": "b3c6ed539d31ec90bd107592cdee6ba8e3a07667928d7e61f0fd539333487607",
+      "expected": {
+        "p50": 16,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "mean_h": 16,
+        "severity_weighted_mean_h": 16
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "severity_weighted_mean_h": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic",
+      "fixture_sha256": "b70400a5912bdec8a0c9c79cf91567e97b1bac33fdfb2354efd862025e019490",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "exposure_weighted": 16,
+        "overdue_cases": 2,
+        "early_escalations": 2,
+        "overall_band": 2
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "fixture_sha256": "3a9c2e655bddcdec0efd36f24549be3a32d2e0f45a93bfa73ec4e9726611c9f0",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "exposure_weighted": null,
+        "overdue_cases": null,
+        "early_escalations": null,
+        "overall_band": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "fixture_sha256": "a2857e4c7d885e4966c57f374f4f936986fa8ed905ddcd82b57b04fd33eee45e",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "exposure_weighted": null,
+        "overdue_cases": null,
+        "early_escalations": null,
+        "overall_band": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "fixture_sha256": "2a0b799c8609a46957a404344a883168d5b9bae65c82c7249eaa96b07392f14a",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "exposure_weighted": null,
+        "overdue_cases": null,
+        "early_escalations": null,
+        "overall_band": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "fixture_sha256": "0be251eb23aed116c6df58fd065cbbaf55a448545d49b827663763a695b99cf1",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "exposure_weighted": null,
+        "overdue_cases": null,
+        "early_escalations": null,
+        "overall_band": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "fixture_sha256": "01575dd00c8e828a1e311bfcd443ecf020c187521fc151045405b650ea9f2977",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "exposure_weighted": null,
+        "overdue_cases": null,
+        "early_escalations": null,
+        "overall_band": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/population_unverified",
+      "fixture_sha256": "b7f6cdf59e6587ad5011727a120c9aadcec22bddc80a0bd9d0cf58b3bedf5d42",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "exposure_weighted": null,
+        "overdue_cases": null,
+        "early_escalations": null,
+        "overall_band": null
+      },
+      "expected_status": "population_unverified",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/inverted_period",
+      "fixture_sha256": "ec3311c20dffedcd8b932f9d2ae3d591119d39d867c2acb04ecb0b75750625a9",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "exposure_weighted": null,
+        "overdue_cases": null,
+        "early_escalations": null,
+        "overall_band": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_number_domain",
+      "fixture_sha256": "717af227a40dae48a8a1b2a96ffda56bf60353f880e5bbbb4b662d04ade19491",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "exposure_weighted": null,
+        "overdue_cases": null,
+        "early_escalations": null,
+        "overall_band": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_boolean_domain",
+      "fixture_sha256": "83fa14033962b4cf73f23c2a67a5c4227473db05c62ff17431f98c6db03f7776",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "exposure_weighted": null,
+        "overdue_cases": null,
+        "early_escalations": null,
+        "overall_band": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_unknown_enum",
+      "fixture_sha256": "18e77bdceafafc1b64fbbdd4e78a4ff2eb41052c0d866e5ffd84ebae759fefe3",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null,
+        "exposure_weighted": null,
+        "overdue_cases": null,
+        "early_escalations": null,
+        "overall_band": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "fixture_sha256": "4bcde903fe5be17ac3c4f619a0c065adb87acda61949f516f4cb56afd4bf5f7d",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "exposure_weighted": 16,
+        "overdue_cases": 2,
+        "early_escalations": 2,
+        "overall_band": 2
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "fixture_sha256": "57d3934c02f2a8ff9b79414ceab3035220e336705868f3d83ef7ef06c9a8eee6",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "exposure_weighted": 16,
+        "overdue_cases": 2,
+        "early_escalations": 2,
+        "overall_band": 2
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "fixture_sha256": "f5d1d3baa941a0a6baac7f8c37b3bea4f8213f4cfe9f9649f6c7aeeabefc14ec",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "exposure_weighted": 16,
+        "overdue_cases": 2,
+        "early_escalations": 2,
+        "overall_band": 2
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "exposure_weighted": {
+          "unit": "risk_weighted_hours",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "overdue_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "early_escalations": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "overall_band": {
+          "unit": "rating_code",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic",
+      "fixture_sha256": "6bd0134e38ffea7bc9b931c4ee82b22aeb3e8f85ad51d9f915a67d877fa9b412",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "fixture_sha256": "97d8e1dbd89676982bd01da692319bb4e9e30c97a6d09b808b8600dc27df3bdb",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "fixture_sha256": "0aaf5f8fb70d819ceeca64c25c4211dc4e8b368444f14b8e469500e33d6b5f81",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "fixture_sha256": "e3760621ea30152a5c6b0b14917d6b48843d84a49061b4491edccab29ebfc4ee",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "fixture_sha256": "150d89fa11442af105585fb9e4d62457acbd07f63c6437d46d9caa0e7cb4237a",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "fixture_sha256": "0c255278ddb2edda0b915afae952ebd091beec2934a7982c1129a3d670666378",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/population_unverified",
+      "fixture_sha256": "76ec17a36f558d765b69ef465bb89c93411f5dadc49ab8cd4a2ac8a652ca1b14",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null
+      },
+      "expected_status": "population_unverified",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/inverted_period",
+      "fixture_sha256": "bce7adb9354df37bd0ddc1f4d54e9474f50c347081a3bb60d266317cacb072aa",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_unknown_enum",
+      "fixture_sha256": "b71c35f19c10d788d03dfa81a1ee356b6118c52e7bc8e4f1ecdea521b42b4327",
+      "expected": {
+        "p50": null,
+        "p90": null,
+        "valid_cases": null,
+        "invalid_cases": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "fixture_sha256": "be2d441c495c6368b0464dc53c14c4d4b0bce605bcaa0bf2e5b56ef537b0cf2d",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "fixture_sha256": "1047f15765ceba9fe9925f480feff8916aa5d9f95b79cd41a1da00d5defce91f",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "fixture_sha256": "ffb21b9b93e00ccd64321205115004fc7ae3fd7142e40ca2fe84e04fea94db48",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 2,
+        "invalid_cases": 0
+      },
+      "expected_status": null,
+      "contracts": {
+        "p50": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "p90": {
+          "unit": "days",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        },
+        "valid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        },
+        "invalid_cases": {
+          "unit": "count",
+          "nullable": true,
+          "absolute_tolerance": 0,
+          "relative_tolerance": 0,
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic",
+      "fixture_sha256": "20fcb6eacf3c3d9ada79a71fffd2a438be76fea34a37eda4dca25041d29729df",
+      "expected": {
+        "value": 57
+      },
+      "expected_status": null,
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "fixture_sha256": "1eb5cc2f66f880bae066d80deda6dc0f893a4fc6e580063a2627592e77588c16",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "fixture_sha256": "6d42176bef75ece85822b0fa09e84e637294d05530fce166d1025c09dea492eb",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "fixture_sha256": "243281f10aa524d28f85bae58bace456af87600d40785293e8b6e312290f4fad",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "fixture_sha256": "973d871a1a80f87977a168bfd03c3ab0204b23f5b26ffc09d06b97fb8133f3f7",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "fixture_sha256": "0994d956e30afc9dfdeb34648c1e4e51a86ce9fc4fdf91776061c905dfad512b",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/population_unverified",
+      "fixture_sha256": "900e63223f413c4fe58b437855bfd032bda54001f53804528390301ff283eb16",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "population_unverified",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/inverted_period",
+      "fixture_sha256": "750f5315130174d52c6eca8cf0773f87073808cf9cb429b6c8944027af3f1853",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_number_domain",
+      "fixture_sha256": "75e1e19acd500ec4c98304c7e2dedbd07da35b6022707cc2f31754b40d5bbca7",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "fixture_sha256": "7e346d3c4ba0ba8810cf95ec3ba58bf8196e056dc29026a418062096c0bd6ddc",
+      "expected": {
+        "value": 57
+      },
+      "expected_status": null,
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "fixture_sha256": "d61ca9715b19e44e7877abe66050d34c14e380aa70ad1cfd42bb8f8b470bb0aa",
+      "expected": {
+        "value": 57
+      },
+      "expected_status": null,
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "fixture_sha256": "39b08236c4a365fccc03d792c522e653827b0fdd4916850042cb94dfc748a83c",
+      "expected": {
+        "value": 57
+      },
+      "expected_status": null,
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic",
+      "fixture_sha256": "c98ac6acaf8b8ea7e85f825da165a64d0d50e9d9601da02ad0abcfae68a88bfb",
+      "expected": {
+        "value": 50
+      },
+      "expected_status": null,
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "fixture_sha256": "d092011f8900bf32394cad1901ca6be048d196f21ed4fdd73722012370f36ca3",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "fixture_sha256": "2d32459b5f6d9244db9d617bebe99d5217be038ea37e396bcbc9767064c35ec4",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "fixture_sha256": "e65457eb6527f2e91bb96bec3d086ddcab060a96643097b21572b62523760889",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "fixture_sha256": "fc8c0f3bc5ce61a2b6312a8f8640eac084f9bc41fb696b757ab67bfaf5b15e55",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "fixture_sha256": "0b2201e54c95751b9a8bd05773a98b76d2016ae7d601c38c6d0a99620af990c4",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/population_unverified",
+      "fixture_sha256": "f4043c3bb9a10cd38a2539e8accfdf34e5ed97d46c65a2736dcf9a92c77ecc06",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "population_unverified",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/inverted_period",
+      "fixture_sha256": "921b6fda94d7ee4e018de18e470494b0a3d5dc2772c8c7e5149f027abcb65145",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_number_domain",
+      "fixture_sha256": "d870c81e5e69ed30941afe8bb78037919144e8484328a74fa89058e798e7a99a",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "fixture_sha256": "238caed7576f56c4122776c8a0fd026b9d8cab886a74deebaac4f1b8eb4b0622",
+      "expected": {
+        "value": 50
+      },
+      "expected_status": null,
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "fixture_sha256": "2fd068be475d337bdebf6b09cd6c5e96285c39ecb441c67fa90960232fa2679d",
+      "expected": {
+        "value": 50
+      },
+      "expected_status": null,
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "fixture_sha256": "5aa85a53a1a6fdd6b384d9a16944adba276c116c2caa0dcb93a4eef40ccd4ea0",
+      "expected": {
+        "value": 50
+      },
+      "expected_status": null,
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic",
+      "fixture_sha256": "5de58b9a868d2c9b71e4dcbe04886c1b78983a5a4e345578c1926cd1e6da1bb1",
+      "expected": {
+        "value": 57
+      },
+      "expected_status": null,
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "fixture_sha256": "d42f17b0b687e4e871068f21cbc58e51a24a0fa3001a62dda94926805f5d0fe8",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "fixture_sha256": "cab9c1b150680b8df2cee530aa5e17dbbde88fe03fa638cd4c4fb1f0c85fd48c",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "fixture_sha256": "d81cb296928eb52317bd1a485e6835eff37081e41bf68896059ff896be25f22a",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "fixture_sha256": "880c9eba21f8ba20d0d8f35aa39736acb2e9c79dbb18e56fee3ce38bb66537be",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "fixture_sha256": "7994935ee8d8ea0bab917cc84abda3054d3e7388a3cf4e9a7d8dcd1c75d38f50",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/population_unverified",
+      "fixture_sha256": "6b3462e0b019eca222ba8fcbc4a5a3ebb0e6d6c19c1b34f790d42849369d329b",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "population_unverified",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/inverted_period",
+      "fixture_sha256": "4135e24705eb3069daeaab06de04c199d6375249a666f277ef87215332220946",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/reject_number_domain",
+      "fixture_sha256": "546c82985240c4c0f84d703a273fa70b299251fc6d214805f11b459d885a1518",
+      "expected": {
+        "value": null
+      },
+      "expected_status": "invalid_input",
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "fixture_sha256": "393e908d6127512be03ac8e21c658d23900b3a106bd4b5b772d2d9dd2c98e065",
+      "expected": {
+        "value": 57
+      },
+      "expected_status": null,
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "fixture_sha256": "cc82108249420046ed77096282663658c80315de30f3e4e8961453ca0b2a6170",
+      "expected": {
+        "value": 57
+      },
+      "expected_status": null,
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "profile_id": "prepared_observations_v1",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "fixture_sha256": "12258540a8bc75fa05b25cac30d5b7059d86da2f99970d215241e4766a6e2e77",
+      "expected": {
+        "value": 57
+      },
+      "expected_status": null,
+      "contracts": {
+        "value": {
+          "unit": "score_points",
+          "nullable": true,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 1e-12,
+          "type": "number"
+        }
+      }
+    }
+  ]
+}

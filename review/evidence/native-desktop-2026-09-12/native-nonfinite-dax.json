@@ -1,0 +1,2729 @@
+{
+  "engine": "dax",
+  "execution_kind": "native_desktop",
+  "stage": "native_nonfinite_input_probes",
+  "started_at": "2026-09-12T02:42:04.732488+00:00",
+  "profile_bundle_sha256": "e9164dd43862d7a9e50ad6a2e69bf93e3b66f3c0828e76eabb3208c75d6b6327",
+  "source_files_sha256": {
+    "recipes/portable/cases.py": "8b4d21f64946820e69fec79a385af6cbd3d6bd5ca40e2a09b063778dc0d5143e",
+    "recipes/portable/export.py": "eae432e3d7b9c64fadd43c8797515000da3a72bd2b763175f0f27be26086d5bf",
+    "recipes/portable/ratios.py": "f14c8eaac07bd0b6d11fec14d75e0bdb1b320db113f08bde507273c3a69c9d46",
+    "recipes/semantic/cases.py": "bd499addff31853ef5a9290c8d1917f796d7b0795a34fc868452732ef7436dfb",
+    "recipes/semantic/check.py": "1aca319586c87c55efc65154f162852eb0f0ed0f385007b5ab6d599b8ce8f022",
+    "recipes/semantic/esql.py": "36e6fdeb26c1ff3a2e84eb821aaf3b772a7abb0c2aa4d57292967dccb0015492",
+    "recipes/semantic/excel.py": "b53408110952bcccf5fc03fc6c1f05962401b5704b9d362a30adf03da8c2dbf9",
+    "recipes/semantic/export.py": "960a058c487c5d5459a1238eef310df3609adec239dd1a55c8e42a0de45d3f6d",
+    "recipes/semantic/model.py": "bada670526fb20a6dcb1a0c6a48412b75f7832e30f3489d3d939e2f96d2837db",
+    "recipes/semantic/output_oracles.py": "77cb8e519b13184f67d34f76fbb302d3b702ec953c2294f1bb0959693420faa8",
+    "recipes/semantic/platforms.py": "aa920b30afaa03eef2b8c28b361cdd41d832d0ef0cc3004ec67442eb41b29d23",
+    "recipes/semantic/registry.py": "aa86e3d337a9fb06caab145f74e780ce62bf5bfbde2d073e93fc505ea64e4555",
+    "recipes/semantic/render.py": "d0f7d4d44a324a4587fd4d50778328a3dfcad3deb621ed4bf28566ab0220444a",
+    "recipes/semantic/specials.py": "03490bc70db7ac8d77c002ba41a881d9dc16ddcabed301dc3fc7b55a66b9b0bd",
+    "recipes/semantic/spl.py": "e7a9a44e070f925a5cd57138faacee933e83705e6d777387c1350c01371ca8b6",
+    "recipes/semantic/units.py": "1f6bf948bc4a0228675515694ebe4b77b788fc0bb8351e58c97b9d9d7870d61f",
+    "recipes/gen_recipes.py": "7ec7cc239b757fba82a6c0c71a052ab7fac9b3dbfab462da693b7236f5b6c652",
+    "recipes/curated/curated_assumptions.json": "1f1d4814f7751a9b70a775b284a0b3c442878d343f965d91160055468db388ae",
+    "recipes/curated/soc-002.json": "11e62e7b8b180b574eb293e146be8ac57cc6e5f3a0c3f2c0fc240d61d4a8b4f4",
+    "recipes/curated/soc-003.json": "7e97262cd979c272e4856def114ebc0fd9d7533ca42a2b587d83db53d5df1b5a",
+    "recipes/curated/std-016.json": "29b3ce1464d0ff6336ba524100f4dedefbaa286eefe631f563f663cf7dce56c8",
+    "recipes/fixtures/soc003.json": "04f6c649afbcab1c5de4a844c5bb673820a6e9b92959a04fd2def6a558aab3cc",
+    "recipes/soc003.py": "7dca442987929804f9d6a1ce2299a036d13fac9501fd50831a7342680002d8cb",
+    "recipes/esql_exact.py": "abedc7ba109ec89ba81162a3f7b93608449e72060d5472faec68e075f477eaa6",
+    "recipes/dax_profiles.py": "a2e594a4a8451dce0831a4263cb63eca790bf17c0562bfa62b044fa5e98f0577",
+    "recipes/ci/audit_issue_examples.py": "0348119efb0863f46023904444bbc49414beee4d0566308e0acfb28dd3b04f83",
+    "recipes/ci/collect_profile_reports.py": "8bc92d8208e8b1918b31d4c47a288c8b390fab5debe9bcd1bd63b05af641c315",
+    "recipes/ci/desktop_runner.py": "1b6e9a3323bc15142b155da321bedbd9aaefbb3c99241bd8c18bdc4ca6b5bbe1",
+    "recipes/ci/esql_runner.py": "80b644a24f567d5f0f80337e247d42f8d2c0eb83bb0ecff5575b99d529c1c063",
+    "recipes/ci/excel_runner.py": "3f92f7e96305a214edb58557cfa63e56e58162fb61adc00281396cb6b32de727",
+    "recipes/ci/incident_cases.py": "43ccfc5be65c575aac33dc1b5ff2a2be6b217de2ad76586514e84dcdf0e180b6",
+    "recipes/ci/kusto_runner.py": "11bad246bbee7665564aca9b87284baf5aa586ba7b89d1486777cfd802c01a34",
+    "recipes/ci/partitions.py": "b893123aae1c3a208aa326b764bd855d4f994ef1cfd294504da31f537c832f92",
+    "recipes/ci/profile_runner.py": "142f7a76a758d21fd666d39db7ab166a73fad25c6d90bb9362d389386eb6043f",
+    "recipes/ci/semantic_runner.py": "e9125ec06254dd7bd59ba95c35572d0769a2eac51383f3477f52fa8f28c39168",
+    "recipes/ci/spl_fixture.py": "856bfb5d5899f0e8c2f09b0579611ed90cee76c83fa1274bc0606b698611f716",
+    "recipes/ci/spl_runner.py": "23f1099ba8bf16b8f0927b0089fbffadfa03ab518663c00817c1c9becf327cd1",
+    "recipes/ci/wait_kusto.py": "2dec2d2dc2fb2aed341ab975f65b575007542253b7b02eb4fb6de350db382d34",
+    "recipes/ci/desktop_engine.ps1": "f8b5deb54637f0ff267e2cc2cd6125faeb91579bd3496f101a561c9d7b052532",
+    "recipes/ci/run_desktop_acceptance.ps1": "195ef5a55f031ffd305016f934fd1620682cc20cdcb91b04332653462a9e9591",
+    "recipes/export_implementation.py": "0ed6bf8b16473c8f07ad66bfa91631fa8e60cd0d30fcf99383c7979e8a200bb1",
+    "recipes/xlsx_dialect.py": "3cedaeb4b39ec10ff24658decc558cbe092e8e2d04a17c29a9a204adf7bf26ba",
+    "reference/assurance.py": "5807ac53da85f982a5cbab11ddf76b7cbc6e531ac624da3ab7a73c18365775f3",
+    "reference/execution_store.py": "ad88016772159992fc6a9cb6b43ebfdbbc227d0229656f79faf734b67abd566e",
+    "catalog/osms-catalog.yaml": "1b128973da1db2d71c9381e504eb9a328902fd2a7efae2491438a97aa453fe2c",
+    "catalog/principles.yaml": "0b41b8054b8c88a7633862bbc989098441263da5dc46d5b83d1403711106e574",
+    "reference/RUBRICS.md": "759ce590f9762a709ebd62e73b6ec957287057ea291815d2b48e703703ef7b87",
+    "reference/ASSURANCE_PROFILES.md": "934a505c6455c72175aa64384ebabcc890095e29c7cc6c0e6dcd35ce116ec39f",
+    "recipes/EXECUTION_PROFILES.md": "2b96f0527fd38d2b37b3634bb7a4afd2a6da575e9566e757c792300220823cb5"
+  },
+  "probe_source_sha256": {
+    "tools\\native_dax_input_probe.py": "b2d74302ab01c94b1684a8e8ec9871f5c5f3e76a2f67c4aff6f6655ec2a6df08",
+    "tools\\native_dax_input_probe.ps1": "c9bfc42525605ebb643e19ce8055564809ed5e137026c70496d58018646e775b"
+  },
+  "records": [
+    {
+      "card_id": "STD-068",
+      "input_field": "network_isolation",
+      "input_kind": "control",
+      "input_expression_or_text": null,
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "network_isolation": 20,
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-068\",\"0.9.2\",\"a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",20,40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"network_isolation\",CONVERT([Value12],DOUBLE),\"identity_separation\",CONVERT([Value13],DOUBLE),\"admin_separation\",CONVERT([Value14],DOUBLE),\"monitoring\",CONVERT([Value15],DOUBLE),\"restore_access_control\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "network_isolation",
+            "type": "Double"
+          },
+          {
+            "name": "identity_separation",
+            "type": "Double"
+          },
+          {
+            "name": "admin_separation",
+            "type": "Double"
+          },
+          {
+            "name": "monitoring",
+            "type": "Double"
+          },
+          {
+            "name": "restore_access_control",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "2933aca81a95b1dc4ce04f4008892d7ab5450a996af269868250841b17784a66",
+      "native": {
+        "outcome": "evaluated",
+        "engine_version": "17.0.83.18",
+        "result": {
+          "rows": [
+            {
+              "selected_records": 1,
+              "invalid_records": 0,
+              "evaluation_status": "ok",
+              "value": 57
+            }
+          ],
+          "engine_version": "17.0.83.18"
+        },
+        "completed_at": "2026-09-12T02:42:13.0059351Z",
+        "started_at": "2026-09-12T02:42:09.8471215Z"
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-068",
+      "input_field": "network_isolation",
+      "input_kind": "nan_text",
+      "input_expression_or_text": "NaN",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "network_isolation": "NaN",
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-068\",\"0.9.2\",\"a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",\"NaN\",40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"network_isolation\",CONVERT([Value12],DOUBLE),\"identity_separation\",CONVERT([Value13],DOUBLE),\"admin_separation\",CONVERT([Value14],DOUBLE),\"monitoring\",CONVERT([Value15],DOUBLE),\"restore_access_control\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "network_isolation",
+            "type": "Double"
+          },
+          {
+            "name": "identity_separation",
+            "type": "Double"
+          },
+          {
+            "name": "admin_separation",
+            "type": "Double"
+          },
+          {
+            "name": "monitoring",
+            "type": "Double"
+          },
+          {
+            "name": "restore_access_control",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "2933aca81a95b1dc4ce04f4008892d7ab5450a996af269868250841b17784a66",
+      "native": {
+        "engine_version": "17.0.83.18",
+        "completed_at": "2026-09-12T02:42:21.5911932Z",
+        "started_at": "2026-09-12T02:42:18.4945326Z",
+        "failing_operation": "& $engine -RequestPath $RequestPath | Out-Null",
+        "server_errors": [
+          {
+            "error_code": -1053163226,
+            "description": null
+          }
+        ],
+        "exception_types": [
+          "System.Management.Automation.MethodInvocationException",
+          "Microsoft.AnalysisServices.AdomdClient.AdomdErrorResponseException"
+        ],
+        "outcome": "native_model_input_rejected_at_query",
+        "native_error": "Ausnahme beim Aufrufen von \"ExecuteReader\" mit 0 Argument(en):  \"In der Abfrage wurde auf die berechnete Tabelle \"osms_input\" verwiesen. Diese enthält keine Daten, weil die Auswertung einer der Zeilen einen Fehler verursacht hat.\""
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-068",
+      "input_field": "network_isolation",
+      "input_kind": "positive_infinity_text",
+      "input_expression_or_text": "Infinity",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "network_isolation": "Infinity",
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-068\",\"0.9.2\",\"a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",\"Infinity\",40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"network_isolation\",CONVERT([Value12],DOUBLE),\"identity_separation\",CONVERT([Value13],DOUBLE),\"admin_separation\",CONVERT([Value14],DOUBLE),\"monitoring\",CONVERT([Value15],DOUBLE),\"restore_access_control\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "network_isolation",
+            "type": "Double"
+          },
+          {
+            "name": "identity_separation",
+            "type": "Double"
+          },
+          {
+            "name": "admin_separation",
+            "type": "Double"
+          },
+          {
+            "name": "monitoring",
+            "type": "Double"
+          },
+          {
+            "name": "restore_access_control",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "2933aca81a95b1dc4ce04f4008892d7ab5450a996af269868250841b17784a66",
+      "native": {
+        "engine_version": "17.0.83.18",
+        "completed_at": "2026-09-12T02:42:28.0088479Z",
+        "started_at": "2026-09-12T02:42:24.3710779Z",
+        "failing_operation": "& $engine -RequestPath $RequestPath | Out-Null",
+        "server_errors": [
+          {
+            "error_code": -1053163226,
+            "description": null
+          }
+        ],
+        "exception_types": [
+          "System.Management.Automation.MethodInvocationException",
+          "Microsoft.AnalysisServices.AdomdClient.AdomdErrorResponseException"
+        ],
+        "outcome": "native_model_input_rejected_at_query",
+        "native_error": "Ausnahme beim Aufrufen von \"ExecuteReader\" mit 0 Argument(en):  \"In der Abfrage wurde auf die berechnete Tabelle \"osms_input\" verwiesen. Diese enthält keine Daten, weil die Auswertung einer der Zeilen einen Fehler verursacht hat.\""
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-068",
+      "input_field": "network_isolation",
+      "input_kind": "negative_infinity_text",
+      "input_expression_or_text": "-Infinity",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "network_isolation": "-Infinity",
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-068\",\"0.9.2\",\"a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",\"-Infinity\",40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"network_isolation\",CONVERT([Value12],DOUBLE),\"identity_separation\",CONVERT([Value13],DOUBLE),\"admin_separation\",CONVERT([Value14],DOUBLE),\"monitoring\",CONVERT([Value15],DOUBLE),\"restore_access_control\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "network_isolation",
+            "type": "Double"
+          },
+          {
+            "name": "identity_separation",
+            "type": "Double"
+          },
+          {
+            "name": "admin_separation",
+            "type": "Double"
+          },
+          {
+            "name": "monitoring",
+            "type": "Double"
+          },
+          {
+            "name": "restore_access_control",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "2933aca81a95b1dc4ce04f4008892d7ab5450a996af269868250841b17784a66",
+      "native": {
+        "engine_version": "17.0.83.18",
+        "completed_at": "2026-09-12T02:42:36.3431469Z",
+        "started_at": "2026-09-12T02:42:32.0050363Z",
+        "failing_operation": "& $engine -RequestPath $RequestPath | Out-Null",
+        "server_errors": [
+          {
+            "error_code": -1053163226,
+            "description": null
+          }
+        ],
+        "exception_types": [
+          "System.Management.Automation.MethodInvocationException",
+          "Microsoft.AnalysisServices.AdomdClient.AdomdErrorResponseException"
+        ],
+        "outcome": "native_model_input_rejected_at_query",
+        "native_error": "Ausnahme beim Aufrufen von \"ExecuteReader\" mit 0 Argument(en):  \"In der Abfrage wurde auf die berechnete Tabelle \"osms_input\" verwiesen. Diese enthält keine Daten, weil die Auswertung einer der Zeilen einen Fehler verursacht hat.\""
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-068",
+      "input_field": "network_isolation",
+      "input_kind": "nan_native_expression",
+      "input_expression_or_text": "0.0/0.0",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "network_isolation": 20,
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-068\",\"0.9.2\",\"a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",0.0/0.0,40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"network_isolation\",CONVERT([Value12],DOUBLE),\"identity_separation\",CONVERT([Value13],DOUBLE),\"admin_separation\",CONVERT([Value14],DOUBLE),\"monitoring\",CONVERT([Value15],DOUBLE),\"restore_access_control\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "network_isolation",
+            "type": "Double"
+          },
+          {
+            "name": "identity_separation",
+            "type": "Double"
+          },
+          {
+            "name": "admin_separation",
+            "type": "Double"
+          },
+          {
+            "name": "monitoring",
+            "type": "Double"
+          },
+          {
+            "name": "restore_access_control",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "2933aca81a95b1dc4ce04f4008892d7ab5450a996af269868250841b17784a66",
+      "native": {
+        "outcome": "evaluated",
+        "engine_version": "17.0.83.18",
+        "result": {
+          "rows": [
+            {
+              "selected_records": 1,
+              "invalid_records": 1,
+              "evaluation_status": "invalid_input",
+              "value": null
+            }
+          ],
+          "engine_version": "17.0.83.18"
+        },
+        "completed_at": "2026-09-12T02:42:44.4452234Z",
+        "started_at": "2026-09-12T02:42:41.6259529Z"
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-068",
+      "input_field": "network_isolation",
+      "input_kind": "positive_infinity_native_expression",
+      "input_expression_or_text": "1.0/0.0",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "network_isolation": 20,
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-068\",\"0.9.2\",\"a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",1.0/0.0,40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"network_isolation\",CONVERT([Value12],DOUBLE),\"identity_separation\",CONVERT([Value13],DOUBLE),\"admin_separation\",CONVERT([Value14],DOUBLE),\"monitoring\",CONVERT([Value15],DOUBLE),\"restore_access_control\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "network_isolation",
+            "type": "Double"
+          },
+          {
+            "name": "identity_separation",
+            "type": "Double"
+          },
+          {
+            "name": "admin_separation",
+            "type": "Double"
+          },
+          {
+            "name": "monitoring",
+            "type": "Double"
+          },
+          {
+            "name": "restore_access_control",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "2933aca81a95b1dc4ce04f4008892d7ab5450a996af269868250841b17784a66",
+      "native": {
+        "outcome": "evaluated",
+        "engine_version": "17.0.83.18",
+        "result": {
+          "rows": [
+            {
+              "selected_records": 1,
+              "invalid_records": 1,
+              "evaluation_status": "invalid_input",
+              "value": null
+            }
+          ],
+          "engine_version": "17.0.83.18"
+        },
+        "completed_at": "2026-09-12T02:42:51.3529543Z",
+        "started_at": "2026-09-12T02:42:47.7308940Z"
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-068",
+      "input_field": "network_isolation",
+      "input_kind": "negative_infinity_native_expression",
+      "input_expression_or_text": "-1.0/0.0",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "network_isolation": 20,
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-068\",\"0.9.2\",\"a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",-1.0/0.0,40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"network_isolation\",CONVERT([Value12],DOUBLE),\"identity_separation\",CONVERT([Value13],DOUBLE),\"admin_separation\",CONVERT([Value14],DOUBLE),\"monitoring\",CONVERT([Value15],DOUBLE),\"restore_access_control\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "network_isolation",
+            "type": "Double"
+          },
+          {
+            "name": "identity_separation",
+            "type": "Double"
+          },
+          {
+            "name": "admin_separation",
+            "type": "Double"
+          },
+          {
+            "name": "monitoring",
+            "type": "Double"
+          },
+          {
+            "name": "restore_access_control",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "2933aca81a95b1dc4ce04f4008892d7ab5450a996af269868250841b17784a66",
+      "native": {
+        "outcome": "evaluated",
+        "engine_version": "17.0.83.18",
+        "result": {
+          "rows": [
+            {
+              "selected_records": 1,
+              "invalid_records": 1,
+              "evaluation_status": "invalid_input",
+              "value": null
+            }
+          ],
+          "engine_version": "17.0.83.18"
+        },
+        "completed_at": "2026-09-12T02:42:59.4111037Z",
+        "started_at": "2026-09-12T02:42:54.8569040Z"
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-069",
+      "input_field": "exercise_frequency",
+      "input_kind": "control",
+      "input_expression_or_text": null,
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "exercise_frequency": 20,
+            "scenario_realism": 40,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 50
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-069\",\"0.9.2\",\"1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",20,40,60,80)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"exercise_frequency\",CONVERT([Value12],DOUBLE),\"scenario_realism\",CONVERT([Value13],DOUBLE),\"stakeholder_participation\",CONVERT([Value14],DOUBLE),\"lessons_learned_closure\",CONVERT([Value15],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "exercise_frequency",
+            "type": "Double"
+          },
+          {
+            "name": "scenario_realism",
+            "type": "Double"
+          },
+          {
+            "name": "stakeholder_participation",
+            "type": "Double"
+          },
+          {
+            "name": "lessons_learned_closure",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "0b1a37311a524c5234710b2d28a7bb03ab8584f119076868de8dc34ca7dc5cbf",
+      "native": {
+        "outcome": "evaluated",
+        "engine_version": "17.0.83.18",
+        "result": {
+          "rows": [
+            {
+              "selected_records": 1,
+              "invalid_records": 0,
+              "evaluation_status": "ok",
+              "value": 50
+            }
+          ],
+          "engine_version": "17.0.83.18"
+        },
+        "completed_at": "2026-09-12T02:43:05.7245495Z",
+        "started_at": "2026-09-12T02:43:02.0116718Z"
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-069",
+      "input_field": "exercise_frequency",
+      "input_kind": "nan_text",
+      "input_expression_or_text": "NaN",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "exercise_frequency": "NaN",
+            "scenario_realism": 40,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 50
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-069\",\"0.9.2\",\"1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",\"NaN\",40,60,80)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"exercise_frequency\",CONVERT([Value12],DOUBLE),\"scenario_realism\",CONVERT([Value13],DOUBLE),\"stakeholder_participation\",CONVERT([Value14],DOUBLE),\"lessons_learned_closure\",CONVERT([Value15],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "exercise_frequency",
+            "type": "Double"
+          },
+          {
+            "name": "scenario_realism",
+            "type": "Double"
+          },
+          {
+            "name": "stakeholder_participation",
+            "type": "Double"
+          },
+          {
+            "name": "lessons_learned_closure",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "0b1a37311a524c5234710b2d28a7bb03ab8584f119076868de8dc34ca7dc5cbf",
+      "native": {
+        "engine_version": "17.0.83.18",
+        "completed_at": "2026-09-12T02:43:13.0689864Z",
+        "started_at": "2026-09-12T02:43:09.5905850Z",
+        "failing_operation": "& $engine -RequestPath $RequestPath | Out-Null",
+        "server_errors": [
+          {
+            "error_code": -1053163226,
+            "description": null
+          }
+        ],
+        "exception_types": [
+          "System.Management.Automation.MethodInvocationException",
+          "Microsoft.AnalysisServices.AdomdClient.AdomdErrorResponseException"
+        ],
+        "outcome": "native_model_input_rejected_at_query",
+        "native_error": "Ausnahme beim Aufrufen von \"ExecuteReader\" mit 0 Argument(en):  \"In der Abfrage wurde auf die berechnete Tabelle \"osms_input\" verwiesen. Diese enthält keine Daten, weil die Auswertung einer der Zeilen einen Fehler verursacht hat.\""
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-069",
+      "input_field": "exercise_frequency",
+      "input_kind": "positive_infinity_text",
+      "input_expression_or_text": "Infinity",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "exercise_frequency": "Infinity",
+            "scenario_realism": 40,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 50
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-069\",\"0.9.2\",\"1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",\"Infinity\",40,60,80)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"exercise_frequency\",CONVERT([Value12],DOUBLE),\"scenario_realism\",CONVERT([Value13],DOUBLE),\"stakeholder_participation\",CONVERT([Value14],DOUBLE),\"lessons_learned_closure\",CONVERT([Value15],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "exercise_frequency",
+            "type": "Double"
+          },
+          {
+            "name": "scenario_realism",
+            "type": "Double"
+          },
+          {
+            "name": "stakeholder_participation",
+            "type": "Double"
+          },
+          {
+            "name": "lessons_learned_closure",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "0b1a37311a524c5234710b2d28a7bb03ab8584f119076868de8dc34ca7dc5cbf",
+      "native": {
+        "engine_version": "17.0.83.18",
+        "completed_at": "2026-09-12T02:43:19.2216002Z",
+        "started_at": "2026-09-12T02:43:16.7238278Z",
+        "failing_operation": "& $engine -RequestPath $RequestPath | Out-Null",
+        "server_errors": [
+          {
+            "error_code": -1053163226,
+            "description": null
+          }
+        ],
+        "exception_types": [
+          "System.Management.Automation.MethodInvocationException",
+          "Microsoft.AnalysisServices.AdomdClient.AdomdErrorResponseException"
+        ],
+        "outcome": "native_model_input_rejected_at_query",
+        "native_error": "Ausnahme beim Aufrufen von \"ExecuteReader\" mit 0 Argument(en):  \"In der Abfrage wurde auf die berechnete Tabelle \"osms_input\" verwiesen. Diese enthält keine Daten, weil die Auswertung einer der Zeilen einen Fehler verursacht hat.\""
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-069",
+      "input_field": "exercise_frequency",
+      "input_kind": "negative_infinity_text",
+      "input_expression_or_text": "-Infinity",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "exercise_frequency": "-Infinity",
+            "scenario_realism": 40,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 50
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-069\",\"0.9.2\",\"1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",\"-Infinity\",40,60,80)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"exercise_frequency\",CONVERT([Value12],DOUBLE),\"scenario_realism\",CONVERT([Value13],DOUBLE),\"stakeholder_participation\",CONVERT([Value14],DOUBLE),\"lessons_learned_closure\",CONVERT([Value15],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "exercise_frequency",
+            "type": "Double"
+          },
+          {
+            "name": "scenario_realism",
+            "type": "Double"
+          },
+          {
+            "name": "stakeholder_participation",
+            "type": "Double"
+          },
+          {
+            "name": "lessons_learned_closure",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "0b1a37311a524c5234710b2d28a7bb03ab8584f119076868de8dc34ca7dc5cbf",
+      "native": {
+        "engine_version": "17.0.83.18",
+        "completed_at": "2026-09-12T02:43:25.2877494Z",
+        "started_at": "2026-09-12T02:43:22.5854038Z",
+        "failing_operation": "& $engine -RequestPath $RequestPath | Out-Null",
+        "server_errors": [
+          {
+            "error_code": -1053163226,
+            "description": null
+          }
+        ],
+        "exception_types": [
+          "System.Management.Automation.MethodInvocationException",
+          "Microsoft.AnalysisServices.AdomdClient.AdomdErrorResponseException"
+        ],
+        "outcome": "native_model_input_rejected_at_query",
+        "native_error": "Ausnahme beim Aufrufen von \"ExecuteReader\" mit 0 Argument(en):  \"In der Abfrage wurde auf die berechnete Tabelle \"osms_input\" verwiesen. Diese enthält keine Daten, weil die Auswertung einer der Zeilen einen Fehler verursacht hat.\""
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-069",
+      "input_field": "exercise_frequency",
+      "input_kind": "nan_native_expression",
+      "input_expression_or_text": "0.0/0.0",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "exercise_frequency": 20,
+            "scenario_realism": 40,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 50
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-069\",\"0.9.2\",\"1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",0.0/0.0,40,60,80)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"exercise_frequency\",CONVERT([Value12],DOUBLE),\"scenario_realism\",CONVERT([Value13],DOUBLE),\"stakeholder_participation\",CONVERT([Value14],DOUBLE),\"lessons_learned_closure\",CONVERT([Value15],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "exercise_frequency",
+            "type": "Double"
+          },
+          {
+            "name": "scenario_realism",
+            "type": "Double"
+          },
+          {
+            "name": "stakeholder_participation",
+            "type": "Double"
+          },
+          {
+            "name": "lessons_learned_closure",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "0b1a37311a524c5234710b2d28a7bb03ab8584f119076868de8dc34ca7dc5cbf",
+      "native": {
+        "outcome": "evaluated",
+        "engine_version": "17.0.83.18",
+        "result": {
+          "rows": [
+            {
+              "selected_records": 1,
+              "invalid_records": 1,
+              "evaluation_status": "invalid_input",
+              "value": null
+            }
+          ],
+          "engine_version": "17.0.83.18"
+        },
+        "completed_at": "2026-09-12T02:43:31.7698932Z",
+        "started_at": "2026-09-12T02:43:28.0128123Z"
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-069",
+      "input_field": "exercise_frequency",
+      "input_kind": "positive_infinity_native_expression",
+      "input_expression_or_text": "1.0/0.0",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "exercise_frequency": 20,
+            "scenario_realism": 40,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 50
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-069\",\"0.9.2\",\"1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",1.0/0.0,40,60,80)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"exercise_frequency\",CONVERT([Value12],DOUBLE),\"scenario_realism\",CONVERT([Value13],DOUBLE),\"stakeholder_participation\",CONVERT([Value14],DOUBLE),\"lessons_learned_closure\",CONVERT([Value15],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "exercise_frequency",
+            "type": "Double"
+          },
+          {
+            "name": "scenario_realism",
+            "type": "Double"
+          },
+          {
+            "name": "stakeholder_participation",
+            "type": "Double"
+          },
+          {
+            "name": "lessons_learned_closure",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "0b1a37311a524c5234710b2d28a7bb03ab8584f119076868de8dc34ca7dc5cbf",
+      "native": {
+        "outcome": "evaluated",
+        "engine_version": "17.0.83.18",
+        "result": {
+          "rows": [
+            {
+              "selected_records": 1,
+              "invalid_records": 1,
+              "evaluation_status": "invalid_input",
+              "value": null
+            }
+          ],
+          "engine_version": "17.0.83.18"
+        },
+        "completed_at": "2026-09-12T02:43:36.4751339Z",
+        "started_at": "2026-09-12T02:43:34.3013861Z"
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-069",
+      "input_field": "exercise_frequency",
+      "input_kind": "negative_infinity_native_expression",
+      "input_expression_or_text": "-1.0/0.0",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "exercise_frequency": 20,
+            "scenario_realism": 40,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 50
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-069\",\"0.9.2\",\"1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",-1.0/0.0,40,60,80)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"exercise_frequency\",CONVERT([Value12],DOUBLE),\"scenario_realism\",CONVERT([Value13],DOUBLE),\"stakeholder_participation\",CONVERT([Value14],DOUBLE),\"lessons_learned_closure\",CONVERT([Value15],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "exercise_frequency",
+            "type": "Double"
+          },
+          {
+            "name": "scenario_realism",
+            "type": "Double"
+          },
+          {
+            "name": "stakeholder_participation",
+            "type": "Double"
+          },
+          {
+            "name": "lessons_learned_closure",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "0b1a37311a524c5234710b2d28a7bb03ab8584f119076868de8dc34ca7dc5cbf",
+      "native": {
+        "outcome": "evaluated",
+        "engine_version": "17.0.83.18",
+        "result": {
+          "rows": [
+            {
+              "selected_records": 1,
+              "invalid_records": 1,
+              "evaluation_status": "invalid_input",
+              "value": null
+            }
+          ],
+          "engine_version": "17.0.83.18"
+        },
+        "completed_at": "2026-09-12T02:43:41.7034102Z",
+        "started_at": "2026-09-12T02:43:39.1084899Z"
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-075",
+      "input_field": "plan_quality",
+      "input_kind": "control",
+      "input_expression_or_text": null,
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "plan_quality": 20,
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-075\",\"0.9.2\",\"8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",20,40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"plan_quality\",CONVERT([Value12],DOUBLE),\"dependency_status\",CONVERT([Value13],DOUBLE),\"resource_availability\",CONVERT([Value14],DOUBLE),\"evidence_progress\",CONVERT([Value15],DOUBLE),\"risk_to_delivery\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "plan_quality",
+            "type": "Double"
+          },
+          {
+            "name": "dependency_status",
+            "type": "Double"
+          },
+          {
+            "name": "resource_availability",
+            "type": "Double"
+          },
+          {
+            "name": "evidence_progress",
+            "type": "Double"
+          },
+          {
+            "name": "risk_to_delivery",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "5ce1da9fffba6e1ba7d34e2c80cad50e82e65004e3d04f657e03e00df3c035f0",
+      "native": {
+        "outcome": "evaluated",
+        "engine_version": "17.0.83.18",
+        "result": {
+          "rows": [
+            {
+              "selected_records": 1,
+              "invalid_records": 0,
+              "evaluation_status": "ok",
+              "value": 57
+            }
+          ],
+          "engine_version": "17.0.83.18"
+        },
+        "completed_at": "2026-09-12T02:43:46.3594998Z",
+        "started_at": "2026-09-12T02:43:44.2609660Z"
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-075",
+      "input_field": "plan_quality",
+      "input_kind": "nan_text",
+      "input_expression_or_text": "NaN",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "plan_quality": "NaN",
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-075\",\"0.9.2\",\"8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",\"NaN\",40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"plan_quality\",CONVERT([Value12],DOUBLE),\"dependency_status\",CONVERT([Value13],DOUBLE),\"resource_availability\",CONVERT([Value14],DOUBLE),\"evidence_progress\",CONVERT([Value15],DOUBLE),\"risk_to_delivery\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "plan_quality",
+            "type": "Double"
+          },
+          {
+            "name": "dependency_status",
+            "type": "Double"
+          },
+          {
+            "name": "resource_availability",
+            "type": "Double"
+          },
+          {
+            "name": "evidence_progress",
+            "type": "Double"
+          },
+          {
+            "name": "risk_to_delivery",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "5ce1da9fffba6e1ba7d34e2c80cad50e82e65004e3d04f657e03e00df3c035f0",
+      "native": {
+        "engine_version": "17.0.83.18",
+        "completed_at": "2026-09-12T02:43:51.4250403Z",
+        "started_at": "2026-09-12T02:43:49.7721439Z",
+        "failing_operation": "& $engine -RequestPath $RequestPath | Out-Null",
+        "server_errors": [
+          {
+            "error_code": -1053163226,
+            "description": null
+          }
+        ],
+        "exception_types": [
+          "System.Management.Automation.MethodInvocationException",
+          "Microsoft.AnalysisServices.AdomdClient.AdomdErrorResponseException"
+        ],
+        "outcome": "native_model_input_rejected_at_query",
+        "native_error": "Ausnahme beim Aufrufen von \"ExecuteReader\" mit 0 Argument(en):  \"In der Abfrage wurde auf die berechnete Tabelle \"osms_input\" verwiesen. Diese enthält keine Daten, weil die Auswertung einer der Zeilen einen Fehler verursacht hat.\""
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-075",
+      "input_field": "plan_quality",
+      "input_kind": "positive_infinity_text",
+      "input_expression_or_text": "Infinity",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "plan_quality": "Infinity",
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-075\",\"0.9.2\",\"8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",\"Infinity\",40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"plan_quality\",CONVERT([Value12],DOUBLE),\"dependency_status\",CONVERT([Value13],DOUBLE),\"resource_availability\",CONVERT([Value14],DOUBLE),\"evidence_progress\",CONVERT([Value15],DOUBLE),\"risk_to_delivery\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "plan_quality",
+            "type": "Double"
+          },
+          {
+            "name": "dependency_status",
+            "type": "Double"
+          },
+          {
+            "name": "resource_availability",
+            "type": "Double"
+          },
+          {
+            "name": "evidence_progress",
+            "type": "Double"
+          },
+          {
+            "name": "risk_to_delivery",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "5ce1da9fffba6e1ba7d34e2c80cad50e82e65004e3d04f657e03e00df3c035f0",
+      "native": {
+        "engine_version": "17.0.83.18",
+        "completed_at": "2026-09-12T02:43:57.9011196Z",
+        "started_at": "2026-09-12T02:43:55.2337075Z",
+        "failing_operation": "& $engine -RequestPath $RequestPath | Out-Null",
+        "server_errors": [
+          {
+            "error_code": -1053163226,
+            "description": null
+          }
+        ],
+        "exception_types": [
+          "System.Management.Automation.MethodInvocationException",
+          "Microsoft.AnalysisServices.AdomdClient.AdomdErrorResponseException"
+        ],
+        "outcome": "native_model_input_rejected_at_query",
+        "native_error": "Ausnahme beim Aufrufen von \"ExecuteReader\" mit 0 Argument(en):  \"In der Abfrage wurde auf die berechnete Tabelle \"osms_input\" verwiesen. Diese enthält keine Daten, weil die Auswertung einer der Zeilen einen Fehler verursacht hat.\""
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-075",
+      "input_field": "plan_quality",
+      "input_kind": "negative_infinity_text",
+      "input_expression_or_text": "-Infinity",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "plan_quality": "-Infinity",
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-075\",\"0.9.2\",\"8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",\"-Infinity\",40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"plan_quality\",CONVERT([Value12],DOUBLE),\"dependency_status\",CONVERT([Value13],DOUBLE),\"resource_availability\",CONVERT([Value14],DOUBLE),\"evidence_progress\",CONVERT([Value15],DOUBLE),\"risk_to_delivery\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "plan_quality",
+            "type": "Double"
+          },
+          {
+            "name": "dependency_status",
+            "type": "Double"
+          },
+          {
+            "name": "resource_availability",
+            "type": "Double"
+          },
+          {
+            "name": "evidence_progress",
+            "type": "Double"
+          },
+          {
+            "name": "risk_to_delivery",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "5ce1da9fffba6e1ba7d34e2c80cad50e82e65004e3d04f657e03e00df3c035f0",
+      "native": {
+        "engine_version": "17.0.83.18",
+        "completed_at": "2026-09-12T02:44:03.8879549Z",
+        "started_at": "2026-09-12T02:44:01.6548653Z",
+        "failing_operation": "& $engine -RequestPath $RequestPath | Out-Null",
+        "server_errors": [
+          {
+            "error_code": -1053163226,
+            "description": null
+          }
+        ],
+        "exception_types": [
+          "System.Management.Automation.MethodInvocationException",
+          "Microsoft.AnalysisServices.AdomdClient.AdomdErrorResponseException"
+        ],
+        "outcome": "native_model_input_rejected_at_query",
+        "native_error": "Ausnahme beim Aufrufen von \"ExecuteReader\" mit 0 Argument(en):  \"In der Abfrage wurde auf die berechnete Tabelle \"osms_input\" verwiesen. Diese enthält keine Daten, weil die Auswertung einer der Zeilen einen Fehler verursacht hat.\""
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-075",
+      "input_field": "plan_quality",
+      "input_kind": "nan_native_expression",
+      "input_expression_or_text": "0.0/0.0",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "plan_quality": 20,
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-075\",\"0.9.2\",\"8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",0.0/0.0,40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"plan_quality\",CONVERT([Value12],DOUBLE),\"dependency_status\",CONVERT([Value13],DOUBLE),\"resource_availability\",CONVERT([Value14],DOUBLE),\"evidence_progress\",CONVERT([Value15],DOUBLE),\"risk_to_delivery\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "plan_quality",
+            "type": "Double"
+          },
+          {
+            "name": "dependency_status",
+            "type": "Double"
+          },
+          {
+            "name": "resource_availability",
+            "type": "Double"
+          },
+          {
+            "name": "evidence_progress",
+            "type": "Double"
+          },
+          {
+            "name": "risk_to_delivery",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "5ce1da9fffba6e1ba7d34e2c80cad50e82e65004e3d04f657e03e00df3c035f0",
+      "native": {
+        "outcome": "evaluated",
+        "engine_version": "17.0.83.18",
+        "result": {
+          "rows": [
+            {
+              "selected_records": 1,
+              "invalid_records": 1,
+              "evaluation_status": "invalid_input",
+              "value": null
+            }
+          ],
+          "engine_version": "17.0.83.18"
+        },
+        "completed_at": "2026-09-12T02:44:10.8024199Z",
+        "started_at": "2026-09-12T02:44:07.8192471Z"
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-075",
+      "input_field": "plan_quality",
+      "input_kind": "positive_infinity_native_expression",
+      "input_expression_or_text": "1.0/0.0",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "plan_quality": 20,
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-075\",\"0.9.2\",\"8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",1.0/0.0,40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"plan_quality\",CONVERT([Value12],DOUBLE),\"dependency_status\",CONVERT([Value13],DOUBLE),\"resource_availability\",CONVERT([Value14],DOUBLE),\"evidence_progress\",CONVERT([Value15],DOUBLE),\"risk_to_delivery\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "plan_quality",
+            "type": "Double"
+          },
+          {
+            "name": "dependency_status",
+            "type": "Double"
+          },
+          {
+            "name": "resource_availability",
+            "type": "Double"
+          },
+          {
+            "name": "evidence_progress",
+            "type": "Double"
+          },
+          {
+            "name": "risk_to_delivery",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "5ce1da9fffba6e1ba7d34e2c80cad50e82e65004e3d04f657e03e00df3c035f0",
+      "native": {
+        "outcome": "evaluated",
+        "engine_version": "17.0.83.18",
+        "result": {
+          "rows": [
+            {
+              "selected_records": 1,
+              "invalid_records": 1,
+              "evaluation_status": "invalid_input",
+              "value": null
+            }
+          ],
+          "engine_version": "17.0.83.18"
+        },
+        "completed_at": "2026-09-12T02:44:15.9271700Z",
+        "started_at": "2026-09-12T02:44:13.6577730Z"
+      },
+      "status": "pass"
+    },
+    {
+      "card_id": "STD-075",
+      "input_field": "plan_quality",
+      "input_kind": "negative_infinity_native_expression",
+      "input_expression_or_text": "-1.0/0.0",
+      "fixture": {
+        "name": "independent_arithmetic",
+        "rows": [
+          {
+            "plan_quality": 20,
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": 57
+        }
+      },
+      "model_table": {
+        "name": "osms_input",
+        "expression": "SELECTCOLUMNS({(\"STD-075\",\"0.9.2\",\"8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0\",\"prod\",DATE(2026,6,1)+TIME(0,0,0)+0/86400000000.0,DATE(2026,7,1)+TIME(0,0,0)+0/86400000000.0,\"record:0\",\"fixture:0\",\"synthetic\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"all\",-1.0/0.0,40,60,80,100)},\"card_id\",CONVERT([Value1],STRING),\"card_version\",CONVERT([Value2],STRING),\"contract_hash\",CONVERT([Value3],STRING),\"scope_id\",CONVERT([Value4],STRING),\"period_start\",CONVERT([Value5],DATETIME),\"period_end\",CONVERT([Value6],DATETIME),\"record_id\",CONVERT([Value7],STRING),\"evidence_ref\",CONVERT([Value8],STRING),\"source_system\",CONVERT([Value9],STRING),\"source_snapshot_hash\",CONVERT([Value10],STRING),\"segment_id\",CONVERT([Value11],STRING),\"plan_quality\",CONVERT([Value12],DOUBLE),\"dependency_status\",CONVERT([Value13],DOUBLE),\"resource_availability\",CONVERT([Value14],DOUBLE),\"evidence_progress\",CONVERT([Value15],DOUBLE),\"risk_to_delivery\",CONVERT([Value16],DOUBLE))",
+        "columns": [
+          {
+            "name": "card_id",
+            "type": "String"
+          },
+          {
+            "name": "card_version",
+            "type": "String"
+          },
+          {
+            "name": "contract_hash",
+            "type": "String"
+          },
+          {
+            "name": "scope_id",
+            "type": "String"
+          },
+          {
+            "name": "period_start",
+            "type": "DateTime"
+          },
+          {
+            "name": "period_end",
+            "type": "DateTime"
+          },
+          {
+            "name": "record_id",
+            "type": "String"
+          },
+          {
+            "name": "evidence_ref",
+            "type": "String"
+          },
+          {
+            "name": "source_system",
+            "type": "String"
+          },
+          {
+            "name": "source_snapshot_hash",
+            "type": "String"
+          },
+          {
+            "name": "segment_id",
+            "type": "String"
+          },
+          {
+            "name": "plan_quality",
+            "type": "Double"
+          },
+          {
+            "name": "dependency_status",
+            "type": "Double"
+          },
+          {
+            "name": "resource_availability",
+            "type": "Double"
+          },
+          {
+            "name": "evidence_progress",
+            "type": "Double"
+          },
+          {
+            "name": "risk_to_delivery",
+            "type": "Double"
+          }
+        ]
+      },
+      "query_sha256": "5ce1da9fffba6e1ba7d34e2c80cad50e82e65004e3d04f657e03e00df3c035f0",
+      "native": {
+        "outcome": "evaluated",
+        "engine_version": "17.0.83.18",
+        "result": {
+          "rows": [
+            {
+              "selected_records": 1,
+              "invalid_records": 1,
+              "evaluation_status": "invalid_input",
+              "value": null
+            }
+          ],
+          "engine_version": "17.0.83.18"
+        },
+        "completed_at": "2026-09-12T02:44:21.3546494Z",
+        "started_at": "2026-09-12T02:44:17.5902726Z"
+      },
+      "status": "pass"
+    }
+  ],
+  "completed_at": "2026-09-12T02:44:21.522754+00:00",
+  "passed": 21,
+  "failed": 0
+}

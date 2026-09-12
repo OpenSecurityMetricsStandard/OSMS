@@ -7,3 +7,7 @@
 *.md text eol=lf
 # Preserve the frozen catalog's existing bytes, including its CRLF line endings.
 catalog/osms-catalog.yaml -text
+# Native audit evidence must retain its original bytes and hashes.
+review/evidence/native-desktop-2026-09-11/* -text
+
+review/evidence/native-desktop-2026-09-12/* -text

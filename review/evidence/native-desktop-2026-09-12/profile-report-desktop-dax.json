@@ -1,0 +1,2439 @@
+{
+  "engine": "dax",
+  "stage": "typed_calculation_profiles",
+  "profile_bundle_sha256": "e9164dd43862d7a9e50ad6a2e69bf93e3b66f3c0828e76eabb3208c75d6b6327",
+  "source_files_sha256": {
+    "recipes/portable/cases.py": "8b4d21f64946820e69fec79a385af6cbd3d6bd5ca40e2a09b063778dc0d5143e",
+    "recipes/portable/export.py": "eae432e3d7b9c64fadd43c8797515000da3a72bd2b763175f0f27be26086d5bf",
+    "recipes/portable/ratios.py": "f14c8eaac07bd0b6d11fec14d75e0bdb1b320db113f08bde507273c3a69c9d46",
+    "recipes/semantic/cases.py": "bd499addff31853ef5a9290c8d1917f796d7b0795a34fc868452732ef7436dfb",
+    "recipes/semantic/check.py": "1aca319586c87c55efc65154f162852eb0f0ed0f385007b5ab6d599b8ce8f022",
+    "recipes/semantic/esql.py": "36e6fdeb26c1ff3a2e84eb821aaf3b772a7abb0c2aa4d57292967dccb0015492",
+    "recipes/semantic/excel.py": "b53408110952bcccf5fc03fc6c1f05962401b5704b9d362a30adf03da8c2dbf9",
+    "recipes/semantic/export.py": "960a058c487c5d5459a1238eef310df3609adec239dd1a55c8e42a0de45d3f6d",
+    "recipes/semantic/model.py": "bada670526fb20a6dcb1a0c6a48412b75f7832e30f3489d3d939e2f96d2837db",
+    "recipes/semantic/output_oracles.py": "77cb8e519b13184f67d34f76fbb302d3b702ec953c2294f1bb0959693420faa8",
+    "recipes/semantic/platforms.py": "aa920b30afaa03eef2b8c28b361cdd41d832d0ef0cc3004ec67442eb41b29d23",
+    "recipes/semantic/registry.py": "aa86e3d337a9fb06caab145f74e780ce62bf5bfbde2d073e93fc505ea64e4555",
+    "recipes/semantic/render.py": "d0f7d4d44a324a4587fd4d50778328a3dfcad3deb621ed4bf28566ab0220444a",
+    "recipes/semantic/specials.py": "03490bc70db7ac8d77c002ba41a881d9dc16ddcabed301dc3fc7b55a66b9b0bd",
+    "recipes/semantic/spl.py": "e7a9a44e070f925a5cd57138faacee933e83705e6d777387c1350c01371ca8b6",
+    "recipes/semantic/units.py": "1f6bf948bc4a0228675515694ebe4b77b788fc0bb8351e58c97b9d9d7870d61f",
+    "recipes/gen_recipes.py": "7ec7cc239b757fba82a6c0c71a052ab7fac9b3dbfab462da693b7236f5b6c652",
+    "recipes/curated/curated_assumptions.json": "1f1d4814f7751a9b70a775b284a0b3c442878d343f965d91160055468db388ae",
+    "recipes/curated/soc-002.json": "11e62e7b8b180b574eb293e146be8ac57cc6e5f3a0c3f2c0fc240d61d4a8b4f4",
+    "recipes/curated/soc-003.json": "7e97262cd979c272e4856def114ebc0fd9d7533ca42a2b587d83db53d5df1b5a",
+    "recipes/curated/std-016.json": "29b3ce1464d0ff6336ba524100f4dedefbaa286eefe631f563f663cf7dce56c8",
+    "recipes/fixtures/soc003.json": "04f6c649afbcab1c5de4a844c5bb673820a6e9b92959a04fd2def6a558aab3cc",
+    "recipes/soc003.py": "7dca442987929804f9d6a1ce2299a036d13fac9501fd50831a7342680002d8cb",
+    "recipes/esql_exact.py": "abedc7ba109ec89ba81162a3f7b93608449e72060d5472faec68e075f477eaa6",
+    "recipes/dax_profiles.py": "a2e594a4a8451dce0831a4263cb63eca790bf17c0562bfa62b044fa5e98f0577",
+    "recipes/ci/audit_issue_examples.py": "0348119efb0863f46023904444bbc49414beee4d0566308e0acfb28dd3b04f83",
+    "recipes/ci/collect_profile_reports.py": "8bc92d8208e8b1918b31d4c47a288c8b390fab5debe9bcd1bd63b05af641c315",
+    "recipes/ci/desktop_runner.py": "1b6e9a3323bc15142b155da321bedbd9aaefbb3c99241bd8c18bdc4ca6b5bbe1",
+    "recipes/ci/esql_runner.py": "80b644a24f567d5f0f80337e247d42f8d2c0eb83bb0ecff5575b99d529c1c063",
+    "recipes/ci/excel_runner.py": "3f92f7e96305a214edb58557cfa63e56e58162fb61adc00281396cb6b32de727",
+    "recipes/ci/incident_cases.py": "43ccfc5be65c575aac33dc1b5ff2a2be6b217de2ad76586514e84dcdf0e180b6",
+    "recipes/ci/kusto_runner.py": "11bad246bbee7665564aca9b87284baf5aa586ba7b89d1486777cfd802c01a34",
+    "recipes/ci/partitions.py": "b893123aae1c3a208aa326b764bd855d4f994ef1cfd294504da31f537c832f92",
+    "recipes/ci/profile_runner.py": "142f7a76a758d21fd666d39db7ab166a73fad25c6d90bb9362d389386eb6043f",
+    "recipes/ci/semantic_runner.py": "e9125ec06254dd7bd59ba95c35572d0769a2eac51383f3477f52fa8f28c39168",
+    "recipes/ci/spl_fixture.py": "856bfb5d5899f0e8c2f09b0579611ed90cee76c83fa1274bc0606b698611f716",
+    "recipes/ci/spl_runner.py": "23f1099ba8bf16b8f0927b0089fbffadfa03ab518663c00817c1c9becf327cd1",
+    "recipes/ci/wait_kusto.py": "2dec2d2dc2fb2aed341ab975f65b575007542253b7b02eb4fb6de350db382d34",
+    "recipes/ci/desktop_engine.ps1": "f8b5deb54637f0ff267e2cc2cd6125faeb91579bd3496f101a561c9d7b052532",
+    "recipes/ci/run_desktop_acceptance.ps1": "195ef5a55f031ffd305016f934fd1620682cc20cdcb91b04332653462a9e9591",
+    "recipes/export_implementation.py": "0ed6bf8b16473c8f07ad66bfa91631fa8e60cd0d30fcf99383c7979e8a200bb1",
+    "recipes/xlsx_dialect.py": "3cedaeb4b39ec10ff24658decc558cbe092e8e2d04a17c29a9a204adf7bf26ba",
+    "reference/assurance.py": "5807ac53da85f982a5cbab11ddf76b7cbc6e531ac624da3ab7a73c18365775f3",
+    "reference/execution_store.py": "ad88016772159992fc6a9cb6b43ebfdbbc227d0229656f79faf734b67abd566e",
+    "catalog/osms-catalog.yaml": "1b128973da1db2d71c9381e504eb9a328902fd2a7efae2491438a97aa453fe2c",
+    "catalog/principles.yaml": "0b41b8054b8c88a7633862bbc989098441263da5dc46d5b83d1403711106e574",
+    "reference/RUBRICS.md": "759ce590f9762a709ebd62e73b6ec957287057ea291815d2b48e703703ef7b87",
+    "reference/ASSURANCE_PROFILES.md": "934a505c6455c72175aa64384ebabcc890095e29c7cc6c0e6dcd35ce116ec39f",
+    "recipes/EXECUTION_PROFILES.md": "2b96f0527fd38d2b37b3634bb7a4afd2a6da575e9566e757c792300220823cb5"
+  },
+  "requested_subset": "SOC-002,APP-010,CFG-002,SOC-078,STD-055,STD-069,STD-068,STD-075",
+  "cases": [
+    {
+      "card_id": "APP-010",
+      "case_id": "independent_arithmetic",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "807bc0fb725a987a843f631d4da57ceaf26a44ea75445d235d1ee364c5e4099a",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "maximum_h",
+        "recurrence_count",
+        "recurrence_trend"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "maximum_h": 30,
+        "recurrence_trend": 1,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "recurrence_count": 2,
+        "p90": 30,
+        "invalid_records": 0,
+        "p50": 2.0000000000582077,
+        "p95": 30,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "7b6be76365f215b38e8489b468a4a62b841f51388ae7fad7d483cb857cafdd98",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "maximum_h",
+        "recurrence_count",
+        "recurrence_trend"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "maximum_h": null,
+        "recurrence_trend": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "recurrence_count": null,
+        "p90": null,
+        "invalid_records": 1,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "8e784d79e83735e05fe92c29de3c3a14b9f1756fb16e07967bb7930d529c8454",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "maximum_h",
+        "recurrence_count",
+        "recurrence_trend"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "maximum_h": null,
+        "recurrence_trend": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "recurrence_count": null,
+        "p90": null,
+        "invalid_records": 1,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "90840245365b554a30963759173b3e6a31a740f137c86502ed5974a0daed5291",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "maximum_h",
+        "recurrence_count",
+        "recurrence_trend"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "maximum_h": null,
+        "recurrence_trend": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "recurrence_count": null,
+        "p90": null,
+        "invalid_records": 1,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "5dd92aba1f09a9eeacea5181d0cd11b7a6268210ccc4f1c85cee67a2d5e4a1f3",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "maximum_h",
+        "recurrence_count",
+        "recurrence_trend"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "maximum_h": null,
+        "recurrence_trend": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "recurrence_count": null,
+        "p90": null,
+        "invalid_records": 1,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "5ac27e4201c0349d3d54aaffea89e48b280751811be27f6af399dd02cd0c9410",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "maximum_h",
+        "recurrence_count",
+        "recurrence_trend"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 3,
+        "maximum_h": null,
+        "recurrence_trend": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "recurrence_count": null,
+        "p90": null,
+        "invalid_records": 0,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "case_id": "independent_arithmetic/population_unverified",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "fcdd5dde6683a09fa4aea5768d9292cf6c718a93cd1cd82751381a2f8acd9f52",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "maximum_h",
+        "recurrence_count",
+        "recurrence_trend"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "maximum_h": null,
+        "recurrence_trend": null,
+        "evaluation_status": "population_unverified",
+        "valid_cases": null,
+        "recurrence_count": null,
+        "p90": null,
+        "invalid_records": 0,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "case_id": "independent_arithmetic/inverted_period",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "fe2dde97b90a79318d94794b18e92c3eb95c37218c883d58b3214d99bfea5438",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "maximum_h",
+        "recurrence_count",
+        "recurrence_trend"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 0,
+        "maximum_h": null,
+        "recurrence_trend": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "recurrence_count": null,
+        "p90": null,
+        "invalid_records": 0,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "case_id": "independent_arithmetic/reject_number_domain",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "d206dbba99a18b1bbd49ff4288145dcd6de7cc0809865c925fae3d04ecc29c45",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "maximum_h",
+        "recurrence_count",
+        "recurrence_trend"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "maximum_h": null,
+        "recurrence_trend": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "recurrence_count": null,
+        "p90": null,
+        "invalid_records": 1,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "case_id": "independent_arithmetic/reject_boolean_domain",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "4b36896ef988960d6eafd3872fd597acdea48e3cf278d996e044c38d41236bb7",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "maximum_h",
+        "recurrence_count",
+        "recurrence_trend"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "maximum_h": null,
+        "recurrence_trend": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "recurrence_count": null,
+        "p90": null,
+        "invalid_records": 1,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "1ab388f5e8c77983d2f58ddebc1e6b692c93abbb89d60626ca04e0e55ab8a7d8",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "maximum_h",
+        "recurrence_count",
+        "recurrence_trend"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "maximum_h": 30,
+        "recurrence_trend": 1,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "recurrence_count": 2,
+        "p90": 30,
+        "invalid_records": 0,
+        "p50": 2.0000000000582077,
+        "p95": 30,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "260050e960fe9290c562c33029e9a424fbefbb222c04b8d2fdc7734a88023742",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "maximum_h",
+        "recurrence_count",
+        "recurrence_trend"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "maximum_h": 30,
+        "recurrence_trend": 1,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "recurrence_count": 2,
+        "p90": 30,
+        "invalid_records": 0,
+        "p50": 2.0000000000582077,
+        "p95": 30,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "APP-010",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "56be71fb56dafc61c177e6623dad7dcdc7b34137e086a1b6d1900b186bb01efc",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "maximum_h",
+        "recurrence_count",
+        "recurrence_trend"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "maximum_h": 30,
+        "recurrence_trend": 1,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "recurrence_count": 2,
+        "p90": 30,
+        "invalid_records": 0,
+        "p50": 2.0000000000582077,
+        "p95": 30,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "independent_arithmetic",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "fd64fcc2ebbe6fca21860fc97ff5be9f52b57d8ab794d1d797654e68be8b5c55",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "tier0_critical_max_days"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "tier0_critical_max_days": 30,
+        "p90": 30,
+        "invalid_records": 0,
+        "p50": 2,
+        "p95": 30,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "9a8bd6d11143d9210399748c85b079d9cc6e06400b37d4128ece1601b6af7ff3",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "tier0_critical_max_days"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "tier0_critical_max_days": null,
+        "p90": null,
+        "invalid_records": 1,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "66be2bee0edfc95e78f74b11fc737ca613f14a4cb6e53423def5f2dd11218c0a",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "tier0_critical_max_days"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "tier0_critical_max_days": null,
+        "p90": null,
+        "invalid_records": 1,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "74f3ce40b81472f445ec2a8ae88c2d68d891c037fc5bfbbce92c26cf8fa8de94",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "tier0_critical_max_days"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "tier0_critical_max_days": null,
+        "p90": null,
+        "invalid_records": 1,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "dd838b5d9e51851303d39e7ed8e0f3976744389f35fe90e63b10b8c6b94cf361",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "tier0_critical_max_days"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "tier0_critical_max_days": null,
+        "p90": null,
+        "invalid_records": 1,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "574516822f8d97b423cc50d291c907d6feb20a7ef83cb1b42a9a7f815c457182",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "tier0_critical_max_days"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 3,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "tier0_critical_max_days": null,
+        "p90": null,
+        "invalid_records": 0,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "independent_arithmetic/population_unverified",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "7c36ddcf081a4a13d4b7eaa6ba15b6b2efb9f67459d77e936befed143fdeb006",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "tier0_critical_max_days"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "evaluation_status": "population_unverified",
+        "valid_cases": null,
+        "tier0_critical_max_days": null,
+        "p90": null,
+        "invalid_records": 0,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "independent_arithmetic/inverted_period",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "7ef0ceddb62d6104bb0a3743ad683d39e7c2404f047ccd7499ed16bf2083029b",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "tier0_critical_max_days"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 0,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "tier0_critical_max_days": null,
+        "p90": null,
+        "invalid_records": 0,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "independent_arithmetic/reject_boolean_domain",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "911703fddbc6d436cfb002a83bcf797e47e7dbb1ab0728b5c511c9a1d1ae089f",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "tier0_critical_max_days"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "tier0_critical_max_days": null,
+        "p90": null,
+        "invalid_records": 1,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "independent_arithmetic/reject_unknown_enum",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "d900290f471fc7fc1e24556754bffcae3f4e6bbd1b76b83918b9d574dc1b510d",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "tier0_critical_max_days"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "tier0_critical_max_days": null,
+        "p90": null,
+        "invalid_records": 1,
+        "p50": null,
+        "p95": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "42bc1b6707933971ce6cbafb9a309ee24f2bf2faa1563a781083ee80a8ff8b75",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "tier0_critical_max_days"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "tier0_critical_max_days": 30,
+        "p90": 30,
+        "invalid_records": 0,
+        "p50": 2,
+        "p95": 30,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "d5270c95bfbfc261653f9bf3a08d2301eadbffa2dd43d6a8edf74752eafbd03a",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "tier0_critical_max_days"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "tier0_critical_max_days": 30,
+        "p90": 30,
+        "invalid_records": 0,
+        "p50": 2,
+        "p95": 30,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "618f4d27e80d5bc311dc7ba2acfac53805f057567120b1bdb1e3a128252d4f89",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "p95",
+        "tier0_critical_max_days"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "tier0_critical_max_days": 30,
+        "p90": 30,
+        "invalid_records": 0,
+        "p50": 2,
+        "p95": 30,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "independent_arithmetic",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "93b6225330dc210d4de50c52cc5a9d6378b871f6b12b9afc5978fb4b6b7fbd98",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "mean_h",
+        "severity_weighted_mean_h"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "severity_weighted_mean_h": 16.000000000029104,
+        "mean_h": 16.000000000029104,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "selected_records": 2,
+        "p90": 30,
+        "p50": 16.000000000029104,
+        "invalid_records": 0,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "e86305873a9bc2ed7e902016422f76f9582c38c4186e0c1a1fddd18adb76448a",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "mean_h",
+        "severity_weighted_mean_h"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "severity_weighted_mean_h": null,
+        "mean_h": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "selected_records": 2,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 1,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "6cb1ed26653d36b58b516382a23deb972fedfde001bdee9a7c876d488994671c",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "mean_h",
+        "severity_weighted_mean_h"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "severity_weighted_mean_h": null,
+        "mean_h": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "selected_records": 2,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 1,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "cb76763c0450f60165bee583ea87fe50338409adec4e703297bddbc592439cbe",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "mean_h",
+        "severity_weighted_mean_h"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "severity_weighted_mean_h": null,
+        "mean_h": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "selected_records": 2,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 1,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "1ffd3e536228ff9c393cb139d747efcabc59ca08d2dd3b28b78f94610602b0be",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "mean_h",
+        "severity_weighted_mean_h"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "severity_weighted_mean_h": null,
+        "mean_h": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "selected_records": 2,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 1,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "15a73734b1f4203d6f7727599d581a7eb644221a0dad5ebdea2d4368f535898b",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "mean_h",
+        "severity_weighted_mean_h"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "severity_weighted_mean_h": null,
+        "mean_h": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "selected_records": 3,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 0,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "independent_arithmetic/population_unverified",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "83bcf8f155c90cce63446a26e1144b411df2d72e6be8ce9a71bb2921829daabb",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "mean_h",
+        "severity_weighted_mean_h"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "severity_weighted_mean_h": null,
+        "mean_h": null,
+        "evaluation_status": "population_unverified",
+        "valid_cases": null,
+        "selected_records": 2,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 0,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "independent_arithmetic/inverted_period",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "1a06babd5efa766ff32d657645ae50e957c318bd4adfb6a44c10828f8774e8c1",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "mean_h",
+        "severity_weighted_mean_h"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "severity_weighted_mean_h": null,
+        "mean_h": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "selected_records": 0,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 0,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "d95f7cee7635724e4f977c14dc6b4b3a8749eb359e52110084b6d5815f3e0b11",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "mean_h",
+        "severity_weighted_mean_h"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "severity_weighted_mean_h": 16.000000000029104,
+        "mean_h": 16.000000000029104,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "selected_records": 2,
+        "p90": 30,
+        "p50": 16.000000000029104,
+        "invalid_records": 0,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "f9c58fdc9eee8b774122012f57651c11fa15a34b9dc1efb48378c1be96a0140a",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "mean_h",
+        "severity_weighted_mean_h"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "severity_weighted_mean_h": 16.000000000029104,
+        "mean_h": 16.000000000029104,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "selected_records": 2,
+        "p90": 30,
+        "p50": 16.000000000029104,
+        "invalid_records": 0,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "b3c6ed539d31ec90bd107592cdee6ba8e3a07667928d7e61f0fd539333487607",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "mean_h",
+        "severity_weighted_mean_h"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "severity_weighted_mean_h": 16.000000000029104,
+        "mean_h": 16.000000000029104,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "selected_records": 2,
+        "p90": 30,
+        "p50": 16.000000000029104,
+        "invalid_records": 0,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "b70400a5912bdec8a0c9c79cf91567e97b1bac33fdfb2354efd862025e019490",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": 2,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "exposure_weighted": 16.000000000029104,
+        "selected_records": 2,
+        "p90": 30,
+        "overall_band": 2,
+        "p50": 2.0000000000582077,
+        "invalid_records": 0,
+        "early_escalations": 2,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "3a9c2e655bddcdec0efd36f24549be3a32d2e0f45a93bfa73ec4e9726611c9f0",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "exposure_weighted": null,
+        "selected_records": 2,
+        "p90": null,
+        "overall_band": null,
+        "p50": null,
+        "invalid_records": 1,
+        "early_escalations": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "a2857e4c7d885e4966c57f374f4f936986fa8ed905ddcd82b57b04fd33eee45e",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "exposure_weighted": null,
+        "selected_records": 2,
+        "p90": null,
+        "overall_band": null,
+        "p50": null,
+        "invalid_records": 1,
+        "early_escalations": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "2a0b799c8609a46957a404344a883168d5b9bae65c82c7249eaa96b07392f14a",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "exposure_weighted": null,
+        "selected_records": 2,
+        "p90": null,
+        "overall_band": null,
+        "p50": null,
+        "invalid_records": 1,
+        "early_escalations": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "0be251eb23aed116c6df58fd065cbbaf55a448545d49b827663763a695b99cf1",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "exposure_weighted": null,
+        "selected_records": 2,
+        "p90": null,
+        "overall_band": null,
+        "p50": null,
+        "invalid_records": 1,
+        "early_escalations": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "01575dd00c8e828a1e311bfcd443ecf020c187521fc151045405b650ea9f2977",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "exposure_weighted": null,
+        "selected_records": 3,
+        "p90": null,
+        "overall_band": null,
+        "p50": null,
+        "invalid_records": 0,
+        "early_escalations": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic/population_unverified",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "b7f6cdf59e6587ad5011727a120c9aadcec22bddc80a0bd9d0cf58b3bedf5d42",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": null,
+        "evaluation_status": "population_unverified",
+        "valid_cases": null,
+        "exposure_weighted": null,
+        "selected_records": 2,
+        "p90": null,
+        "overall_band": null,
+        "p50": null,
+        "invalid_records": 0,
+        "early_escalations": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic/inverted_period",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "ec3311c20dffedcd8b932f9d2ae3d591119d39d867c2acb04ecb0b75750625a9",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "exposure_weighted": null,
+        "selected_records": 0,
+        "p90": null,
+        "overall_band": null,
+        "p50": null,
+        "invalid_records": 0,
+        "early_escalations": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic/reject_number_domain",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "717af227a40dae48a8a1b2a96ffda56bf60353f880e5bbbb4b662d04ade19491",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "exposure_weighted": null,
+        "selected_records": 2,
+        "p90": null,
+        "overall_band": null,
+        "p50": null,
+        "invalid_records": 1,
+        "early_escalations": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic/reject_boolean_domain",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "83fa14033962b4cf73f23c2a67a5c4227473db05c62ff17431f98c6db03f7776",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "exposure_weighted": null,
+        "selected_records": 2,
+        "p90": null,
+        "overall_band": null,
+        "p50": null,
+        "invalid_records": 1,
+        "early_escalations": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic/reject_unknown_enum",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "18e77bdceafafc1b64fbbdd4e78a4ff2eb41052c0d866e5ffd84ebae759fefe3",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": null,
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "exposure_weighted": null,
+        "selected_records": 2,
+        "p90": null,
+        "overall_band": null,
+        "p50": null,
+        "invalid_records": 1,
+        "early_escalations": null,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "4bcde903fe5be17ac3c4f619a0c065adb87acda61949f516f4cb56afd4bf5f7d",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": 2,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "exposure_weighted": 16.000000000029104,
+        "selected_records": 2,
+        "p90": 30,
+        "overall_band": 2,
+        "p50": 2.0000000000582077,
+        "invalid_records": 0,
+        "early_escalations": 2,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "57d3934c02f2a8ff9b79414ceab3035220e336705868f3d83ef7ef06c9a8eee6",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": 2,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "exposure_weighted": 16.000000000029104,
+        "selected_records": 2,
+        "p90": 30,
+        "overall_band": 2,
+        "p50": 2.0000000000582077,
+        "invalid_records": 0,
+        "early_escalations": 2,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "SOC-078",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "f5d1d3baa941a0a6baac7f8c37b3bea4f8213f4cfe9f9649f6c7aeeabefc14ec",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases",
+        "exposure_weighted",
+        "overdue_cases",
+        "early_escalations",
+        "overall_band"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "overdue_cases": 2,
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "exposure_weighted": 16.000000000029104,
+        "selected_records": 2,
+        "p90": 30,
+        "overall_band": 2,
+        "p50": 2.0000000000582077,
+        "invalid_records": 0,
+        "early_escalations": 2,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "case_id": "independent_arithmetic",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "6bd0134e38ffea7bc9b931c4ee82b22aeb3e8f85ad51d9f915a67d877fa9b412",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "selected_records": 2,
+        "p90": 30,
+        "p50": 2,
+        "invalid_records": 0,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "97d8e1dbd89676982bd01da692319bb4e9e30c97a6d09b808b8600dc27df3bdb",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "selected_records": 2,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 1,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "0aaf5f8fb70d819ceeca64c25c4211dc4e8b368444f14b8e469500e33d6b5f81",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "selected_records": 2,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 1,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "e3760621ea30152a5c6b0b14917d6b48843d84a49061b4491edccab29ebfc4ee",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "selected_records": 2,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 1,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "150d89fa11442af105585fb9e4d62457acbd07f63c6437d46d9caa0e7cb4237a",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "selected_records": 2,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 1,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "0c255278ddb2edda0b915afae952ebd091beec2934a7982c1129a3d670666378",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "selected_records": 3,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 0,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "case_id": "independent_arithmetic/population_unverified",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "76ec17a36f558d765b69ef465bb89c93411f5dadc49ab8cd4a2ac8a652ca1b14",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "evaluation_status": "population_unverified",
+        "valid_cases": null,
+        "selected_records": 2,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 0,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "case_id": "independent_arithmetic/inverted_period",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "bce7adb9354df37bd0ddc1f4d54e9474f50c347081a3bb60d266317cacb072aa",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "selected_records": 0,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 0,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "case_id": "independent_arithmetic/reject_unknown_enum",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "b71c35f19c10d788d03dfa81a1ee356b6118c52e7bc8e4f1ecdea521b42b4327",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "evaluation_status": "invalid_input",
+        "valid_cases": null,
+        "selected_records": 2,
+        "p90": null,
+        "p50": null,
+        "invalid_records": 1,
+        "invalid_cases": null
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "be2d441c495c6368b0464dc53c14c4d4b0bce605bcaa0bf2e5b56ef537b0cf2d",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "selected_records": 2,
+        "p90": 30,
+        "p50": 2,
+        "invalid_records": 0,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "1047f15765ceba9fe9925f480feff8916aa5d9f95b79cd41a1da00d5defce91f",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "selected_records": 2,
+        "p90": 30,
+        "p50": 2,
+        "invalid_records": 0,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "STD-055",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "ffb21b9b93e00ccd64321205115004fc7ae3fd7142e40ca2fe84e04fea94db48",
+      "outputs": [
+        "p50",
+        "p90",
+        "valid_cases",
+        "invalid_cases"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "evaluation_status": "ok",
+        "valid_cases": 2,
+        "selected_records": 2,
+        "p90": 30,
+        "p50": 2,
+        "invalid_records": 0,
+        "invalid_cases": 0
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "independent_arithmetic",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "20fcb6eacf3c3d9ada79a71fffd2a438be76fea34a37eda4dca25041d29729df",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "ok",
+        "value": 57
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "1eb5cc2f66f880bae066d80deda6dc0f893a4fc6e580063a2627592e77588c16",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "6d42176bef75ece85822b0fa09e84e637294d05530fce166d1025c09dea492eb",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "243281f10aa524d28f85bae58bace456af87600d40785293e8b6e312290f4fad",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "973d871a1a80f87977a168bfd03c3ab0204b23f5b26ffc09d06b97fb8133f3f7",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "0994d956e30afc9dfdeb34648c1e4e51a86ce9fc4fdf91776061c905dfad512b",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "invalid_records": 0,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "independent_arithmetic/population_unverified",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "900e63223f413c4fe58b437855bfd032bda54001f53804528390301ff283eb16",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "population_unverified",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "independent_arithmetic/inverted_period",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "750f5315130174d52c6eca8cf0773f87073808cf9cb429b6c8944027af3f1853",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 0,
+        "invalid_records": 0,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "independent_arithmetic/reject_number_domain",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "75e1e19acd500ec4c98304c7e2dedbd07da35b6022707cc2f31754b40d5bbca7",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "7e346d3c4ba0ba8810cf95ec3ba58bf8196e056dc29026a418062096c0bd6ddc",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "ok",
+        "value": 57
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "d61ca9715b19e44e7877abe66050d34c14e380aa70ad1cfd42bb8f8b470bb0aa",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "ok",
+        "value": 57
+      }
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "39b08236c4a365fccc03d792c522e653827b0fdd4916850042cb94dfc748a83c",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "ok",
+        "value": 57
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "independent_arithmetic",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "c98ac6acaf8b8ea7e85f825da165a64d0d50e9d9601da02ad0abcfae68a88bfb",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "ok",
+        "value": 50
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "d092011f8900bf32394cad1901ca6be048d196f21ed4fdd73722012370f36ca3",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "2d32459b5f6d9244db9d617bebe99d5217be038ea37e396bcbc9767064c35ec4",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "e65457eb6527f2e91bb96bec3d086ddcab060a96643097b21572b62523760889",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "fc8c0f3bc5ce61a2b6312a8f8640eac084f9bc41fb696b757ab67bfaf5b15e55",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "0b2201e54c95751b9a8bd05773a98b76d2016ae7d601c38c6d0a99620af990c4",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "invalid_records": 0,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "independent_arithmetic/population_unverified",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "f4043c3bb9a10cd38a2539e8accfdf34e5ed97d46c65a2736dcf9a92c77ecc06",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "population_unverified",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "independent_arithmetic/inverted_period",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "921b6fda94d7ee4e018de18e470494b0a3d5dc2772c8c7e5149f027abcb65145",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 0,
+        "invalid_records": 0,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "independent_arithmetic/reject_number_domain",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "d870c81e5e69ed30941afe8bb78037919144e8484328a74fa89058e798e7a99a",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "238caed7576f56c4122776c8a0fd026b9d8cab886a74deebaac4f1b8eb4b0622",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "ok",
+        "value": 50
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "2fd068be475d337bdebf6b09cd6c5e96285c39ecb441c67fa90960232fa2679d",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "ok",
+        "value": 50
+      }
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "5aa85a53a1a6fdd6b384d9a16944adba276c116c2caa0dcb93a4eef40ccd4ea0",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "ok",
+        "value": 50
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "independent_arithmetic",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "5de58b9a868d2c9b71e4dcbe04886c1b78983a5a4e345578c1926cd1e6da1bb1",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "ok",
+        "value": 57
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "independent_arithmetic/reject_evidence_ref",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "d42f17b0b687e4e871068f21cbc58e51a24a0fa3001a62dda94926805f5d0fe8",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "independent_arithmetic/reject_record_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "cab9c1b150680b8df2cee530aa5e17dbbde88fe03fa638cd4c4fb1f0c85fd48c",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "independent_arithmetic/reject_card_version",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "d81cb296928eb52317bd1a485e6835eff37081e41bf68896059ff896be25f22a",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "independent_arithmetic/reject_contract_hash",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "880c9eba21f8ba20d0d8f35aa39736acb2e9c79dbb18e56fee3ce38bb66537be",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "independent_arithmetic/duplicate_identity",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "7994935ee8d8ea0bab917cc84abda3054d3e7388a3cf4e9a7d8dcd1c75d38f50",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 2,
+        "invalid_records": 0,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "independent_arithmetic/population_unverified",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "6b3462e0b019eca222ba8fcbc4a5a3ebb0e6d6c19c1b34f790d42849369d329b",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "population_unverified",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "independent_arithmetic/inverted_period",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "4135e24705eb3069daeaab06de04c199d6375249a666f277ef87215332220946",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 0,
+        "invalid_records": 0,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "independent_arithmetic/reject_number_domain",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "546c82985240c4c0f84d703a273fa70b299251fc6d214805f11b459d885a1518",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "evaluation_status": "invalid_input",
+        "value": null
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "independent_arithmetic/exclude_other_period_end",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "393e908d6127512be03ac8e21c658d23900b3a106bd4b5b772d2d9dd2c98e065",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "ok",
+        "value": 57
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "independent_arithmetic/exclude_other_scope_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "cc82108249420046ed77096282663658c80315de30f3e4e8961453ca0b2a6170",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "ok",
+        "value": 57
+      }
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "independent_arithmetic/exclude_other_segment_id",
+      "profile_id": "prepared_observations_v1",
+      "fixture_sha256": "12258540a8bc75fa05b25cac30d5b7059d86da2f99970d215241e4766a6e2e77",
+      "outputs": [
+        "value"
+      ],
+      "status": "pass",
+      "failed_outputs": [],
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 0,
+        "evaluation_status": "ok",
+        "value": 57
+      }
+    }
+  ],
+  "engine_version": "17.0.83.18",
+  "aborted": false,
+  "started_at": "2026-09-12T02:30:33.781396+00:00",
+  "execution_kind": "native_desktop",
+  "completed_at": "2026-09-12T02:41:06.814082+00:00",
+  "passed": 99,
+  "failed": 0
+}

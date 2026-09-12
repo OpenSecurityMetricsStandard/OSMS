@@ -1,0 +1,16 @@
+{
+  "source_commit": "b19a91e778eaaa61a71a3fd78e72439eec2d707d",
+  "engine": "Microsoft Excel",
+  "engine_version": "16.0.20228",
+  "office_architecture": "x86",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python_version": "3.13.7",
+  "execution_via": "Remote Desktop Commander",
+  "executor": "Codex / Alya (automated execution under maintainer request)",
+  "maintainer": "Nico Wiegand",
+  "independent_human_review": false,
+  "board_approval": false,
+  "report_sha256": "a4c00c28ab6c481a447d47322932be2428e1e434d44d87a100fd360b3a44bb3d",
+  "scope": "audit-critical",
+  "native_dax_acceptance": "pending"
+}

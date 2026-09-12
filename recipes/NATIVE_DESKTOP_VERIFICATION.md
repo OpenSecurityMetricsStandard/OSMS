@@ -75,3 +75,24 @@ catalog, schema, execution profiles and a JSON attestation with `source_commit`,
 `tools/verify_website_contract.py --help` for comparison arguments. This checks the
 supplied artifacts and attestation, not their authenticity or live browser behavior;
 retain the actual deployment and browser evidence for F-28 as well.
+
+## Required DAX model collation
+
+The disposable TOM model uses `Latin1_General_100_BIN2` collation before loading
+the fixture tables. Preserve this setting in any model claiming these exact
+identifier semantics. With a case-insensitive model dictionary, source values
+such as `prod` and `PROD` can be merged on import; `EXACT` cannot recover lost
+case information afterward. Changing the DAX comparison or accepting the wrong
+scope is not a conforming workaround.
+
+Native Power BI Analysis Services 17.0.83.18 reproduced this issue on all eight
+audit-critical cards (91 pass / 8 fail with default collation). The unchanged
+APP-010 query passed with binary collation. The full corrected runs and their
+source bindings are retained in `review/evidence/native-desktop-2026-09-11`.
+
+The native adapters use Windows PowerShell-compatible TOM and ADOMD.NET client
+assemblies. For the Power BI Desktop 2.157.1354.0 verification, Microsoft NuGet
+packages `Microsoft.AnalysisServices` and `Microsoft.AnalysisServices.AdomdClient`
+19.117.0 supplied the net472 assemblies; their MSAL dependencies must be present.
+Use only a disposable local test session. This does not certify existing imported
+models with a different collation, relationships, visual filters or source adapters.

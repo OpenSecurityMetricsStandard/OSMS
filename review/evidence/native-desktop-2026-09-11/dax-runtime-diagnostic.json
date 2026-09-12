@@ -1,0 +1,22 @@
+{
+  "source_commit": "b19a91e778eaaa61a71a3fd78e72439eec2d707d",
+  "engine": "Microsoft Excel Power Pivot",
+  "excel_version": "16.0.20228",
+  "provider": "MSOLAP.7",
+  "simple_native_dax_probe": {
+    "expression": "MAXX((VAR base=osms_seed RETURN ROW(\"out\",SUMX(base,osms_seed[value]))),[out])",
+    "input_values": [
+      15
+    ],
+    "observed": 15
+  },
+  "osms_recipe_probe": {
+    "card_id": "SOC-002",
+    "case_id": "independent_arithmetic",
+    "status": "native_parse_failure",
+    "query_sha256": "2589b31c166e844b456e85a122e2e4eb18d1232e43a40942f73ce4733bb3fe3f",
+    "error_summary": "The native model rejects the strict equality operator == in the published query. No successful DAX audit acceptance is claimed."
+  },
+  "native_dax_acceptance": false,
+  "next_requirement": "Use an installed native DAX runtime supporting the published query syntax, with a disposable local Analysis Services test model and TOM/ADOMD clients."
+}

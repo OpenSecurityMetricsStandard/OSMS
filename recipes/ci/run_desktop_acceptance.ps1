@@ -8,7 +8,7 @@ param(
     [string]$AdomdAssembly
 )
 $ErrorActionPreference = 'Stop'
-if ($env:OS -ne 'Windows_NT') { throw 'A native Windows test host is required' }
+if ([Environment]::OSVersion.Platform -ne [PlatformID]::Win32NT) { throw 'A native Windows test host is required' }
 if ('dax' -in $Engine -and (!$Server -or !(Test-Path -LiteralPath $TomAssembly) -or !(Test-Path -LiteralPath $AdomdAssembly))) {
     throw 'DAX requires an authorized local Analysis Services instance and installed TOM/ADOMD assembly paths'
 }

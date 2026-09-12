@@ -1,0 +1,2050 @@
+{
+  "engine": "excel",
+  "execution_kind": "native_desktop",
+  "stage": "audit_issue_supplements",
+  "started_at": "2026-09-12T03:08:51.146465+00:00",
+  "profile_bundle_sha256": "e9164dd43862d7a9e50ad6a2e69bf93e3b66f3c0828e76eabb3208c75d6b6327",
+  "source_files_sha256": {
+    "recipes/portable/cases.py": "8b4d21f64946820e69fec79a385af6cbd3d6bd5ca40e2a09b063778dc0d5143e",
+    "recipes/portable/export.py": "eae432e3d7b9c64fadd43c8797515000da3a72bd2b763175f0f27be26086d5bf",
+    "recipes/portable/ratios.py": "f14c8eaac07bd0b6d11fec14d75e0bdb1b320db113f08bde507273c3a69c9d46",
+    "recipes/semantic/cases.py": "bd499addff31853ef5a9290c8d1917f796d7b0795a34fc868452732ef7436dfb",
+    "recipes/semantic/check.py": "1aca319586c87c55efc65154f162852eb0f0ed0f385007b5ab6d599b8ce8f022",
+    "recipes/semantic/esql.py": "36e6fdeb26c1ff3a2e84eb821aaf3b772a7abb0c2aa4d57292967dccb0015492",
+    "recipes/semantic/excel.py": "b53408110952bcccf5fc03fc6c1f05962401b5704b9d362a30adf03da8c2dbf9",
+    "recipes/semantic/export.py": "960a058c487c5d5459a1238eef310df3609adec239dd1a55c8e42a0de45d3f6d",
+    "recipes/semantic/model.py": "bada670526fb20a6dcb1a0c6a48412b75f7832e30f3489d3d939e2f96d2837db",
+    "recipes/semantic/output_oracles.py": "77cb8e519b13184f67d34f76fbb302d3b702ec953c2294f1bb0959693420faa8",
+    "recipes/semantic/platforms.py": "aa920b30afaa03eef2b8c28b361cdd41d832d0ef0cc3004ec67442eb41b29d23",
+    "recipes/semantic/registry.py": "aa86e3d337a9fb06caab145f74e780ce62bf5bfbde2d073e93fc505ea64e4555",
+    "recipes/semantic/render.py": "d0f7d4d44a324a4587fd4d50778328a3dfcad3deb621ed4bf28566ab0220444a",
+    "recipes/semantic/specials.py": "03490bc70db7ac8d77c002ba41a881d9dc16ddcabed301dc3fc7b55a66b9b0bd",
+    "recipes/semantic/spl.py": "e7a9a44e070f925a5cd57138faacee933e83705e6d777387c1350c01371ca8b6",
+    "recipes/semantic/units.py": "1f6bf948bc4a0228675515694ebe4b77b788fc0bb8351e58c97b9d9d7870d61f",
+    "recipes/gen_recipes.py": "7ec7cc239b757fba82a6c0c71a052ab7fac9b3dbfab462da693b7236f5b6c652",
+    "recipes/curated/curated_assumptions.json": "1f1d4814f7751a9b70a775b284a0b3c442878d343f965d91160055468db388ae",
+    "recipes/curated/soc-002.json": "11e62e7b8b180b574eb293e146be8ac57cc6e5f3a0c3f2c0fc240d61d4a8b4f4",
+    "recipes/curated/soc-003.json": "7e97262cd979c272e4856def114ebc0fd9d7533ca42a2b587d83db53d5df1b5a",
+    "recipes/curated/std-016.json": "29b3ce1464d0ff6336ba524100f4dedefbaa286eefe631f563f663cf7dce56c8",
+    "recipes/fixtures/soc003.json": "04f6c649afbcab1c5de4a844c5bb673820a6e9b92959a04fd2def6a558aab3cc",
+    "recipes/soc003.py": "7dca442987929804f9d6a1ce2299a036d13fac9501fd50831a7342680002d8cb",
+    "recipes/esql_exact.py": "abedc7ba109ec89ba81162a3f7b93608449e72060d5472faec68e075f477eaa6",
+    "recipes/dax_profiles.py": "a2e594a4a8451dce0831a4263cb63eca790bf17c0562bfa62b044fa5e98f0577",
+    "recipes/ci/audit_issue_examples.py": "0348119efb0863f46023904444bbc49414beee4d0566308e0acfb28dd3b04f83",
+    "recipes/ci/collect_profile_reports.py": "8bc92d8208e8b1918b31d4c47a288c8b390fab5debe9bcd1bd63b05af641c315",
+    "recipes/ci/desktop_runner.py": "1b6e9a3323bc15142b155da321bedbd9aaefbb3c99241bd8c18bdc4ca6b5bbe1",
+    "recipes/ci/esql_runner.py": "80b644a24f567d5f0f80337e247d42f8d2c0eb83bb0ecff5575b99d529c1c063",
+    "recipes/ci/excel_runner.py": "3f92f7e96305a214edb58557cfa63e56e58162fb61adc00281396cb6b32de727",
+    "recipes/ci/incident_cases.py": "43ccfc5be65c575aac33dc1b5ff2a2be6b217de2ad76586514e84dcdf0e180b6",
+    "recipes/ci/kusto_runner.py": "11bad246bbee7665564aca9b87284baf5aa586ba7b89d1486777cfd802c01a34",
+    "recipes/ci/partitions.py": "b893123aae1c3a208aa326b764bd855d4f994ef1cfd294504da31f537c832f92",
+    "recipes/ci/profile_runner.py": "142f7a76a758d21fd666d39db7ab166a73fad25c6d90bb9362d389386eb6043f",
+    "recipes/ci/semantic_runner.py": "e9125ec06254dd7bd59ba95c35572d0769a2eac51383f3477f52fa8f28c39168",
+    "recipes/ci/spl_fixture.py": "856bfb5d5899f0e8c2f09b0579611ed90cee76c83fa1274bc0606b698611f716",
+    "recipes/ci/spl_runner.py": "23f1099ba8bf16b8f0927b0089fbffadfa03ab518663c00817c1c9becf327cd1",
+    "recipes/ci/wait_kusto.py": "2dec2d2dc2fb2aed341ab975f65b575007542253b7b02eb4fb6de350db382d34",
+    "recipes/ci/desktop_engine.ps1": "f8b5deb54637f0ff267e2cc2cd6125faeb91579bd3496f101a561c9d7b052532",
+    "recipes/ci/run_desktop_acceptance.ps1": "195ef5a55f031ffd305016f934fd1620682cc20cdcb91b04332653462a9e9591",
+    "recipes/export_implementation.py": "0ed6bf8b16473c8f07ad66bfa91631fa8e60cd0d30fcf99383c7979e8a200bb1",
+    "recipes/xlsx_dialect.py": "3cedaeb4b39ec10ff24658decc558cbe092e8e2d04a17c29a9a204adf7bf26ba",
+    "reference/assurance.py": "5807ac53da85f982a5cbab11ddf76b7cbc6e531ac624da3ab7a73c18365775f3",
+    "reference/execution_store.py": "ad88016772159992fc6a9cb6b43ebfdbbc227d0229656f79faf734b67abd566e",
+    "catalog/osms-catalog.yaml": "1b128973da1db2d71c9381e504eb9a328902fd2a7efae2491438a97aa453fe2c",
+    "catalog/principles.yaml": "0b41b8054b8c88a7633862bbc989098441263da5dc46d5b83d1403711106e574",
+    "reference/RUBRICS.md": "759ce590f9762a709ebd62e73b6ec957287057ea291815d2b48e703703ef7b87",
+    "reference/ASSURANCE_PROFILES.md": "934a505c6455c72175aa64384ebabcc890095e29c7cc6c0e6dcd35ce116ec39f",
+    "recipes/EXECUTION_PROFILES.md": "2b96f0527fd38d2b37b3634bb7a4afd2a6da575e9566e757c792300220823cb5"
+  },
+  "runner_sha256": "0348119efb0863f46023904444bbc49414beee4d0566308e0acfb28dd3b04f83",
+  "cases": [
+    {
+      "card_id": "SOC-002",
+      "case_id": "audit_issue/four_values_15h",
+      "fixture": {
+        "name": "audit_issue/four_values_15h",
+        "rows": [
+          {
+            "occurred_at": "2026-06-19T22:00:00+00:00",
+            "detected_at": "2026-06-20T00:00:00+00:00",
+            "confirmed_at": "2026-06-21T00:00:00Z",
+            "severity": "fixture:reference/1",
+            "card_id": "SOC-002",
+            "card_version": "0.9.2",
+            "contract_hash": "a86fa46751b11c2aeb6966193635f9fbfc1b8014913d1d0786bbdc9618d5e113",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "audit:0",
+            "evidence_ref": "synthetic:audit:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "occurred_at": "2026-06-19T14:00:00+00:00",
+            "detected_at": "2026-06-20T00:00:00+00:00",
+            "confirmed_at": "2026-06-21T00:00:00Z",
+            "severity": "fixture:reference/1",
+            "card_id": "SOC-002",
+            "card_version": "0.9.2",
+            "contract_hash": "a86fa46751b11c2aeb6966193635f9fbfc1b8014913d1d0786bbdc9618d5e113",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "audit:1",
+            "evidence_ref": "synthetic:audit:1",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "occurred_at": "2026-06-19T04:00:00+00:00",
+            "detected_at": "2026-06-20T00:00:00+00:00",
+            "confirmed_at": "2026-06-21T00:00:00Z",
+            "severity": "fixture:reference/1",
+            "card_id": "SOC-002",
+            "card_version": "0.9.2",
+            "contract_hash": "a86fa46751b11c2aeb6966193635f9fbfc1b8014913d1d0786bbdc9618d5e113",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "audit:2",
+            "evidence_ref": "synthetic:audit:2",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "occurred_at": "2026-06-18T18:00:00+00:00",
+            "detected_at": "2026-06-20T00:00:00+00:00",
+            "confirmed_at": "2026-06-21T00:00:00Z",
+            "severity": "fixture:reference/1",
+            "card_id": "SOC-002",
+            "card_version": "0.9.2",
+            "contract_hash": "a86fa46751b11c2aeb6966193635f9fbfc1b8014913d1d0786bbdc9618d5e113",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "audit:3",
+            "evidence_ref": "synthetic:audit:3",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "p50": 15,
+          "p90": 30,
+          "valid_cases": 4,
+          "invalid_cases": 0,
+          "mean_h": 15.5,
+          "severity_weighted_mean_h": 15.5
+        }
+      },
+      "fixture_sha256": "efb8f8b0cd838623b288c8d0cf94757927482641b8259ac3ca027b163a59bd5d",
+      "expected": {
+        "p50": 15,
+        "p90": 30,
+        "valid_cases": 4,
+        "invalid_cases": 0,
+        "mean_h": 15.5,
+        "severity_weighted_mean_h": 15.5
+      },
+      "status": "pass",
+      "actual": {
+        "severity_weighted_mean_h": 15.500000000058208,
+        "mean_h": 15.500000000058208,
+        "valid_cases": 4,
+        "selected_records": 4,
+        "p90": 30,
+        "p50": 15,
+        "invalid_records": 0,
+        "invalid_cases": 0
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "audit_issue/duplicate_values",
+      "fixture": {
+        "name": "audit_issue/duplicate_values",
+        "rows": [
+          {
+            "occurred_at": "2026-06-19T22:00:00+00:00",
+            "detected_at": "2026-06-20T00:00:00+00:00",
+            "confirmed_at": "2026-06-21T00:00:00Z",
+            "severity": "fixture:reference/1",
+            "card_id": "SOC-002",
+            "card_version": "0.9.2",
+            "contract_hash": "a86fa46751b11c2aeb6966193635f9fbfc1b8014913d1d0786bbdc9618d5e113",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "audit:0",
+            "evidence_ref": "synthetic:audit:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "occurred_at": "2026-06-19T22:00:00+00:00",
+            "detected_at": "2026-06-20T00:00:00+00:00",
+            "confirmed_at": "2026-06-21T00:00:00Z",
+            "severity": "fixture:reference/1",
+            "card_id": "SOC-002",
+            "card_version": "0.9.2",
+            "contract_hash": "a86fa46751b11c2aeb6966193635f9fbfc1b8014913d1d0786bbdc9618d5e113",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "audit:1",
+            "evidence_ref": "synthetic:audit:1",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "occurred_at": "2026-06-19T14:00:00+00:00",
+            "detected_at": "2026-06-20T00:00:00+00:00",
+            "confirmed_at": "2026-06-21T00:00:00Z",
+            "severity": "fixture:reference/1",
+            "card_id": "SOC-002",
+            "card_version": "0.9.2",
+            "contract_hash": "a86fa46751b11c2aeb6966193635f9fbfc1b8014913d1d0786bbdc9618d5e113",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "audit:2",
+            "evidence_ref": "synthetic:audit:2",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "occurred_at": "2026-06-18T18:00:00+00:00",
+            "detected_at": "2026-06-20T00:00:00+00:00",
+            "confirmed_at": "2026-06-21T00:00:00Z",
+            "severity": "fixture:reference/1",
+            "card_id": "SOC-002",
+            "card_version": "0.9.2",
+            "contract_hash": "a86fa46751b11c2aeb6966193635f9fbfc1b8014913d1d0786bbdc9618d5e113",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "audit:3",
+            "evidence_ref": "synthetic:audit:3",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "p50": 6,
+          "p90": 30,
+          "valid_cases": 4,
+          "invalid_cases": 0,
+          "mean_h": 11,
+          "severity_weighted_mean_h": 11
+        }
+      },
+      "fixture_sha256": "a659710ad967bc8492e672f5a693e1a3eeb776e39598944a23b4106e38678aae",
+      "expected": {
+        "p50": 6,
+        "p90": 30,
+        "valid_cases": 4,
+        "invalid_cases": 0,
+        "mean_h": 11,
+        "severity_weighted_mean_h": 11
+      },
+      "status": "pass",
+      "actual": {
+        "severity_weighted_mean_h": 11.000000000058208,
+        "mean_h": 11.000000000058208,
+        "valid_cases": 4,
+        "selected_records": 4,
+        "p90": 30,
+        "p50": 6,
+        "invalid_records": 0,
+        "invalid_cases": 0
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "audit_issue/singleton",
+      "fixture": {
+        "name": "audit_issue/singleton",
+        "rows": [
+          {
+            "occurred_at": "2026-06-19T17:00:00+00:00",
+            "detected_at": "2026-06-20T00:00:00+00:00",
+            "confirmed_at": "2026-06-21T00:00:00Z",
+            "severity": "fixture:reference/1",
+            "card_id": "SOC-002",
+            "card_version": "0.9.2",
+            "contract_hash": "a86fa46751b11c2aeb6966193635f9fbfc1b8014913d1d0786bbdc9618d5e113",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "audit:0",
+            "evidence_ref": "synthetic:audit:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "p50": 7,
+          "p90": 7,
+          "valid_cases": 1,
+          "invalid_cases": 0,
+          "mean_h": 7,
+          "severity_weighted_mean_h": 7
+        }
+      },
+      "fixture_sha256": "a32241f147cc1bf2e20469752a8297f3d783d10c3fbbb9f69c602a401ff130a7",
+      "expected": {
+        "p50": 7,
+        "p90": 7,
+        "valid_cases": 1,
+        "invalid_cases": 0,
+        "mean_h": 7,
+        "severity_weighted_mean_h": 7
+      },
+      "status": "pass",
+      "actual": {
+        "severity_weighted_mean_h": 6.999999999767169,
+        "mean_h": 6.999999999767169,
+        "valid_cases": 1,
+        "selected_records": 1,
+        "p90": 6.999999999767169,
+        "p50": 6.999999999767169,
+        "invalid_records": 0,
+        "invalid_cases": 0
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "SOC-002",
+      "case_id": "audit_issue/two_values",
+      "fixture": {
+        "name": "audit_issue/two_values",
+        "rows": [
+          {
+            "occurred_at": "2026-06-19T22:00:00+00:00",
+            "detected_at": "2026-06-20T00:00:00+00:00",
+            "confirmed_at": "2026-06-21T00:00:00Z",
+            "severity": "fixture:reference/1",
+            "card_id": "SOC-002",
+            "card_version": "0.9.2",
+            "contract_hash": "a86fa46751b11c2aeb6966193635f9fbfc1b8014913d1d0786bbdc9618d5e113",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "audit:0",
+            "evidence_ref": "synthetic:audit:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "occurred_at": "2026-06-19T14:00:00+00:00",
+            "detected_at": "2026-06-20T00:00:00+00:00",
+            "confirmed_at": "2026-06-21T00:00:00Z",
+            "severity": "fixture:reference/1",
+            "card_id": "SOC-002",
+            "card_version": "0.9.2",
+            "contract_hash": "a86fa46751b11c2aeb6966193635f9fbfc1b8014913d1d0786bbdc9618d5e113",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "audit:1",
+            "evidence_ref": "synthetic:audit:1",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "p50": 6,
+          "p90": 10,
+          "valid_cases": 2,
+          "invalid_cases": 0,
+          "mean_h": 6,
+          "severity_weighted_mean_h": 6
+        }
+      },
+      "fixture_sha256": "f185d50339769e99ae8ce6bc9dd2c8c5d0ae7a8e64207f116f4c6265680c8314",
+      "expected": {
+        "p50": 6,
+        "p90": 10,
+        "valid_cases": 2,
+        "invalid_cases": 0,
+        "mean_h": 6,
+        "severity_weighted_mean_h": 6
+      },
+      "status": "pass",
+      "actual": {
+        "severity_weighted_mean_h": 6,
+        "mean_h": 6,
+        "valid_cases": 2,
+        "selected_records": 2,
+        "p90": 9.99999999976717,
+        "p50": 6,
+        "invalid_records": 0,
+        "invalid_cases": 0
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "audit_issue/four_values_9d",
+      "fixture": {
+        "name": "audit_issue/four_values_9d",
+        "rows": [
+          {
+            "first_drift_detected_at": "2026-06-30T00:00:00+00:00",
+            "open_at_cutoff": true,
+            "tier0": true,
+            "drift_severity": "critical",
+            "card_id": "CFG-002",
+            "card_version": "0.9.2",
+            "contract_hash": "ff31329519b108ed4175221c18ce1e030ecafe4fc3229acf8f1499887073017c",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00+00:00",
+            "record_id": "audit:0",
+            "evidence_ref": "synthetic:audit:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "first_drift_detected_at": "2026-06-22T00:00:00+00:00",
+            "open_at_cutoff": true,
+            "tier0": true,
+            "drift_severity": "critical",
+            "card_id": "CFG-002",
+            "card_version": "0.9.2",
+            "contract_hash": "ff31329519b108ed4175221c18ce1e030ecafe4fc3229acf8f1499887073017c",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00+00:00",
+            "record_id": "audit:1",
+            "evidence_ref": "synthetic:audit:1",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "first_drift_detected_at": "2026-06-11T00:00:00+00:00",
+            "open_at_cutoff": true,
+            "tier0": true,
+            "drift_severity": "critical",
+            "card_id": "CFG-002",
+            "card_version": "0.9.2",
+            "contract_hash": "ff31329519b108ed4175221c18ce1e030ecafe4fc3229acf8f1499887073017c",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00+00:00",
+            "record_id": "audit:2",
+            "evidence_ref": "synthetic:audit:2",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "first_drift_detected_at": "2026-06-01T00:00:00+00:00",
+            "open_at_cutoff": true,
+            "tier0": true,
+            "drift_severity": "critical",
+            "card_id": "CFG-002",
+            "card_version": "0.9.2",
+            "contract_hash": "ff31329519b108ed4175221c18ce1e030ecafe4fc3229acf8f1499887073017c",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00+00:00",
+            "record_id": "audit:3",
+            "evidence_ref": "synthetic:audit:3",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "p50": 9,
+          "p90": 30,
+          "valid_cases": 4,
+          "invalid_cases": 0
+        }
+      },
+      "fixture_sha256": "0e1970787d7f0913fe12ca9e9a22adc78dda50e9c43e86a86567b3c52b03f369",
+      "expected": {
+        "p50": 9,
+        "p90": 30,
+        "valid_cases": 4,
+        "invalid_cases": 0
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 4,
+        "valid_cases": 4,
+        "tier0_critical_max_days": 30,
+        "p90": 30,
+        "invalid_records": 0,
+        "p50": 9,
+        "p95": 30,
+        "invalid_cases": 0
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "audit_issue/duplicate_values",
+      "fixture": {
+        "name": "audit_issue/duplicate_values",
+        "rows": [
+          {
+            "first_drift_detected_at": "2026-06-29T00:00:00+00:00",
+            "open_at_cutoff": true,
+            "tier0": true,
+            "drift_severity": "critical",
+            "card_id": "CFG-002",
+            "card_version": "0.9.2",
+            "contract_hash": "ff31329519b108ed4175221c18ce1e030ecafe4fc3229acf8f1499887073017c",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00+00:00",
+            "record_id": "audit:0",
+            "evidence_ref": "synthetic:audit:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "first_drift_detected_at": "2026-06-29T00:00:00+00:00",
+            "open_at_cutoff": true,
+            "tier0": true,
+            "drift_severity": "critical",
+            "card_id": "CFG-002",
+            "card_version": "0.9.2",
+            "contract_hash": "ff31329519b108ed4175221c18ce1e030ecafe4fc3229acf8f1499887073017c",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00+00:00",
+            "record_id": "audit:1",
+            "evidence_ref": "synthetic:audit:1",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "first_drift_detected_at": "2026-06-21T00:00:00+00:00",
+            "open_at_cutoff": true,
+            "tier0": true,
+            "drift_severity": "critical",
+            "card_id": "CFG-002",
+            "card_version": "0.9.2",
+            "contract_hash": "ff31329519b108ed4175221c18ce1e030ecafe4fc3229acf8f1499887073017c",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00+00:00",
+            "record_id": "audit:2",
+            "evidence_ref": "synthetic:audit:2",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "first_drift_detected_at": "2026-06-01T00:00:00+00:00",
+            "open_at_cutoff": true,
+            "tier0": true,
+            "drift_severity": "critical",
+            "card_id": "CFG-002",
+            "card_version": "0.9.2",
+            "contract_hash": "ff31329519b108ed4175221c18ce1e030ecafe4fc3229acf8f1499887073017c",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00+00:00",
+            "record_id": "audit:3",
+            "evidence_ref": "synthetic:audit:3",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "p50": 2,
+          "p90": 30,
+          "valid_cases": 4,
+          "invalid_cases": 0
+        }
+      },
+      "fixture_sha256": "284abc38afe5499a819f01752809b150a6f663f23f5d23b7ba334aa8641b4dbd",
+      "expected": {
+        "p50": 2,
+        "p90": 30,
+        "valid_cases": 4,
+        "invalid_cases": 0
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 4,
+        "valid_cases": 4,
+        "tier0_critical_max_days": 30,
+        "p90": 30,
+        "invalid_records": 0,
+        "p50": 2,
+        "p95": 30,
+        "invalid_cases": 0
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "audit_issue/singleton",
+      "fixture": {
+        "name": "audit_issue/singleton",
+        "rows": [
+          {
+            "first_drift_detected_at": "2026-06-24T00:00:00+00:00",
+            "open_at_cutoff": true,
+            "tier0": true,
+            "drift_severity": "critical",
+            "card_id": "CFG-002",
+            "card_version": "0.9.2",
+            "contract_hash": "ff31329519b108ed4175221c18ce1e030ecafe4fc3229acf8f1499887073017c",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00+00:00",
+            "record_id": "audit:0",
+            "evidence_ref": "synthetic:audit:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "p50": 7,
+          "p90": 7,
+          "valid_cases": 1,
+          "invalid_cases": 0
+        }
+      },
+      "fixture_sha256": "3c1065a8a75a4e67c3d0d4f51c5848543a87dc4d0d60a4c724f22328e670e86f",
+      "expected": {
+        "p50": 7,
+        "p90": 7,
+        "valid_cases": 1,
+        "invalid_cases": 0
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "valid_cases": 1,
+        "tier0_critical_max_days": 7,
+        "p90": 7,
+        "invalid_records": 0,
+        "p50": 7,
+        "p95": 7,
+        "invalid_cases": 0
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "CFG-002",
+      "case_id": "audit_issue/two_values",
+      "fixture": {
+        "name": "audit_issue/two_values",
+        "rows": [
+          {
+            "first_drift_detected_at": "2026-06-29T00:00:00+00:00",
+            "open_at_cutoff": true,
+            "tier0": true,
+            "drift_severity": "critical",
+            "card_id": "CFG-002",
+            "card_version": "0.9.2",
+            "contract_hash": "ff31329519b108ed4175221c18ce1e030ecafe4fc3229acf8f1499887073017c",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00+00:00",
+            "record_id": "audit:0",
+            "evidence_ref": "synthetic:audit:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "first_drift_detected_at": "2026-06-21T00:00:00+00:00",
+            "open_at_cutoff": true,
+            "tier0": true,
+            "drift_severity": "critical",
+            "card_id": "CFG-002",
+            "card_version": "0.9.2",
+            "contract_hash": "ff31329519b108ed4175221c18ce1e030ecafe4fc3229acf8f1499887073017c",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00+00:00",
+            "record_id": "audit:1",
+            "evidence_ref": "synthetic:audit:1",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "p50": 2,
+          "p90": 10,
+          "valid_cases": 2,
+          "invalid_cases": 0
+        }
+      },
+      "fixture_sha256": "c2f7a4400806873e87bc69b017e98fa283f107672ab4794885cd3eca31c903c5",
+      "expected": {
+        "p50": 2,
+        "p90": 10,
+        "valid_cases": 2,
+        "invalid_cases": 0
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 2,
+        "valid_cases": 2,
+        "tier0_critical_max_days": 10,
+        "p90": 10,
+        "invalid_records": 0,
+        "p50": 2,
+        "p95": 10,
+        "invalid_cases": 0
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "audit_issue/missing_network_isolation",
+      "fixture": {
+        "name": "audit_issue/missing_network_isolation",
+        "rows": [
+          {
+            "network_isolation": null,
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "d8870e8b134a078f7536a85009aabaf026a6302f6b142c1d774a57956533228c",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "audit_issue/missing_identity_separation",
+      "fixture": {
+        "name": "audit_issue/missing_identity_separation",
+        "rows": [
+          {
+            "network_isolation": 20,
+            "identity_separation": null,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "5d41a58c41173fcbf92d05cc57757aa687e43dc36e99d26b03c6c786f27e78c0",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "audit_issue/missing_admin_separation",
+      "fixture": {
+        "name": "audit_issue/missing_admin_separation",
+        "rows": [
+          {
+            "network_isolation": 20,
+            "identity_separation": 40,
+            "admin_separation": null,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "e6da60942bdb03ca30298159bb568e97484fcd1331346ebe4abf7df45ace2f49",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "audit_issue/missing_monitoring",
+      "fixture": {
+        "name": "audit_issue/missing_monitoring",
+        "rows": [
+          {
+            "network_isolation": 20,
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": null,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "7ceaaa4810f538705f43321f07843685e61470be21b6a65c1793366bd432bf56",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "audit_issue/missing_restore_access_control",
+      "fixture": {
+        "name": "audit_issue/missing_restore_access_control",
+        "rows": [
+          {
+            "network_isolation": 20,
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": null,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "9d7f2e6be955125830cbf5dc4a84b97794ee1f13ddd8c97dd9799cafda32a3a1",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "audit_issue/nan_text",
+      "fixture": {
+        "name": "audit_issue/nan_text",
+        "rows": [
+          {
+            "network_isolation": "NaN",
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "34bf0d8611225dbc94e0bbec6e9f1fda9a50672e68f9932892f1304018b150fa",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "audit_issue/positive_infinity_text",
+      "fixture": {
+        "name": "audit_issue/positive_infinity_text",
+        "rows": [
+          {
+            "network_isolation": "Infinity",
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "aa36ee1dd8a4eb7c44e061f48a94ed1ebd48ec0989ef09dbf3d3b7f592b8b9f8",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "audit_issue/negative_infinity_text",
+      "fixture": {
+        "name": "audit_issue/negative_infinity_text",
+        "rows": [
+          {
+            "network_isolation": "-Infinity",
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "9286198d6d95bfbb4a82a3ba118db17a13773c0fea173dbe1de8c5fd9587f411",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-068",
+      "case_id": "audit_issue/above_score_range",
+      "fixture": {
+        "name": "audit_issue/above_score_range",
+        "rows": [
+          {
+            "network_isolation": 101,
+            "identity_separation": 40,
+            "admin_separation": 60,
+            "monitoring": 80,
+            "restore_access_control": 100,
+            "card_id": "STD-068",
+            "card_version": "0.9.2",
+            "contract_hash": "a092af14e8db08fb0d04f88d4e64a0eeecbc318f58f19c018d32e1a3156ff970",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "5c80c13575f5852488c08ccdac054ad3c2f648226eaf8a9ec5114941049d2e7f",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "audit_issue/missing_exercise_frequency",
+      "fixture": {
+        "name": "audit_issue/missing_exercise_frequency",
+        "rows": [
+          {
+            "exercise_frequency": null,
+            "scenario_realism": 40,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "b17039b473a48cb2bb222c6574e62bfde08b40dc02d91d73f54495263629a670",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "audit_issue/missing_scenario_realism",
+      "fixture": {
+        "name": "audit_issue/missing_scenario_realism",
+        "rows": [
+          {
+            "exercise_frequency": 20,
+            "scenario_realism": null,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "5dded9792480258eb8a1bae0b36394d20db60add7f10dae1ec671511160d1be0",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "audit_issue/missing_stakeholder_participation",
+      "fixture": {
+        "name": "audit_issue/missing_stakeholder_participation",
+        "rows": [
+          {
+            "exercise_frequency": 20,
+            "scenario_realism": 40,
+            "stakeholder_participation": null,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "e5a75cb7e959efdbd3f1caa35bc486333ffe15f713e439009edb2e8ed293c797",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "audit_issue/missing_lessons_learned_closure",
+      "fixture": {
+        "name": "audit_issue/missing_lessons_learned_closure",
+        "rows": [
+          {
+            "exercise_frequency": 20,
+            "scenario_realism": 40,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": null,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "c25517c40271e5efc7e0474d42c524aa0eac62cd4ac7cdf72322a255ec151d66",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "audit_issue/nan_text",
+      "fixture": {
+        "name": "audit_issue/nan_text",
+        "rows": [
+          {
+            "exercise_frequency": "NaN",
+            "scenario_realism": 40,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "445e6ea491917780524a85c3da3bdec4e4f0a734679f4b77e278ddbec5a27396",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "audit_issue/positive_infinity_text",
+      "fixture": {
+        "name": "audit_issue/positive_infinity_text",
+        "rows": [
+          {
+            "exercise_frequency": "Infinity",
+            "scenario_realism": 40,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "b9efa60782a2558281089647c32a352ef2e4738c110e9c2c5b8852ca97224a1c",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "audit_issue/negative_infinity_text",
+      "fixture": {
+        "name": "audit_issue/negative_infinity_text",
+        "rows": [
+          {
+            "exercise_frequency": "-Infinity",
+            "scenario_realism": 40,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "521da784266b67bf46382e3aabfd13c132f913a1e4c57037a46f8360a6c00060",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-069",
+      "case_id": "audit_issue/above_score_range",
+      "fixture": {
+        "name": "audit_issue/above_score_range",
+        "rows": [
+          {
+            "exercise_frequency": 101,
+            "scenario_realism": 40,
+            "stakeholder_participation": 60,
+            "lessons_learned_closure": 80,
+            "card_id": "STD-069",
+            "card_version": "0.9.2",
+            "contract_hash": "1401bdd369ad566ac7d0af3375625eaaab78c3e9469600199711fd648e2a4503",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "7e531d421fd8b067927c08f64626d7f4c9cd5c54778294ce0898e9243f164623",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "audit_issue/missing_plan_quality",
+      "fixture": {
+        "name": "audit_issue/missing_plan_quality",
+        "rows": [
+          {
+            "plan_quality": null,
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "429ab04ac588a4682248e64fc622861219b79528ae77a564b5284765ad62c553",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "audit_issue/missing_dependency_status",
+      "fixture": {
+        "name": "audit_issue/missing_dependency_status",
+        "rows": [
+          {
+            "plan_quality": 20,
+            "dependency_status": null,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "59fd9bab25cb7718019f8048957a31c7967b91e6a0e9883fed67e227a9ba5e3d",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "audit_issue/missing_resource_availability",
+      "fixture": {
+        "name": "audit_issue/missing_resource_availability",
+        "rows": [
+          {
+            "plan_quality": 20,
+            "dependency_status": 40,
+            "resource_availability": null,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "252a78c5afdc00526b4a6a7a96c736e3d22d9ce266b673af9b1eeac5178a64ef",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "audit_issue/missing_evidence_progress",
+      "fixture": {
+        "name": "audit_issue/missing_evidence_progress",
+        "rows": [
+          {
+            "plan_quality": 20,
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": null,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "e3b0e183da66369dc0a3930312b82546c2f1c43cca4c16998c7356943aaff6f1",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "audit_issue/missing_risk_to_delivery",
+      "fixture": {
+        "name": "audit_issue/missing_risk_to_delivery",
+        "rows": [
+          {
+            "plan_quality": 20,
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": null,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "c8419f8a2f124b09aa056d2005832e15d4d9f7627e5eb85cab75cde5bd035ddf",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "audit_issue/nan_text",
+      "fixture": {
+        "name": "audit_issue/nan_text",
+        "rows": [
+          {
+            "plan_quality": "NaN",
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "a50c95130d4409b2829857556bc478c8906b5ff620220b0cc03ec65cc901ae80",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "audit_issue/positive_infinity_text",
+      "fixture": {
+        "name": "audit_issue/positive_infinity_text",
+        "rows": [
+          {
+            "plan_quality": "Infinity",
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "08280de35869402d2a745f966732b356f15cfd967626030df11119c9a27cb961",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "audit_issue/negative_infinity_text",
+      "fixture": {
+        "name": "audit_issue/negative_infinity_text",
+        "rows": [
+          {
+            "plan_quality": "-Infinity",
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "6eca6e9c28784d2c3bd39e5fd241ebefd4dfff697605df607c061bd5217b7cb7",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    },
+    {
+      "card_id": "STD-075",
+      "case_id": "audit_issue/above_score_range",
+      "fixture": {
+        "name": "audit_issue/above_score_range",
+        "rows": [
+          {
+            "plan_quality": 101,
+            "dependency_status": 40,
+            "resource_availability": 60,
+            "evidence_progress": 80,
+            "risk_to_delivery": 100,
+            "card_id": "STD-075",
+            "card_version": "0.9.2",
+            "contract_hash": "8b8f6d71156d8a8ac56986df40788ba1757678f4694b729d206536eeaa6783e0",
+            "scope_id": "prod",
+            "segment_id": "all",
+            "period_start": "2026-06-01T00:00:00Z",
+            "period_end": "2026-07-01T00:00:00Z",
+            "record_id": "record:0",
+            "evidence_ref": "fixture:0",
+            "source_system": "synthetic",
+            "source_snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "params": {
+          "scope_id": "prod",
+          "segment_id": "all",
+          "period_start": "2026-06-01T00:00:00Z",
+          "period_end": "2026-07-01T00:00:00Z",
+          "population_complete": true
+        },
+        "expected": {
+          "value": null
+        },
+        "status": "invalid_input"
+      },
+      "fixture_sha256": "274fb19d1a30f297871bed6011e8dd8347abbf5a53a50fea202a2093c72c044e",
+      "expected": {
+        "value": null
+      },
+      "status": "pass",
+      "actual": {
+        "selected_records": 1,
+        "invalid_records": 1,
+        "value": "#N/A"
+      },
+      "failed_outputs": []
+    }
+  ],
+  "aborted": false,
+  "engine_version": "16.0.20228",
+  "completed_at": "2026-09-12T03:19:43.214508+00:00",
+  "passed": 34,
+  "failed": 0
+}
