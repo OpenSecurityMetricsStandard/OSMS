@@ -61,6 +61,9 @@ if ($request.engine -eq 'excel') {
         $db.CompatibilityLevel = 1500
         $db.Model = New-Object Microsoft.AnalysisServices.Tabular.Model
         $db.Model.Culture = 'en-US'
+        # Preserve case-distinct source values before EXACT evaluates them.
+        # The default VertiPaq dictionary can merge prod/PROD on import.
+        $db.Model.Collation = 'Latin1_General_100_BIN2'
         $server.Databases.Add($db); $db.Update([Microsoft.AnalysisServices.UpdateOptions]::ExpandFull)
         foreach ($definition in $request.tables) {
             $table = New-Object Microsoft.AnalysisServices.Tabular.Table

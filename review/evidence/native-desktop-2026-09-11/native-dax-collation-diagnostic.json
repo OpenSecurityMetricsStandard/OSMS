@@ -1,0 +1,50 @@
+[
+  {
+    "collation": "Latin1_General_100_CS_AS",
+    "returncode": 0,
+    "stdout": "1\n",
+    "stderr": "",
+    "result": {
+      "rows": [
+        {
+          "selected_records": 2,
+          "maximum_h": 30,
+          "recurrence_trend": 1,
+          "evaluation_status": "ok",
+          "valid_cases": 2,
+          "recurrence_count": 2,
+          "p90": 30,
+          "invalid_records": 0,
+          "p50": 2.0000000000582077,
+          "p95": 30,
+          "invalid_cases": 0
+        }
+      ],
+      "engine_version": "17.0.83.18"
+    }
+  },
+  {
+    "collation": "Latin1_General_100_BIN2",
+    "returncode": 0,
+    "stdout": "1\n",
+    "stderr": "",
+    "result": {
+      "rows": [
+        {
+          "selected_records": 2,
+          "maximum_h": 30,
+          "recurrence_trend": 1,
+          "evaluation_status": "ok",
+          "valid_cases": 2,
+          "recurrence_count": 2,
+          "p90": 30,
+          "invalid_records": 0,
+          "p50": 2.0000000000582077,
+          "p95": 30,
+          "invalid_cases": 0
+        }
+      ],
+      "engine_version": "17.0.83.18"
+    }
+  }
+]
